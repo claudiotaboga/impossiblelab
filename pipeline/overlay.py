@@ -87,7 +87,7 @@ def frame(f):
                     x += d.textlength(w["w"] + " ", font=cf)
 
     # footer
-    shadow_text(img, (W / 2, H - 120), "@theimpossiblelab", font("Bold", 36), WHITE)
+    shadow_text(img, (W / 2, H - 120), "@the.impossible.lab", font("Bold", 36), WHITE)
     shadow_text(img, (W / 2, H - 72), "real science · impossible situations", font("Medium", 28), (235, 225, 210))
 
     # THE REAL SCIENCE card
