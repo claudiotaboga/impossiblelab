@@ -13,5 +13,14 @@
     "https://www.michigan.gov/documents/deq/deq-rrd-chem-MercuryElementalDatasheet_527856_7.pdf (density 13.534 g/mL)",
     "Saturated vapour at 20 °C computed: 0.0012 mmHg -> ~13 mg/m³ (ideal gas); vs ACGIH TLV 0.025 mg/m³ -> ~530×"
   ],
-  "qa": {}
+  "qa": {
+    "duration_s": 16.5,
+    "integrated_loudness_lufs": -14.1,
+    "true_peak_dbfs": -1.2,
+    "video_kbps_per_second_max": 3932,
+    "audio": "aac 128k 48kHz stereo",
+    "codec": "h264 High yuv420p, faststart",
+    "disclaimer_in_caption": true,
+    "visual_check": "8 frames incl. t=0.5, chips, card, last frame"
+  }
 }
