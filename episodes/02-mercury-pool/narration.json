@@ -1,0 +1,51 @@
+[
+ {
+  "i": 1,
+  "text": "You can't drown in this pool.",
+  "file": "vo/line1.wav",
+  "dur": 1.296,
+  "sr": 24000
+ },
+ {
+  "i": 2,
+  "text": "It's mercury, over thirteen times heavier than water.",
+  "file": "vo/line2.wav",
+  "dur": 2.862,
+  "sr": 24000
+ },
+ {
+  "i": 3,
+  "text": "Dive in and you bounce.",
+  "file": "vo/line3.wav",
+  "dur": 1.182,
+  "sr": 24000
+ },
+ {
+  "i": 4,
+  "text": "Lie down: only seven percent of you sinks.",
+  "file": "vo/line4.wav",
+  "dur": 2.43,
+  "sr": 24000
+ },
+ {
+  "i": 5,
+  "text": "Swim? Your arms just slap the surface.",
+  "file": "vo/line5.wav",
+  "dur": 2.151,
+  "sr": 24000
+ },
+ {
+  "i": 6,
+  "text": "The real danger?",
+  "file": "vo/line6.wav",
+  "dur": 0.964,
+  "sr": 24000
+ },
+ {
+  "i": 7,
+  "text": "The air above it: hundreds of times the safe limit.",
+  "file": "vo/line7.wav",
+  "dur": 2.826,
+  "sr": 24000
+ }
+]

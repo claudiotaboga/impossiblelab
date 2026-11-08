@@ -1,0 +1,17 @@
+{
+  "episode_id": "TIL-02",
+  "status": "ready",
+  "qa_passed": true,
+  "width": 1080,
+  "height": 1920,
+  "duration_seconds": 16.5,
+  "title": "What if you dived into a pool of mercury?",
+  "video_url": "https://raw.githubusercontent.com/claudiotaboga/impossiblelab/main/episodes/02-mercury-pool/video.mp4",
+  "caption": "You can't drown in a pool of mercury. 🪞\n\nMercury is over 13× denser than water, so a body floats with only about 7% under the surface. Dive in and you bounce. Try to swim and your arms just slap a metal mirror.\n\nThe real danger is invisible: air saturated with mercury vapour at room temperature holds about 13 mg/m³, roughly 500× the workplace safety limit.\n\nWould you rather float in mercury or in honey? 👇\n\nSend this to the friend who'd still try to do a cannonball.\n\nFollow @the.impossible.lab for more impossible science.\n\n⚠️ Don't try this. Mercury vapour is toxic: never touch, heat or play with liquid mercury, and call for professional cleanup if it spills.\n\n#science #physics #chemistry #didyouknow #sciencefacts #mercury #whatif #theimpossiblelab",
+  "sources": [
+    "https://www.osha.gov/chemicaldata/505 (exposure limits; vapour pressure 0.0012 mmHg)",
+    "https://www.michigan.gov/documents/deq/deq-rrd-chem-MercuryElementalDatasheet_527856_7.pdf (density 13.534 g/mL)",
+    "Saturated vapour at 20 °C computed: 0.0012 mmHg -> ~13 mg/m³ (ideal gas); vs ACGIH TLV 0.025 mg/m³ -> ~530×"
+  ],
+  "qa": {}
+}
