@@ -5,7 +5,7 @@ Usage: python3 scene.py [start end]   (frames, inclusive; default full 0..359)
 import bpy, addon_utils, math, random, sys, json
 from mathutils import Vector
 
-FPS, N = 24, 360
+from config import FPS, FRAMES as N
 random.seed(7)
 addon_utils.enable("cycles", default_set=True)
 bpy.ops.wm.read_factory_settings(use_empty=True)

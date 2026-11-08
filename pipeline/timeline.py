@@ -1,8 +1,7 @@
 """Shared timeline: narration line starts and per-word timings (15 s reel)."""
 import json, re
 
-DUR, FPS = 15.0, 24
-GAP, START = 0.10, 0.10
+from config import DUR, FPS, GAP, START, CARD_MIN
 LINES = json.load(open("/home/claude/reel/vo/lines.json"))
 
 t = START
@@ -17,6 +16,8 @@ for l in LINES:
         l["words"].append({"w": word, "t": round(acc, 3)}); acc += span * wt / tot
 
 CARD_START = LINES[-1]["end"] + 0.05
+assert CARD_START <= DUR - CARD_MIN, (
+    f"narration too long: ends at {LINES[-1]['end']:.2f}s, card needs {CARD_MIN}s of {DUR}s; shorten lines")
 
 if __name__ == "__main__":
     for l in LINES: print(l["i"], l["start"], l["end"], l["text"])

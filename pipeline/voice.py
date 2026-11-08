@@ -1,6 +1,7 @@
 """Record the 7 narration lines with Kokoro (af_heart, speed 1.10) and log real lengths."""
 import json, soundfile as sf, numpy as np
 from kokoro_onnx import Kokoro
+from config import VOICE, VOICE_SPEED
 
 LINES = [
     "Whisky is thicker than water.",
@@ -15,7 +16,7 @@ LINES = [
 k = Kokoro("models/kokoro-v1.0.onnx", "models/voices-v1.0.bin")
 out = []
 for i, line in enumerate(LINES, 1):
-    samples, sr = k.create(line, voice="af_heart", speed=1.10, lang="en-us")
+    samples, sr = k.create(line, voice=VOICE, speed=VOICE_SPEED, lang="en-us")
     # trim leading/trailing silence
     a = np.abs(samples); idx = np.where(a > 0.01)[0]
     samples = samples[max(idx[0] - 240, 0): idx[-1] + 480]
