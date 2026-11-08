@@ -9,14 +9,19 @@ F = "/usr/share/fonts/opentype/inter/"
 def font(w, s): return ImageFont.truetype(F + f"Inter-{w}.otf", s)
 AMBER = (255, 176, 46); WHITE = (255, 255, 255); INK = (18, 12, 6)
 
-FACTS = [  # (start, end, text)
-    (3.5, 5.0, "≈7% LESS LIFT"),
-    (5.6, 7.7, "≈3× THICKER THAN WATER"),
-    (8.2, 10.2, "FLASH POINT ≈ 26 °C"),
+# ---- per-episode content: the only block to change for a new episode ----
+EP_NUM = 2
+TITLE = ["WHAT IF YOU DIVED", "INTO MERCURY?"]
+FACTS = [  # (start, end, text) — times match the narration lines
+    (2.2, 4.6, "13.5× DENSER THAN WATER"),
+    (6.5, 8.6, "≈7% OF YOU SINKS"),
+    (12.7, 15.1, "VAPOUR ≈500× THE SAFE LIMIT"),
 ]
-CARD = [("Density", "0.95 g/cm³", "water 1.00"),
-        ("Viscosity", "≈2.7 mPa·s", "water 1.0"),
-        ("Flash point", "≈26 °C", "40% ethanol")]
+CARD_SUB = "liquid mercury, at room temperature"
+CARD = [("Density", "13.53 g/cm³", "water 1.00"),
+        ("You float with", "≈7% under", "body ≈1.0 g/cm³"),
+        ("Vapour at 20 °C", "≈13 mg/m³", "safe limit 0.025 (ACGIH)")]
+DISCLAIMER = "Don't try this. Mercury vapour is toxic."
 
 def ease(x): x = max(0, min(1, x)); return 1 - (1 - x) ** 3
 
@@ -54,12 +59,12 @@ def frame(f):
     img.alpha_composite(g)
 
     # tag
-    pill(img, W / 2, 150, "THE IMPOSSIBLE LAB  ·  #01", font("Bold", 34), AMBER, INK)
+    pill(img, W / 2, 150, f"THE IMPOSSIBLE LAB  ·  #{EP_NUM:02d}", font("Bold", 34), AMBER, INK)
     # title: big for the hook, then smaller
     k = ease((t - 1.3) / 0.5)
     size = int(84 - 26 * k); y0 = 250 - 10 * k
     tf = font("Black", size)
-    for i, row in enumerate(["WHAT IF YOU BIKED", "THROUGH WHISKY?"]):
+    for i, row in enumerate(TITLE):
         shadow_text(img, (W / 2, y0 + i * size * 1.12), row, tf, WHITE if i == 0 else AMBER)
 
     # fact chips
@@ -97,13 +102,14 @@ def frame(f):
         cx0, cy0, cw, ch = 90, 640 + 80 * (1 - a), W - 180, 640
         dl.rounded_rectangle((cx0, cy0, cx0 + cw, cy0 + ch), radius=36, fill=(16, 12, 8, int(232 * a)), outline=(*AMBER, int(255 * a)), width=4)
         dl.text((W / 2, cy0 + 80), "THE REAL SCIENCE", font=font("Black", 58), fill=(*AMBER, int(255 * a)), anchor="mm")
-        dl.text((W / 2, cy0 + 138), "40% ABV whisky, at room temperature", font=font("Medium", 30), fill=(220, 210, 195, int(255 * a)), anchor="mm")
+        dl.text((W / 2, cy0 + 138), CARD_SUB, font=font("Medium", 30), fill=(220, 210, 195, int(255 * a)), anchor="mm")
         for i, (lab, val, ref) in enumerate(CARD):
             yy = cy0 + 240 + i * 125
             dl.line((cx0 + 50, yy - 52, cx0 + cw - 50, yy - 52), fill=(255, 255, 255, int(40 * a)), width=2)
             dl.text((cx0 + 60, yy), lab, font=font("SemiBold", 40), fill=(235, 228, 215, int(255 * a)), anchor="lm")
             dl.text((cx0 + cw - 60, yy - 14), val, font=font("Black", 50), fill=(255, 255, 255, int(255 * a)), anchor="rm")
             dl.text((cx0 + cw - 60, yy + 30), ref, font=font("Medium", 26), fill=(200, 190, 175, int(255 * a)), anchor="rm")
+        dl.text((W / 2, cy0 + ch - 50), DISCLAIMER, font=font("SemiBold", 30), fill=(255, 120, 90, int(255 * a)), anchor="mm")
         img.alpha_composite(lay)
     return img.convert("RGB")
 

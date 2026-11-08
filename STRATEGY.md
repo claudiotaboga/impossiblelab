@@ -19,9 +19,10 @@ Judge a reel at 48 h, not before. Compare against the median of all reels, not a
 - Three science beats, each with one rounded number and the reason why.
 - A twist near the end that people rewatch, then THE REAL SCIENCE card with the precise values.
 - On-screen: series tag "THE IMPOSSIBLE LAB · #NN", two-line title, word-by-word captions, one fact chip per beat, footer "@the.impossible.lab".
-- Caption: line 1 = the hook; 3–4 short lines of the science; a comment question that asks for an opinion or prediction; a send line naming a person type; "Follow @the.impossible.lab for more impossible science."; ≤ 10 hashtags.
+- Caption: line 1 = the hook; 3–4 short lines of the science; a comment question that asks for an opinion or prediction; a send line naming a person type; "Follow @the.impossible.lab for more impossible science."; the "⚠️ Don't try this." line; ≤ 10 hashtags.
 - YouTube title: "What if you …?" style, ≤ 60 characters (the scenario appends " #Shorts").
 - No drinking, brands, real people or graphic harm on screen.
+- **Disclaimer on every post (Claudio, 8 Nov 2026, mandatory):** the caption carries a line starting "⚠️ Don't try this." with a premise-specific reason (e.g. "Mercury vapour is toxic"), placed just before the hashtags, and THE REAL SCIENCE card shows a one-line "Don't try this. …" in red. The YouTube description is the caption, so it carries the same line. A post without it fails QA.
 
 ## Change rule
 One adjustment per day at most, logged in the experiment table with its hypothesis. Keep it for at least 3 reels before judging. On Sundays, write a weekly review and, if the evidence supports it, a new playbook version.

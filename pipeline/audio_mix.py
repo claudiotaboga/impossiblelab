@@ -50,7 +50,7 @@ for b in range(nb):
 music = lp(music, 7000)
 # arrangement: full until the twist, drop out, light return for the payoff
 gain = np.ones(N)
-d0, d1 = at(10.15), at(LINES[-1]["start"])
+d0, d1 = at(LINES[5]["start"] - 0.05), at(LINES[-1]["start"])
 gain[d0:d0 + at(0.08)] = np.linspace(1, 0, at(0.08)); gain[d0 + at(0.08):d1] = 0
 gain[d1:] = np.clip(np.linspace(0, 0.8, N - d1) * 4, 0, 0.8)
 music *= gain
@@ -83,15 +83,27 @@ def squeak(dur=0.22, f=2600):
 def whoomph(dur=1.0):
     n = int(dur * SR); tt = np.arange(n) / SR
     return lp(rng.standard_normal(n), 500) * np.sin(np.linspace(0, np.pi, n)) ** 0.7 * 1.6
-put(sfx, whoosh(0.4, 400, 2500), 0.0, 0.35)
-put(sfx, thud(0.6, 55), 0.32, 0.9); put(sfx, gloop(1.0), 0.33, 0.55)
-put(sfx, whoosh(0.5, 2000, 500, False), 1.35, 0.15)
-put(sfx, whoomph(1.2), 7.9, 0.5); put(sfx, whoomph(0.9), 8.5, 0.3)
-put(sfx, whoosh(0.6, 300, 2200), 8.3, 0.25)
-put(sfx, whoosh(0.7, 2500, 400, False), 10.5, 0.28)
+import json as _json
+B = _json.load(open("/home/claude/reel/beats.json"))
+def clink(dur=0.5):  # bright metallic splash for mercury
+    n = int(dur * SR); tt = np.arange(n) / SR
+    x = sum(np.sin(2 * np.pi * f * tt) * np.exp(-tt * (18 + k * 6)) for k, f in enumerate([1850, 2630, 3420, 4710]))
+    return x * 0.5 + hp(rng.standard_normal(n), 3000) * np.exp(-tt * 25) * 0.6
+def slap(dur=0.12):
+    n = int(dur * SR); return bp(rng.standard_normal(n), 300, 2500) * np.exp(-np.arange(n) / SR * 45)
+def hiss(dur):
+    n = int(dur * SR); return hp(rng.standard_normal(n), 2500) * np.sin(np.linspace(0, np.pi, n)) ** 0.5
+put(sfx, whoosh(0.45, 400, 2500), 0.0, 0.35)
+put(sfx, thud(0.6, 50), B["impacts"][0] - 0.02, 1.0); put(sfx, clink(0.6), B["impacts"][0], 0.35)
+for t_cut in (LINES[1]["start"] - 0.05, B["t_dive_cut"], B["t_side"], B["t_over"]):
+    put(sfx, whoosh(0.4, 1800, 500, False), t_cut - 0.15, 0.14)
+put(sfx, whoosh(0.4, 300, 2000), B["impacts"][1] - 0.35, 0.25)
+put(sfx, thud(0.5, 55), B["impacts"][1] - 0.02, 0.9); put(sfx, clink(0.5), B["impacts"][1], 0.3)
+k = 0; t = B["t_over"] + 0.2
+while t < B["t_tilt"] - 0.1:
+    put(sfx, slap(), t, 0.35 + 0.1 * (k % 2)); t += 0.425; k += 1
+put(sfx, hiss(B["t_card"] - LINES[-1]["start"] + 0.5), LINES[-1]["start"], 0.05)
 put(sfx, thud(0.4, 60), CARD_START, 0.6); put(sfx, whoosh(0.3, 800, 3000), CARD_START - 0.25, 0.2)
-for s, g in [(12.5, 0.10), (13.15, 0.12), (14.0, 0.26), (14.45, 0.30)]:
-    put(sfx, squeak(), s, g)
 amb = lp(rng.standard_normal(N), 400) * 0.02  # low lake ambience
 
 mix = vo * 1.0 + music * 0.55 + sfx * 0.55 + amb

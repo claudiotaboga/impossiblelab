@@ -4,13 +4,13 @@ from kokoro_onnx import Kokoro
 from config import VOICE, VOICE_SPEED
 
 LINES = [
-    "Whisky is thicker than water.",
-    "Ride a bike into a lake of it,",
-    "and you sink lower. It's lighter than water.",
-    "But every pedal drags. Nearly three times thicker.",
-    "Above twenty-six degrees, the air can ignite.",
-    "The real casualty? Your chain.",
-    "Alcohol strips the oil right off.",
+    "You can't drown in this pool.",
+    "It's mercury, over thirteen times heavier than water.",
+    "Dive in and you bounce.",
+    "Lie down: only seven percent of you sinks.",
+    "Swim? Your arms just slap the surface.",
+    "The real danger?",
+    "The air above it: hundreds of times the safe limit.",
 ]
 
 k = Kokoro("models/kokoro-v1.0.onnx", "models/voices-v1.0.bin")
