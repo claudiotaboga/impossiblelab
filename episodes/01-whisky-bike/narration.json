@@ -1,0 +1,51 @@
+[
+ {
+  "i": 1,
+  "text": "Whisky is thicker than water.",
+  "file": "vo/line1.wav",
+  "dur": 1.271,
+  "sr": 24000
+ },
+ {
+  "i": 2,
+  "text": "Ride a bike into a lake of it,",
+  "file": "vo/line2.wav",
+  "dur": 1.351,
+  "sr": 24000
+ },
+ {
+  "i": 3,
+  "text": "and you sink lower. It's lighter than water.",
+  "file": "vo/line3.wav",
+  "dur": 1.937,
+  "sr": 24000
+ },
+ {
+  "i": 4,
+  "text": "But every pedal drags. Nearly three times thicker.",
+  "file": "vo/line4.wav",
+  "dur": 2.664,
+  "sr": 24000
+ },
+ {
+  "i": 5,
+  "text": "Above twenty-six degrees, the air can ignite.",
+  "file": "vo/line5.wav",
+  "dur": 2.388,
+  "sr": 24000
+ },
+ {
+  "i": 6,
+  "text": "The real casualty? Your chain.",
+  "file": "vo/line6.wav",
+  "dur": 1.729,
+  "sr": 24000
+ },
+ {
+  "i": 7,
+  "text": "Alcohol strips the oil right off.",
+  "file": "vo/line7.wav",
+  "dur": 1.668,
+  "sr": 24000
+ }
+]

@@ -1,0 +1,5 @@
+frames/
+comp/
+models/
+__pycache__/
+*.wav
