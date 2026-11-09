@@ -1,0 +1,49 @@
+{
+ "voice": "af_heart",
+ "speed": 1.0,
+ "lines": [
+  {
+   "i": 1,
+   "text": "Ships float higher on honey.",
+   "dur": 1.344,
+   "start": 0.2,
+   "end": 1.544
+  },
+  {
+   "i": 2,
+   "text": "Launch one into a sea of it.",
+   "dur": 1.345,
+   "start": 1.744,
+   "end": 3.089
+  },
+  {
+   "i": 3,
+   "text": "It's nearly forty percent heavier than seawater, so the hull rides high.",
+   "dur": 3.882,
+   "start": 3.289,
+   "end": 7.171
+  },
+  {
+   "i": 4,
+   "text": "And thousands of times thicker: small ripples fade in about a second.",
+   "dur": 3.683,
+   "start": 7.371,
+   "end": 11.054
+  },
+  {
+   "i": 5,
+   "text": "The bonus?",
+   "dur": 0.669,
+   "start": 11.254,
+   "end": 11.923
+  },
+  {
+   "i": 6,
+   "text": "No barnacles. Honey dries out almost anything alive.",
+   "dur": 3.134,
+   "start": 12.123,
+   "end": 15.257
+  }
+ ],
+ "card_start": 15.307
+}

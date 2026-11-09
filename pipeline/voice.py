@@ -1,16 +1,15 @@
-"""Record the 7 narration lines with Kokoro (af_heart, speed 1.10) and log real lengths."""
+"""Record the narration lines with Kokoro (af_heart, speed 1.00) and log real lengths."""
 import json, soundfile as sf, numpy as np
 from kokoro_onnx import Kokoro
 from config import VOICE, VOICE_SPEED
 
 LINES = [
-    "You can't drown in this pool.",
-    "It's mercury, over thirteen times heavier than water.",
-    "Dive in and you bounce.",
-    "Lie down: only seven percent of you sinks.",
-    "Swim? Your arms just slap the surface.",
-    "The real danger?",
-    "The air above it: hundreds of times the safe limit.",
+    "Ships float higher on honey.",
+    "Launch one into a sea of it.",
+    "It's nearly forty percent heavier than seawater, so the hull rides high.",
+    "And thousands of times thicker: small ripples fade in about a second.",
+    "The bonus?",
+    "No barnacles. Honey dries out almost anything alive.",
 ]
 
 k = Kokoro("models/kokoro-v1.0.onnx", "models/voices-v1.0.bin")

@@ -10,18 +10,18 @@ def font(w, s): return ImageFont.truetype(F + f"Inter-{w}.otf", s)
 AMBER = (255, 176, 46); WHITE = (255, 255, 255); INK = (18, 12, 6)
 
 # ---- per-episode content: the only block to change for a new episode ----
-EP_NUM = 2
-TITLE = ["WHAT IF YOU DIVED", "INTO MERCURY?"]
+EP_NUM = 3
+TITLE = ["WHAT IF SHIPS", "SAILED ON HONEY?"]
 FACTS = [  # (start, end, text) — times match the narration lines
-    (2.2, 4.6, "13.5× DENSER THAN WATER"),
-    (6.5, 8.6, "≈7% OF YOU SINKS"),
-    (12.7, 15.1, "VAPOUR ≈500× THE SAFE LIMIT"),
+    (3.45, 5.3, "≈1.4× DENSER THAN SEAWATER"),
+    (5.4, 7.15, "DRAFT ≈28% SHALLOWER"),
+    (7.5, 10.95, "≈5,000–20,000× THICKER THAN WATER"),
 ]
-CARD_SUB = "liquid mercury, at room temperature"
-CARD = [("Density", "13.53 g/cm³", "water 1.00"),
-        ("You float with", "≈7% under", "body ≈1.0 g/cm³"),
-        ("Vapour at 20 °C", "≈13 mg/m³", "safe limit 0.025 (ACGIH)")]
-DISCLAIMER = "Don't try this. Mercury vapour is toxic."
+CARD_SUB = "honey at 20 °C vs. seawater and water"
+CARD = [("Density", "≈1.42 g/cm³", "seawater ≈1.025"),
+        ("Viscosity", "≈19 Pa·s", "water 0.001 Pa·s"),
+        ("1 m ripple fades", "≈1 s", "in water ≈3.5 h")]
+DISCLAIMER = "Don't try this. Deep, thick syrup can trap you."
 
 def ease(x): x = max(0, min(1, x)); return 1 - (1 - x) ** 3
 

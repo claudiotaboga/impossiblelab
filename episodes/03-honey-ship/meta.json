@@ -1,0 +1,29 @@
+{
+  "episode_id": "TIL-03",
+  "status": "ready",
+  "qa_passed": true,
+  "width": 1080,
+  "height": 1920,
+  "duration_seconds": 16.5,
+  "title": "What if a ship sailed on a sea of honey?",
+  "video_url": "https://raw.githubusercontent.com/claudiotaboga/impossiblelab/main/episodes/03-honey-ship/video.mp4",
+  "caption": "Ships would float higher on honey. 🍯🚢\n\nHoney is about 40% denser than seawater (≈1.42 vs ≈1.025 g/cm³), so a hull only sinks about 72% as deep. The red underbody pokes out of the sea.\n\nIt's also thousands of times thicker than water. A 1-metre ripple that water's viscosity would take hours to calm fades in about a second.\n\nThe bonus: no barnacles. Honey's sugar pulls the water out of almost anything living.\n\nWould this ship ever make it to port? Yes or no 👇\n\nSend this to the friend who puts honey on everything.\n\nFollow @the.impossible.lab for more impossible science.\n\n⚠️ Don't try this. Deep, thick syrup can trap a person: never climb into tanks or vats of honey, molasses or syrup.\n\n#science #physics #fluiddynamics #didyouknow #sciencefacts #honey #ships #whatif #theimpossiblelab",
+  "sources": [
+    "https://www.fao.org/3/w0076e/w0076e04.htm (FAO, Value-added products from beekeeping, ch. 2: honey specific gravity 1.40-1.45 at 20 °C for 13-20 % water; sweet clover honey 189.6 poise = 19 Pa·s at 20.6 °C; 48-420 poise at 25 °C depending on water content)",
+    "https://talleylab.ucsd.edu/sio210/lect_2/lecture_2.html (Talley, SIO 210: surface seawater density ~1020-1029 kg/m³)",
+    "https://berryjune07.github.io/physics/damping-of-gravity-waves.html (viscous damping of deep-water gravity waves: amplitude ~ exp(-2 nu k^2 t), valid for nu k^2 << omega)",
+    "https://pmc.ncbi.nlm.nih.gov/articles/PMC3609166 (Mandal & Mandal 2011: honey's high osmolarity hinders microbial growth and dehydrates bacteria)",
+    "Computed: draft ratio 1.025/1.42 = 0.72 (28 % shallower); viscosity ratio 19/0.001 ≈ 19,000 (≈5,000-20,000 across typical honeys); 1 m ripple, k = 2π/m: honey nu = 19/1420 = 0.0134 m²/s -> 1/(2 nu k²) ≈ 0.95 s (nu k² = 0.53 << omega = 7.85 rad/s); water nu = 1.0e-6 m²/s -> ≈12,700 s ≈ 3.5 h"
+  ],
+  "qa": {
+    "duration_s": 16.5,
+    "integrated_loudness_lufs": -14.0,
+    "true_peak_dbfs": -1.2,
+    "video_kbps_per_second_max": 2221,
+    "audio": "aac 128k 48kHz stereo",
+    "codec": "h264 High yuv420p, faststart",
+    "disclaimer_in_caption": true,
+    "disclaimer_on_card": true,
+    "visual_check": "8 frames incl. t=0.5, all 3 chips, card with disclaimer, last frame"
+  }
+}
