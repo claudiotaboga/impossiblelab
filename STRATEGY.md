@@ -31,7 +31,7 @@ One adjustment per day at most, logged in the experiment table with its hypothes
 | ID | Started | Change | Hypothesis | Status / result |
 |---|---|---|---|---|
 | E1 | 9 Nov 2026 | 16.5 s + slower voice (speed 1.00 vs 1.10) | Clearer narration raises watch ratio | running (2 of 3 reels; TIL-02 watch ratio 68 % vs 80 % for TIL-01 at ~25 h, not yet judgeable) |
-| E2 | 9 Nov 2026 (TIL-03) | Caption comment prompt as a one-tap yes/no question ("Would this ship ever make it to port? Yes or no") instead of an open opinion question | A one-tap answer lowers the effort to comment: comments > 0 per 1,000 IG views (0 so far on ~2,000 views) | running |
+| E2 | 10 Nov 2026 00:46 (TIL-03) | Caption comment prompt as a one-tap yes/no question ("Would this ship ever make it to port? Yes or no") instead of an open opinion question | A one-tap answer lowers the effort to comment: comments > 0 per 1,000 IG views (0 so far on ~2,000 views) | running |
 
 ## Snapshots
 | Captured (EET) | Episode | Age | IG views | IG reach | Hook hold | Avg watch s | Shares | Saves | YT views | Followers IG / subs YT |
@@ -47,7 +47,7 @@ One adjustment per day at most, logged in the experiment table with its hypothes
   1. Instagram distribution is one burst: TIL-02 went 1,771 → 1,774 views between 13:19 and 22:57 EET, TIL-01 has been flat at ~205 since its first evening. The first hours decide reach, so the 16:00 slot matters.
   2. TIL-02 reached 8.4× more accounts than TIL-01 (1,144 vs 136) but held them less (hook hold 67.5 % vs 72.4 %, watch ratio 68 % vs 80 %). E1 is not judgeable yet (n = 2, different reach pools).
   3. Zero shares, saves and comments across ~2,000 IG views: engagement, not reach, is the bottleneck. YouTube delivers similar volume (2,385 views, 1.0–1.3 % likes).
-- **Today's adjustment:** E2 (yes/no comment prompt). TIL-03 was published ~8.5 h late (after midnight EET) because the run started late; treat its reach as confounded.
+- **Today's adjustment:** E2 (yes/no comment prompt). TIL-03 was published at 00:46 EET on 10 Nov, 8 h 46 min after the 16:00 slot (the run itself started at ~22:56 EET); treat its reach as confounded by the night slot.
 
 ## Weekly reviews
 (none yet)
