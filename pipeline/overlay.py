@@ -10,18 +10,18 @@ def font(w, s): return ImageFont.truetype(F + f"Inter-{w}.otf", s)
 AMBER = (255, 176, 46); WHITE = (255, 255, 255); INK = (18, 12, 6)
 
 # ---- per-episode content: the only block to change for a new episode ----
-EP_NUM = 3
-TITLE = ["WHAT IF SHIPS", "SAILED ON HONEY?"]
+EP_NUM = 4
+TITLE = ["WHAT IF GRAVITY", "FLIPPED FOR 1 SEC?"]
 FACTS = [  # (start, end, text) — times match the narration lines
-    (3.45, 5.3, "≈1.4× DENSER THAN SEAWATER"),
-    (5.4, 7.15, "DRAFT ≈28% SHALLOWER"),
-    (7.5, 10.95, "≈5,000–20,000× THICKER THAN WATER"),
+    (3.9, 6.35, "+4.9 m IN THE FLIPPED SECOND"),
+    (6.6, 9.25, "PEAK ≈ 9.8 m"),
+    (9.5, 11.95, "≈50 km/h ON THE WAY DOWN"),
 ]
-CARD_SUB = "honey at 20 °C vs. seawater and water"
-CARD = [("Density", "≈1.42 g/cm³", "seawater ≈1.025"),
-        ("Viscosity", "≈19 Pa·s", "water 0.001 Pa·s"),
-        ("1 m ripple fades", "≈1 s", "in water ≈3.5 h")]
-DISCLAIMER = "Don't try this. Deep, thick syrup can trap you."
+CARD_SUB = "Earth's gravity reversed for exactly 1 s, air drag ignored"
+CARD = [("Rise while flipped", "4.9 m", "½·g·t², g = 9.81 m/s², t = 1 s"),
+        ("Peak height", "≈9.8 m", "coasting up at 9.8 m/s"),
+        ("Landing speed", "≈13.9 m/s", "≈50 km/h, after a 1.4 s fall")]
+DISCLAIMER = "Don't try this. A fall from 10 m can be fatal."
 
 def ease(x): x = max(0, min(1, x)); return 1 - (1 - x) ** 3
 

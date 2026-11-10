@@ -1,0 +1,57 @@
+{
+ "voice": "af_heart",
+ "speed": 1.0,
+ "lines": [
+  {
+   "i": 1,
+   "text": "One second. Ten metres up.",
+   "dur": 1.623,
+   "start": 0.2,
+   "end": 1.823
+  },
+  {
+   "i": 2,
+   "text": "Flip gravity for one second.",
+   "dur": 1.616,
+   "start": 2.023,
+   "end": 3.639
+  },
+  {
+   "i": 3,
+   "text": "You fall up nearly five metres, gaining speed.",
+   "dur": 2.51,
+   "start": 3.839,
+   "end": 6.349
+  },
+  {
+   "i": 4,
+   "text": "Gravity returns. You still coast to nearly ten.",
+   "dur": 2.692,
+   "start": 6.549,
+   "end": 9.241
+  },
+  {
+   "i": 5,
+   "text": "You drop back at about fifty kilometres an hour.",
+   "dur": 2.501,
+   "start": 9.441,
+   "end": 11.942
+  },
+  {
+   "i": 6,
+   "text": "The safer spot?",
+   "dur": 0.95,
+   "start": 12.142,
+   "end": 13.092
+  },
+  {
+   "i": 7,
+   "text": "Indoors. The ceiling stops you early.",
+   "dur": 2.063,
+   "start": 13.292,
+   "end": 15.355
+  }
+ ],
+ "card_start": 15.405000000000001,
+ "words": 44
+}

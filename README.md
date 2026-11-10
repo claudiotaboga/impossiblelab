@@ -37,5 +37,7 @@ The scenario only publishes payloads with `status: ready`, `qa_passed: true`, 10
 ## Build-environment notes
 - In the cloud sandbox, `pip install bpy` can crawl at ~60 KB/s (direct route to files.pythonhosted.org). Fetch the wheel through the proxy instead, then install it locally:
   `curl -sS --noproxy "" -x "$HTTPS_PROXY" -o bpy.whl <wheel url from https://pypi.org/pypi/bpy/json>` → `pip install --break-system-packages ./bpy.whl kokoro-onnx soundfile`.
-- `scene.py` accepts a comma list of frames for test stills: `python3 scene.py 12,58,110 --force`.
+- `scene.py` accepts a comma list of frames for test stills: `python3 scene.py 12,58,110 --force`; a single number renders one frame (before episode 04 it silently rendered everything).
+- Never `pkill -f scene.py` from a shell whose own command line contains `scene.py`: it kills that shell. Use the PID instead.
+- Keep the actor out of the top ~520 px (title + chips) in wide shots: frame the target so the subject sits at 35–60 % of the height.
 - `audio_mix.py` drops the music on the second-to-last line (the twist setup), so it works for 6- or 7-line scripts.

@@ -4,12 +4,13 @@ from kokoro_onnx import Kokoro
 from config import VOICE, VOICE_SPEED
 
 LINES = [
-    "Ships float higher on honey.",
-    "Launch one into a sea of it.",
-    "It's nearly forty percent heavier than seawater, so the hull rides high.",
-    "And thousands of times thicker: small ripples fade in about a second.",
-    "The bonus?",
-    "No barnacles. Honey dries out almost anything alive.",
+    "One second. Ten metres up.",
+    "Flip gravity for one second.",
+    "You fall up nearly five metres, gaining speed.",
+    "Gravity returns. You still coast to nearly ten.",
+    "You drop back at about fifty kilometres an hour.",
+    "The safer spot?",
+    "Indoors. The ceiling stops you early.",
 ]
 
 k = Kokoro("models/kokoro-v1.0.onnx", "models/voices-v1.0.bin")

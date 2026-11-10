@@ -1,0 +1,28 @@
+{
+  "episode_id": "TIL-04",
+  "status": "ready",
+  "qa_passed": true,
+  "width": 1080,
+  "height": 1920,
+  "duration_seconds": 16.5,
+  "title": "What if gravity flipped for one second?",
+  "video_url": "https://raw.githubusercontent.com/claudiotaboga/impossiblelab/main/episodes/04-gravity-flip/video.mp4",
+  "caption": "One second of flipped gravity would throw you 10 metres up. 🌍⬆️\n\nFor that second you'd fall UP the way you normally fall down: 4.9 m, and already moving at about 35 km/h.\n\nWhen gravity switches back you don't stop. You coast up another 4.9 m, to almost 10 m: about three storeys.\n\nThen the fall: 1.4 seconds, landing at about 50 km/h. Every loose object around you takes the same ride.\n\nThe safer spot is indoors: the ceiling stops you after less than a metre.\n\nInside or outside when it happens? One word 👇\n\nSend this to the friend who'd definitely be outside.\n\nFollow @the.impossible.lab for more impossible science.\n\n⚠️ Don't try this. A fall from 10 m (about three storeys) can be fatal: never jump from heights to \"feel\" it.\n\n#science #physics #gravity #whatif #didyouknow #sciencefacts #stem #theimpossiblelab",
+  "sources": [
+    "https://en.wikipedia.org/wiki/Standard_gravity (standard gravity g0 = 9.80665 m/s², defined value; 9.81 used)",
+    "https://en.wikipedia.org/wiki/Terminal_velocity (skydiver belly-to-earth terminal velocity about 55 m/s: drag at 14 m/s is ~(14/55)² ≈ 6 % of weight, so 'air drag ignored' changes the landing speed by only a few %)",
+    "Computed (constant-acceleration kinematics, s = ½gt², v = gt, v² = 2gh): flipped second: s = ½·9.81·1² = 4.905 m, v = 9.81 m/s (35.3 km/h); coast after gravity returns: h = v²/2g = 4.905 m -> peak 9.81 m at t = 2 s; fall from 9.81 m: t = √(2h/g) = 1.41 s, v = √(2gh) = 13.87 m/s = 49.9 km/h",
+    "Computed (indoors): ceiling 2.6 m, head top ≈1.8 m -> gap ≈0.8 m, reached after √(2·0.8/9.81) ≈ 0.4 s at ≈4 m/s; dropping back ≈0.8 m after the second ends -> ≈4 m/s, vs ≈13.9 m/s outdoors"
+  ],
+  "qa": {
+    "duration_s": 16.5,
+    "integrated_loudness_lufs": -14.0,
+    "true_peak_dbfs": -1.4,
+    "video_kbps_per_second_max": 3118,
+    "audio": "aac 128k 48kHz stereo",
+    "codec": "h264 High yuv420p, faststart",
+    "disclaimer_in_caption": true,
+    "disclaimer_on_card": true,
+    "visual_check": "8 frames incl. t=0, t=0.5, all 3 chips, card with disclaimer, last frame"
+  }
+}
