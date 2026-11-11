@@ -1,10 +1,10 @@
 # Narration standard (from episode 02)
 
-Pacing lives in `pipeline/config.py`: 16.5 s reel, Kokoro `af_heart` at speed 1.00, 0.20 s pauses, last ~1 s reserved for THE REAL SCIENCE card. `timeline.py` refuses to build if the narration overruns.
+Pacing lives in `pipeline/config.py`: 15 s reel, Kokoro `af_heart` at speed 1.10 (E4 from TIL-05; TIL-02..04 were 16.5 s at 1.00), 0.20 s pauses, last ~1 s reserved for THE REAL SCIENCE card. `timeline.py` refuses to build if the narration overruns.
 
 ## Budget
-- Speaking rate at speed 1.00: about **3.4 words per second**.
-- Room for speech: about **14 s**, so **42–47 words total**, in **6–7 lines**.
+- Speaking rate: about **3.4 words per second** at speed 1.00, about **3.7** at 1.10.
+- Room for speech: about **12.5 s** at 15 s (14 s at 16.5 s), so **40–46 words total**, in **6–7 lines**.
 - Every extra word costs clarity elsewhere. Cut before you add.
 
 ## Structure (one idea per line)

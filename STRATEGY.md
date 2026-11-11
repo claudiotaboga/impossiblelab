@@ -33,6 +33,7 @@ One adjustment per day at most, logged in the experiment table with its hypothes
 | E1 | 9 Nov 2026 | 16.5 s + slower voice (speed 1.00 vs 1.10) | Clearer narration raises watch ratio | running (3 of 3 reels published at 16.5 s: TIL-02 68 %, TIL-03 59 % vs TIL-01 80 % at 15 s; first read at 48 h on 11 Nov, so far the slower/longer format holds viewers less) |
 | E2 | 10 Nov 2026 00:46 (TIL-03) | Caption comment prompt as a one-tap yes/no question ("Would this ship ever make it to port? Yes or no") instead of an open opinion question | A one-tap answer lowers the effort to comment: comments > 0 per 1,000 IG views (0 so far on ~2,000 views) | running (1 of 3: TIL-03 0 comments on 160 IG views at 12.5 h; TIL-04 uses a one-word binary prompt) |
 | E3 | 10 Nov 2026 19:00 (TIL-04, 3 h after the slot) | Flash-forward cold open: the first ~2 s show the climax (mannequin at the 10 m mark, high camera looking down), and the spoken + on-screen hook is a concrete number ("One second. Ten metres up.") before the story restarts from the ground | Hook hold is falling (72 → 67.5 → 61 %); opening on the payoff image + a number raises hook hold back to ≥ the median (67.5 %) | running |
+| E4 | TIL-05 (11 Nov 2026, approved by Claudio) | Back to 15 s and Kokoro speed 1.10 (from 16.5 s / 1.00); E3 cold open kept | At 48 h the 15 s / 1.10 reel held better (hook 72 %, watch 80 %) than 16.5 s / 1.00 (67.5 %, 68 %), and TIL-03/04 kept falling: a tighter, faster reel lifts hook hold and watch ratio back above the median | running |
 
 ## Snapshots
 | Captured (EET) | Episode | Age | IG views | IG reach | Hook hold | Avg watch s | Shares | Saves | YT views | Followers IG / subs YT |
@@ -70,6 +71,10 @@ One adjustment per day at most, logged in the experiment table with its hypothes
   4. E1 at 48 h (n = 1 vs 1): 15 s / speed 1.10 held better (72 % hold, 80 % watch) than 16.5 s / speed 1.00 (67.5 %, 68 %), and TIL-03/04 keep falling. Not reverting: the slower, longer format is Claudio's explicit request. Flagged to him as a decision.
 
 NEXT BUILD INSTRUCTION (from 11 Nov 01:55 check): keep E3 (cold open on the climax + number/claim hook) and E2 (one-tap comment prompt) for TIL-05; change nothing else. Publish on time at 16:00 (two of the last three reels were late, which confounds every comparison). Topic: the queue's next item is fine; when choosing between equivalent premises, prefer the most visceral one (familiar danger, "you can't…" claim).
+
+- **11 Nov (Claudio's decisions):** (1) a daily light stats check now runs at 11:07 EET and writes the NEXT BUILD INSTRUCTION; (2) test going back to 15 s / speed 1.10 (E4); (3) buffer-first publishing: the daily run publishes the reel in EPISODES.md → READY TO PUBLISH at 16:00, then builds the next one into READY. E3 can no longer be judged on its own: from TIL-05 it is confounded with E4.
+
+NEXT BUILD INSTRUCTION (from 11 Nov 01:55 check, updated after Claudio's decisions): build at 15 s / speed 1.10 (E4), keep the cold open on the climax with a claim hook (E3) and the one-tap comment prompt (E2); no other change. Prefer the most visceral premise among equivalent ones.
 
 ## Weekly reviews
 (none yet)
