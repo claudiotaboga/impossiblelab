@@ -1,0 +1,57 @@
+{
+ "voice": "af_heart",
+ "speed": 1.1,
+ "lines": [
+  {
+   "i": 1,
+   "text": "Pasta never cooks on Mars.",
+   "dur": 1.579,
+   "start": 0.2,
+   "end": 1.779
+  },
+  {
+   "i": 2,
+   "text": "Bring a pot to the red planet.",
+   "dur": 1.433,
+   "start": 1.979,
+   "end": 3.412
+  },
+  {
+   "i": 3,
+   "text": "Thin air means water boils near zero degrees.",
+   "dur": 2.478,
+   "start": 3.612,
+   "end": 6.09
+  },
+  {
+   "i": 4,
+   "text": "Pasta needs about eighty. It stays rock hard.",
+   "dur": 2.545,
+   "start": 6.29,
+   "end": 8.835
+  },
+  {
+   "i": 5,
+   "text": "You'd need about eighty times more pressure.",
+   "dur": 1.791,
+   "start": 9.035,
+   "end": 10.826
+  },
+  {
+   "i": 6,
+   "text": "The solution?",
+   "dur": 0.688,
+   "start": 11.026,
+   "end": 11.714
+  },
+  {
+   "i": 7,
+   "text": "A pressure cooker. Mars-proof spaghetti.",
+   "dur": 2.017,
+   "start": 11.914,
+   "end": 13.931
+  }
+ ],
+ "card_start": 13.981,
+ "words": 42
+}

@@ -1,0 +1,28 @@
+{
+  "episode_id": "TIL-05",
+  "status": "ready",
+  "qa_passed": true,
+  "width": 1080,
+  "height": 1920,
+  "duration_seconds": 15.0,
+  "title": "What if you boiled pasta on Mars?",
+  "video_url": "https://raw.githubusercontent.com/claudiotaboga/impossiblelab/main/episodes/05-mars-pasta/video.mp4",
+  "caption": "Pasta would never cook on Mars. 🍝🔴\n\nMars' air is only about 0.6% as thick as Earth's (≈610 Pa). At that pressure water boils at about 0 °C: the pot bubbles hard and stays near freezing.\n\nPasta needs water at around 80 °C to soften. Making water boil at 80 °C takes roughly 80 times Mars' air pressure.\n\nThe fix is a pressure cooker: seal the steam in and the boiling point climbs back above 80 °C.\n\nWould you eat Mars pasta? Yes or no 👇\n\nSend this to the friend who'd pack spaghetti for Mars.\n\nFollow @the.impossible.lab for more impossible science.\n\n⚠️ Don't try this. A misused or faulty pressure cooker can burst and scald: always follow the manufacturer's instructions.\n\n#science #physics #mars #space #whatif #didyouknow #sciencefacts #theimpossiblelab",
+  "sources": [
+    "https://wikiwand.com/en/Atmosphere_of_Mars (average surface pressure about 610 Pa, 0.6 % of Earth's)",
+    "https://en.wikipedia.org/wiki/Triple_point (water triple point 611.657 Pa, 0.01 °C: at Mars' average pressure liquid water can only exist right at ~0 °C, so it boils near 0 °C)",
+    "https://physicsworld.com/a/how-to-cook-pasta-the-scientific-way/ (about 80 °C water is enough for pasta to cook; starch gelatinises above 60 °C, gluten sets at 70-80 °C)",
+    "Computed: saturation vapour pressure of water at 80 °C ≈ 47.4 kPa (steam tables) -> 47.4 / 0.61 ≈ 78× Mars' average pressure (≈80×); at 100 °C, 101.3 kPa ≈ 166×"
+  ],
+  "qa": {
+    "duration_s": 15.0,
+    "integrated_loudness_lufs": -14.0,
+    "true_peak_dbfs": -1.6,
+    "video_kbps_per_second_max": 4422,
+    "audio": "aac 128k 48kHz stereo",
+    "codec": "h264 High yuv420p, faststart",
+    "disclaimer_in_caption": true,
+    "disclaimer_on_card": true,
+    "visual_check": "t=0, 0.5, all 3 chips, thermometer 0/80 marks, gauge, lid + whistle, card with disclaimer, last frame loops to the opening"
+  }
+}

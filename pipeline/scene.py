@@ -1,14 +1,15 @@
-"""The Impossible Lab #04 - gravity reversed for one second.
-Sunny city plaza with a red/white 10 m scale tower. A primitive mannequin (and every loose
-object around it) falls UP ~4.9 m during the flipped second, coasts to ~9.8 m, falls back
-(hard cut before landing). Twist: indoors, the ceiling stops the rise after <1 m.
+"""The Impossible Lab #05 - boiling pasta on Mars.
+Red Martian plain under a butterscotch sky; an astronaut mannequin, a camp stove on a crate,
+a pot of water boiling furiously at ~0 °C (thermometer column stuck at the 0 mark, the 80 °C
+mark glowing), stiff spaghetti, a pressure gauge whose needle swings to ×80, and the twist:
+a pressure-cooker lid that seals the pot, whistles, and lets the thermometer climb to 80.
 Usage: python3 scene.py [start end [step]] | [f1,f2,...] | [f]  [--force]   (no args = all frames)
 """
 import bpy, addon_utils, math, random, sys, os, json, time
 from mathutils import Vector
 from config import FPS, FRAMES as N, DUR
 
-random.seed(4)
+random.seed(5)
 bpy.ops.wm.read_factory_settings(use_empty=True)
 addon_utils.enable("cycles", default_set=True)
 S = bpy.context.scene
@@ -22,7 +23,6 @@ S.render.image_settings.file_format = "PNG"
 S.view_settings.view_transform = "AgX"; S.view_settings.look = "AgX - Punchy"
 
 from timeline import LINES, CARD_START
-def sec(t): return t * FPS
 L = {l["i"]: l for l in LINES}
 
 # ---------- materials ----------
@@ -36,55 +36,53 @@ def mat(name, base=(0.5, 0.5, 0.5), rough=0.5, metal=0.0, emit=None, estr=0.0):
         b.inputs["Emission Color"].default_value = (*emit, 1)
         b.inputs["Emission Strength"].default_value = estr
     return m
-def brick_mat(name, c1, c2, mortar, scale, bw=0.5, rh=0.5, ms=0.015, rough=0.6):
-    m = bpy.data.materials.new(name); m.use_nodes = True; nt = m.node_tree
-    b = nt.nodes["Principled BSDF"]; b.inputs["Roughness"].default_value = rough
-    br = nt.nodes.new("ShaderNodeTexBrick"); br.offset = 0.5
-    br.inputs["Color1"].default_value = (*c1, 1); br.inputs["Color2"].default_value = (*c2, 1)
-    br.inputs["Mortar"].default_value = (*mortar, 1); br.inputs["Scale"].default_value = scale
-    br.inputs["Mortar Size"].default_value = ms
-    br.inputs["Brick Width"].default_value = bw; br.inputs["Row Height"].default_value = rh
-    tc = nt.nodes.new("ShaderNodeTexCoord"); nt.links.new(tc.outputs["Object"], br.inputs["Vector"])
-    nt.links.new(br.outputs["Color"], b.inputs["Base Color"])
+def ground_mat():
+    m = bpy.data.materials.new("regolith"); m.use_nodes = True; nt = m.node_tree
+    b = nt.nodes["Principled BSDF"]; b.inputs["Roughness"].default_value = 0.95
+    nz = nt.nodes.new("ShaderNodeTexNoise"); nz.inputs["Scale"].default_value = 0.6; nz.inputs["Detail"].default_value = 6
+    rp = nt.nodes.new("ShaderNodeValToRGB")
+    rp.color_ramp.elements[0].color = (0.30, 0.09, 0.03, 1); rp.color_ramp.elements[1].color = (0.62, 0.27, 0.11, 1)
+    bump = nt.nodes.new("ShaderNodeBump"); bump.inputs["Strength"].default_value = 0.4
+    nz2 = nt.nodes.new("ShaderNodeTexNoise"); nz2.inputs["Scale"].default_value = 18
+    nt.links.new(nz.outputs["Fac"], rp.inputs[0]); nt.links.new(rp.outputs[0], b.inputs["Base Color"])
+    nt.links.new(nz2.outputs["Fac"], bump.inputs["Height"]); nt.links.new(bump.outputs[0], b.inputs["Normal"])
     return m
 
-M_SKIN = mat("dummy", (0.78, 0.74, 0.70), 0.55)
-M_SUIT = mat("suit", (0.05, 0.12, 0.30), 0.6)
-M_GOGG = mat("goggles", (1.0, 0.45, 0.05), 0.3, 0, (1.0, 0.45, 0.05), 0.6)
-M_PAVE = brick_mat("pave", (0.62, 0.60, 0.56), (0.55, 0.53, 0.50), (0.38, 0.36, 0.34), 0.9)
-M_RED = mat("towerred", (0.75, 0.06, 0.04), 0.45)
-M_WHT = mat("towerwhite", (0.88, 0.88, 0.86), 0.45)
-M_MARK = mat("mark", (1.0, 0.7, 0.2), 0.4, 0, (1.0, 0.65, 0.15), 3.0)
-M_ARROW = mat("arrow", (1.0, 0.68, 0.18), 0.4, 0, (1.0, 0.62, 0.12), 6.0)
-M_TRUNK = mat("trunk", (0.25, 0.16, 0.09), 0.8)
-M_LEAF = mat("leaf", (0.10, 0.35, 0.08), 0.7)
-BALLC = [(0.9, 0.15, 0.1), (0.1, 0.4, 0.9), (0.95, 0.75, 0.1), (0.15, 0.7, 0.3), (0.9, 0.9, 0.9), (0.8, 0.3, 0.7)]
-M_BALL = [mat(f"ball{k}", c, 0.35) for k, c in enumerate(BALLC)]
-M_CONE = mat("cone", (1.0, 0.35, 0.02), 0.5)
-M_CRATE = mat("crate", (0.55, 0.38, 0.2), 0.8)
-M_BLD = [brick_mat(f"bld{k}", (0.10, 0.14, 0.2), (0.12, 0.16, 0.22), c, 0.35, 0.35, 0.45, 0.3)
-         for k, c in enumerate([(0.85, 0.80, 0.70), (0.70, 0.75, 0.80), (0.86, 0.62, 0.48), (0.78, 0.78, 0.74)])]
-# interior
-M_FLOOR = brick_mat("floor", (0.45, 0.28, 0.14), (0.40, 0.25, 0.12), (0.3, 0.18, 0.09), 1.2, 0.9, 0.12, 0.004, 0.4)
-M_IWALL = mat("iwall", (0.80, 0.72, 0.60), 0.8)
-M_ICEIL = mat("iceil", (0.92, 0.92, 0.90), 0.8)
-M_SOFA = mat("sofa", (0.10, 0.35, 0.42), 0.8)
-M_LAMP = mat("lamp", (1, 1, 1), 0.5, 0, (1.0, 0.9, 0.75), 12.0)
-M_IWIN = mat("iwin", (1, 1, 1), 0.5, 0, (0.75, 0.88, 1.0), 3.0)
-M_FRAME = mat("frame", (0.9, 0.55, 0.15), 0.5)
+M_GROUND = ground_mat()
+M_ROCK = mat("rock", (0.22, 0.08, 0.04), 0.9)
+M_SUIT = mat("suit", (0.86, 0.86, 0.84), 0.6)
+M_SUIT2 = mat("suitorange", (0.95, 0.45, 0.08), 0.5)
+M_VISOR = mat("visor", (0.9, 0.6, 0.15), 0.08, 1.0)
+M_STEEL = mat("steel", (0.75, 0.76, 0.78), 0.25, 1.0)
+M_DARK = mat("stove", (0.08, 0.08, 0.09), 0.5)
+M_CRATE = mat("crate", (0.75, 0.75, 0.72), 0.6)
+M_FLAME = mat("flame", (0.2, 0.4, 1.0), 0.5, 0, (0.25, 0.5, 1.0), 25.0)
+M_WATER = mat("water", (0.55, 0.75, 0.85), 0.05, 0, (0.35, 0.6, 0.75), 0.25)
+M_BUBBLE = mat("bubble", (0.85, 0.95, 1.0), 0.05, 0, (0.7, 0.85, 1.0), 0.6)
+M_PASTA = mat("pasta", (0.95, 0.78, 0.30), 0.55)
+M_GLASS = mat("tube", (0.92, 0.94, 0.96), 0.2)
+M_RED = mat("mercuryred", (0.9, 0.05, 0.03), 0.4, 0, (1.0, 0.08, 0.04), 4.0)
+M_COLD = mat("coldmark", (0.3, 0.8, 1.0), 0.4, 0, (0.3, 0.8, 1.0), 4.0)
+M_HOT = mat("hotmark", (1.0, 0.6, 0.15), 0.4, 0, (1.0, 0.55, 0.1), 0.5)
+M_DIAL = mat("dial", (0.95, 0.95, 0.92), 0.4)
+M_NEEDLE = mat("needle", (0.9, 0.08, 0.05), 0.4)
+M_STEAM = mat("steam", (1, 1, 1), 0.5, 0, (1, 1, 1), 2.5)
+M_HAB = mat("hab", (0.85, 0.85, 0.82), 0.5)
+M_HABWIN = mat("habwin", (1, 1, 1), 0.3, 0, (1.0, 0.8, 0.5), 4.0)
+hot_emit = M_HOT.node_tree.nodes["Principled BSDF"].inputs["Emission Strength"]
 
-# ---------- world: clear midday sky ----------
+# ---------- world: butterscotch Martian sky ----------
 world = bpy.data.worlds.new("w"); S.world = world; world.use_nodes = True
 nt = world.node_tree; bg = nt.nodes["Background"]
 tc = nt.nodes.new("ShaderNodeTexCoord"); sep = nt.nodes.new("ShaderNodeSeparateXYZ")
 ramp = nt.nodes.new("ShaderNodeValToRGB")
-ramp.color_ramp.elements[0].position = 0.0; ramp.color_ramp.elements[0].color = (0.75, 0.85, 0.95, 1)
-ramp.color_ramp.elements[1].position = 0.45; ramp.color_ramp.elements[1].color = (0.12, 0.35, 0.85, 1)
+ramp.color_ramp.elements[0].position = 0.0; ramp.color_ramp.elements[0].color = (0.85, 0.55, 0.35, 1)
+ramp.color_ramp.elements[1].position = 0.5; ramp.color_ramp.elements[1].color = (0.35, 0.20, 0.14, 1)
 nt.links.new(tc.outputs["Generated"], sep.inputs[0]); nt.links.new(sep.outputs["Z"], ramp.inputs[0])
-nt.links.new(ramp.outputs[0], bg.inputs[0]); bg.inputs[1].default_value = 1.0
+nt.links.new(ramp.outputs[0], bg.inputs[0]); bg.inputs[1].default_value = 0.9
 sun = bpy.data.objects.new("sun", bpy.data.lights.new("sun", "SUN"))
-sun.data.energy = 4.5; sun.data.angle = math.radians(2.0); sun.data.color = (1.0, 0.95, 0.85)
-sun.rotation_euler = (math.radians(40), math.radians(10), math.radians(-35)); S.collection.objects.link(sun)
+sun.data.energy = 3.2; sun.data.angle = math.radians(1.0); sun.data.color = (1.0, 0.92, 0.82)
+sun.rotation_euler = (math.radians(50), math.radians(-15), math.radians(-40)); S.collection.objects.link(sun)
 
 # ---------- helpers ----------
 def link(o, m=None, parent=None):
@@ -94,9 +92,12 @@ def link(o, m=None, parent=None):
 def box(loc, size, m, name="box", parent=None):
     bpy.ops.mesh.primitive_cube_add(size=1, location=loc); o = bpy.context.object
     o.scale = size; o.name = name; return link(o, m, parent)
+def cyl(loc, r, depth, m, name="cyl", parent=None, rot=(0, 0, 0), verts=32):
+    bpy.ops.mesh.primitive_cylinder_add(vertices=verts, radius=r, depth=depth, location=loc, rotation=rot)
+    o = bpy.context.object; o.name = name; bpy.ops.object.shade_smooth(); return link(o, m, parent)
 def cyl_between(a, b, r, m, parent, name="limb", caps=True):
     a, b = Vector(a), Vector(b); d = b - a
-    bpy.ops.mesh.primitive_cylinder_add(vertices=18, radius=r, depth=d.length, location=(a + b) / 2)
+    bpy.ops.mesh.primitive_cylinder_add(vertices=16, radius=r, depth=d.length, location=(a + b) / 2)
     o = bpy.context.object; o.name = name
     o.rotation_mode = "QUATERNION"; o.rotation_quaternion = d.to_track_quat("Z", "Y")
     bpy.ops.object.shade_smooth(); link(o, m, parent)
@@ -109,209 +110,223 @@ def empty(name, loc=(0, 0, 0), parent=None):
     e = bpy.data.objects.new(name, None); e.location = loc; S.collection.objects.link(e)
     if parent: e.parent = parent
     return e
+def text(body, loc, size, m, rot=(math.radians(90), 0, 0), align="CENTER", parent=None):
+    bpy.ops.object.text_add(location=loc, rotation=rot); t = bpy.context.object
+    t.data.body = body; t.data.size = size; t.data.extrude = 0.004; t.data.align_x = align
+    return link(t, m, parent)
 def smooth(x): x = max(0.0, min(1.0, x)); return x * x * (3 - 2 * x)
+def key_vis(o, f, on):  # visibility via scale keys
+    o.scale = o["s"] if on else (0.0001, 0.0001, 0.0001); o.keyframe_insert("scale", frame=f)
 
-# ---------- plaza ----------
-box((0, 0, -0.05), (240, 240, 0.1), M_PAVE, "ground")
-TX, TY = 1.3, 0.7                      # scale tower (10 x 1 m, red/white)
-for k in range(10):
-    box((TX, TY, k + 0.5), (0.32, 0.32, 1.0), M_RED if k % 2 == 0 else M_WHT, "tower")
-for h in (5, 10):
-    box((TX, TY, h), (0.62, 0.62, 0.05), M_MARK, f"mark{h}")
-    bpy.ops.object.text_add(location=(TX + 0.36, TY - 0.17, h + 0.12), rotation=(math.radians(90), 0, 0))
-    tx = bpy.context.object; tx.data.body = f"{h} m"; tx.data.size = 0.42; tx.data.extrude = 0.02
-    tx.data.align_x = "LEFT"; link(tx, M_MARK)
-# city blocks behind the plaza
-for k in range(16):
-    x = -60 + k * 8 + random.uniform(-1.5, 1.5); h = random.uniform(9, 32)
-    box((x, 32 + random.uniform(0, 10), h / 2), (random.uniform(5, 7.5), 6, h), M_BLD[k % 4], "bld")
-for k in range(10):
-    x = -50 + k * 11 + random.uniform(-2, 2); h = random.uniform(8, 22)
-    box((x, -40 - random.uniform(0, 8), h / 2), (7, 6, h), M_BLD[(k + 1) % 4], "bld")
-for k in range(12):  # trees (anchored: they do not move)
-    x, y = random.choice([-1, 1]) * random.uniform(5, 22), random.uniform(5, 22)
-    h = random.uniform(2.5, 4.5)
-    cyl_between((x, y, 0), (x, y, h), 0.12, M_TRUNK, None, "trunk", caps=False)
-    bpy.ops.mesh.primitive_ico_sphere_add(subdivisions=2, radius=random.uniform(1.2, 1.9), location=(x, y, h + 0.6))
-    link(bpy.context.object, M_LEAF)
+# ---------- Martian plain ----------
+bpy.ops.mesh.primitive_plane_add(size=400, location=(0, 0, 0)); g = bpy.context.object; link(g, M_GROUND)
+for k in range(70):
+    a = random.uniform(0, math.tau); r = random.uniform(1.2, 30)
+    x, y = math.cos(a) * r, math.sin(a) * r + 6
+    if abs(x) < 1.6 and -2.5 < y < 1.5: continue
+    bpy.ops.mesh.primitive_ico_sphere_add(subdivisions=1, radius=random.uniform(0.05, 0.4) * (1 + r / 15), location=(x, y, 0))
+    o = bpy.context.object; o.scale = (1, random.uniform(0.7, 1.3), random.uniform(0.4, 0.8))
+    o.rotation_euler = (0, 0, random.uniform(0, 3)); link(o, M_ROCK)
+for k in range(7):  # low hills on the horizon
+    bpy.ops.mesh.primitive_uv_sphere_add(segments=32, ring_count=16, radius=1, location=(-90 + k * 30 + random.uniform(-8, 8), 110 + random.uniform(-10, 20), -2))
+    o = bpy.context.object; o.scale = (random.uniform(25, 45), 18, random.uniform(5, 12)); bpy.ops.object.shade_smooth(); link(o, M_ROCK)
+# habitat in the background (readable "base on Mars")
+cyl((4.5, 9.0, 1.2), 1.8, 2.4, M_HAB, "hab")
+bpy.ops.mesh.primitive_uv_sphere_add(segments=32, ring_count=16, radius=1.8, location=(4.5, 9.0, 2.4)); o = bpy.context.object
+o.scale = (1, 1, 0.55); bpy.ops.object.shade_smooth(); link(o, M_HAB)
+for a in (-0.5, 0.0, 0.5):
+    box((4.5 + math.sin(a) * 1.79, 9.0 - math.cos(a) * 1.79, 1.5), (0.35, 0.05, 0.25), M_HABWIN, "habwin").rotation_euler = (0, 0, a)
+cyl((-5.5, 14.0, 0.9), 0.9, 1.8, M_HAB, "hab2")
 
-# ---------- mannequin (pelvis at origin, head +z, shoulders along y) ----------
-body = empty("body")
+# ---------- camp kitchen: crate, stove, pot ----------
+TOP = 0.62                                   # crate top
+box((0, 0, TOP / 2), (0.75, 0.55, TOP), M_CRATE, "crate")
+box((0, 0, TOP + 0.05), (0.42, 0.34, 0.10), M_DARK, "stove")
+FL = []
+for k in range(10):
+    a = k / 10 * math.tau
+    bpy.ops.mesh.primitive_cone_add(vertices=8, radius1=0.022, radius2=0, depth=0.07, location=(math.cos(a) * 0.09, math.sin(a) * 0.09, TOP + 0.135))
+    f = bpy.context.object; link(f, M_FLAME); FL.append(f)
+PB = TOP + 0.12                              # pot bottom
+PR, PH = 0.19, 0.22
+bpy.ops.mesh.primitive_cylinder_add(vertices=40, radius=PR, depth=PH, location=(0, 0, PB + PH / 2))
+pot = bpy.context.object; bpy.ops.object.shade_smooth(); link(pot, M_STEEL)
+sol = pot.modifiers.new("shell", "SOLIDIFY"); sol.thickness = 0.012
+bpy.ops.object.mode_set(mode="EDIT"); import bmesh
+bm = bmesh.from_edit_mesh(pot.data)
+for fc in bm.faces:
+    if fc.normal.z > 0.9: bm.faces.remove(fc) if False else None
+top_faces = [fc for fc in bm.faces if fc.normal.z > 0.9]
+bmesh.ops.delete(bm, geom=top_faces, context="FACES"); bmesh.update_edit_mesh(pot.data)
+bpy.ops.object.mode_set(mode="OBJECT")
+for s in (-1, 1):  # handles
+    box((s * (PR + 0.05), 0, PB + PH - 0.04), (0.08, 0.03, 0.02), M_DARK, "handle")
+WZ = PB + PH - 0.035                         # water surface
+cyl((0, 0, WZ - 0.005), PR - 0.012, 0.01, M_WATER, "water")
+# bubbles: rise from the bottom, swell, pop at the surface (continuous rolling boil)
+BUB = []
+for k in range(40):
+    bpy.ops.mesh.primitive_uv_sphere_add(segments=12, ring_count=6, radius=1)
+    b = bpy.context.object; bpy.ops.object.shade_smooth(); link(b, M_BUBBLE)
+    r = random.uniform(0.0, 0.15); a = random.uniform(0, math.tau)
+    BUB.append((b, math.cos(a) * r, math.sin(a) * r, random.uniform(0, 1), random.uniform(0.012, 0.03), random.uniform(0.7, 1.3)))
+# spaghetti: stiff strands fanned out of the pot
+PASTA = empty("pasta")
+for k in range(14):
+    a = k / 14 * math.tau + random.uniform(-0.2, 0.2); tilt = math.radians(random.uniform(12, 24))
+    base = Vector((math.cos(a) * 0.05, math.sin(a) * 0.05, WZ - 0.12))
+    tip = base + Vector((math.cos(a) * math.sin(tilt), math.sin(a) * math.sin(tilt), math.cos(tilt))) * 0.34
+    cyl_between(base, tip, 0.0045, M_PASTA, PASTA, "strand", caps=False)
+
+# thermometer (tall prop): 0 °C mark glowing cold, 80 °C mark that lights up
+TX, TY, T0, T80 = 0.42, -0.05, TOP + 0.10, TOP + 0.62
+cyl((TX, TY, TOP + 0.38), 0.03, 0.66, M_GLASS, "tube")
+bpy.ops.mesh.primitive_uv_sphere_add(segments=16, ring_count=8, radius=0.05, location=(TX, TY, TOP + 0.06)); link(bpy.context.object, M_RED)
+col = cyl((TX, TY, T0), 0.034, 1.0, M_RED, "column"); col.location.z = T0  # scaled in z; origin at the bottom
+bpy.ops.object.mode_set(mode="EDIT"); bpy.ops.mesh.select_all(action="SELECT")
+bpy.ops.transform.translate(value=(0, 0, 0.5)); bpy.ops.object.mode_set(mode="OBJECT")
+box((TX, TY, T0 + 0.04), (0.10, 0.02, 0.012), M_COLD, "mark0")
+box((TX, TY, T80), (0.10, 0.02, 0.012), M_HOT, "mark80")
+text("0 °C", (TX + 0.07, TY, T0 + 0.025), 0.05, M_COLD, align="LEFT")
+text("80 °C", (TX + 0.07, TY, T80 - 0.015), 0.05, M_HOT, align="LEFT")
+
+# pressure gauge on a post (beat 3)
+GX, GY, GZ = -0.48, -0.05, TOP + 0.55
+cyl_between((GX, GY + 0.05, 0), (GX, GY + 0.05, GZ), 0.02, M_STEEL, None, "post", caps=False)
+cyl((GX, GY, GZ), 0.14, 0.05, M_STEEL, "rim", rot=(math.radians(90), 0, 0))
+cyl((GX, GY - 0.027, GZ), 0.125, 0.01, M_DIAL, "face", rot=(math.radians(90), 0, 0))
+for k in range(9):  # ticks over 270°
+    a = math.radians(225 - k * 270 / 8)
+    box((GX + math.cos(a) * 0.1, GY - 0.034, GZ + math.sin(a) * 0.1), (0.008, 0.004, 0.025), M_DARK, "tick").rotation_euler = (0, -a + math.pi / 2, 0)
+text("×80", (GX + 0.075, GY - 0.035, GZ - 0.095), 0.04, M_NEEDLE, align="CENTER")
+text("MARS", (GX - 0.075, GY - 0.035, GZ - 0.095), 0.03, M_DARK, align="CENTER")
+needle = empty("needle", (GX, GY - 0.04, GZ)); needle.rotation_mode = "XYZ"
+box((0, 0, 0.045), (0.008, 0.004, 0.09), M_NEEDLE, "needlebar", needle)
+needle.rotation_euler = (0, math.radians(-130), 0)
+cyl((0, -0.003, 0), 0.015, 0.008, M_DARK, "hub", needle, rot=(math.radians(90), 0, 0))
+
+# pressure-cooker lid (twist)
+LID = empty("lid")
+cyl((0, 0, 0.012), PR + 0.015, 0.025, M_STEEL, "lidplate", LID)
+bpy.ops.mesh.primitive_uv_sphere_add(segments=32, ring_count=12, radius=PR, location=(0, 0, 0.02)); o = bpy.context.object
+o.scale = (1, 1, 0.25); bpy.ops.object.shade_smooth(); link(o, M_STEEL, LID)
+box((0, 0, 0.075), (0.26, 0.04, 0.03), M_DARK, "lidhandle", LID)
+cyl((0.08, 0.06, 0.07), 0.015, 0.05, M_DARK, "valve", LID)
+JET = empty("jet", (0.08, 0.06, 0.1), LID)
+bpy.ops.mesh.primitive_cone_add(vertices=16, radius1=0.008, radius2=0.03, depth=0.22, location=(0, 0, 0.11))
+link(bpy.context.object, M_STEAM, JET)
+
+# ---------- astronaut mannequin (faces -y) ----------
+body = empty("body", (0.05, 0.62, 0.915)); body.rotation_euler = (0, 0, math.radians(-90))
 bpy.ops.mesh.primitive_uv_sphere_add(segments=22, ring_count=11, location=(0, 0, 0.30))
-o = bpy.context.object; o.scale = (0.12, 0.19, 0.32); bpy.ops.object.shade_smooth(); link(o, M_SUIT, body)
+o = bpy.context.object; o.scale = (0.16, 0.23, 0.34); bpy.ops.object.shade_smooth(); link(o, M_SUIT, body)
+box((0.12, 0, 0.32), (0.12, 0.30, 0.38), M_SUIT, "pack", body).location = (0.17, 0, 0.32)   # life-support pack (behind)
 bpy.ops.mesh.primitive_uv_sphere_add(segments=22, ring_count=11, location=(0, 0, 0.02))
-o = bpy.context.object; o.scale = (0.125, 0.17, 0.12); bpy.ops.object.shade_smooth(); link(o, M_SUIT, body)
-cyl_between((0, 0, 0.58), (0, 0, 0.66), 0.045, M_SKIN, body, "neck")
-bpy.ops.mesh.primitive_uv_sphere_add(segments=22, ring_count=11, radius=0.105, location=(0, 0, 0.76))
-o = bpy.context.object; bpy.ops.object.shade_smooth(); link(o, M_SKIN, body)
-bpy.ops.mesh.primitive_torus_add(major_radius=0.1, minor_radius=0.018, location=(0, 0, 0.78))
-link(bpy.context.object, M_GOGG, body)
-arms, legs = [], []
+o = bpy.context.object; o.scale = (0.15, 0.19, 0.13); bpy.ops.object.shade_smooth(); link(o, M_SUIT, body)
+bpy.ops.mesh.primitive_uv_sphere_add(segments=24, ring_count=12, radius=0.16, location=(0, 0, 0.78))
+o = bpy.context.object; bpy.ops.object.shade_smooth(); link(o, M_SUIT, body)
+bpy.ops.mesh.primitive_uv_sphere_add(segments=24, ring_count=12, radius=0.13, location=(-0.06, 0, 0.79))
+o = bpy.context.object; o.scale = (0.75, 1, 0.8); bpy.ops.object.shade_smooth(); link(o, M_VISOR, body)
+bpy.ops.mesh.primitive_torus_add(major_radius=0.13, minor_radius=0.02, location=(0, 0, 0.64)); link(bpy.context.object, M_SUIT2, body)
+arms = []
 for side in (-1, 1):
-    sh = empty(f"shoulder{side}", (0, side * 0.21, 0.5), body)
-    cyl_between((0, 0, 0), (0, side * 0.03, -0.30), 0.045, M_SKIN, sh, "upperarm")
-    cyl_between((0, side * 0.03, -0.30), (0, side * 0.04, -0.58), 0.04, M_SKIN, sh, "forearm")
+    sh = empty(f"shoulder{side}", (0, side * 0.25, 0.5), body); sh.rotation_mode = "XYZ"
+    cyl_between((0, 0, 0), (0, side * 0.03, -0.30), 0.06, M_SUIT, sh, "upperarm")
+    cyl_between((0, side * 0.03, -0.30), (0, side * 0.04, -0.56), 0.055, M_SUIT, sh, "forearm")
+    bpy.ops.mesh.primitive_uv_sphere_add(segments=12, ring_count=6, radius=0.06, location=(0, side * 0.04, -0.6)); link(bpy.context.object, M_SUIT2, sh)
     arms.append(sh)
 for side in (-1, 1):
-    hp = empty(f"hip{side}", (0, side * 0.09, 0), body)
-    cyl_between((0, 0, 0), (0, side * 0.01, -0.45), 0.065, M_SUIT, hp, "thigh")
-    cyl_between((0, side * 0.01, -0.45), (0, side * 0.01, -0.86), 0.05, M_SKIN, hp, "shin")
-    bpy.ops.mesh.primitive_uv_sphere_add(segments=12, ring_count=6, location=(-0.05, side * 0.01, -0.88))
-    ft = bpy.context.object; ft.scale = (0.11, 0.045, 0.035); link(ft, M_SKIN, hp)
-    legs.append(hp)
-STAND = 0.915     # pelvis height standing (soles on the ground)
-HEAD_TOP = 0.87   # head top above the pelvis
+    hp = empty(f"hip{side}", (0, side * 0.1, 0), body)
+    cyl_between((0, 0, 0), (0, side * 0.01, -0.45), 0.08, M_SUIT, hp, "thigh")
+    cyl_between((0, side * 0.01, -0.45), (0, side * 0.01, -0.82), 0.07, M_SUIT, hp, "shin")
+    bpy.ops.mesh.primitive_uv_sphere_add(segments=12, ring_count=6, location=(-0.05, side * 0.01, -0.86))
+    ft = bpy.context.object; ft.scale = (0.13, 0.07, 0.06); link(ft, M_SUIT2, hp)
 
-# ---------- gravity arrow (emissive, floats beside the mannequin) ----------
-arrow = empty("arrow")
-cyl_between((0, 0, 0.30), (0, 0, -0.12), 0.06, M_ARROW, arrow, "shaft", caps=False)
-bpy.ops.mesh.primitive_cone_add(vertices=24, radius1=0.17, radius2=0, depth=0.28, location=(0, 0, -0.26), rotation=(math.pi, 0, 0))
-link(bpy.context.object, M_ARROW, arrow)
-
-# ---------- loose objects: they fall up exactly like the mannequin ----------
-LOOSE = []
-spots = [(-1.3, -0.6), (0.9, -1.0), (-0.7, 1.2), (2.4, -0.3), (-2.2, 0.5), (0.3, 1.9), (-1.8, -1.6), (1.9, 1.5), (-3.0, -0.2), (3.0, 0.9)]
-for k, (x, y) in enumerate(spots):
-    kind = k % 3
-    if kind == 0:
-        r = 0.16; bpy.ops.mesh.primitive_uv_sphere_add(segments=18, ring_count=9, radius=r); o = bpy.context.object
-        bpy.ops.object.shade_smooth(); link(o, M_BALL[k % 6]); z0 = r
-    elif kind == 1:
-        bpy.ops.mesh.primitive_cone_add(vertices=20, radius1=0.16, radius2=0.03, depth=0.5); o = bpy.context.object
-        link(o, M_CONE); z0 = 0.25
-    else:
-        bpy.ops.mesh.primitive_cube_add(size=0.4); o = bpy.context.object; link(o, M_CRATE); z0 = 0.2
-    LOOSE.append((o, Vector((x, y, z0)), Vector([random.uniform(-2.5, 2.5) for _ in range(3)]), random.uniform(0.9, 1.1)))
-
-# ---------- interior room (the twist) at x = 40 ----------
-RX = 40.0; CEIL = 2.60
-box((RX, 0, -0.045), (6, 6, 0.12), M_FLOOR, "floor")
-box((RX, 0, CEIL + 0.05), (6, 6, 0.1), M_ICEIL, "ceil")
-for x, y, sx, sy in [(RX, 3, 6, 0.1), (RX, -3, 6, 0.1), (RX + 3, 0, 0.1, 6), (RX - 3, 0, 0.1, 6)]:
-    box((x, y, CEIL / 2), (sx, sy, CEIL), M_IWALL, "iwall")
-box((RX + 0.4, 2.94, 1.5), (1.6, 0.02, 1.1), M_IWIN, "iwin")
-box((RX - 1.6, 2.94, 1.6), (0.8, 0.02, 0.6), M_FRAME, "frame")
-box((RX + 1.7, 2.3, 0.25), (2.0, 0.8, 0.5), M_SOFA, "sofa"); box((RX + 1.7, 2.65, 0.6), (2.0, 0.2, 0.7), M_SOFA, "sofaback")
-bpy.ops.mesh.primitive_cylinder_add(vertices=24, radius=0.28, depth=0.05, location=(RX - 1.9, -0.6, CEIL - 0.03))
-link(bpy.context.object, M_LAMP)
-il = bpy.data.objects.new("ilamp", bpy.data.lights.new("ilamp", "POINT"))
-il.data.energy = 250; il.data.shadow_soft_size = 0.4; il.data.color = (1.0, 0.88, 0.7)
-il.location = (RX - 1.9, -0.6, CEIL - 0.3); S.collection.objects.link(il)
-ifill = bpy.data.objects.new("ifill", bpy.data.lights.new("ifill", "AREA"))
-ifill.data.energy = 120; ifill.data.size = 2.5; ifill.data.color = (0.8, 0.9, 1.0)
-ifill.location = (RX + 0.4, 2.6, 1.5); ifill.rotation_euler = (math.radians(-90), 0, 0); S.collection.objects.link(ifill)
-
-# ---------- timeline / physics ----------
-G = 9.81
+# ---------- timeline ----------
 t2, t3, t4, t5, t6, t7 = (L[i]["start"] for i in range(2, 8))
 tc = CARD_START
-T_FLIP = t2 + 0.95                 # "Flip gravity…" -> lift-off
-T_RET = t4 + 0.15                  # "Gravity returns" -> arrow flips back
-T_PEAK = t5 - 0.05                 # peak (~9.8 m)
-T_LAND = t6 + 0.12                 # (never shown: hard cut at t6 - 0.05)
-IN_GAP = CEIL - 0.03 - (STAND + HEAD_TOP)       # head-to-ceiling gap indoors (~0.8 m)
-T_IN = t7 + 0.25                   # indoors lift-off ("Indoors.")
-T_HIT = T_IN + math.sqrt(2 * IN_GAP / G)        # head reaches the ceiling (real-time physics, ~0.4 s)
-HOOK_PEAK, HOOK_G = 2.05, 0.6      # hook flash-forward: slow coast up to the 10 m mark
+T_LIDUP = t6 - 0.05                          # astronaut holds the lid above the pot
+T_SEAL = t7 + 0.10                           # lid drops on
+T_HISS = T_SEAL + 0.35                       # valve starts hissing, thermometer climbs
+T_80 = T_HISS + 1.1                          # thermometer reaches the 80 °C mark
+T_GAUGE = t5 + 0.15                          # needle swings from Mars to ×80
+COL_ZERO, COL_80 = 0.05, T80 - T0
 
-def outdoor_rise(t):
-    """height gained above standing (m): up 4.9 m while flipped (accelerating),
-    coast to 9.8 m (decelerating), then the fall (accelerating). Stylised time, real shape."""
-    if t < T_FLIP: return 0.0
-    if t < T_RET: u = (t - T_FLIP) / (T_RET - T_FLIP); return 4.905 * u * u
-    if t < T_PEAK: u = (t - T_RET) / (T_PEAK - T_RET); return 4.905 + 4.905 * (1 - (1 - u) ** 2)
-    u = (t - T_PEAK) / (T_LAND - T_PEAK); return max(0.0, 9.81 * (1 - u * u))
-def hook_rise(tau):
-    return 9.81 - 0.5 * HOOK_G * (HOOK_PEAK - tau) ** 2 - 0.3
-
-def state(t):
-    """-> (where, rise, flail)  where = 'out' | 'hook' | 'in'"""
-    if t < t2 - 0.05: return "hook", hook_rise(t), 1.0
-    if t >= tc: return "hook", hook_rise(t - DUR), 1.0
-    if t >= t6 - 0.05:
-        r = 0.0 if t < T_IN else min(0.5 * G * (t - T_IN) ** 2, IN_GAP)
-        return "in", r, (smooth((t - T_IN) / 0.25))
-    return "out", outdoor_rise(t), smooth((t - T_FLIP) / 0.4)
-
-body.rotation_mode = "XYZ"; arrow.rotation_mode = "XYZ"
+for o in (LID, JET, PASTA): o["s"] = tuple(o.scale)
 for f in range(0, N + 1):
     t = f / FPS
-    where, rise, fl = state(t)
-    if where == "in":
-        squash = 0.05 * math.exp(-10 * (t - T_HIT)) * abs(math.sin(25 * (t - T_HIT))) if t >= T_HIT else 0.0
-        body.location = Vector((RX - 0.9, 0.6, STAND + rise - squash))
-        body.rotation_euler = (0, 0, math.radians(-25))
+    loop = t >= tc                           # last ~1 s: back to the opening state (loop)
+    sealed = (t >= T_SEAL) and not loop
+    # flames flicker
+    for k, fl in enumerate(FL):
+        fl.scale = (1, 1, 0.8 + 0.4 * abs(math.sin(t * 17 + k * 1.3))); fl.keyframe_insert("scale", frame=f)
+    # bubbles (hidden once the lid is on)
+    for b, bx, by, ph, rmax, sp in BUB:
+        u = (t * 2.2 * sp + ph) % 1.0            # surface bubble: swells, then pops
+        r = rmax * (0.25 + 0.95 * math.sin(u * math.pi) ** 0.6)
+        z = WZ - 0.4 * r + 0.5 * r * u
+        if sealed: r = 0.0001
+        b.location = (bx + 0.01 * math.sin(t * 9 + ph * 6), by, z); b.scale = (r, r, r * 0.9)
+        b.keyframe_insert("location", frame=f); b.keyframe_insert("scale", frame=f)
+    # pasta: visible until the lid seals the pot
+    key_vis(PASTA, f, not sealed)
+    # thermometer column: stuck near 0 °C, climbs to 80 after sealing
+    h = COL_ZERO + (COL_80 - COL_ZERO) * smooth((t - T_HISS) / (T_80 - T_HISS)) if sealed else COL_ZERO + 0.004 * math.sin(t * 5)
+    col.scale = (1, 1, max(h, 0.01)); col.keyframe_insert("scale", frame=f)
+    hot_emit.default_value = (2.0 + 2.0 * abs(math.sin(t * 6))) if (t4 - 0.05 <= t < t5 or (sealed and t >= T_80 - 0.1)) else 0.5
+    hot_emit.keyframe_insert("default_value", frame=f)
+    # gauge needle: rests at "Mars" (left), swings to ×80 on the line
+    g = smooth((t - T_GAUGE) / 0.7) if t < tc else 0.0
+    wob = 0.05 * math.sin((t - T_GAUGE) * 20) * math.exp(-4 * max(0, t - T_GAUGE - 0.7)) if t > T_GAUGE + 0.6 and t < tc else 0
+    needle.rotation_euler = (0, math.radians(-130) + g * math.radians(255) + wob, 0); needle.keyframe_insert("rotation_euler", frame=f)
+    # lid: hidden, then held above the pot, then drops on
+    if T_LIDUP <= t < tc:
+        if t < T_SEAL: z = WZ + 0.30 + 0.02 * math.sin(t * 4)
+        else: z = PB + PH + max(0.0, 0.30 * (1 - ((t - T_SEAL) / 0.18) ** 2)) * (t < T_SEAL + 0.18)
+        LID.location = (0, 0, z); key_vis(LID, f, True)
     else:
-        body.location = Vector((0, 0, STAND + rise))
-        wob = fl * 0.12
-        body.rotation_euler = (wob * math.sin(t * 2.3), wob * math.sin(t * 1.7 + 1), math.radians(-25) + 0.15 * fl * math.sin(t * 0.9))
-    body.keyframe_insert("location", frame=f); body.keyframe_insert("rotation_euler", frame=f)
-    for k, sh in enumerate(arms):
-        side = -1 if k == 0 else 1
-        a = fl * ((math.radians(75) if where == "in" else math.radians(110)) + 0.6 * math.sin(t * 9 + k * 2))
-        sh.rotation_euler = (side * a, 0, 0); sh.keyframe_insert("rotation_euler", frame=f)
-    for k, hp in enumerate(legs):
-        hp.rotation_euler = (0, fl * (0.35 * math.sin(t * 6 + k * math.pi) - 0.2), 0); hp.keyframe_insert("rotation_euler", frame=f)
-    # arrow: beside the mannequin's head, points along gravity; flips with a quick spin
-    arrow.location = body.location + (Vector((0.65, 0.6, 0.45)) if where == "in" else Vector((0.55, -0.55, 0.95)))
-    if where == "out": flip = smooth((t - (T_FLIP - 0.3)) / 0.3) - smooth((t - T_RET) / 0.3)
-    elif where == "in": flip = smooth((t - (T_IN - 0.3)) / 0.3)
-    else: flip = 0.0
-    arrow.rotation_euler = (0, math.pi * flip, 0)
-    hide = where == "out" and t5 - 0.1 <= t < t5 + 1.45   # top-down fall shot: keep the arrow out of the lens
-    arrow.scale = (0.001,) * 3 if hide else (1, 1, 1); arrow.keyframe_insert("scale", frame=f)
-    arrow.keyframe_insert("location", frame=f); arrow.keyframe_insert("rotation_euler", frame=f)
-    for o, p0, spin, kk in LOOSE:
-        rr = 0.0 if where == "in" else rise * kk + (0.3 if where == "hook" else 0.0)
-        o.location = p0 + Vector((0, 0, rr)); o.rotation_euler = spin * (rr * 0.35)
-        o.keyframe_insert("location", frame=f); o.keyframe_insert("rotation_euler", frame=f)
+        LID.location = (0, 0, WZ + 0.3); key_vis(LID, f, False)
+    LID.keyframe_insert("location", frame=f)
+    js = 0.0
+    if sealed and t >= T_HISS: js = 0.7 + 0.3 * abs(math.sin(t * 23))
+    JET.scale = (js or 0.0001,) * 3; JET.keyframe_insert("scale", frame=f)
+    # astronaut arms: idle; leans to look at the pot; right arm holds the lid on the twist
+    ra = math.radians(10) + 0.05 * math.sin(t * 1.5); la = math.radians(10) + 0.05 * math.sin(t * 1.3 + 1)
+    if t4 - 0.05 <= t < t5: ra = math.radians(55) + 0.15 * math.sin(t * 7)          # pokes at the stiff pasta
+    if T_LIDUP <= t < T_SEAL + 0.2 and not loop: ra = math.radians(75)
+    arms[0].rotation_euler = (0, -ra, 0); arms[1].rotation_euler = (0, -la, 0)
+    for a in arms: a.keyframe_insert("rotation_euler", frame=f)
 
 # ---------- camera: piecewise segments, hard cuts timed to the lines ----------
 cam = bpy.data.objects.new("cam", bpy.data.cameras.new("cam")); S.collection.objects.link(cam); S.camera = cam
-cam.data.sensor_fit = "VERTICAL"; cam.data.sensor_height = 24; cam.data.clip_end = 400
+cam.data.sensor_fit = "VERTICAL"; cam.data.sensor_height = 24; cam.data.clip_end = 600
 tgt = empty("tgt"); c = cam.constraints.new("TRACK_TO"); c.target = tgt
 c.track_axis = "TRACK_NEGATIVE_Z"; c.up_axis = "UP_Y"
 V = Vector
-def bodypos(t):
-    where, rise, _ = state(t)
-    return V((RX - 0.9, 0.6, STAND + rise)) if where == "in" else V((0, 0, STAND + rise))
-def fixed(pa, ta, pb=None, tb=None):
-    pb = pb or pa; tb = tb or ta
-    return ("lerp", V(pa), V(ta), V(pb), V(tb))
-OPEN = ((-0.9, -6.4, 13.3), (0.5, 0.3, 8.75))
-SEG = [  # (t0, t1, spec, lens_a, lens_b)
-    (0.0, t2 - 0.05, ("hook",), 25, 26),
-    (t2 - 0.05, t3 - 0.05, fixed((-1.6, -5.6, 1.5), (0.5, 0, 1.5), (-1.2, -4.6, 1.5), (0.4, 0, 1.6)), 30, 30),
-    (t3 - 0.05, t3 + 1.25, ("follow", (0.7, -2.4, 0), (0, 0, 0.6), "ground"), 22, 22),
-    (t3 + 1.25, t4 - 0.05, ("follow", (-1.0, -5.2, 0.4), (0.4, 0, 0.1)), 30, 30),
-    (t4 - 0.05, t4 + 1.4, ("follow", (-1.3, -4.2, 0.9), (0.35, 0, 0.55)), 30, 32),
-    (t4 + 1.4, t5 - 0.05, fixed((-5.0, -13.0, 4.6), (0.5, 0, 7.9), (-4.6, -12.0, 5.6), (0.5, 0, 9.0)), 30, 30),
-    (t5 - 0.05, t5 + 1.45, ("follow", (0.25, -0.5, 3.4), (0, 0.05, -3.0)), 24, 24),
-    (t5 + 1.45, t6 - 0.05, ("follow", (-1.5, -7.5, 0.2), (0.3, 0, -0.4)), 30, 30),
-    (t6 - 0.05, t7 - 0.05, fixed((RX + 2.3, -2.5, 1.6), (RX - 0.8, 0.8, 1.1), (RX + 2.1, -2.3, 1.6), (RX - 0.8, 0.8, 1.2)), 24, 24),
-    (t7 - 0.05, tc, fixed((RX + 2.0, -2.5, 2.25), (RX - 0.9, 0.6, 1.75), (RX + 1.8, -2.3, 2.3), (RX - 0.9, 0.6, 1.85)), 24, 24),
-    (tc, DUR + 0.01, ("hookend",), 24, 25),
+OPEN = ((0.55, -0.98, 1.34), (0.0, 0.05, 0.97), 27)
+SEG = [  # (t0, t1, (posA, tgtA, lensA), (posB, tgtB, lensB))
+    (0.0, t2 - 0.05, OPEN, ((0.50, -0.90, 1.30), (0.0, 0.05, 0.98), 28)),
+    (t2 - 0.05, t3 - 0.05, ((-2.6, -4.6, 1.5), (0.6, 1.2, 1.1), 26), ((-2.0, -3.8, 1.4), (0.5, 1.0, 1.05), 26)),
+    (t3 - 0.05, t3 + 1.25, ((0.10, -0.42, 1.55), (0.0, 0.0, WZ - 0.02), 30), ((0.08, -0.36, 1.45), (0.0, 0.0, WZ - 0.02), 32)),
+    (t3 + 1.25, t4 - 0.05, ((TX + 0.10, -0.80, T0 + 0.02), (TX + 0.05, TY, T0 - 0.06), 32), ((TX + 0.08, -0.74, T0 + 0.02), (TX + 0.05, TY, T0 - 0.06), 32)),
+    (t4 - 0.05, t4 + 1.35, ((-0.55, -0.75, 1.20), (0.0, 0.0, WZ + 0.12), 30), ((-0.48, -0.66, 1.22), (0.0, 0.0, WZ + 0.12), 32)),
+    (t4 + 1.35, t5 - 0.05, ((TX + 0.12, -0.85, T80 - 0.02), (TX + 0.06, TY, T80 - 0.13), 30), ((TX + 0.10, -0.78, T80 - 0.02), (TX + 0.06, TY, T80 - 0.13), 30)),
+    (t5 - 0.05, t6 - 0.05, ((-0.62, -0.78, 1.25), (GX, GY, GZ - 0.02), 34), ((-0.58, -0.68, 1.23), (GX, GY, GZ - 0.02), 36)),
+    (t6 - 0.05, t7 - 0.05, ((1.0, -1.9, 1.45), (0.05, 0.25, 1.2), 26), ((0.95, -1.8, 1.45), (0.05, 0.25, 1.2), 26)),
+    (t7 - 0.05, tc, ((0.75, -1.25, 1.10), (0.18, 0.0, 1.05), 28), ((0.70, -1.15, 1.10), (0.18, 0.0, 1.07), 29)),
+    (tc, DUR + 0.01, ((0.70, -1.15, 1.08), (0.05, 0.05, 1.03), 27), OPEN),
 ]
 for f in range(0, N + 1):
     t = f / FPS
     seg = next((s for s in SEG if s[0] <= t < s[1]), SEG[-1])
     u = smooth((t - seg[0]) / (seg[1] - seg[0]))
-    spec = seg[2]
-    if spec[0] == "hook":
-        p = V(OPEN[0]) + V((0.0, 0.25 * u, -0.15 * u)); q = V(OPEN[1])
-    elif spec[0] == "hookend":  # slow push from slightly wide back to the opening framing (loop)
-        p = V(OPEN[0]) + V((0.35 * (1 - u), -0.5 * (1 - u), 0.25 * (1 - u))); q = V(OPEN[1])
-    elif spec[0] == "follow":
-        bp = bodypos(t); p = bp + V(spec[1]); q = bp + V(spec[2])
-        if len(spec) > 3 and spec[3] == "ground": p = V((p.x, p.y, 0.35))
-    else:
-        _, pa, ta, pb, tb = spec; p = pa.lerp(pb, u); q = ta.lerp(tb, u)
-    cam.location = p; cam.keyframe_insert("location", frame=f)
-    tgt.location = q; tgt.keyframe_insert("location", frame=f)
-    cam.data.lens = seg[3] + (seg[4] - seg[3]) * u; cam.data.keyframe_insert("lens", frame=f)
+    (pa, ta, la), (pb, tb, lb) = seg[2], seg[3]
+    cam.location = V(pa).lerp(V(pb), u); cam.keyframe_insert("location", frame=f)
+    tgt.location = V(ta).lerp(V(tb), u); tgt.keyframe_insert("location", frame=f)
+    cam.data.lens = la + (lb - la) * u; cam.data.keyframe_insert("lens", frame=f)
 
-json.dump({"t_flip": T_FLIP, "t_ret": T_RET, "t_peak": T_PEAK, "t_cut_fall": t6 - 0.05, "t_in": T_IN, "t_hit": T_HIT,
-           "t_card": tc, "cuts": [s[0] for s in SEG[1:]]}, open("/home/claude/reel/beats.json", "w"), indent=1)
+json.dump({"t_lidup": T_LIDUP, "t_seal": T_SEAL, "t_hiss": T_HISS, "t_80": T_80, "t_gauge": T_GAUGE, "t_card": tc,
+           "cuts": [s[0] for s in SEG[1:]]}, open("/home/claude/reel/beats.json", "w"), indent=1)
 
 # ---------- render ----------
 args = [a for a in (sys.argv[sys.argv.index("--") + 1:] if "--" in sys.argv else sys.argv[1:]) if a != "--force"]

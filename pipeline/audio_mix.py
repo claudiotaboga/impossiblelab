@@ -85,27 +85,31 @@ def whoomph(dur=1.0):
     return lp(rng.standard_normal(n), 500) * np.sin(np.linspace(0, np.pi, n)) ** 0.7 * 1.6
 import json as _json
 B = _json.load(open("/home/claude/reel/beats.json"))
-def sweep(dur, f0, f1):  # tonal glide for the gravity-arrow flips
-    n = int(dur * SR); tt = np.arange(n) / SR; f = f0 * (f1 / f0) ** (tt / dur)
-    ph = 2 * np.pi * np.cumsum(f) / SR
-    return (np.sin(ph) + 0.3 * np.sin(2 * ph)) * np.sin(np.linspace(0, np.pi, n)) ** 1.2
-def bonk(dur=0.35):  # soft head-on-ceiling knock: thud + woodblock
+def bubbling(dur):  # rolling boil: dense random blips
+    n = int(dur * SR); out = np.zeros(n)
+    for k in range(int(dur * 38)):
+        i = rng.integers(0, max(1, n - 4000)); f = rng.uniform(250, 900); m = 3000; tt = np.arange(m) / SR
+        out[i:i + m] += np.sin(2 * np.pi * f * (1 + 2.5 * tt) * tt) * np.exp(-tt * 60) * rng.uniform(0.3, 1)
+    return lp(out, 2500)
+def tick(dur=0.05):
+    n = int(dur * SR); tt = np.arange(n) / SR; return np.sin(2 * np.pi * 2400 * tt) * np.exp(-tt * 120)
+def clang(dur=0.6):  # lid on a steel pot
     n = int(dur * SR); tt = np.arange(n) / SR
-    return thud(dur, 110) * 0.8 + np.sin(2 * np.pi * 820 * tt) * np.exp(-tt * 40) * 0.5
-def windfall(dur):  # wind that keeps rising, cut dead at the end (hard cut before landing)
-    x = whoosh(dur, 250, 3500); n = len(x); x *= np.linspace(0.3, 1.0, n) ** 1.5 / np.maximum(np.sin(np.linspace(0, np.pi, n)) ** 1.5, 0.15)
-    x[-int(0.01 * SR):] *= np.linspace(1, 0, int(0.01 * SR)); return x / np.abs(x).max()
-put(sfx, whoosh(1.9, 300, 1200), 0.0, 0.25)                     # high-altitude wind on the cold open
+    return sum(np.sin(2 * np.pi * f * tt) * np.exp(-tt * (9 + k * 4)) for k, f in enumerate([420, 1130, 1870, 2650])) * 0.4 + thud(dur, 90) * 0.6
+def whistle(dur):  # pressure-cooker valve hiss + whistle
+    n = int(dur * SR); tt = np.arange(n) / SR
+    x = bp(rng.standard_normal(n), 3000, 9000) * 0.6 + np.sin(2 * np.pi * (1650 + 30 * np.sin(2 * np.pi * 6 * tt)) * tt) * 0.35
+    return x * np.clip(tt / 0.15, 0, 1) * np.clip((dur - tt) / 0.1, 0, 1)
+boil = bubbling(DUR); boil[at(B["t_seal"]):at(B["t_card"])] *= 0.15   # muffled once the lid is on
+put(sfx, boil, 0.0, 0.18)
+put(sfx, whoosh(1.2, 200, 700), 0.0, 0.10)                          # thin Martian wind
 for t_cut in B["cuts"]:
     put(sfx, whoosh(0.35, 1800, 500, False), t_cut - 0.15, 0.10)
-put(sfx, sweep(0.45, 220, 880), B["t_flip"] - 0.35, 0.28)      # arrow flips up
-put(sfx, whoosh(2.6, 200, 1600), B["t_flip"], 0.35)            # lift-off, rising wind
-put(sfx, sweep(0.45, 880, 220), B["t_ret"] - 0.05, 0.28)       # arrow flips back down
-put(sfx, windfall(B["t_cut_fall"] - B["t_peak"]), B["t_peak"], 0.42)
-put(sfx, sweep(0.4, 220, 880), B["t_in"] - 0.35, 0.25)         # indoors flip
-put(sfx, bonk(), B["t_hit"] - 0.01, 0.9)                        # head meets ceiling
+for k in range(6): put(sfx, tick(), B["t_gauge"] + k * 0.12, 0.25)  # gauge needle ratchets up
+put(sfx, clang(), B["t_seal"] + 0.15, 0.8)
+put(sfx, whistle(B["t_card"] - B["t_hiss"] + 0.3), B["t_hiss"], 0.30)
 put(sfx, thud(0.4, 60), CARD_START, 0.6); put(sfx, whoosh(0.3, 800, 3000), CARD_START - 0.25, 0.2)
-amb = lp(rng.standard_normal(N), 400) * 0.015  # low outdoor ambience
+amb = lp(rng.standard_normal(N), 300) * 0.012  # low Martian ambience
 
 mix = vo * 1.0 + music * 0.55 + sfx * 0.55 + amb
 fade = at(0.15); mix[-fade:] *= np.linspace(1, 0, fade)

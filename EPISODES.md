@@ -11,7 +11,9 @@
 ## READY TO PUBLISH
 Buffer: the daily run publishes the first entry here at 16:00 EET (its `meta.json` is final and its video is already hosted), moves it to the register, then builds the next episode into this section.
 
-(empty)
+| Episode ID | Folder | Premise | Hook line | Length | SHA-256 | Built |
+|---|---|---|---|---|---|---|
+| TIL-05 | episodes/05-mars-pasta | Boiling pasta on Mars | Pasta never cooks on Mars. | 15.0 s (E4) | `a222478b21518092c7cd432f243a7ca06824a79626aab5231e5d9acee37acf7d` | 11 Nov 2026 03:35 EET |
 
 ## Topic queue
 Take the first item that is not in the register. Every premise must be buildable from Blender primitives, safe to show, and its science checkable. Verify every number before use; the notes are starting points, not facts.

@@ -10,18 +10,18 @@ def font(w, s): return ImageFont.truetype(F + f"Inter-{w}.otf", s)
 AMBER = (255, 176, 46); WHITE = (255, 255, 255); INK = (18, 12, 6)
 
 # ---- per-episode content: the only block to change for a new episode ----
-EP_NUM = 4
-TITLE = ["WHAT IF GRAVITY", "FLIPPED FOR 1 SEC?"]
+EP_NUM = 5
+TITLE = ["WHAT IF YOU BOILED", "PASTA ON MARS?"]
 FACTS = [  # (start, end, text) — times match the narration lines
-    (3.9, 6.35, "+4.9 m IN THE FLIPPED SECOND"),
-    (6.6, 9.25, "PEAK ≈ 9.8 m"),
-    (9.5, 11.95, "≈50 km/h ON THE WAY DOWN"),
+    (3.65, 6.1, "MARS AIR ≈ 0.6% OF EARTH'S"),
+    (6.35, 8.85, "PASTA NEEDS ≈ 80 °C"),
+    (9.1, 10.85, "≈ 80× MARS PRESSURE TO BOIL AT 80 °C"),
 ]
-CARD_SUB = "Earth's gravity reversed for exactly 1 s, air drag ignored"
-CARD = [("Rise while flipped", "4.9 m", "½·g·t², g = 9.81 m/s², t = 1 s"),
-        ("Peak height", "≈9.8 m", "coasting up at 9.8 m/s"),
-        ("Landing speed", "≈13.9 m/s", "≈50 km/h, after a 1.4 s fall")]
-DISCLAIMER = "Don't try this. A fall from 10 m can be fatal."
+CARD_SUB = "average Martian surface, pure water"
+CARD = [("Mars air pressure", "≈610 Pa", "0.6 % of Earth's 101,325 Pa"),
+        ("Water boils at", "≈0 °C", "triple point: 611.66 Pa, 0.01 °C"),
+        ("Pasta cooks above", "≈80 °C", "boiling there needs 47.4 kPa ≈ 78×")]
+DISCLAIMER = "Don't try this. Misused pressure cookers can burst."
 
 def ease(x): x = max(0, min(1, x)); return 1 - (1 - x) ** 3
 

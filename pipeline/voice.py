@@ -1,16 +1,16 @@
-"""Record the narration lines with Kokoro (af_heart, speed 1.00) and log real lengths."""
+"""Record the narration lines with Kokoro (af_heart, speed from config.py) and log real lengths."""
 import json, soundfile as sf, numpy as np
 from kokoro_onnx import Kokoro
 from config import VOICE, VOICE_SPEED
 
 LINES = [
-    "One second. Ten metres up.",
-    "Flip gravity for one second.",
-    "You fall up nearly five metres, gaining speed.",
-    "Gravity returns. You still coast to nearly ten.",
-    "You drop back at about fifty kilometres an hour.",
-    "The safer spot?",
-    "Indoors. The ceiling stops you early.",
+    "Pasta never cooks on Mars.",
+    "Bring a pot to the red planet.",
+    "Thin air means water boils near zero degrees.",
+    "Pasta needs about eighty. It stays rock hard.",
+    "You'd need about eighty times more pressure.",
+    "The solution?",
+    "A pressure cooker. Mars-proof spaghetti.",
 ]
 
 k = Kokoro("models/kokoro-v1.0.onnx", "models/voices-v1.0.bin")
