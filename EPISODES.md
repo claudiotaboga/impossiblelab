@@ -7,13 +7,13 @@
 | 02 | TIL-02 | 8 Nov 2026 21:52 | Diving into a pool of mercury | You can't drown in this pool. | 16.5 s | 9559508bcfdc4091bfb3a37c33066ce6 | [DffjNPrkrjD](https://www.instagram.com/reel/DffjNPrkrjD/) | [k4IGjqt1y7A](https://youtube.com/shorts/k4IGjqt1y7A) |
 | 03 | TIL-03 | 10 Nov 2026 00:46 (9 Nov slot, 8 h 46 min late) | A ship launched into a sea of honey | Ships float higher on honey. | 16.5 s | c22f3293609644f8ad59c1a9786b4243 | [Dfib4ySiF1g](https://www.instagram.com/reel/Dfib4ySiF1g/) | [blv90cdrvmo](https://youtube.com/shorts/blv90cdrvmo) |
 | 04 | TIL-04 | 10 Nov 2026 19:00 (16:00 slot, 3 h late) | Gravity reversed for one second | One second. Ten metres up. | 16.5 s | 1b9bf72da1ea4467843d06eb652f1d65 | [DfkZOtAD4Jo](https://www.instagram.com/reel/DfkZOtAD4Jo/) | [JrLsjK9ZiNg](https://youtube.com/shorts/JrLsjK9ZiNg) |
+| 05 | TIL-05 | 11 Nov 2026 16:00 (on time; from READY) | Boiling pasta on Mars | Pasta never cooks on Mars. | 15.0 s | 1ab7499172db4e17a0eb3da4fd74e9fb | [DfmpWn_pbJK](https://www.instagram.com/reel/DfmpWn_pbJK/) | [YFPL9A8-KX0](https://youtube.com/shorts/YFPL9A8-KX0) |
 
 ## READY TO PUBLISH
 Buffer: the daily run publishes the first entry here at 16:00 EET (its `meta.json` is final and its video is already hosted), moves it to the register, then builds the next episode into this section.
 
 | Episode ID | Folder | Premise | Hook line | Length | SHA-256 | Built |
 |---|---|---|---|---|---|---|
-| TIL-05 | episodes/05-mars-pasta | Boiling pasta on Mars | Pasta never cooks on Mars. | 15.0 s (E4) | `a222478b21518092c7cd432f243a7ca06824a79626aab5231e5d9acee37acf7d` | 11 Nov 2026 03:35 EET |
 | TIL-06 | episodes/06-mach-marathon | Running a marathon at the speed of sound | A marathon in two minutes. | 15.0 s (E4) | `f98d1eedcb03da059a5aee5d635f3ecb2c0d9b52176e5b7522099511afeb1a4a` | 11 Nov 2026 14:55 EET |
 
 ## Topic queue

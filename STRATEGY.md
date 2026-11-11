@@ -54,6 +54,10 @@ One adjustment per day at most, logged in the experiment table with its hypothes
 | 11 Nov 11:08 | TIL-02 | 61.3 h | 1,776 | 1,146 | 67.5 % | 11.2 (68 % of 16.5 s) | 0 | 0 | 1,222 (9 likes) | n/a / 2 |
 | 11 Nov 11:08 | TIL-03 | 34.4 h | 160 | 111 | 61.3 % | 9.8 (59 % of 16.5 s) | 0 | 0 | 969 (19 likes) | n/a / 2 |
 | 11 Nov 11:08 | TIL-04 | 16.1 h | 169 | 113 | 58.6 % | 10.2 (62 % of 16.5 s) | 0 | 0 | 464 (9 likes) | n/a / 2 |
+| 11 Nov 13:21 | TIL-01 | 66.2 h | 207 | 137 | 71.9 % | 12.0 (80 % of 15 s) | 0 | 0 | 1,688 (17 likes) | n/a / 2 |
+| 11 Nov 13:21 | TIL-02 | 63.5 h | 1,776 | 1,146 | 67.5 % | 11.2 (68 % of 16.5 s) | 0 | 0 | 1,222 (9 likes) | n/a / 2 |
+| 11 Nov 13:21 | TIL-03 | 36.6 h | 160 | 111 | 61.3 % | 9.8 (59 % of 16.5 s) | 0 | 0 | 1,060 (19 likes) | n/a / 2 |
+| 11 Nov 13:21 | TIL-04 | 18.3 h | 169 | 113 | 58.6 % | 10.2 (62 % of 16.5 s) | 0 | 0 | 464 (9 likes) | n/a / 2 |
 
 ## Findings log
 - **9 Nov (run for TIL-03), reels < 48 h old, provisional:**
@@ -86,6 +90,12 @@ NEXT BUILD INSTRUCTION (from 11 Nov 01:55 check, updated after Claudio's decisio
   3. E2 (one-tap comment prompt): 0 comments on 329 IG views across TIL-03/04 (2 of 3 reels); TIL-05 completes it. Engagement is still zero on IG (0 shares, saves, comments on 2,312 views).
 
 NEXT BUILD INSTRUCTION (from 11 Nov 11:08 check): keep current. Build TIL-06 exactly as TIL-05 (15 s / speed 1.10 for E4, cold open on the climax with a claim hook, one-tap comment prompt); no new change until E4 has 3 reels. Hypothesis unchanged: the tighter 15 s reel lifts hook hold and watch ratio above the median (64.4 % / 65 %). Publish TIL-05 on time at 16:00.
+
+- **11 Nov 13:21 (daily production run):** total 6,746 views (IG 2,312 + YT 4,434), +102 since 11:08, all YouTube.
+  1. YouTube's long tail reaches older reels unevenly: honey (TIL-03) jumped 969 → 1,060 in 2 h after being flat for a day, while gravity (TIL-04) stayed at 464. Instagram is unchanged for every reel (frozen after ~12 h).
+  2. No new IG evidence: still 0 shares, saves and comments on 2,312 views; TIL-05 (first E4 reel, posting 16:00 today) is the next data point.
+- **TIL-05 published on time** at 16:00:15 EET (Make exec 1ab7499172db4e17a0eb3da4fd74e9fb, IG DfmpWn_pbJK, YT YFPL9A8-KX0): first E4 reel and the first post exactly in the slot, so it is also the first clean timing data point. E2 is now complete (3 reels); judge it at 48 h (13 Nov).
+- **Adjustment applied:** none (NEXT BUILD INSTRUCTION "keep current" followed). TIL-06 built exactly like TIL-05: 15 s / speed 1.10 (E4), cold open on the climax with a claim hook (E3: the finish-line sprint, "A marathon in two minutes."), one-tap comment prompt (E2 style: "Could anyone survive the first kilometre? Yes or no"). Topic: queue #5/#6 skipped for #7 (marathon at the speed of sound), the most visceral premise with every number computable; friction-off still lacks a clean number per beat.
 
 ## Weekly reviews
 (none yet)
