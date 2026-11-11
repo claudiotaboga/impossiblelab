@@ -1,0 +1,43 @@
+{
+ "voice": "af_heart",
+ "speed": 1.1,
+ "lines": [
+  {
+   "i": 1,
+   "text": "A marathon in two minutes.",
+   "start": 0.2,
+   "dur": 1.409
+  },
+  {
+   "i": 2,
+   "text": "Run it at the speed of sound.",
+   "start": 1.809,
+   "dur": 1.349
+  },
+  {
+   "i": 3,
+   "text": "Air shoves back with the weight of a car.",
+   "start": 3.358,
+   "dur": 1.731
+  },
+  {
+   "i": 4,
+   "text": "That takes seventeen thousand times a champion's power.",
+   "start": 5.289,
+   "dur": 2.773
+  },
+  {
+   "i": 5,
+   "text": "The real problem?",
+   "start": 8.262,
+   "dur": 0.909
+  },
+  {
+   "i": 6,
+   "text": "Corners. Even at one g, a turn needs a twelve kilometre radius.",
+   "start": 9.371,
+   "dur": 4.032
+  }
+ ],
+ "card_start": 13.453
+}

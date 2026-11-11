@@ -10,18 +10,18 @@ def font(w, s): return ImageFont.truetype(F + f"Inter-{w}.otf", s)
 AMBER = (255, 176, 46); WHITE = (255, 255, 255); INK = (18, 12, 6)
 
 # ---- per-episode content: the only block to change for a new episode ----
-EP_NUM = 5
-TITLE = ["WHAT IF YOU BOILED", "PASTA ON MARS?"]
+EP_NUM = 6
+TITLE = ["WHAT IF YOU RAN A", "MACH 1 MARATHON?"]
 FACTS = [  # (start, end, text) — times match the narration lines
-    (3.65, 6.1, "MARS AIR ≈ 0.6% OF EARTH'S"),
-    (6.35, 8.85, "PASTA NEEDS ≈ 80 °C"),
-    (9.1, 10.85, "≈ 80× MARS PRESSURE TO BOIL AT 80 °C"),
+    (1.85, 3.25, "SOUND ≈ 343 m/s → 42.2 km IN ≈ 2 MIN"),
+    (3.4, 5.15, "DRAG ≥ 17 kN ≈ A 1.7 t CAR"),
+    (5.35, 8.05, "≥ 5.8 MW vs ≈ 340 W FOR AN ELITE RUNNER"),
 ]
-CARD_SUB = "average Martian surface, pure water"
-CARD = [("Mars air pressure", "≈610 Pa", "0.6 % of Earth's 101,325 Pa"),
-        ("Water boils at", "≈0 °C", "triple point: 611.66 Pa, 0.01 °C"),
-        ("Pasta cooks above", "≈80 °C", "boiling there needs 47.4 kPa ≈ 78×")]
-DISCLAIMER = "Don't try this. Misused pressure cookers can burst."
+CARD_SUB = "42.195 km at 343 m/s (20 °C air) = 123 s"
+CARD = [("Drag at 343 m/s", "≥17 kN", "½·1.204·343²·0.24 m² ≈ 1.7 t-force"),
+        ("Power needed", "≥5.8 MW", "F·v ≈ 17,000× an elite ≈341 W"),
+        ("1 g turn radius", "≈12 km", "r = v²/g = 343² / 9.81 m")]
+DISCLAIMER = "Don't try this. Never chase or push moving vehicles."
 
 def ease(x): x = max(0, min(1, x)); return 1 - (1 - x) ** 3
 

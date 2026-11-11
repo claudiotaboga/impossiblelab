@@ -41,3 +41,7 @@ The scenario only publishes payloads with `status: ready`, `qa_passed: true`, 10
 - Never `pkill -f scene.py` from a shell whose own command line contains `scene.py`: it kills that shell. Use the PID instead.
 - Keep the actor out of the top ~520 px (title + chips) in wide shots: frame the target so the subject sits at 35–60 % of the height.
 - `audio_mix.py` drops the music on the second-to-last line (the twist setup), so it works for 6- or 7-line scripts.
+- `bpy.ops.mesh.primitive_torus_add` silently caps `major_radius` at 10 km (episode 06's 12 km ring came out 2 km short of the runner). For big rings build the mesh directly (see `annulus()` in `pipeline/reference/scene_ep06.py`) and check that the geometry passes where the science says it does.
+- `show()`-style visibility helpers that keyframe `scale` overwrite any non-unit object scale: apply the scale first (`bpy.ops.object.transform_apply(scale=True)`) on boxes sized via `scale`.
+- `encode.sh` now uses `-maxrate 3.5M -bufsize 3M`: with 4M/4M a busy shot (17,000 moving figures in ep. 06) hit 5.1 Mbps in one 1-s window, above Instagram's 5 Mbps cap.
+

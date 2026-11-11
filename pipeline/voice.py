@@ -4,13 +4,12 @@ from kokoro_onnx import Kokoro
 from config import VOICE, VOICE_SPEED
 
 LINES = [
-    "Pasta never cooks on Mars.",
-    "Bring a pot to the red planet.",
-    "Thin air means water boils near zero degrees.",
-    "Pasta needs about eighty. It stays rock hard.",
-    "You'd need about eighty times more pressure.",
-    "The solution?",
-    "A pressure cooker. Mars-proof spaghetti.",
+    "A marathon in two minutes.",
+    "Run it at the speed of sound.",
+    "Air shoves back with the weight of a car.",
+    "That takes seventeen thousand times a champion's power.",
+    "The real problem?",
+    "Corners. Even at one g, a turn needs a twelve kilometre radius.",
 ]
 
 k = Kokoro("models/kokoro-v1.0.onnx", "models/voices-v1.0.bin")

@@ -100,16 +100,27 @@ def whistle(dur):  # pressure-cooker valve hiss + whistle
     n = int(dur * SR); tt = np.arange(n) / SR
     x = bp(rng.standard_normal(n), 3000, 9000) * 0.6 + np.sin(2 * np.pi * (1650 + 30 * np.sin(2 * np.pi * 6 * tt)) * tt) * 0.35
     return x * np.clip(tt / 0.15, 0, 1) * np.clip((dur - tt) / 0.1, 0, 1)
-boil = bubbling(DUR); boil[at(B["t_seal"]):at(B["t_card"])] *= 0.15   # muffled once the lid is on
-put(sfx, boil, 0.0, 0.18)
-put(sfx, whoosh(1.2, 200, 700), 0.0, 0.10)                          # thin Martian wind
+def roar(dur, f=600):  # rushing air around a supersonic runner
+    n = int(dur * SR); return lp(rng.standard_normal(n), f) * 1.4
+def boom(dur=0.9):  # sonic-boom style double thump
+    return thud(dur, 45) + np.concatenate([np.zeros(int(0.11 * SR)), thud(dur, 50)])[: int(dur * SR)] * 0.8
+def steps(dur, hz=6.0):  # crowd footfalls
+    n = int(dur * SR); out = np.zeros(n)
+    for k in range(int(dur * hz * 6)):
+        i = rng.integers(0, max(1, n - 2400)); m = 2400; tt = np.arange(m) / SR
+        out[i:i + m] += np.sin(2 * np.pi * rng.uniform(70, 140) * tt) * np.exp(-tt * 70) * rng.uniform(0.3, 1)
+    return out
+put(sfx, roar(B["t_aerial"]), 0.0, 0.16)                                   # air roar while running
+put(sfx, roar(DUR - B["t_card"], 500), B["t_card"], 0.12)                  # loop back into the opening roar
+put(sfx, boom(), 0.02, 0.9)                                                 # cold open: sonic boom
+put(sfx, whoosh(0.25, 2500, 900, False), B["t_tape"] - 0.05, 0.25)         # finish tape snaps
 for t_cut in B["cuts"]:
-    put(sfx, whoosh(0.35, 1800, 500, False), t_cut - 0.15, 0.10)
-for k in range(6): put(sfx, tick(), B["t_gauge"] + k * 0.12, 0.25)  # gauge needle ratchets up
-put(sfx, clang(), B["t_seal"] + 0.15, 0.8)
-put(sfx, whistle(B["t_card"] - B["t_hiss"] + 0.3), B["t_hiss"], 0.30)
+    put(sfx, whoosh(0.35, 1800, 500, False), t_cut - 0.15, 0.12)
+put(sfx, lp(rng.standard_normal(int(1.7 * SR)), 180) * env(int(1.7 * SR), 0.1, 0.4) * 2.5, B["t_car"], 0.35)   # strain under the car's weight
+put(sfx, steps(B["t_bend"] - B["t_crowd"]), B["t_crowd"], 0.22)           # 17,000 runners
+put(sfx, whoosh(2.5, 150, 900, True), B["t_aerial"], 0.18)                 # high-altitude riser
 put(sfx, thud(0.4, 60), CARD_START, 0.6); put(sfx, whoosh(0.3, 800, 3000), CARD_START - 0.25, 0.2)
-amb = lp(rng.standard_normal(N), 300) * 0.012  # low Martian ambience
+amb = lp(rng.standard_normal(N), 300) * 0.010
 
 mix = vo * 1.0 + music * 0.55 + sfx * 0.55 + amb
 fade = at(0.15); mix[-fade:] *= np.linspace(1, 0, fade)

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Final encode: composited frames + mix -> Instagram/YouTube-compliant MP4.
-# H.264 <= 4 Mbps (Instagram Reel cap is 5), AAC 128k 48 kHz, two-pass loudnorm to -14 LUFS, faststart.
+# H.264 <= 3.5 Mbps (bufsize 3M keeps every 1-s window < 5 Mbps) (Instagram Reel cap is 5), AAC 128k 48 kHz, two-pass loudnorm to -14 LUFS, faststart.
 # Usage: pipeline/encode.sh <comp_dir> <mix.wav> <out.mp4>
 set -euo pipefail
 COMP="$1"; MIX="$2"; OUT="$3"
@@ -11,4 +11,4 @@ MI=$(echo "$J" | python3 -c "import json,sys;d=json.load(sys.stdin);print(f\"mea
 ffmpeg -hide_banner -y -framerate 24 -i "$COMP/%04d.png" -i "$MIX" \
   -af "loudnorm=I=-14:TP=-1.5:LRA=11:$MI:linear=true,aresample=48000" \
   -c:v libx264 -preset veryfast -crf 20 -profile:v high -pix_fmt yuv420p -g 48 -keyint_min 48 -sc_threshold 0 \
-  -maxrate 4M -bufsize 4M -movflags +faststart -c:a aac -b:a 128k -ac 2 -t "$DUR" "$OUT"
+  -maxrate 3.5M -bufsize 3M -movflags +faststart -c:a aac -b:a 128k -ac 2 -t "$DUR" "$OUT"

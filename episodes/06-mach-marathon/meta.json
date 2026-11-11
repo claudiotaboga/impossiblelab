@@ -1,0 +1,30 @@
+{
+  "episode_id": "TIL-06",
+  "status": "ready",
+  "qa_passed": true,
+  "width": 1080,
+  "height": 1920,
+  "duration_seconds": 15.0,
+  "title": "What if you ran a marathon at the speed of sound?",
+  "video_url": "https://raw.githubusercontent.com/claudiotaboga/impossiblelab/main/episodes/06-mach-marathon/video.mp4",
+  "caption": "A marathon in two minutes. 🏃💨\n\nRun at the speed of sound (≈343 m/s) and 42.2 km takes about 123 seconds.\n\nAir drag grows with speed squared: at Mach 1 it shoves back with at least 17 kN, about the weight of a car.\n\nHolding that pace needs at least 5.8 MW, roughly 17,000× the ~341 W an elite marathoner is estimated to produce.\n\nAnd corners: even at 1 g of sideways grip, the tightest turn has a 12 km radius.\n\nCould anyone survive the first kilometre? Yes or no 👇\n\nSend this to the runner who's always chasing a new PB.\n\nFollow @the.impossible.lab for more impossible science.\n\n⚠️ Don't try this. Never chase, push or draft behind moving vehicles, and build up your running pace gradually.\n\n#science #physics #running #marathon #speedofsound #whatif #didyouknow #sciencefacts #theimpossiblelab",
+  "sources": [
+    "https://worldathletics.org/disciplines/road/marathon (marathon = 42.195 km)",
+    "https://en.wikipedia.com/wiki/Speed_of_sound (≈343 m/s in dry air at 20 °C) -> 42,195 / 343 = 123 s",
+    "https://engineeringtoolbox.com/air-density-specific-weight-d_600.html (air density ≈1.204 kg/m³ at 20 °C, 1 atm)",
+    "https://blog.stryd.com/2019/12/20/what-is-the-theoretical-impact-of-air-resistance/ (runner CdA ≈ 0.24 m², validated against Pugh 1970/71 and Davies 1980 wind-tunnel data; elite marathoner total running power estimated ≈341 W)",
+    "Computed: drag F = ½ρv²CdA = 0.5 × 1.204 × 343² × 0.24 ≈ 17.0 kN (≈1.73 tonne-force) — a lower bound, since drag coefficients rise further near Mach 1; power = F·v ≈ 5.83 MW ≈ 17,100 × 341 W",
+    "Computed: minimum turn radius at 1 g lateral acceleration r = v²/g = 343² / 9.81 ≈ 11,990 m ≈ 12 km"
+  ],
+  "qa": {
+    "duration_s": 15.0,
+    "integrated_loudness_lufs": -14.0,
+    "true_peak_dbfs": -1.5,
+    "video_kbps_per_second_max": 4359,
+    "audio": "aac 128k 48kHz stereo",
+    "codec": "h264 High yuv420p, faststart",
+    "disclaimer_in_caption": true,
+    "disclaimer_on_card": true,
+    "visual_check": "t=0, 0.5 (hook readable, runner + vapour cone + streaks), all 3 chips, ghost-car beat, 17,000-runner reveal, bend, aerial ring passes through the runner with radius line + 12 km label, card with red disclaimer, last frame loops to the opening; title rows 852/903 px"
+  }
+}
