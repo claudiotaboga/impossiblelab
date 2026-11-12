@@ -1,0 +1,30 @@
+{
+  "episode_id": "TIL-07",
+  "status": "ready",
+  "qa_passed": true,
+  "width": 1080,
+  "height": 1920,
+  "duration_seconds": 15.0,
+  "title": "What if you played basketball on the Moon?",
+  "video_url": "https://raw.githubusercontent.com/claudiotaboga/impossiblelab/main/episodes/07-moon-basketball/video.mp4",
+  "caption": "On the Moon, you'd jump over the hoop. 🏀🌕\n\nPicture a court inside an air-filled dome. The Moon's gravity is 1.62 m/s², about one sixth of Earth's 9.8 m/s².\n\nSame legs, same take-off speed: a 1 m leap on Earth becomes about 6 m up there, feet far above the 3.05 m rim.\n\nAnd you'd hang in the air for about 5.5 seconds instead of 0.9.\n\nThe catch: a normal free throw (about 7.5 m/s) would fly roughly 21 m, about five times too far.\n\nCould you still sink a free throw up there? Yes or no 👇\n\nSend this to the friend who still can't dunk.\n\nFollow @the.impossible.lab for more impossible science.\n\n⚠️ Don't try this. Never jump from heights or hang on a basketball rim: on Earth a fall from a few metres can cause serious injury.\n\n#science #physics #basketball #moon #space #whatif #didyouknow #sciencefacts #theimpossiblelab",
+  "sources": [
+    "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html (NASA Moon fact sheet: surface gravity 1.62 m/s² vs Earth 9.80 m/s², ratio 0.165 -> ×6.05)",
+    "https://www.nbcsports.com/nba/news/keon-johnson-sets-nba-draft-combine-record-with-48-inch-vertical-leap (NBA combine record max vertical 48 in = 1.22 m; an elite leap of ~1 m is conservative)",
+    "https://ar5iv.labs.arxiv.org/html/1702.07234 (free-throw physics: release height ~2 m, distance ~4.6 m, measured release speeds 7.0–7.8 m/s at ~47–57°)",
+    "NBA court dimensions: rim 10 ft = 3.05 m, rim centre 5 ft 3 in from the baseline, free-throw line 15 ft from the backboard, court 94 × 50 ft",
+    "Computed: take-off speed of a 1.0 m Earth leap v = √(2·9.80·1.0) = 4.43 m/s; on the Moon h = v²/(2·1.62) = 6.05 m, airtime 2v/g = 5.47 s (Earth 0.90 s)",
+    "Computed (numerical, air drag Cd 0.47, ball r 0.12 m, m 0.6 kg, ρ 1.2 kg/m³ inside the dome): a free throw at 7.55 m/s, 52°, that reaches the rim 4.2 m away on Earth travels ≈21 m before dropping back to rim height on the Moon (×5.1); ≈33 m without air"
+  ],
+  "qa": {
+    "duration_s": 15.0,
+    "integrated_loudness_lufs": -14.0,
+    "true_peak_dbfs": -1.4,
+    "video_kbps_per_second_max": 3760,
+    "audio": "aac 128k 48kHz stereo",
+    "codec": "h264 High yuv420p, faststart",
+    "disclaimer_in_caption": true,
+    "disclaimer_on_card": true,
+    "visual_check": "t=0, 0.5 (hook: player hovering ~6 m up, feet above the rim, Earth in the sky), wide dome shot, all 3 chips, jump with 1 m EARTH / 6 m MOON gauge, shot clock 5.5 s + EARTH 0.9 s, free-throw set, Moon arc vs Earth arc with ×5 landing marker, card with red disclaimer, last frame loops to the opening; title rows 567/661 px; gauge labels hidden where they would crop"
+  }
+}

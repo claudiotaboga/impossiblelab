@@ -110,15 +110,22 @@ def steps(dur, hz=6.0):  # crowd footfalls
         i = rng.integers(0, max(1, n - 2400)); m = 2400; tt = np.arange(m) / SR
         out[i:i + m] += np.sin(2 * np.pi * rng.uniform(70, 140) * tt) * np.exp(-tt * 70) * rng.uniform(0.3, 1)
     return out
-put(sfx, roar(B["t_aerial"]), 0.0, 0.16)                                   # air roar while running
-put(sfx, roar(DUR - B["t_card"], 500), B["t_card"], 0.12)                  # loop back into the opening roar
-put(sfx, boom(), 0.02, 0.9)                                                 # cold open: sonic boom
-put(sfx, whoosh(0.25, 2500, 900, False), B["t_tape"] - 0.05, 0.25)         # finish tape snaps
+def buzzer(dur=0.45):  # shot-clock buzzer
+    n = int(dur * SR); tt = np.arange(n) / SR
+    x = np.sign(np.sin(2 * np.pi * 220 * tt)) * 0.5 + np.sin(2 * np.pi * 440 * tt) * 0.3
+    return lp(x, 2500) * np.clip(tt / 0.01, 0, 1) * np.clip((dur - tt) / 0.05, 0, 1)
+def bounce(f0=110):  # basketball dribble thump
+    n = int(0.25 * SR); tt = np.arange(n) / SR
+    return (np.sin(2 * np.pi * f0 * tt) + 0.4 * np.sin(2 * np.pi * 2.7 * f0 * tt)) * np.exp(-tt * 28)
+put(sfx, whoosh(1.2, 400, 1200, False), 0.0, 0.18)                         # cold open: floating high
+put(sfx, bounce(), B["t_takeoff"] - 0.6, 0.5); put(sfx, bounce(), B["t_takeoff"] - 0.25, 0.4)   # dribbles before the jump
+put(sfx, thud(0.4, 75), B["t_takeoff"], 0.5); put(sfx, whoosh(1.6, 300, 2200, True), B["t_takeoff"], 0.2)
+for k in range(1, 6): put(sfx, tick(), B["t_takeoff"] + k, 0.35)         # shot clock counts the hang time
+put(sfx, thud(0.5, 60), B["t_land"], 0.6)                                   # landing
+put(sfx, buzzer(), B["t_land"] + 0.08, 0.22)
 for t_cut in B["cuts"]:
     put(sfx, whoosh(0.35, 1800, 500, False), t_cut - 0.15, 0.12)
-put(sfx, lp(rng.standard_normal(int(1.7 * SR)), 180) * env(int(1.7 * SR), 0.1, 0.4) * 2.5, B["t_car"], 0.35)   # strain under the car's weight
-put(sfx, steps(B["t_bend"] - B["t_crowd"]), B["t_crowd"], 0.22)           # 17,000 runners
-put(sfx, whoosh(2.5, 150, 900, True), B["t_aerial"], 0.18)                 # high-altitude riser
+put(sfx, whoosh(1.8, 500, 2600, True), B["t_release"], 0.25)               # the free throw takes off
 put(sfx, thud(0.4, 60), CARD_START, 0.6); put(sfx, whoosh(0.3, 800, 3000), CARD_START - 0.25, 0.2)
 amb = lp(rng.standard_normal(N), 300) * 0.010
 

@@ -33,7 +33,7 @@ One adjustment per day at most, logged in the experiment table with its hypothes
 | E1 | 9 Nov 2026 | 16.5 s + slower voice (speed 1.00 vs 1.10) | Clearer narration raises watch ratio | running (3 of 3 reels published at 16.5 s: TIL-02 68 %, TIL-03 59 % vs TIL-01 80 % at 15 s; first read at 48 h on 11 Nov, so far the slower/longer format holds viewers less) |
 | E2 | 10 Nov 2026 00:46 (TIL-03) | Caption comment prompt as a one-tap yes/no question ("Would this ship ever make it to port? Yes or no") instead of an open opinion question | A one-tap answer lowers the effort to comment: comments > 0 per 1,000 IG views (0 so far on ~2,000 views) | 3 of 3 published; provisional fail (12 Nov: 0 comments on 973 IG views: TIL-03 0/160, TIL-04 0/169, TIL-05 0/644 at 19 h); final read 13 Nov at 48 h |
 | E3 | 10 Nov 2026 19:00 (TIL-04, 3 h after the slot) | Flash-forward cold open: the first ~2 s show the climax (mannequin at the 10 m mark, high camera looking down), and the spoken + on-screen hook is a concrete number ("One second. Ten metres up.") before the story restarts from the ground | Hook hold is falling (72 → 67.5 → 61 %); opening on the payoff image + a number raises hook hold back to ≥ the median (67.5 %) | running |
-| E4 | TIL-05 (11 Nov 2026, approved by Claudio) | Back to 15 s and Kokoro speed 1.10 (from 16.5 s / 1.00); E3 cold open kept | At 48 h the 15 s / 1.10 reel held better (hook 72 %, watch 80 %) than 16.5 s / 1.00 (67.5 %, 68 %), and TIL-03/04 kept falling: a tighter, faster reel lifts hook hold and watch ratio back above the median | running (1 of 3: TIL-05 at 19 h hook 60.7 %, watch 61 %, both ≈ median, no lift yet; TIL-06 today, TIL-07 next) |
+| E4 | TIL-05 (11 Nov 2026, approved by Claudio) | Back to 15 s and Kokoro speed 1.10 (from 16.5 s / 1.00); E3 cold open kept | At 48 h the 15 s / 1.10 reel held better (hook 72 %, watch 80 %) than 16.5 s / 1.00 (67.5 %, 68 %), and TIL-03/04 kept falling: a tighter, faster reel lifts hook hold and watch ratio back above the median | running (TIL-05 at 21 h: hook 60.5 %, watch 60 %, ≈ median, no lift yet; TIL-06 posts 12 Nov 16:00; TIL-07, the third E4 reel, built and in READY for 13 Nov; judge on 15 Nov when all three are ≥ 48 h) |
 
 ## Snapshots
 | Captured (EET) | Episode | Age | IG views | IG reach | Hook hold | Avg watch s | Shares | Saves | YT views | Followers IG / subs YT |
@@ -63,6 +63,11 @@ One adjustment per day at most, logged in the experiment table with its hypothes
 | 12 Nov 11:08 | TIL-03 | 58.4 h | 160 | 111 | 61.3 % | 9.8 (59 % of 16.5 s) | 0 | 0 | 1,166 (19 likes) | n/a / 3 |
 | 12 Nov 11:08 | TIL-04 | 40.1 h | 169 | 113 | 58.6 % | 10.2 (62 % of 16.5 s) | 0 | 0 | 517 (9 likes) | n/a / 3 |
 | 12 Nov 11:08 | TIL-05 | 19.1 h | 644 | 465 | 60.7 % | 9.2 (61 % of 15 s) | 0 | 0 | 1,117 (13 likes) | n/a / 3 |
+| 12 Nov 13:16 | TIL-01 | 90.2 h | 207 | 137 | 71.9 % | 12.0 (80 % of 15 s) | 0 | 0 | 1,729 (17 likes) | n/a / 3 |
+| 12 Nov 13:16 | TIL-02 | 87.4 h | 1,776 | 1,146 | 67.5 % | 11.2 (68 % of 16.5 s) | 0 | 0 | 1,228 (9 likes) | n/a / 3 |
+| 12 Nov 13:16 | TIL-03 | 60.5 h | 160 | 111 | 61.3 % | 9.8 (59 % of 16.5 s) | 0 | 0 | 1,166 (19 likes) | n/a / 3 |
+| 12 Nov 13:16 | TIL-04 | 42.2 h | 169 | 113 | 58.6 % | 10.2 (62 % of 16.5 s) | 0 | 0 | 520 (9 likes) | n/a / 3 |
+| 12 Nov 13:16 | TIL-05 | 21.3 h | 670 | 486 | 60.5 % | 9.0 (60 % of 15 s) | 0 | 0 | 1,117 (13 likes) | n/a / 3 |
 
 ## Findings log
 - **9 Nov (run for TIL-03), reels < 48 h old, provisional:**
@@ -108,6 +113,12 @@ NEXT BUILD INSTRUCTION (from 11 Nov 11:08 check): keep current. Build TIL-06 exa
   3. Engagement is still zero: 0 shares, 0 saves, 0 comments on 2,956 IG views; E2 (one-tap yes/no prompt) has 0 comments on 973 IG views over its 3 reels → provisional fail, final read at 48 h tomorrow (13 Nov).
 
 NEXT BUILD INSTRUCTION (from 12 Nov 11:08 check): keep current. Build TIL-07 exactly like TIL-05/06 (15 s / speed 1.10, cold open on the climax with a claim hook, one-tap comment prompt): TIL-07 is E4's third reel, so no new change. Topic: prefer a familiar everyday object or act in an impossible setting (pool, pasta: the two best IG reaches); from the queue, #13 basketball on the Moon or #6 shrunk to 1 cm, whichever has every number verifiable. Publish TIL-06 on time at 16:00 (on-time posting is the one variable that coincided with better reach). Planned next change after E4's read (14 Nov): retention (hook) or engagement (prompt), decided on the data.
+
+- **12 Nov 13:16 (daily production run):** total 8,742 views (IG 2,982 + YT 5,760), +38 since 11:08; YT subscribers 3; IG followers not available.
+  1. TIL-05 is the only reel still gaining on Instagram after 12 h (644 → 670 views, 465 → 486 accounts in 2 h, hook hold 60.5 %, watch ratio 60 %); every older reel stayed frozen. A slow IG tail exists only for the on-time 16:00 post, a further hint that the slot matters.
+  2. YouTube was flat in the last 2 h (+38 views in total, TIL-05 unchanged at 1,117): YT counts appear to refresh in batches, so compare YT only across captures ≥ 12 h apart.
+  3. Engagement still zero: 0 shares, 0 saves, 0 comments on 2,982 IG views.
+- **Adjustment applied:** none (NEXT BUILD INSTRUCTION "keep current" followed). TIL-07 built exactly like TIL-05/06: 15 s / speed 1.10 (E4's third reel), cold open on the climax with a claim hook ("You'd jump over the hoop.", player hovering 6 m up, feet above the rim), one-tap comment prompt ("Could you still sink a free throw up there? Yes or no"). Topic: queue #13 basketball on the Moon (familiar everyday act in an impossible setting, every number verifiable; set in an air-filled dome so no suit is needed and the free-throw range includes air drag).
 
 ## Weekly reviews
 (none yet)

@@ -10,18 +10,19 @@ def font(w, s): return ImageFont.truetype(F + f"Inter-{w}.otf", s)
 AMBER = (255, 176, 46); WHITE = (255, 255, 255); INK = (18, 12, 6)
 
 # ---- per-episode content: the only block to change for a new episode ----
-EP_NUM = 6
-TITLE = ["WHAT IF YOU RAN A", "MACH 1 MARATHON?"]
+EP_NUM = 7
+TITLE = ["BASKETBALL", "ON THE MOON?"]
 FACTS = [  # (start, end, text) — times match the narration lines
-    (1.85, 3.25, "SOUND ≈ 343 m/s → 42.2 km IN ≈ 2 MIN"),
-    (3.4, 5.15, "DRAG ≥ 17 kN ≈ A 1.7 t CAR"),
-    (5.35, 8.05, "≥ 5.8 MW vs ≈ 340 W FOR AN ELITE RUNNER"),
+    (3.55, 6.85, "MOON GRAVITY ≈ 1/6 OF EARTH'S"),
+    (7.15, 8.95, "1 m LEAP ON EARTH → ≈ 6 m ON THE MOON"),
+    (9.25, 10.85, "HANG TIME ≈ 5.5 s (EARTH ≈ 0.9 s)"),
 ]
-CARD_SUB = "42.195 km at 343 m/s (20 °C air) = 123 s"
-CARD = [("Drag at 343 m/s", "≥17 kN", "½·1.204·343²·0.24 m² ≈ 1.7 t-force"),
-        ("Power needed", "≥5.8 MW", "F·v ≈ 17,000× an elite ≈341 W"),
-        ("1 g turn radius", "≈12 km", "r = v²/g = 343² / 9.81 m")]
-DISCLAIMER = "Don't try this. Never chase or push moving vehicles."
+CARD_SUB = "Moon 1.62 m/s² vs Earth 9.80 m/s² (×6.05)"
+CARD = [("Same jump, 4.4 m/s", "6.05 m", "Earth 1.0 m · rim 3.05 m"),
+        ("Time in the air", "5.5 s", "2v/g · Earth 0.9 s"),
+        ("Free throw, 7.55 m/s", "≈21 m", "52°, dome air · Earth 4.2 m"),
+       ]
+DISCLAIMER = "Don't try this. Never jump from heights or hang on rims."
 
 def ease(x): x = max(0, min(1, x)); return 1 - (1 - x) ** 3
 
