@@ -118,6 +118,7 @@ NEXT BUILD INSTRUCTION (from 12 Nov 11:08 check): keep current. Build TIL-07 exa
   1. TIL-05 is the only reel still gaining on Instagram after 12 h (644 → 670 views, 465 → 486 accounts in 2 h, hook hold 60.5 %, watch ratio 60 %); every older reel stayed frozen. A slow IG tail exists only for the on-time 16:00 post, a further hint that the slot matters.
   2. YouTube was flat in the last 2 h (+38 views in total, TIL-05 unchanged at 1,117): YT counts appear to refresh in batches, so compare YT only across captures ≥ 12 h apart.
   3. Engagement still zero: 0 shares, 0 saves, 0 comments on 2,982 IG views.
+- **TIL-06 published on time** at 16:00:07 EET (Make exec a1872f54522c4a3bb9f041704b30fdf7, SUCCESS, 5 operations; IG DfpOOiYlRDP, YT nV-sE7p3f4w): second consecutive on-time post from the READY buffer; E4 reel 2 of 3.
 - **Adjustment applied:** none (NEXT BUILD INSTRUCTION "keep current" followed). TIL-07 built exactly like TIL-05/06: 15 s / speed 1.10 (E4's third reel), cold open on the climax with a claim hook ("You'd jump over the hoop.", player hovering 6 m up, feet above the rim), one-tap comment prompt ("Could you still sink a free throw up there? Yes or no"). Topic: queue #13 basketball on the Moon (familiar everyday act in an impossible setting, every number verifiable; set in an air-filled dome so no suit is needed and the free-throw range includes air drag).
 
 ## Weekly reviews

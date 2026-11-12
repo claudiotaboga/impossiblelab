@@ -44,4 +44,5 @@ The scenario only publishes payloads with `status: ready`, `qa_passed: true`, 10
 - `bpy.ops.mesh.primitive_torus_add` silently caps `major_radius` at 10 km (episode 06's 12 km ring came out 2 km short of the runner). For big rings build the mesh directly (see `annulus()` in `pipeline/reference/scene_ep06.py`) and check that the geometry passes where the science says it does.
 - `show()`-style visibility helpers that keyframe `scale` overwrite any non-unit object scale: apply the scale first (`bpy.ops.object.transform_apply(scale=True)`) on boxes sized via `scale`.
 - `encode.sh` now uses `-maxrate 3.5M -bufsize 3M`: with 4M/4M a busy shot (17,000 moving figures in ep. 06) hit 5.1 Mbps in one 1-s window, above Instagram's 5 Mbps cap.
-
+- Text objects in Blender (shot clock, labels) can be animated per frame with a `bpy.app.handlers.frame_change_pre` handler that sets `data.body` (see `pipeline/reference/scene_ep07.py`); it runs on every `frame_set` before the render.
+- Labels that extend sideways (e.g. gauge marks) crop at the frame edge in follow-cams: show them only in the shots where they fit (episode 07 hides them per segment with scale keyframes).
