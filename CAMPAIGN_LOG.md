@@ -14,7 +14,8 @@ Missing data (13 Nov, updated 08:16 EET after Claudio's OK): scenario 8451991 no
 | TIL-04 | 10 Nov 19:00 (3 h late) | Gravity reversed for one second | 16.5 s | "One second. Ten metres up." (cold open on climax) | v1 | E1, E2, E3 |
 | TIL-05 | 11 Nov 16:00 | Boiling pasta on Mars | 15 s, voice 1.10 | "Pasta never cooks on Mars." | v1 | E2, E3, E4 |
 | TIL-06 | 12 Nov 16:00 | Marathon at the speed of sound | 15 s | "A marathon in two minutes." | v1 | E3, E4 |
-| TIL-07 | 13 Nov 16:00 (READY) | Basketball on the Moon (air-filled dome) | 15 s | "You'd jump over the hoop." (player 6 m up) | v1 | E3, E4 |
+| TIL-07 | 13 Nov 16:00:00 (sent; webhook Accepted; Make/IG/YT confirmation pending, see Decisions) | Basketball on the Moon (air-filled dome) | 15 s | "You'd jump over the hoop." (player 6 m up) | v1 | E3, E4 |
+| TIL-08 | 14 Nov 16:00 (READY, built 13 Nov) | Shrunk to 1 cm tall (your body) | Blender 3D, 15 s, voice 1.10 | "Big raindrops weigh more than you." (lab balance tipping toward a 5 mm drop, labels YOU 13 mg / DROP 65 mg) | v1 + caption v2 | E5 (1/3), E4 |
 
 Links: see EPISODES.md register (IG permalink + YouTube link per reel).
 
@@ -26,8 +27,9 @@ Links: see EPISODES.md register (IG permalink + YouTube link per reel).
 | TIL-03 | 160 / 111 · 975 (27.2 h) | 160 / 111 · 1,166 (60.5 h; 72 h capture missed) | due 17 Nov 00:46 |
 | TIL-04 | 169 / 113 · 464 (16.1 h) | due 13 Nov 19:00 (early read 64.1 h: 169 / 113 · 528) | due 17 Nov 19:00 |
 | TIL-05 | 706 / 510 · 1,118 (23 h) | due 14 Nov 16:00 | due 18 Nov 16:00 |
-| TIL-06 | 183 / 117 · n/a (17.2 h, early read: hook hold 63.9 %, watch 10.4 s = 69 %); 19.1 h: 183 / 117 · **5** (YT anomaly) | due 15 Nov 16:00 | due 19 Nov 16:00 |
+| TIL-06 | 183 / 117 · n/a (17.2 h, early read: hook hold 63.9 %, watch 10.4 s = 69 %); 19.1 h: 183 / 117 · **5** (YT anomaly); 21.2 h (nearest capture before the 13 Nov Make outage): 183 / 117 · 5 | due 15 Nov 16:00 | due 19 Nov 16:00 |
 | TIL-07 | due 14 Nov 16:00 | due 16 Nov 16:00 | due 20 Nov 16:00 |
+| TIL-08 | due 15 Nov 16:00 | due 17 Nov 16:00 | due 21 Nov 16:00 |
 24 h IG reach baseline (median TIL-01..05) = **136 accounts**; 24 h IG views median = 205; 24 h YT views median = 1,118.
 
 ## Competitor group (checked 13 Nov 2026 06:07 UTC via Make scenario 8550000, IG Business Discovery; public counts only)
@@ -61,3 +63,5 @@ Transferable principles (hypotheses, not rules):
 - 13 Nov: **retain** 16:00 slot, buffer-first publishing, cold open on the climax (E3, unresolved), 15 s / 1.10 (E4, verdict 15 Nov).
 - 13 Nov: **selected E5** (see STRATEGY.md NEXT BUILD INSTRUCTION). Confidence low–medium: n = 5 own reels; topic is confounded with slot timing (TIL-05 was also the first on-time post).
 - 13 Nov 11:08 (stats check): **YouTube anomaly** — TIL-06 at 5 YT views at 19 h (median 1,118 at 24 h), channel +18 views in 21 h. Decision for Claudio: check TIL-06 (nV-sE7p3f4w) visibility / "made for kids" / restrictions in YouTube Studio; if the Make YT module sets privacy/madeForKids, confirm values. **Retain** E5 for TIL-08 (keep current, no new variable). TIL-06 IG reach 0.86× baseline (non-body premise) — weak support for E5. Data store 250779 trimmed 98 → 68 records (oldest snapshots before 11 Nov 12:00 removed, newest per media kept).
+- 13 Nov 13:15 (production run): Make publish scenario 8451092 checked: YouTube upload uses privacyStatus public, selfDeclaredMadeForKids false, containsSyntheticMedia true, notifySubscribers true, category 28 — the same for every upload, so these settings do not explain TIL-06's 5 YT views; the check in YouTube Studio is still needed. **Retain** E5: TIL-08 built (shrunk to 1 cm; hook proved on screen by a balance; caption v2). Snapshot unchanged vs 11:08 (IG frozen, YT +1).
+- 13 Nov 16:00: **TIL-07 sent on time** (webhook answered "Accepted" at 16:00:00–16:00:01). From ~15:43 EET the Make connector of this session failed (Service Unavailable / 502 / "Failed to connect"), so the lock store, the execution result, the IG permalink and the YouTube link could **not** be confirmed in this run. Missing data: TIL-07 exec ID + links; TIL-06 24 h checkpoint capture (only 21.2 h available). Next run: run executions_list 8451092 (13 Nov ≥ 13:55 UTC), 8451991 and 8451995, then fill the TIL-07 register row before publishing TIL-08.
