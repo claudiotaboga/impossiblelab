@@ -34,7 +34,7 @@ One adjustment per day at most, logged in the experiment table with its hypothes
 | E2 | 10 Nov 2026 00:46 (TIL-03) | Caption comment prompt as a one-tap yes/no question ("Would this ship ever make it to port? Yes or no") instead of an open opinion question | A one-tap answer lowers the effort to comment: comments > 0 per 1,000 IG views (0 so far on ~2,000 views) | 3 of 3 published; provisional fail (12 Nov: 0 comments on 973 IG views: TIL-03 0/160, TIL-04 0/169, TIL-05 0/644 at 19 h); final read 13 Nov at 48 h |
 | E3 | 10 Nov 2026 19:00 (TIL-04, 3 h after the slot) | Flash-forward cold open: the first ~2 s show the climax (mannequin at the 10 m mark, high camera looking down), and the spoken + on-screen hook is a concrete number ("One second. Ten metres up.") before the story restarts from the ground | Hook hold is falling (72 → 67.5 → 61 %); opening on the payoff image + a number raises hook hold back to ≥ the median (67.5 %) | running |
 | E4 | TIL-05 (11 Nov 2026, approved by Claudio) | Back to 15 s and Kokoro speed 1.10 (from 16.5 s / 1.00); E3 cold open kept | At 48 h the 15 s / 1.10 reel held better (hook 72 %, watch 80 %) than 16.5 s / 1.00 (67.5 %, 68 %), and TIL-03/04 kept falling: a tighter, faster reel lifts hook hold and watch ratio back above the median | running (TIL-05 at 21 h: hook 60.5 %, watch 60 %, ≈ median, no lift yet; TIL-06 posts 12 Nov 16:00; TIL-07, the third E4 reel, built and in READY for 13 Nov; judge on 15 Nov when all three are ≥ 48 h) |
-| E5 | TIL-08 (14 Nov 2026), 3 reels | Premise must put stakes on the viewer's own body or an everyday object/food (topic selection rule); caption v2 (E2 stopped) applied at the same time as a minor confound | Own top IG reaches (mercury 1,144, pasta 510 accounts) are body/food; competitor over-performers are body/mind/food (CAMPAIGN_LOG.md, 13 Nov): IG reach at 24 h ≥ 2× the baseline median of 136 accounts | selected 13 Nov; checkpoints 24 h / 72 h; verdict after TIL-10 at 72 h |
+| E5 | TIL-08 (14 Nov 2026), 3 reels | Premise must put stakes on the viewer's own body or an everyday object/food (topic selection rule); caption v2 (E2 stopped) applied at the same time as a minor confound | Own top IG reaches (mercury 1,144, pasta 510 accounts) are body/food; competitor over-performers are body/mind/food (CAMPAIGN_LOG.md, 13 Nov): IG reach at 24 h ≥ 2× the baseline median of 136 accounts | selected 13 Nov; TIL-08 built 13 Nov (shrunk to 1 cm, in READY for 14 Nov 16:00); checkpoints 24 h / 72 h; verdict after TIL-10 at 72 h |
 
 ## Snapshots
 | Captured (EET) | Episode | Age | IG views | IG reach | Hook hold | Avg watch s | Shares | Saves | YT views | Followers IG / subs YT |
@@ -75,6 +75,12 @@ One adjustment per day at most, logged in the experiment table with its hypothes
 | 13 Nov 11:08 | TIL-04 | 64.1 h | 169 | 113 | 58.6 % | 10.2 (62 % of 16.5 s) | 0 | 0 | 528 (9 likes) | 1 / 3 |
 | 13 Nov 11:08 | TIL-05 | 43.1 h | 712 | 517 | 60.8 % | 9.3 (62 % of 15 s) | 0 | 0 | 1,119 (13 likes) | 1 / 3 |
 | 13 Nov 11:08 | TIL-06 | 19.1 h | 183 | 117 | 63.9 % | 10.4 (69 % of 15 s) | 0 | 0 | 5 (0 likes) | 1 / 3 |
+| 13 Nov 13:15 | TIL-01 | 114.1 h | 207 | 137 | 71.9 % | 12.0 (80 % of 15 s) | 0 | 0 | 1,735 (17 likes) | 1 / 3 |
+| 13 Nov 13:15 | TIL-02 | 111.4 h | 1,776 | 1,146 | 67.5 % | 11.2 (68 % of 16.5 s) | 0 | 0 | 1,226 (9 likes) | 1 / 3 |
+| 13 Nov 13:15 | TIL-03 | 84.5 h | 160 | 111 | 61.3 % | 9.8 (59 % of 16.5 s) | 0 | 0 | 1,166 (19 likes) | 1 / 3 |
+| 13 Nov 13:15 | TIL-04 | 66.2 h | 169 | 113 | 58.6 % | 10.2 (62 % of 16.5 s) | 0 | 0 | 528 (9 likes) | 1 / 3 |
+| 13 Nov 13:15 | TIL-05 | 45.2 h | 712 | 517 | 60.8 % | 9.3 (62 % of 15 s) | 0 | 0 | 1,119 (16 likes) | 1 / 3 |
+| 13 Nov 13:15 | TIL-06 | 21.2 h | 183 | 117 | 63.9 % | 10.4 (69 % of 15 s) | 0 | 0 | 5 (0 likes) | 1 / 3 |
 
 ## Findings log
 - **9 Nov (run for TIL-03), reels < 48 h old, provisional:**
@@ -139,6 +145,12 @@ NEXT BUILD INSTRUCTION (from 13 Nov 08:10 brief run): build TIL-08 as E5: premis
 - E4 early read (verdict 15 Nov, TIL-07 still unpublished): TIL-05 hook 60.8 % / watch 62 %, TIL-06 63.9 % / 69 % vs median of 6 reels 62.6 % / 65 %: no clear lift yet.
 
 NEXT BUILD INSTRUCTION (from 13 Nov 11:08 check): keep current. Build TIL-08 as E5 exactly as set in the 13 Nov 08:10 instruction (first queue topic A "shrunk to 1 cm", caption v2, 15 s / 1.10, cold open, 16:00); no extra variable. After publishing TIL-07 at 16:00, confirm the YouTube upload is public and record its first YT count; if TIL-07 also stays < 50 YT views by the next check, YouTube distribution is broken, not the content.
+
+- **13 Nov 13:15 (daily production run):** total 8,986 views (IG 3,207 + YT 5,779), +1 since 11:08 (YT); IG followers 1, YT subscribers 3.
+  1. Instagram is frozen on all six reels (identical counts to the 11:08 capture); TIL-06 (marathon) ends its IG burst at 117 accounts (0.86× the 136 baseline) despite the best retention since TIL-01 (hook hold 63.9 %, watch ratio 69 %). Retention without a body/food premise did not buy reach (n = 1, low confidence; supports E5).
+  2. YouTube still stalled: TIL-06 at 5 views at 21 h. The publishing scenario (8451092) uploads with privacyStatus = public, selfDeclaredMadeForKids = false, notifySubscribers = true, containsSyntheticMedia = true, category 28: identical for TIL-01..05, which all got 380–1,250 views in the first day, so the Make settings are not the cause. Remaining suspects are on YouTube's side (Studio restrictions/visibility on nV-sE7p3f4w, or a channel-level distribution drop). TIL-07 at 16:00 is the test.
+  3. Engagement unchanged: 0 shares, 0 saves, 0 comments on 3,207 IG views (likes 20).
+- **Adjustment applied:** none beyond the NEXT BUILD INSTRUCTION (E5 started): TIL-08 = queue topic A "shrunk to 1 cm tall", 15 s / 1.10, cold open on the hook image (balance already tipping toward the raindrop at t = 0), caption v2, brief in episodes/08-shrunk-1cm/brief.md. Today's numbers do not contradict the instruction.
 
 ## Weekly reviews
 (none yet)
