@@ -20,19 +20,22 @@ Buffer: the daily run publishes the first entry here at 16:00 EET (its `meta.jso
 ## Topic queue
 Take the first item that is not in the register. Every premise must be buildable from Blender primitives, safe to show, and its science checkable. Verify every number before use; the notes are starting points, not facts.
 
+E5 (13 Nov): next three topics put stakes on the viewer's own body or an everyday object/food; take them in this order before the numbered list.
+
+- A. **Shrunk to 1 cm tall**: falls are harmless, a raindrop is a trap, you'd have to eat like a shrew.
+- B. **Swimming in a pool of olive oil**: oil ~0.91 g/cm³, you float lower, ~80× thicker than water; strokes feel slow; check viscosity and density of olive oil at 20 °C.
+- C. **A cup of coffee the size of a lake**: how long it would take to cool, and what the steam would do.
+
 1. ~~**Diving into a pool of mercury**~~ (done, TIL-02): density 13.5, you float with ~7 % submerged, can't dive or swim; the danger is the vapour above the pool.
 2. ~~**A ship launched into a sea of honey**~~ (done, TIL-03): draft ~28 % shallower, honey thousands of times thicker, 1 m ripples fade in ~1 s, no barnacles. Note: the old claim "the launch wave never travels" was wrong: ship-scale waves (λ ≈ 10 m) survive ~1.5 min in honey; only small ripples die fast.
 3. ~~**Gravity reversed for one second**~~ (done, TIL-04): rise 4.9 m in the flipped second, peak 9.8 m, land at ~13.9 m/s (~50 km/h) after 1.4 s; indoors the ceiling stops you after <1 m.
 4. ~~**Boiling pasta on Mars**~~ (done, TIL-05; moved up 11 Nov: friction-off has no clean, checkable number per beat yet; air drag vs. friction is ambiguous): water boils near 0 °C at Mars pressure; the pasta never cooks; the fix is a pressure cooker.
 5. **Friction switched off for one minute** (skipped again 11 Nov: still no clean, checkable number per beat): you can stand but not walk; knots slip, nails lose grip; friction returns at full speed.
-6. **Shrunk to 1 cm tall**: falls are harmless, a raindrop is a trap, you'd have to eat like a shrew.
 7. ~~**Running a marathon at the speed of sound**~~ (done, TIL-06; taken ahead of #5/#6 as the most visceral fully computable premise): 123 s; drag ≥ 17 kN with CdA 0.24 m² (the old ~35 kN note was too high); ≥ 5.8 MW ≈ 17,000× an elite ~341 W; 1 g turn radius 12 km.
 8. **Shouting on Venus**: 92 bar, ~465 °C, air ~65× denser; your voice changes (hedge: modelled, uncertain).
 9. **Every cat on Earth meowing at once**: total sound power less than one car engine; sound arrives staggered.
 10. **Earth stops spinning for one second**: everything loose keeps moving east at up to ~465 m/s; at ~45° N that is about the speed of sound.
 11. **A bowling ball dropped onto a trampoline made of soap film** (pick only if the science checks out cleanly).
-12. **A cup of coffee the size of a lake**: how long it would take to cool, and what the steam would do.
 13. ~~**Basketball on the Moon**~~ (done, TIL-07: 1 m Earth leap → 6.05 m, 5.5 s airtime, free throw ≈21 m in dome air ≈ 5× too far): 1/6 gravity (1.62 m/s²): the same jump goes ~6× higher and hangs ~6× longer; a free throw needs a much flatter, slower shot. Check: lunar g, standing-jump heights.
 14. **A paper plane thrown from the International Space Station**: orbital speed ~7.7 km/s, no lift in near-vacuum, the plane stays in orbit beside you; re-entry heating if it ever drops (check published paper-plane-from-space experiments).
 15. **A snowball fight on Mars**: thin CO₂ air, −60 °C average, snow there is partly dry ice that sublimates; check Phoenix lander snowfall data and CO₂ frost point (~−125 °C at Mars pressure).
-16. **Swimming in a pool of olive oil**: oil ~0.91 g/cm³, you float lower, ~80× thicker than water; strokes feel slow; check viscosity and density of olive oil at 20 °C.
