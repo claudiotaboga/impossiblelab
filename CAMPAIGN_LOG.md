@@ -3,7 +3,7 @@
 Maintained by the scheduled runs under BRIEF.md (from 13 Nov 2026). Newest entries at the bottom of each section; never delete earlier entries. Detailed snapshots stay in STRATEGY.md → Snapshots; the publication register in EPISODES.md.
 
 Metric definitions: **IG views** = Instagram `views` (plays incl. replays); **IG reach** = accounts reached (never mixed with views); **hook hold** = 100 − `reels_skip_rate`; **watch ratio** = `ig_reels_avg_watch_time` ÷ the reel's own length; **YT views** = YouTube view count. Baseline = median of comparable reels at the same checkpoint.
-Missing data (13 Nov): IG followers, profile visits and follows per reel are not collected by scenario 8451991; per-second retention curves are not available through the API. YouTube counts refresh in batches (compare only captures ≥ 12 h apart).
+Missing data (13 Nov, updated 08:16 EET after Claudio's OK): scenario 8451991 now records the account's IG follower count on every snapshot (`followers=` in metrics; 1 follower on 13 Nov). Per-reel `follows` and `profile_visits` were tested the same morning and are **rejected by the Instagram API for Reels**, so follower conversion per reel is tracked as the change in the account follower count (IG) and YT subscribers between snapshots. Per-second retention curves are not available through the API. YouTube counts refresh in batches (compare only captures ≥ 12 h apart).
 
 ## Reels
 | ID | Published (EET) | Topic | Format / duration | Hook (spoken + on-screen) | Creative version | Experiment |
@@ -26,7 +26,7 @@ Links: see EPISODES.md register (IG permalink + YouTube link per reel).
 | TIL-03 | 160 / 111 · 975 (27.2 h) | 160 / 111 · 1,166 (60.5 h; 72 h capture missed) | due 17 Nov 00:46 |
 | TIL-04 | 169 / 113 · 464 (16.1 h) | due 13 Nov 19:00 | due 17 Nov 19:00 |
 | TIL-05 | 706 / 510 · 1,118 (23 h) | due 14 Nov 16:00 | due 18 Nov 16:00 |
-| TIL-06 | due 13 Nov 16:00 | due 15 Nov 16:00 | due 19 Nov 16:00 |
+| TIL-06 | 183 / 117 · n/a (17.2 h, early read: hook hold 63.9 %, watch 10.4 s = 69 %) | due 15 Nov 16:00 | due 19 Nov 16:00 |
 | TIL-07 | due 14 Nov 16:00 | due 16 Nov 16:00 | due 20 Nov 16:00 |
 24 h IG reach baseline (median TIL-01..05) = **136 accounts**; 24 h IG views median = 205; 24 h YT views median = 1,118.
 
@@ -53,7 +53,7 @@ Transferable principles (hypotheses, not rules):
 |---|---|---|---|---|
 | E5 | Premises with stakes for the viewer's own body or an everyday object/food (you, your kitchen, your body) | topic selection rule | IG reach at 24 h vs baseline 136 | **selected 13 Nov** for TIL-08..10 |
 | E6 | On-screen title + cover as a concrete curiosity line ("WHY YOU CAN'T…", "THE POOL YOU CAN'T DROWN IN") instead of "WHAT IF YOU…?" | title/cover wording | hook hold vs median 61.3 % | backlog (after E5) |
-| E7 | End-card series teaser ("Tomorrow: <next experiment>") as the single reason to return | ending / CTA | follows per 1,000 reach (needs follows metric added to 8451991) and repeat viewers | backlog; blocked on follows metric |
+| E7 | End-card series teaser ("Tomorrow: <next experiment>") as the single reason to return | ending / CTA | change in IG followers + YT subscribers per 1,000 reach in the 24 h after the post (per-reel follows are not exposed for Reels) | backlog |
 
 ## Decisions
 - 13 Nov: **stop E2** (one-tap yes/no comment prompt): 0 comments on ~1,000 IG views over TIL-03/04/05; also conflicts with the brief's "no engagement bait". Caption v2 from TIL-08: hook line, 3–4 science lines, one share line naming a person type, one series line ("A new impossible experiment every day."), disclaimer, ≤ 8 hashtags; no "Follow … for more", no question prompt. Logged as a minor confound for E5.
