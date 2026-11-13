@@ -24,9 +24,9 @@ Links: see EPISODES.md register (IG permalink + YouTube link per reel).
 | TIL-01 | 205 / 136 · 1,250 (27.8 h) | 207 / 137 · 1,688 (66 h) | due 15 Nov 19:07 |
 | TIL-02 | 1,774 / 1,144 · 1,135 (25.1 h) | 1,776 / 1,146 · 1,222 (63.5 h) | due 15 Nov 21:52 |
 | TIL-03 | 160 / 111 · 975 (27.2 h) | 160 / 111 · 1,166 (60.5 h; 72 h capture missed) | due 17 Nov 00:46 |
-| TIL-04 | 169 / 113 · 464 (16.1 h) | due 13 Nov 19:00 | due 17 Nov 19:00 |
+| TIL-04 | 169 / 113 · 464 (16.1 h) | due 13 Nov 19:00 (early read 64.1 h: 169 / 113 · 528) | due 17 Nov 19:00 |
 | TIL-05 | 706 / 510 · 1,118 (23 h) | due 14 Nov 16:00 | due 18 Nov 16:00 |
-| TIL-06 | 183 / 117 · n/a (17.2 h, early read: hook hold 63.9 %, watch 10.4 s = 69 %) | due 15 Nov 16:00 | due 19 Nov 16:00 |
+| TIL-06 | 183 / 117 · n/a (17.2 h, early read: hook hold 63.9 %, watch 10.4 s = 69 %); 19.1 h: 183 / 117 · **5** (YT anomaly) | due 15 Nov 16:00 | due 19 Nov 16:00 |
 | TIL-07 | due 14 Nov 16:00 | due 16 Nov 16:00 | due 20 Nov 16:00 |
 24 h IG reach baseline (median TIL-01..05) = **136 accounts**; 24 h IG views median = 205; 24 h YT views median = 1,118.
 
@@ -54,8 +54,10 @@ Transferable principles (hypotheses, not rules):
 | E5 | Premises with stakes for the viewer's own body or an everyday object/food (you, your kitchen, your body) | topic selection rule | IG reach at 24 h vs baseline 136 | **selected 13 Nov** for TIL-08..10 |
 | E6 | On-screen title + cover as a concrete curiosity line ("WHY YOU CAN'T…", "THE POOL YOU CAN'T DROWN IN") instead of "WHAT IF YOU…?" | title/cover wording | hook hold vs median 61.3 % | backlog (after E5) |
 | E7 | End-card series teaser ("Tomorrow: <next experiment>") as the single reason to return | ending / CTA | change in IG followers + YT subscribers per 1,000 reach in the 24 h after the post (per-reel follows are not exposed for Reels) | backlog |
+| E8 | YouTube-specific packaging: YT title as a concrete curiosity line ("Why pasta never cooks on Mars") instead of "What if you…?" | YT title wording | YT views at 24 h vs median 1,118 | backlog (only once YT distribution is confirmed healthy) |
 
 ## Decisions
 - 13 Nov: **stop E2** (one-tap yes/no comment prompt): 0 comments on ~1,000 IG views over TIL-03/04/05; also conflicts with the brief's "no engagement bait". Caption v2 from TIL-08: hook line, 3–4 science lines, one share line naming a person type, one series line ("A new impossible experiment every day."), disclaimer, ≤ 8 hashtags; no "Follow … for more", no question prompt. Logged as a minor confound for E5.
 - 13 Nov: **retain** 16:00 slot, buffer-first publishing, cold open on the climax (E3, unresolved), 15 s / 1.10 (E4, verdict 15 Nov).
 - 13 Nov: **selected E5** (see STRATEGY.md NEXT BUILD INSTRUCTION). Confidence low–medium: n = 5 own reels; topic is confounded with slot timing (TIL-05 was also the first on-time post).
+- 13 Nov 11:08 (stats check): **YouTube anomaly** — TIL-06 at 5 YT views at 19 h (median 1,118 at 24 h), channel +18 views in 21 h. Decision for Claudio: check TIL-06 (nV-sE7p3f4w) visibility / "made for kids" / restrictions in YouTube Studio; if the Make YT module sets privacy/madeForKids, confirm values. **Retain** E5 for TIL-08 (keep current, no new variable). TIL-06 IG reach 0.86× baseline (non-body premise) — weak support for E5. Data store 250779 trimmed 98 → 68 records (oldest snapshots before 11 Nov 12:00 removed, newest per media kept).

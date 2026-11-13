@@ -69,6 +69,12 @@ One adjustment per day at most, logged in the experiment table with its hypothes
 | 12 Nov 13:16 | TIL-03 | 60.5 h | 160 | 111 | 61.3 % | 9.8 (59 % of 16.5 s) | 0 | 0 | 1,166 (19 likes) | n/a / 3 |
 | 12 Nov 13:16 | TIL-04 | 42.2 h | 169 | 113 | 58.6 % | 10.2 (62 % of 16.5 s) | 0 | 0 | 520 (9 likes) | n/a / 3 |
 | 12 Nov 13:16 | TIL-05 | 21.3 h | 670 | 486 | 60.5 % | 9.0 (60 % of 15 s) | 0 | 0 | 1,117 (13 likes) | n/a / 3 |
+| 13 Nov 11:08 | TIL-01 | 112.0 h | 207 | 137 | 71.9 % | 12.0 (80 % of 15 s) | 0 | 0 | 1,735 (17 likes) | 1 / 3 |
+| 13 Nov 11:08 | TIL-02 | 109.3 h | 1,776 | 1,146 | 67.5 % | 11.2 (68 % of 16.5 s) | 0 | 0 | 1,225 (9 likes) | 1 / 3 |
+| 13 Nov 11:08 | TIL-03 | 82.4 h | 160 | 111 | 61.3 % | 9.8 (59 % of 16.5 s) | 0 | 0 | 1,166 (19 likes) | 1 / 3 |
+| 13 Nov 11:08 | TIL-04 | 64.1 h | 169 | 113 | 58.6 % | 10.2 (62 % of 16.5 s) | 0 | 0 | 528 (9 likes) | 1 / 3 |
+| 13 Nov 11:08 | TIL-05 | 43.1 h | 712 | 517 | 60.8 % | 9.3 (62 % of 15 s) | 0 | 0 | 1,119 (13 likes) | 1 / 3 |
+| 13 Nov 11:08 | TIL-06 | 19.1 h | 183 | 117 | 63.9 % | 10.4 (69 % of 15 s) | 0 | 0 | 5 (0 likes) | 1 / 3 |
 
 ## Findings log
 - **9 Nov (run for TIL-03), reels < 48 h old, provisional:**
@@ -125,6 +131,14 @@ NEXT BUILD INSTRUCTION (from 12 Nov 11:08 check): keep current. Build TIL-07 exa
 - **13 Nov 08:10 (Claudio's creative-director brief, BRIEF.md):** campaign log started (CAMPAIGN_LOG.md: checkpoints 24 h / 72 h / 7 d, competitor group via Make 8550000, experiment backlog). Competitor check: over-performers in the peer group are about the viewer's own body, mind or food; space "what ifs" sit at the median. E2 stopped (0 comments on ~1,000 IG views). Caption v2 from TIL-08.
 
 NEXT BUILD INSTRUCTION (from 13 Nov 08:10 brief run): build TIL-08 as E5: premise with stakes for the viewer's own body or an everyday object/food (queue reordered: shrunk to 1 cm, pool of olive oil, coffee the size of a lake lead). Keep 15 s / 1.10, cold open on the climax, 16:00. Caption v2 (see CAMPAIGN_LOG.md → Decisions): no yes/no prompt, no "Follow … for more"; one share line + one series line + disclaimer. Write episodes/NN-<slug>/brief.md with the BRIEF.md §6 deliverables (5 hooks + winner, timestamped script, evidence table, 2 alternative openings, experiment record). Primary metric: IG reach at 24 h vs baseline 136 accounts.
+
+- **13 Nov 11:08 (daily stats check):** total 8,985 views (IG 3,207 + YT 5,778), +243 since 12 Nov 13:16 (IG +225: TIL-06 +183, TIL-05 +42; YT +18). Followers IG 1 / YT subs 3 (unchanged). Competitor check not due (Mon/Thu).
+  1. **YouTube stalled channel-wide (confidence medium):** +18 views in ~21 h across all six Shorts, and TIL-06 has **5 YT views at 19 h** vs a 24 h median of 1,118 (TIL-01..05 all had 380–1,250 by 7–25 h). Channel views (5,778) equal the sum of the six videos, so the API is consistent; YT batch-refresh lag cannot explain 21 h. Cause not visible from the API (possible: limited distribution / visibility or "made for kids" setting on the TIL-06 upload, or a channel-level throttle). Needs a check in YouTube Studio by Claudio.
+  2. **TIL-06 IG (marathon, non-body premise):** 183 views / 117 accounts at 19 h = 0.86× the 24 h reach baseline (136), flat since ~16 h. Best retention since TIL-01 (hook hold 63.9 %, watch ratio 69 %) but no reach: consistent with the E5 hypothesis that topic, not retention, gates IG reach (n = 1, low confidence).
+  3. TIL-05 (pasta) is the only reel with an IG tail (670 → 712 views, 486 → 517 accounts in 21 h). Engagement still zero: 0 shares, 0 saves, 0 comments on 3,207 IG views (likes 20 total).
+- E4 early read (verdict 15 Nov, TIL-07 still unpublished): TIL-05 hook 60.8 % / watch 62 %, TIL-06 63.9 % / 69 % vs median of 6 reels 62.6 % / 65 %: no clear lift yet.
+
+NEXT BUILD INSTRUCTION (from 13 Nov 11:08 check): keep current. Build TIL-08 as E5 exactly as set in the 13 Nov 08:10 instruction (first queue topic A "shrunk to 1 cm", caption v2, 15 s / 1.10, cold open, 16:00); no extra variable. After publishing TIL-07 at 16:00, confirm the YouTube upload is public and record its first YT count; if TIL-07 also stays < 50 YT views by the next check, YouTube distribution is broken, not the content.
 
 ## Weekly reviews
 (none yet)
