@@ -100,32 +100,30 @@ def whistle(dur):  # pressure-cooker valve hiss + whistle
     n = int(dur * SR); tt = np.arange(n) / SR
     x = bp(rng.standard_normal(n), 3000, 9000) * 0.6 + np.sin(2 * np.pi * (1650 + 30 * np.sin(2 * np.pi * 6 * tt)) * tt) * 0.35
     return x * np.clip(tt / 0.15, 0, 1) * np.clip((dur - tt) / 0.1, 0, 1)
-def roar(dur, f=600):  # rushing air around a supersonic runner
-    n = int(dur * SR); return lp(rng.standard_normal(n), f) * 1.4
-def boom(dur=0.9):  # sonic-boom style double thump
-    return thud(dur, 45) + np.concatenate([np.zeros(int(0.11 * SR)), thud(dur, 50)])[: int(dur * SR)] * 0.8
-def steps(dur, hz=6.0):  # crowd footfalls
-    n = int(dur * SR); out = np.zeros(n)
-    for k in range(int(dur * hz * 6)):
-        i = rng.integers(0, max(1, n - 2400)); m = 2400; tt = np.arange(m) / SR
-        out[i:i + m] += np.sin(2 * np.pi * rng.uniform(70, 140) * tt) * np.exp(-tt * 70) * rng.uniform(0.3, 1)
-    return out
-def buzzer(dur=0.45):  # shot-clock buzzer
+def plink(f=1400, dur=0.35):  # single water drop
     n = int(dur * SR); tt = np.arange(n) / SR
-    x = np.sign(np.sin(2 * np.pi * 220 * tt)) * 0.5 + np.sin(2 * np.pi * 440 * tt) * 0.3
-    return lp(x, 2500) * np.clip(tt / 0.01, 0, 1) * np.clip((dur - tt) / 0.05, 0, 1)
-def bounce(f0=110):  # basketball dribble thump
-    n = int(0.25 * SR); tt = np.arange(n) / SR
-    return (np.sin(2 * np.pi * f0 * tt) + 0.4 * np.sin(2 * np.pi * 2.7 * f0 * tt)) * np.exp(-tt * 28)
-put(sfx, whoosh(1.2, 400, 1200, False), 0.0, 0.18)                         # cold open: floating high
-put(sfx, bounce(), B["t_takeoff"] - 0.6, 0.5); put(sfx, bounce(), B["t_takeoff"] - 0.25, 0.4)   # dribbles before the jump
-put(sfx, thud(0.4, 75), B["t_takeoff"], 0.5); put(sfx, whoosh(1.6, 300, 2200, True), B["t_takeoff"], 0.2)
-for k in range(1, 6): put(sfx, tick(), B["t_takeoff"] + k, 0.35)         # shot clock counts the hang time
-put(sfx, thud(0.5, 60), B["t_land"], 0.6)                                   # landing
-put(sfx, buzzer(), B["t_land"] + 0.08, 0.22)
+    return np.sin(2 * np.pi * f * (1 + 0.8 * tt * 12) * tt) * np.exp(-tt * 18)
+def creak(dur=0.4):  # balance beam tipping
+    n = int(dur * SR); tt = np.arange(n) / SR
+    return bp(rng.standard_normal(n), 600, 1800) * (0.5 + 0.5 * np.sin(2 * np.pi * 23 * tt)) * np.sin(np.linspace(0, np.pi, n))
+def shimmer(dur):  # heat leaving: soft descending tone
+    n = int(dur * SR); tt = np.arange(n) / SR
+    return np.sin(2 * np.pi * (900 - 300 * tt / dur) * tt) * 0.4 * np.sin(np.linspace(0, np.pi, n)) ** 2
+def rain(dur):
+    n = int(dur * SR); out = bp(rng.standard_normal(n), 2000, 8000) * 0.25
+    for k in range(int(dur * 25)):
+        i = rng.integers(0, max(1, n - 8000)); x = plink(rng.uniform(900, 2200), 0.15); out[i:i + len(x)] += x * rng.uniform(0.1, 0.4)
+    return out * np.clip(np.arange(n) / SR / 0.2, 0, 1)
+put(sfx, creak(), 0.05, 0.35); put(sfx, plink(1200), 0.25, 0.35)            # hook: drop lands on the pan, beam tips
+put(sfx, whoosh(1.0, 2400, 600, False), LINES[1]["start"] + 0.05, 0.18)    # shrinking
+put(sfx, whoosh(1.5, 300, 900, True), B["t_step"], 0.18)                    # soft fall
+put(sfx, thud(0.25, 140), B["t_land"], 0.25)                                # tiny, harmless landing
+put(sfx, shimmer(2.2), LINES[3]["start"] + 0.1, 0.25)                       # heat radiating away
+put(sfx, rain(LINES[6]["start"] - LINES[4]["start"]), LINES[4]["start"], 0.45)
+put(sfx, gloop(0.7), B["t_hit"], 0.6)                                       # the big drop engulfs you
+put(sfx, creak(0.6), LINES[6]["start"] + 0.2, 0.3)                          # balance settles level
 for t_cut in B["cuts"]:
-    put(sfx, whoosh(0.35, 1800, 500, False), t_cut - 0.15, 0.12)
-put(sfx, whoosh(1.8, 500, 2600, True), B["t_release"], 0.25)               # the free throw takes off
+    put(sfx, whoosh(0.35, 1800, 500, False), t_cut - 0.15, 0.10)
 put(sfx, thud(0.4, 60), CARD_START, 0.6); put(sfx, whoosh(0.3, 800, 3000), CARD_START - 0.25, 0.2)
 amb = lp(rng.standard_normal(N), 300) * 0.010
 

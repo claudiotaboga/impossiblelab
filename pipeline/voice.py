@@ -4,13 +4,13 @@ from kokoro_onnx import Kokoro
 from config import VOICE, VOICE_SPEED
 
 LINES = [
-    "You'd jump over the hoop.",
-    "Basketball, in a dome on the Moon.",
-    "Gravity is six times weaker, so jumps go six times higher.",
-    "An elite one-metre leap becomes six.",
-    "You'd hang there over five seconds.",
-    "The catch?",
-    "Your free throw flies five times too far.",
+    "Big raindrops weigh more than you.",
+    "Now shrink to one centimetre.",
+    "Falls barely hurt: you'd land at running pace.",
+    "But you'd lose heat nearly two hundred times faster.",
+    "And the real danger?",
+    "Getting wet.",
+    "The water clinging to you weighs as much as you.",
 ]
 
 k = Kokoro("models/kokoro-v1.0.onnx", "models/voices-v1.0.bin")

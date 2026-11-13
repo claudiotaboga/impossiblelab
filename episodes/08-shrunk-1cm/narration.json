@@ -1,0 +1,51 @@
+[
+ {
+  "i": 1,
+  "text": "Big raindrops weigh more than you.",
+  "dur": 1.45,
+  "start": 0.2,
+  "end": 1.65
+ },
+ {
+  "i": 2,
+  "text": "Now shrink to one centimetre.",
+  "dur": 1.436,
+  "start": 1.85,
+  "end": 3.286
+ },
+ {
+  "i": 3,
+  "text": "Falls barely hurt: you'd land at running pace.",
+  "dur": 2.302,
+  "start": 3.486,
+  "end": 5.788
+ },
+ {
+  "i": 4,
+  "text": "But you'd lose heat nearly two hundred times faster.",
+  "dur": 2.471,
+  "start": 5.988,
+  "end": 8.459
+ },
+ {
+  "i": 5,
+  "text": "And the real danger?",
+  "dur": 1.012,
+  "start": 8.659,
+  "end": 9.671
+ },
+ {
+  "i": 6,
+  "text": "Getting wet.",
+  "dur": 0.696,
+  "start": 9.871,
+  "end": 10.567
+ },
+ {
+  "i": 7,
+  "text": "The water clinging to you weighs as much as you.",
+  "dur": 2.109,
+  "start": 10.767,
+  "end": 12.876
+ }
+]

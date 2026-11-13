@@ -10,19 +10,19 @@ def font(w, s): return ImageFont.truetype(F + f"Inter-{w}.otf", s)
 AMBER = (255, 176, 46); WHITE = (255, 255, 255); INK = (18, 12, 6)
 
 # ---- per-episode content: the only block to change for a new episode ----
-EP_NUM = 7
-TITLE = ["BASKETBALL", "ON THE MOON?"]
+EP_NUM = 8
+TITLE = ["SHRUNK TO", "1 CM TALL?"]
 FACTS = [  # (start, end, text) — times match the narration lines
-    (3.55, 6.85, "MOON GRAVITY ≈ 1/6 OF EARTH'S"),
-    (7.15, 8.95, "1 m LEAP ON EARTH → ≈ 6 m ON THE MOON"),
-    (9.25, 10.85, "HANG TIME ≈ 5.5 s (EARTH ≈ 0.9 s)"),
+    (1.95, 3.39, "YOU ≈ 13 mg · 5 mm RAINDROP ≈ 65 mg"),
+    (3.79, 5.89, "FALL SPEED ≈ 4 m/s (FULL SIZE ≈ 53 m/s)"),
+    (6.29, 8.56, "HEAT LOSS PER kg ≈ 175× FASTER"),
 ]
-CARD_SUB = "Moon 1.62 m/s² vs Earth 9.80 m/s² (×6.05)"
-CARD = [("Same jump, 4.4 m/s", "6.05 m", "Earth 1.0 m · rim 3.05 m"),
-        ("Time in the air", "5.5 s", "2v/g · Earth 0.9 s"),
-        ("Free throw, 7.55 m/s", "≈21 m", "52°, dome air · Earth 4.2 m"),
+CARD_SUB = "Shrunk 175× (1.75 m → 1 cm): mass ÷ 5.4 million"
+CARD = [("Your mass at 1 cm", "≈13 mg", "70 kg ÷ 175³ · 5 mm drop 65 mg"),
+        ("Top falling speed", "≈4 m/s", "53 m/s × √(1/175)"),
+        ("Water film on wet skin", "≈1.1× you", "0.5 mm film (Haldane 1926)"),
        ]
-DISCLAIMER = "Don't try this. Never jump from heights or hang on rims."
+DISCLAIMER = "Don't try this. At full size, falls from height still kill."
 
 def ease(x): x = max(0, min(1, x)); return 1 - (1 - x) ** 3
 

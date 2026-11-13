@@ -1,0 +1,32 @@
+{
+  "episode_id": "TIL-08",
+  "status": "ready",
+  "qa_passed": true,
+  "width": 1080,
+  "height": 1920,
+  "duration_seconds": 15.0,
+  "title": "What if you were shrunk to 1 cm tall?",
+  "video_url": "https://raw.githubusercontent.com/claudiotaboga/impossiblelab/main/episodes/08-shrunk-1cm/video.mp4",
+  "caption": "Big raindrops would weigh more than you. 🌧️🤏\n\nShrink a 70 kg person to 1 cm tall (175× smaller) and they'd weigh about 13 mg. A big 5 mm raindrop is about 65 mg.\n\nFalls stop mattering: air resistance caps your speed at about 4 m/s, instead of about 53 m/s at full size.\n\nBut you'd lose body heat about 175× faster per kilo, because your skin area shrinks more slowly than your mass.\n\nAnd getting wet becomes the real trap: the film of water clinging to you would weigh about as much as you do.\n\nSend this to the friend who's always cold.\n\nA new impossible experiment every day.\n\n⚠️ Don't try this. Falls that are harmless for an insect can seriously injure or kill a full-size person.\n\n#science #physics #whatif #sciencefacts #biology #rain #scaling #theimpossiblelab",
+  "sources": [
+    "https://cabinetmagazine.org/issues/28/haldane.php (J.B.S. Haldane, 'On Being the Right Size', 1926: air resistance is proportional to surface, a mouse survives a 1,000-yard mine-shaft drop; a man leaving a bath carries a ~1/50-inch water film weighing ~1 lb; a wet mouse carries about its own weight of water; small animals need food proportional to surface)",
+    "https://gpm.nasa.gov/category/faq-category/precipitation (NASA GPM: raindrops up to ~6 mm diameter, ~8 mm reported; largest fall at ~10 m/s)",
+    "https://hypertextbook.com/facts/2001/IgorVolynets.shtml (raindrops 0.1–5 mm typical; drops unstable above ~5.5 mm)",
+    "https://hypertextbook.com/facts/1998/JianHuang.shtml (skydiver terminal speed, arms and legs out: ~53 m/s / 192 km/h; 54–56 m/s in other references)",
+    "Computed: scale factor 1.75 m / 1 cm = 175; mass 70 kg / 175^3 = 13.1 mg; 5 mm drop = (4/3)π(2.5 mm)^3 × 1 mg/mm^3 = 65.4 mg (4 mm = 33.5 mg, 3 mm = 14.1 mg)",
+    "Computed: terminal speed ∝ √(mass/area) ∝ √L at constant drag coefficient: 53 m/s × √(1/175) = 4.0 m/s (≈14 km/h, running pace); direct drag estimate (Cd 1, frontal area 0.7 m² scaled) gives ≈3 m/s",
+    "Computed: surface/volume ratio ∝ 1/L, so heat loss per kg rises ×175 at equal skin temperature and heat-transfer coefficient (geometric scaling, first-order)",
+    "Computed (Haldane's film): 0.45 kg film / 70 kg body = 0.65 %; film ∝ L², body ∝ L³ → ×175 → ≈1.1× body mass at 1 cm"
+  ],
+  "qa": {
+    "duration_s": 15.0,
+    "integrated_loudness_lufs": -14.0,
+    "true_peak_dbfs": -1.4,
+    "video_kbps_per_second_max": 4457,
+    "audio": "aac 128k 48kHz stereo",
+    "codec": "h264 High yuv420p, faststart",
+    "disclaimer_in_caption": true,
+    "disclaimer_on_card": true,
+    "visual_check": "t=0 and 0.5 (balance already tipping toward the 5 mm drop, labels YOU 13 mg / DROP 65 mg readable), ruler shrink with 1 cm bracket, all 3 chips (2.6, 4.6, 7.2 s), wall fall follow-cam, heat rings, rain (figure above the captions after re-framing), drop engulfs the figure, balance level with WATER 13 mg, card with red disclaimer, last frame back on the hook framing; title rows 501/477 px; nothing important in the top 250 / bottom 380 px except tag and footer"
+  }
+}
