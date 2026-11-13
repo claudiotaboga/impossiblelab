@@ -16,15 +16,18 @@ Buffer: the daily run publishes the first entry here at 16:00 EET (its `meta.jso
 | Episode ID | Folder | Premise | Hook line | Length | SHA-256 | Built |
 |---|---|---|---|---|---|---|
 | TIL-07 | episodes/07-moon-basketball | Basketball on the Moon (court in an air-filled dome) | You'd jump over the hoop. | 15.0 s (E4) | `24c8a0a3ae3d6971fceedaea1958f5aafd6313e23febba865444cb44f1ca261b` | 12 Nov 2026 15:17 EET |
+| TIL-08 | episodes/08-shrunk-1cm | Shrunk to 1 cm tall (E5 reel 1: stakes on your own body) | Big raindrops weigh more than you. | 15.0 s (E4) | `578927d5d77da0d792ca13680d2c14805620e7a0c7cf24d95cc6d05c08fbbba8` | 13 Nov 2026 14:22 EET |
 
 ## Topic queue
 Take the first item that is not in the register. Every premise must be buildable from Blender primitives, safe to show, and its science checkable. Verify every number before use; the notes are starting points, not facts.
 
 E5 (13 Nov): next three topics put stakes on the viewer's own body or an everyday object/food; take them in this order before the numbered list.
 
-- A. **Shrunk to 1 cm tall**: falls are harmless, a raindrop is a trap, you'd have to eat like a shrew.
+- A. ~~**Shrunk to 1 cm tall**~~ (done, TIL-08: 13 mg body vs 65 mg 5 mm raindrop; terminal speed ≈4 m/s (53 m/s × √(1/175)); heat loss per kg ×175; Haldane water film ≈1.1× body mass). The 'eat like a shrew' angle was dropped: no clean per-person number.
 - B. **Swimming in a pool of olive oil**: oil ~0.91 g/cm³, you float lower, ~80× thicker than water; strokes feel slow; check viscosity and density of olive oil at 20 °C.
 - C. **A cup of coffee the size of a lake**: how long it would take to cool, and what the steam would do.
+- D. **Making toast on Venus** (food, added 13 Nov for E5): surface ~465 °C at ~92 bar; bread chars in seconds, but the thick CO₂ air conducts heat differently; check NASA Venus fact sheet and bread charring temperatures.
+- E. **A scoop of ice cream on Mercury's night side** (food, added 13 Nov for E5): night side ~−180 °C; ice cream goes glass-hard; check NASA Mercury surface temperatures and the glass transition of frozen sugar solutions (hedge).
 
 1. ~~**Diving into a pool of mercury**~~ (done, TIL-02): density 13.5, you float with ~7 % submerged, can't dive or swim; the danger is the vapour above the pool.
 2. ~~**A ship launched into a sea of honey**~~ (done, TIL-03): draft ~28 % shallower, honey thousands of times thicker, 1 m ripples fade in ~1 s, no barnacles. Note: the old claim "the launch wave never travels" was wrong: ship-scale waves (λ ≈ 10 m) survive ~1.5 min in honey; only small ripples die fast.
