@@ -166,5 +166,21 @@ NEXT BUILD INSTRUCTION (from 13 Nov 11:08 check): keep current. Build TIL-08 as 
 
 NEXT BUILD INSTRUCTION (from 14 Nov 11:08 check): keep current. E5 is running (TIL-08 publishes at 16:00 today = reel 1 of 3); build TIL-09 as E5 reel 2: queue topic B (pool of olive oil) or D (toast on Venus), whichever has every number verified; 15 s / 1.10, cold open on the hook image, caption v2, 16:00. No new variable until E5 has 3 reels (TIL-08..10, review 18 Nov after TIL-10's 24 h). Primary metric: IG reach at 24 h vs baseline 136 accounts; secondary: hook hold vs median 61.3 %.
 
+- **14 Nov 13:12 (daily production run):** total 10,313 views (IG 3,385 + YT 6,928), +1 since 11:08 (IG, TIL-07); IG followers 1, YT subscribers 3.
+
+| Reel | Age | IG views | IG reach | Hook hold | Avg watch | Watch ratio | Shares / saves | YT views |
+|---|---|---|---|---|---|---|---|---|
+| TIL-01 whisky | 6.0 d | 207 | 137 | 71.9 % | 12.0 s | 80 % | 0 / 0 | 1,736 |
+| TIL-02 mercury | 5.9 d | 1,776 | 1,146 | 67.5 % | 11.2 s | 68 % | 0 / 0 | 1,230 |
+| TIL-03 honey | 4.6 d | 160 | 111 | 61.3 % | 9.8 s | 59 % | 0 / 0 | 1,162 |
+| TIL-04 gravity | 3.8 d | 169 | 113 | 58.6 % | 10.2 s | 62 % | 0 / 0 | 520 |
+| TIL-05 pasta | 2.9 d | 712 | 517 | 60.8 % | 9.3 s | 62 % | 0 / 0 | 1,378 |
+| TIL-06 marathon | 1.9 d | 183 | 117 | 63.9 % | 10.4 s | 69 % | 0 / 0 | 8 |
+| TIL-07 basketball | 21.2 h | 178 | 125 | 55.2 % | 7.9 s | 52 % | 0 / 0 | 894 |
+  1. No new evidence since the 11:08 check: Instagram is frozen on every reel (TIL-07 ends its burst at 125 accounts = 0.92× baseline, the third non-body premise in a row at or below baseline), YouTube counts unchanged (batch refresh). Findings from 11:08 stand; nothing contradicts the NEXT BUILD INSTRUCTION.
+  2. Retention keeps sliding on the 15 s format (TIL-07 hook hold 55.2 % at 21 h, lowest ever) while reach follows topic: consistent with E5, and with E9 (open on a human body in the first frame) as the next retention test once E5 closes.
+- **TIL-08 published on time** at 16:00:02 EET (Make exec 0bc079057dfb49d3b660793c3c6afba4, SUCCESS, 5 operations; IG DfuXtOHk5bT, YT H-dUAmQbBeg): E5 reel 1 of 3, first caption-v2 reel.
+- **Adjustment applied:** none (NEXT BUILD INSTRUCTION followed). TIL-09 = E5 reel 2: queue B "swimming in a pool of olive oil" (chosen over D "toast on Venus": every number verified, and it is the buoyancy family of the best reel, TIL-02). 15 s / 1.10, cold open on a proof image (water vs oil tanks with the person visibly sinking; in-scene labels readable without sound), caption v2, 16:00 on 15 Nov. E5 status: running, 1 of 3 live; review 18 Nov after TIL-10's 24 h.
+
 ## Weekly reviews
 (none yet)
