@@ -81,6 +81,13 @@ One adjustment per day at most, logged in the experiment table with its hypothes
 | 13 Nov 13:15 | TIL-04 | 66.2 h | 169 | 113 | 58.6 % | 10.2 (62 % of 16.5 s) | 0 | 0 | 528 (9 likes) | 1 / 3 |
 | 13 Nov 13:15 | TIL-05 | 45.2 h | 712 | 517 | 60.8 % | 9.3 (62 % of 15 s) | 0 | 0 | 1,119 (16 likes) | 1 / 3 |
 | 13 Nov 13:15 | TIL-06 | 21.2 h | 183 | 117 | 63.9 % | 10.4 (69 % of 15 s) | 0 | 0 | 5 (0 likes) | 1 / 3 |
+| 14 Nov 11:08 | TIL-01 | 136.0 h | 207 | 137 | 71.9 % | 12.0 (80 % of 15 s) | 0 | 0 | 1,736 (17 likes) | 1 / 3 |
+| 14 Nov 11:08 | TIL-02 | 133.3 h | 1,776 | 1,146 | 67.5 % | 11.2 (68 % of 16.5 s) | 0 | 0 | 1,230 (9 likes) | 1 / 3 |
+| 14 Nov 11:08 | TIL-03 | 106.4 h | 160 | 111 | 61.3 % | 9.8 (59 % of 16.5 s) | 0 | 0 | 1,162 (19 likes) | 1 / 3 |
+| 14 Nov 11:08 | TIL-04 | 88.1 h | 169 | 113 | 58.6 % | 10.2 (62 % of 16.5 s) | 0 | 0 | 520 (9 likes) | 1 / 3 |
+| 14 Nov 11:08 | TIL-05 | 67.1 h | 712 | 517 | 60.8 % | 9.3 (62 % of 15 s) | 0 | 0 | 1,378 (16 likes) | 1 / 3 |
+| 14 Nov 11:08 | TIL-06 | 43.1 h | 183 | 117 | 63.9 % | 10.4 (69 % of 15 s) | 0 | 0 | 8 (0 likes) | 1 / 3 |
+| 14 Nov 11:08 | TIL-07 | 19.1 h | 177 | 124 | 55.6 % | 7.9 (53 % of 15 s) | 0 | 0 | 894 (11 likes) | 1 / 3 |
 
 ## Findings log
 - **9 Nov (run for TIL-03), reels < 48 h old, provisional:**
@@ -151,6 +158,13 @@ NEXT BUILD INSTRUCTION (from 13 Nov 11:08 check): keep current. Build TIL-08 as 
   2. YouTube still stalled: TIL-06 at 5 views at 21 h. The publishing scenario (8451092) uploads with privacyStatus = public, selfDeclaredMadeForKids = false, notifySubscribers = true, containsSyntheticMedia = true, category 28: identical for TIL-01..05, which all got 380–1,250 views in the first day, so the Make settings are not the cause. Remaining suspects are on YouTube's side (Studio restrictions/visibility on nV-sE7p3f4w, or a channel-level distribution drop). TIL-07 at 16:00 is the test.
   3. Engagement unchanged: 0 shares, 0 saves, 0 comments on 3,207 IG views (likes 20).
 - **Adjustment applied:** none beyond the NEXT BUILD INSTRUCTION (E5 started): TIL-08 = queue topic A "shrunk to 1 cm tall", 15 s / 1.10, cold open on the hook image (balance already tipping toward the raindrop at t = 0), caption v2, brief in episodes/08-shrunk-1cm/brief.md. Today's numbers do not contradict the instruction.
+
+- **14 Nov 11:08 (daily stats check):** total 10,312 views (IG 3,384 + YT 6,928), +1,326 since 13 Nov 13:15 (IG +177, all TIL-07; YT +1,149: TIL-07 +894, TIL-05 +259). IG followers 1 / YT subs 3 (unchanged: zero follower conversion so far). Competitor check not due (Mon/Thu). TIL-07 publish confirmed: Make exec 4a57507ad5da42e08b9b204da522ad07 SUCCESS (ended 16:01:14 EET), IG Dfry8LwiPLm, YT CH-vb3eFBFI.
+  1. **YouTube is not broken channel-wide (confidence medium-high):** TIL-07 took 894 YT views in 19 h (0.80× the 24 h median 1,118) and TIL-05 resumed (+259). TIL-06 is the only stuck video: 8 YT views at 43 h. The problem is specific to nV-sE7p3f4w (same upload settings as every other reel), so the Studio check on that one video is still Claudio's decision; nothing to change in the pipeline.
+  2. **TIL-07 (basketball on the Moon, space premise) has the weakest retention ever:** hook hold 55.6 % (median of 7 = 61.3 %), watch ratio 53 % (median 62 %); IG reach 124 = 0.91× baseline 136 at 19 h. Second consecutive non-body premise at/below baseline reach (TIL-06 0.86×). Supports E5's topic hypothesis (n = 2 negatives vs 2 body/food positives; low-medium confidence).
+  3. **E4 provisional (verdict at 48 h, 15 Nov):** the three 15 s / 1.10 reels (TIL-05/06/07) hold 60.1 % hook / 61 % watch on average vs 62.5 % / 63 % for the three 16.5 s / 1.00 reels (TIL-02..04): no lift. IG counts freeze after ~12 h, so this is unlikely to change. Length is Claudio's standing rule: decision for him (keep 15 s for simplicity, or accept that length is not the lever and move the next experiment to the opening/topic). Engagement still 0 shares / 0 saves / 0 comments on 3,384 IG views.
+
+NEXT BUILD INSTRUCTION (from 14 Nov 11:08 check): keep current. E5 is running (TIL-08 publishes at 16:00 today = reel 1 of 3); build TIL-09 as E5 reel 2: queue topic B (pool of olive oil) or D (toast on Venus), whichever has every number verified; 15 s / 1.10, cold open on the hook image, caption v2, 16:00. No new variable until E5 has 3 reels (TIL-08..10, review 18 Nov after TIL-10's 24 h). Primary metric: IG reach at 24 h vs baseline 136 accounts; secondary: hook hold vs median 61.3 %.
 
 ## Weekly reviews
 (none yet)

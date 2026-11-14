@@ -9,7 +9,7 @@
 | 04 | TIL-04 | 10 Nov 2026 19:00 (16:00 slot, 3 h late) | Gravity reversed for one second | One second. Ten metres up. | 16.5 s | 1b9bf72da1ea4467843d06eb652f1d65 | [DfkZOtAD4Jo](https://www.instagram.com/reel/DfkZOtAD4Jo/) | [JrLsjK9ZiNg](https://youtube.com/shorts/JrLsjK9ZiNg) |
 | 05 | TIL-05 | 11 Nov 2026 16:00 (on time; from READY) | Boiling pasta on Mars | Pasta never cooks on Mars. | 15.0 s | 1ab7499172db4e17a0eb3da4fd74e9fb | [DfmpWn_pbJK](https://www.instagram.com/reel/DfmpWn_pbJK/) | [YFPL9A8-KX0](https://youtube.com/shorts/YFPL9A8-KX0) |
 | 06 | TIL-06 | 12 Nov 2026 16:00 (on time; from READY) | Running a marathon at the speed of sound | A marathon in two minutes. | 15.0 s | a1872f54522c4a3bb9f041704b30fdf7 | [DfpOOiYlRDP](https://www.instagram.com/reel/DfpOOiYlRDP/) | [nV-sE7p3f4w](https://youtube.com/shorts/nV-sE7p3f4w) |
-| 07 | TIL-07 | 13 Nov 2026 16:00:00 (on time; from READY; webhook answered "Accepted") | Basketball on the Moon | You'd jump over the hoop. | 15.0 s | VERIFICATION PENDING (Make API unreachable from the 13 Nov run after the send; confirm with executions_list 8451092) | pending | pending |
+| 07 | TIL-07 | 13 Nov 2026 16:00:02 (on time; from READY) | Basketball on the Moon | You'd jump over the hoop. | 15.0 s | 4a57507ad5da42e08b9b204da522ad07 | [Dfry8LwiPLm](https://www.instagram.com/reel/Dfry8LwiPLm/) | [CH-vb3eFBFI](https://youtube.com/shorts/CH-vb3eFBFI) |
 
 ## READY TO PUBLISH
 Buffer: the daily run publishes the first entry here at 16:00 EET (its `meta.json` is final and its video is already hosted), moves it to the register, then builds the next episode into this section.

@@ -14,7 +14,7 @@ Missing data (13 Nov, updated 08:16 EET after Claudio's OK): scenario 8451991 no
 | TIL-04 | 10 Nov 19:00 (3 h late) | Gravity reversed for one second | 16.5 s | "One second. Ten metres up." (cold open on climax) | v1 | E1, E2, E3 |
 | TIL-05 | 11 Nov 16:00 | Boiling pasta on Mars | 15 s, voice 1.10 | "Pasta never cooks on Mars." | v1 | E2, E3, E4 |
 | TIL-06 | 12 Nov 16:00 | Marathon at the speed of sound | 15 s | "A marathon in two minutes." | v1 | E3, E4 |
-| TIL-07 | 13 Nov 16:00:00 (sent; webhook Accepted; Make/IG/YT confirmation pending, see Decisions) | Basketball on the Moon (air-filled dome) | 15 s | "You'd jump over the hoop." (player 6 m up) | v1 | E3, E4 |
+| TIL-07 | 13 Nov 16:00 (confirmed 14 Nov: exec 4a57507a… SUCCESS, IG Dfry8LwiPLm, YT CH-vb3eFBFI) | Basketball on the Moon (air-filled dome) | 15 s | "You'd jump over the hoop." (player 6 m up) | v1 | E3, E4 |
 | TIL-08 | 14 Nov 16:00 (READY, built 13 Nov) | Shrunk to 1 cm tall (your body) | Blender 3D, 15 s, voice 1.10 | "Big raindrops weigh more than you." (lab balance tipping toward a 5 mm drop, labels YOU 13 mg / DROP 65 mg) | v1 + caption v2 | E5 (1/3), E4 |
 
 Links: see EPISODES.md register (IG permalink + YouTube link per reel).
@@ -25,10 +25,10 @@ Links: see EPISODES.md register (IG permalink + YouTube link per reel).
 | TIL-01 | 205 / 136 · 1,250 (27.8 h) | 207 / 137 · 1,688 (66 h) | due 15 Nov 19:07 |
 | TIL-02 | 1,774 / 1,144 · 1,135 (25.1 h) | 1,776 / 1,146 · 1,222 (63.5 h) | due 15 Nov 21:52 |
 | TIL-03 | 160 / 111 · 975 (27.2 h) | 160 / 111 · 1,166 (60.5 h; 72 h capture missed) | due 17 Nov 00:46 |
-| TIL-04 | 169 / 113 · 464 (16.1 h) | due 13 Nov 19:00 (early read 64.1 h: 169 / 113 · 528) | due 17 Nov 19:00 |
-| TIL-05 | 706 / 510 · 1,118 (23 h) | due 14 Nov 16:00 | due 18 Nov 16:00 |
-| TIL-06 | 183 / 117 · n/a (17.2 h, early read: hook hold 63.9 %, watch 10.4 s = 69 %); 19.1 h: 183 / 117 · **5** (YT anomaly); 21.2 h (nearest capture before the 13 Nov Make outage): 183 / 117 · 5 | due 15 Nov 16:00 | due 19 Nov 16:00 |
-| TIL-07 | due 14 Nov 16:00 | due 16 Nov 16:00 | due 20 Nov 16:00 |
+| TIL-04 | 169 / 113 · 464 (16.1 h) | 169 / 113 · 528 (66.2 h; next capture 88.1 h: 169 / 113 · 520) | due 17 Nov 19:00 |
+| TIL-05 | 706 / 510 · 1,118 (23 h) | due 14 Nov 16:00 (early read 67.1 h: 712 / 517 · 1,378) | due 18 Nov 16:00 |
+| TIL-06 | 183 / 117 · n/a (17.2 h, early read: hook hold 63.9 %, watch 10.4 s = 69 %); 19.1 h: 183 / 117 · **5** (YT anomaly); 21.2 h (nearest capture before the 13 Nov Make outage): 183 / 117 · 5 | due 15 Nov 16:00 (early read 43.1 h: 183 / 117 · 8) | due 19 Nov 16:00 |
+| TIL-07 | due 14 Nov 16:00 (early read 19.1 h: 177 / 124 · 894; hook hold 55.6 %, watch 7.9 s = 53 %) | due 16 Nov 16:00 | due 20 Nov 16:00 |
 | TIL-08 | due 15 Nov 16:00 | due 17 Nov 16:00 | due 21 Nov 16:00 |
 24 h IG reach baseline (median TIL-01..05) = **136 accounts**; 24 h IG views median = 205; 24 h YT views median = 1,118.
 
@@ -57,6 +57,7 @@ Transferable principles (hypotheses, not rules):
 | E6 | On-screen title + cover as a concrete curiosity line ("WHY YOU CAN'T…", "THE POOL YOU CAN'T DROWN IN") instead of "WHAT IF YOU…?" | title/cover wording | hook hold vs median 61.3 % | backlog (after E5) |
 | E7 | End-card series teaser ("Tomorrow: <next experiment>") as the single reason to return | ending / CTA | change in IG followers + YT subscribers per 1,000 reach in the 24 h after the post (per-reel follows are not exposed for Reels) | backlog |
 | E8 | YouTube-specific packaging: YT title as a concrete curiosity line ("Why pasta never cooks on Mars") instead of "What if you…?" | YT title wording | YT views at 24 h vs median 1,118 | backlog (only once YT distribution is confirmed healthy) |
+| E9 | First second shows a human body part for scale (hand, face, feet) in the impossible situation, instead of an empty set/object | opening visual | hook hold vs median 61.3 % (TIL-07: 55.6 %, lowest so far) | backlog (added 14 Nov; after E5) |
 
 ## Decisions
 - 13 Nov: **stop E2** (one-tap yes/no comment prompt): 0 comments on ~1,000 IG views over TIL-03/04/05; also conflicts with the brief's "no engagement bait". Caption v2 from TIL-08: hook line, 3–4 science lines, one share line naming a person type, one series line ("A new impossible experiment every day."), disclaimer, ≤ 8 hashtags; no "Follow … for more", no question prompt. Logged as a minor confound for E5.
@@ -65,3 +66,4 @@ Transferable principles (hypotheses, not rules):
 - 13 Nov 11:08 (stats check): **YouTube anomaly** — TIL-06 at 5 YT views at 19 h (median 1,118 at 24 h), channel +18 views in 21 h. Decision for Claudio: check TIL-06 (nV-sE7p3f4w) visibility / "made for kids" / restrictions in YouTube Studio; if the Make YT module sets privacy/madeForKids, confirm values. **Retain** E5 for TIL-08 (keep current, no new variable). TIL-06 IG reach 0.86× baseline (non-body premise) — weak support for E5. Data store 250779 trimmed 98 → 68 records (oldest snapshots before 11 Nov 12:00 removed, newest per media kept).
 - 13 Nov 13:15 (production run): Make publish scenario 8451092 checked: YouTube upload uses privacyStatus public, selfDeclaredMadeForKids false, containsSyntheticMedia true, notifySubscribers true, category 28 — the same for every upload, so these settings do not explain TIL-06's 5 YT views; the check in YouTube Studio is still needed. **Retain** E5: TIL-08 built (shrunk to 1 cm; hook proved on screen by a balance; caption v2). Snapshot unchanged vs 11:08 (IG frozen, YT +1).
 - 13 Nov 16:00: **TIL-07 sent on time** (webhook answered "Accepted" at 16:00:00–16:00:01). From ~15:43 EET the Make connector of this session failed (Service Unavailable / 502 / "Failed to connect"), so the lock store, the execution result, the IG permalink and the YouTube link could **not** be confirmed in this run. Missing data: TIL-07 exec ID + links; TIL-06 24 h checkpoint capture (only 21.2 h available). Next run: run executions_list 8451092 (13 Nov ≥ 13:55 UTC), 8451991 and 8451995, then fill the TIL-07 register row before publishing TIL-08.
+- 14 Nov 11:08 (stats check): **TIL-07 publish confirmed** (exec 4a57507ad5da42e08b9b204da522ad07 SUCCESS; IG Dfry8LwiPLm; YT CH-vb3eFBFI); register row filled. **YouTube restored:** TIL-07 894 YT views at 19 h, TIL-05 +259 → the stall is isolated to TIL-06 (8 views at 43 h). Decision for Claudio unchanged: check nV-sE7p3f4w in YouTube Studio (restrictions/visibility). **E4 provisional: no lift** (15 s / 1.10 mean hook 60.1 % / watch 61 % vs 16.5 s 62.5 % / 63 %); verdict 15 Nov; length is Claudio's rule, so flagged as his decision. **Retain** E5 (reel 2 = TIL-09). Backlog +E9 (body part in frame at t = 0). Total 10,312 views (IG 3,384 + YT 6,928), +1,326 since 13 Nov 13:15. Data store 250779 trimmed 94 → 76 (11 Nov snapshots removed). Missing data: per-reel follows/profile visits (not exposed for Reels), retention curves.
