@@ -1,0 +1,51 @@
+[
+ {
+  "i": 1,
+  "text": "You'd sink in olive oil.",
+  "file": "vo/line1.wav",
+  "dur": 1.211,
+  "sr": 24000
+ },
+ {
+  "i": 2,
+  "text": "Jump into a pool full of it.",
+  "file": "vo/line2.wav",
+  "dur": 1.373,
+  "sr": 24000
+ },
+ {
+  "i": 3,
+  "text": "Oil is lighter than you, even with a full breath.",
+  "file": "vo/line3.wav",
+  "dur": 2.345,
+  "sr": 24000
+ },
+ {
+  "i": 4,
+  "text": "You'd weigh about four kilos and keep sinking.",
+  "file": "vo/line4.wav",
+  "dur": 2.161,
+  "sr": 24000
+ },
+ {
+  "i": 5,
+  "text": "And it's over eighty times thicker. Every kick drags.",
+  "file": "vo/line5.wav",
+  "dur": 2.61,
+  "sr": 24000
+ },
+ {
+  "i": 6,
+  "text": "What still floats?",
+  "file": "vo/line6.wav",
+  "dur": 0.877,
+  "sr": 24000
+ },
+ {
+  "i": 7,
+  "text": "Pure body fat. Barely.",
+  "file": "vo/line7.wav",
+  "dur": 1.433,
+  "sr": 24000
+ }
+]

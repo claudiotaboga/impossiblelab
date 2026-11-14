@@ -10,19 +10,19 @@ def font(w, s): return ImageFont.truetype(F + f"Inter-{w}.otf", s)
 AMBER = (255, 176, 46); WHITE = (255, 255, 255); INK = (18, 12, 6)
 
 # ---- per-episode content: the only block to change for a new episode ----
-EP_NUM = 8
-TITLE = ["SHRUNK TO", "1 CM TALL?"]
+EP_NUM = 9
+TITLE = ["SWIMMING IN", "OLIVE OIL?"]
 FACTS = [  # (start, end, text) — times match the narration lines
-    (1.95, 3.39, "YOU ≈ 13 mg · 5 mm RAINDROP ≈ 65 mg"),
-    (3.79, 5.89, "FALL SPEED ≈ 4 m/s (FULL SIZE ≈ 53 m/s)"),
-    (6.29, 8.56, "HEAT LOSS PER kg ≈ 175× FASTER"),
+    (3.18, 5.53, "OIL 0.91 · YOU ≈ 0.97–0.99 g/cm³"),
+    (5.73, 7.89, "IN OIL A 70 kg ADULT WEIGHS ≈ 4–5 kg"),
+    (8.09, 10.70, "OLIVE OIL ≈ 84× WATER'S VISCOSITY"),
 ]
-CARD_SUB = "Shrunk 175× (1.75 m → 1 cm): mass ÷ 5.4 million"
-CARD = [("Your mass at 1 cm", "≈13 mg", "70 kg ÷ 175³ · 5 mm drop 65 mg"),
-        ("Top falling speed", "≈4 m/s", "53 m/s × √(1/175)"),
-        ("Water film on wet skin", "≈1.1× you", "0.5 mm film (Haldane 1926)"),
+CARD_SUB = "70 kg adult, lungs full · olive oil at 20 °C"
+CARD = [("Olive oil vs you", "0.91 vs 0.97–0.99", "g/cm³ · you = tissue 1.058 + 5–6 L of air"),
+        ("Your weight in oil", "≈4–5 kg", "in water you float: ≈1–2 kg spare lift"),
+        ("Pure body fat", "0.90 g/cm³", "Siri model · ≈1 % rides above 0.911 oil"),
        ]
-DISCLAIMER = "Don't try this. At full size, falls from height still kill."
+DISCLAIMER = "Don't try this. Oil can't hold you up; inhaled oil harms lungs."
 
 def ease(x): x = max(0, min(1, x)); return 1 - (1 - x) ** 3
 

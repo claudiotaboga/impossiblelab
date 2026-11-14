@@ -114,14 +114,16 @@ def rain(dur):
     for k in range(int(dur * 25)):
         i = rng.integers(0, max(1, n - 8000)); x = plink(rng.uniform(900, 2200), 0.15); out[i:i + len(x)] += x * rng.uniform(0.1, 0.4)
     return out * np.clip(np.arange(n) / SR / 0.2, 0, 1)
-put(sfx, creak(), 0.05, 0.35); put(sfx, plink(1200), 0.25, 0.35)            # hook: drop lands on the pan, beam tips
-put(sfx, whoosh(1.0, 2400, 600, False), LINES[1]["start"] + 0.05, 0.18)    # shrinking
-put(sfx, whoosh(1.5, 300, 900, True), B["t_step"], 0.18)                    # soft fall
-put(sfx, thud(0.25, 140), B["t_land"], 0.25)                                # tiny, harmless landing
-put(sfx, shimmer(2.2), LINES[3]["start"] + 0.1, 0.25)                       # heat radiating away
-put(sfx, rain(LINES[6]["start"] - LINES[4]["start"]), LINES[4]["start"], 0.45)
-put(sfx, gloop(0.7), B["t_hit"], 0.6)                                       # the big drop engulfs you
-put(sfx, creak(0.6), LINES[6]["start"] + 0.2, 0.3)                          # balance settles level
+put(sfx, gloop(0.9), 0.05, 0.25); put(sfx, bubbling(1.4), 0.1, 0.10)        # hook: figure sinking in the oil tank
+put(sfx, whoosh(0.5, 400, 1800, True), LINES[1]["start"] + 0.25, 0.15)     # jump
+put(sfx, gloop(1.0), B["t_entry"], 0.65)                                    # thick oil swallows the jumper
+put(sfx, whoosh(0.6, 400, 1500, True), LINES[2]["start"] + 0.3, 0.10)      # full breath
+put(sfx, thud(0.45, 60), B["t_floor"], 0.45)                               # lands on the pool floor
+k_t = B["t_kick0"]
+while k_t < LINES[5]["start"] - 0.2:
+    put(sfx, whoosh(0.3, 150, 500, False), k_t, 0.10); k_t += 0.35          # slow, muffled kicks
+put(sfx, gloop(0.9), B["t_fatin"], 0.55)                                    # fat block drops in
+put(sfx, tick(), LINES[6]["start"] + 0.35, 0.3)                             # "barely": the 11 mm label
 for t_cut in B["cuts"]:
     put(sfx, whoosh(0.35, 1800, 500, False), t_cut - 0.15, 0.10)
 put(sfx, thud(0.4, 60), CARD_START, 0.6); put(sfx, whoosh(0.3, 800, 3000), CARD_START - 0.25, 0.2)
