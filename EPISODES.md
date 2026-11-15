@@ -11,13 +11,14 @@
 | 06 | TIL-06 | 12 Nov 2026 16:00 (on time; from READY) | Running a marathon at the speed of sound | A marathon in two minutes. | 15.0 s | a1872f54522c4a3bb9f041704b30fdf7 | [DfpOOiYlRDP](https://www.instagram.com/reel/DfpOOiYlRDP/) | [nV-sE7p3f4w](https://youtube.com/shorts/nV-sE7p3f4w) |
 | 07 | TIL-07 | 13 Nov 2026 16:00:02 (on time; from READY) | Basketball on the Moon | You'd jump over the hoop. | 15.0 s | 4a57507ad5da42e08b9b204da522ad07 | [Dfry8LwiPLm](https://www.instagram.com/reel/Dfry8LwiPLm/) | [CH-vb3eFBFI](https://youtube.com/shorts/CH-vb3eFBFI) |
 | 08 | TIL-08 | 14 Nov 2026 16:00:02 (on time; from READY) | Shrunk to 1 cm tall | Big raindrops weigh more than you. | 15.0 s | 0bc079057dfb49d3b660793c3c6afba4 | [DfuXtOHk5bT](https://www.instagram.com/reel/DfuXtOHk5bT/) | [H-dUAmQbBeg](https://youtube.com/shorts/H-dUAmQbBeg) |
+| 09 | TIL-09 | 15 Nov 2026 16:00:04 (on time; from READY) | Swimming in a pool of olive oil | You'd sink in olive oil. | 15.0 s | 9740ce312aac4aab93c8a9caa24b17f9 | [Dfw8h4onOPb](https://www.instagram.com/reel/Dfw8h4onOPb/) | [BsRmjK--TQ0](https://youtube.com/shorts/BsRmjK--TQ0) |
 
 ## READY TO PUBLISH
 Buffer: the daily run publishes the first entry here at 16:00 EET (its `meta.json` is final and its video is already hosted), moves it to the register, then builds the next episode into this section.
 
 | Episode ID | Folder | Premise | Hook line | Length | SHA-256 | Built |
 |---|---|---|---|---|---|---|
-| TIL-09 | episodes/09-olive-oil-pool | Swimming in a pool of olive oil (E5 reel 2: your body in a kitchen staple) | You'd sink in olive oil. | 15.0 s (E4) | `39bc47b64a0106ac87635d61ec7eab1574cd244c65150cd9e12c099983a015df` | 14 Nov 2026 14:39 EET |
+| TIL-10 | episodes/10-ten-times-taller | You, 10× taller (E5 reel 3: your own body at an impossible scale; square-cube law) | Giant-sized, your legs would snap. | 15.0 s (E4) | `3bd5b00b25acd47bd9a886c2fd8c16ab3a2977b245a82ce8d400aeda222f60e1` | 15 Nov 2026 14:15 EET |
 
 ## Topic queue
 Take the first item that is not in the register. Every premise must be buildable from Blender primitives, safe to show, and its science checkable. Verify every number before use; the notes are starting points, not facts.
@@ -26,10 +27,12 @@ E5 (13 Nov): next three topics put stakes on the viewer's own body or an everyda
 
 - A. ~~**Shrunk to 1 cm tall**~~ (done, TIL-08: 13 mg body vs 65 mg 5 mm raindrop; terminal speed ≈4 m/s (53 m/s × √(1/175)); heat loss per kg ×175; Haldane water film ≈1.1× body mass). The 'eat like a shrew' angle was dropped: no clean per-person number.
 - B. ~~**Swimming in a pool of olive oil**~~ (done, TIL-09: oil 0.911 g/cm³ at 20 °C vs you 0.97–0.99 with lungs full (Reference Man 1.058 + 4.8–6 L air) → you sink, apparent weight ≈4.3–5.3 kg; viscosity 84 vs 1.0 mPa·s; pure fat 0.9007 floats with 1.1 % above). The 'strokes feel slow' angle kept as 'every kick drags' (no clean number for swim speed).
-- F. **You, 10× taller** (added 15 Nov from the TIL-08 breakout, take first for TIL-10 if every number verifies): 17 m tall, weight ×1,000 (70 kg → 70 t) but bone cross-section only ×100 → every step stresses your bones ~10× more (square-cube law; Haldane, "On Being the Right Size", 1926); check femur compressive strength and walking loads before claiming a break; heat/metabolism angle only if hedged.
+- F. ~~**You, 10× taller**~~ (done, TIL-10: 1.75 m → 17.5 m, 70 kg → 70 t (×1,000), bone strength ×100 → stress ×10; running peak bone stress ≈55 MPa (40–80) with safety factor ≈3–4 (Biewener 1991) → ×10 ≈550 MPa vs ≈200 failure; Haldane 1926 giant thigh-bones; fix = water buoyancy, blue whales). Heat angle dropped (no clean number).
 - C. **A cup of coffee the size of a lake**: how long it would take to cool, and what the steam would do.
 - D. **Making toast on Venus** (food, added 13 Nov for E5): surface ~465 °C at ~92 bar; bread chars in seconds, but the thick CO₂ air conducts heat differently; check NASA Venus fact sheet and bread charring temperatures.
 - E. **A scoop of ice cream on Mercury's night side** (food, added 13 Nov for E5): night side ~−180 °C; ice cream goes glass-hard; check NASA Mercury surface temperatures and the glass transition of frozen sugar solutions (hedge).
+- G. **Your breath on Everest's summit** (body, added 15 Nov): air pressure about one third of sea level; each breath carries about a third of the oxygen; check NOAA/physiology sources for summit pressure and arterial oxygen before use, hedge.
+- H. **Your own weight on every planet** (body, added 15 Nov): 70 kg person's weight on Moon/Mars/Jupiter from NASA surface gravity; twist candidate: a bathroom scale on Jupiter.
 
 1. ~~**Diving into a pool of mercury**~~ (done, TIL-02): density 13.5, you float with ~7 % submerged, can't dive or swim; the danger is the vapour above the pool.
 2. ~~**A ship launched into a sea of honey**~~ (done, TIL-03): draft ~28 % shallower, honey thousands of times thicker, 1 m ripples fade in ~1 s, no barnacles. Note: the old claim "the launch wave never travels" was wrong: ship-scale waves (λ ≈ 10 m) survive ~1.5 min in honey; only small ripples die fast.

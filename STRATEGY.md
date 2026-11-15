@@ -96,6 +96,15 @@ One adjustment per day at most, logged in the experiment table with its hypothes
 | 15 Nov 11:08 | TIL-06 | 67.1 h | 183 | 117 | 63.9 % | 10.4 (69 % of 15 s) | 0 | 0 | 9 (0 likes) | 1 / 5 |
 | 15 Nov 11:08 | TIL-07 | 43.1 h | 178 | 125 | 55.2 % | 7.9 (52 % of 15 s) | 0 | 0 | 1,048 (13 likes) | 1 / 5 |
 | 15 Nov 11:08 | TIL-08 | 19.1 h | 1,544 | 1,090 | 63.1 % | 9.5 (64 % of 15 s) | 0 | 1 | 1,480 (9 likes) | 1 / 5 |
+| 15 Nov 16:02 | TIL-01 | 165.0 h | 207 | 137 | 71.9 % | 12.0 (80 % of 15 s) | 0 | 0 | 1,736 (17 likes) | 1 / 5 |
+| 15 Nov 16:02 | TIL-02 | 162.2 h | 1,776 | 1,146 | 67.5 % | 11.2 (68 % of 16.5 s) | 0 | 0 | 1,230 (9 likes) | 1 / 5 |
+| 15 Nov 16:02 | TIL-03 | 135.3 h | 160 | 111 | 61.3 % | 9.8 (59 % of 16.5 s) | 0 | 0 | 1,162 (19 likes) | 1 / 5 |
+| 15 Nov 16:02 | TIL-04 | 117.0 h | 169 | 113 | 58.6 % | 10.2 (62 % of 16.5 s) | 0 | 0 | 520 (9 likes) | 1 / 5 |
+| 15 Nov 16:02 | TIL-05 | 96.0 h | 712 | 517 | 60.8 % | 9.3 (62 % of 15 s) | 0 | 0 | 1,384 (16 likes) | 1 / 5 |
+| 15 Nov 16:02 | TIL-06 | 72.0 h | 183 | 117 | 63.9 % | 10.4 (69 % of 15 s) | 0 | 0 | 9 (0 likes) | 1 / 5 |
+| 15 Nov 16:02 | TIL-07 | 48.0 h | 178 | 125 | 55.2 % | 7.9 (52 % of 15 s) | 0 | 0 | 1,096 (15 likes) | 1 / 5 |
+| 15 Nov 16:02 | TIL-08 | 24.0 h | 1,545 | 1,093 | 63.0 % | 9.5 (63 % of 15 s) | 0 | 1 | 1,480 (9 likes) | 1 / 5 |
+| 15 Nov 16:02 | TIL-09 | 1.0 h | 0 | 0 | n/a | n/a | 0 | 0 | 0 (insights not populated yet) | 1 / 5 |
 
 ## Findings log
 - **9 Nov (run for TIL-03), reels < 48 h old, provisional:**
@@ -209,6 +218,11 @@ Medians (TIL-01..07): hook hold 61.3 %, watch ratio 62 %; 24 h IG reach baseline
 - Experiment ideas from finding 1 (backlog in CAMPAIGN_LOG.md): (a) E5 continues unchanged (TIL-09, TIL-10) — selected; (b) E10 hook pattern "<familiar object> weighs/is more than you" (viewer-vs-object comparison in the first line); (c) E7 series end card to convert the new reach into follows. One variable at a time: finish E5 first.
 
 NEXT BUILD INSTRUCTION (from 15 Nov 11:08 check): keep current. E5 reel 3 = TIL-10 (built today, publishes 16 Nov 16:00): take queue item F "You, 10× taller" (new, top of queue: the viewer's own body at an impossible scale, the TIL-08 family; square-cube numbers) if every number verifies cleanly; otherwise C (coffee the size of a lake). 15 s / 1.10, cold open on a proof image, caption v2, 16:00. No other change. Primary metric: IG reach at 24 h vs baseline 136 (E5 target ≥ 272); secondary: hook hold vs median 61.3 %. E5 verdict at TIL-10's 72 h (19 Nov); next experiment candidate E7 (series teaser) to attack follower conversion.
+
+### Production run 15 Nov 2026 (13:12–16:15 EET)
+- **Snapshot 16:02:** totals 13,547 views (IG 4,930 + YT 8,617); followers IG 1 / YT 5. TIL-08 24 h checkpoint confirmed: 1,093 accounts (8.0× baseline), hook hold 63.0 %, watch ratio 63 %, 1 save. Older reels frozen on IG; TIL-07 YT +48 since 13:14.
+- **Findings:** 1. No new evidence since the 11:08 check; the 11:08 findings stand (TIL-08 breakout driven by premise, not retention; follower conversion is the bottleneck). 2. TIL-07 at 48 h is the clearest non-body control: 125 accounts (0.92× baseline) with the lowest hook hold (55.2 %), consistent with E5. Confidence unchanged (low–medium).
+- **Adjustment applied:** none (NEXT BUILD INSTRUCTION followed). TIL-10 = E5 reel 3: queue F "You, 10× taller" (every number verified: Haldane 1926; Biewener 1991 peak bone stress 40–80 MPa, safety factor ≈3–4). 15 s / 1.10, cold open on a proof image (17.5 m giant running past rooftops, red shins), caption v2, 16:00 on 16 Nov. E5 status: running, 2 of 3 live (TIL-08, TIL-09); verdict 19 Nov at TIL-10's 72 h.
 
 ## Weekly reviews
 ### Week 1 (8–15 Nov 2026), written 15 Nov 11:08
