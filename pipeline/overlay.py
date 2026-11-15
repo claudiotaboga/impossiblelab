@@ -10,19 +10,19 @@ def font(w, s): return ImageFont.truetype(F + f"Inter-{w}.otf", s)
 AMBER = (255, 176, 46); WHITE = (255, 255, 255); INK = (18, 12, 6)
 
 # ---- per-episode content: the only block to change for a new episode ----
-EP_NUM = 9
-TITLE = ["SWIMMING IN", "OLIVE OIL?"]
+EP_NUM = 10
+TITLE = ["YOU, 10×", "TALLER?"]
 FACTS = [  # (start, end, text) — times match the narration lines
-    (3.18, 5.53, "OIL 0.91 · YOU ≈ 0.97–0.99 g/cm³"),
-    (5.73, 7.89, "IN OIL A 70 kg ADULT WEIGHS ≈ 4–5 kg"),
-    (8.09, 10.70, "OLIVE OIL ≈ 84× WATER'S VISCOSITY"),
+    (3.74, 5.24, "70 kg → 70 t  (×1,000)"),
+    (5.44, 7.58, "BONE STRENGTH: ONLY ×100"),
+    (7.78, 10.42, "STRESS ×10 · BONES FAIL AT ≈3–4×"),
 ]
-CARD_SUB = "70 kg adult, lungs full · olive oil at 20 °C"
-CARD = [("Olive oil vs you", "0.91 vs 0.97–0.99", "g/cm³ · you = tissue 1.058 + 5–6 L of air"),
-        ("Your weight in oil", "≈4–5 kg", "in water you float: ≈1–2 kg spare lift"),
-        ("Pure body fat", "0.90 g/cm³", "Siri model · ≈1 % rides above 0.911 oil"),
+CARD_SUB = "1.75 m, 70 kg adult scaled ×10 in every direction"
+CARD = [("Height · weight", "17.5 m · 70 t", "×10 length → ×1,000 volume and mass"),
+        ("Bone strength", "×100", "grows with cross-section area (length²)"),
+        ("Running stress", "≈550 MPa", "55 MPa ×10 · fails ≈200 (Biewener)"),
        ]
-DISCLAIMER = "Don't try this. Oil can't hold you up; inhaled oil harms lungs."
+DISCLAIMER = "Don't try this. Don't test your bones with jumps or loads."
 
 def ease(x): x = max(0, min(1, x)); return 1 - (1 - x) ** 3
 

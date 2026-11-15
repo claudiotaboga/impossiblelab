@@ -1,0 +1,51 @@
+[
+ {
+  "i": 1,
+  "text": "Giant-sized, your legs would snap.",
+  "file": "vo/line1.wav",
+  "dur": 1.842,
+  "sr": 24000
+ },
+ {
+  "i": 2,
+  "text": "Grow ten times taller.",
+  "file": "vo/line2.wav",
+  "dur": 1.297,
+  "sr": 24000
+ },
+ {
+  "i": 3,
+  "text": "You'd weigh a thousand times more.",
+  "file": "vo/line3.wav",
+  "dur": 1.499,
+  "sr": 24000
+ },
+ {
+  "i": 4,
+  "text": "Your bones? Only a hundred times stronger.",
+  "file": "vo/line4.wav",
+  "dur": 2.139,
+  "sr": 24000
+ },
+ {
+  "i": 5,
+  "text": "Ten times the stress. One run, and they break.",
+  "file": "vo/line5.wav",
+  "dur": 2.641,
+  "sr": 24000
+ },
+ {
+  "i": 6,
+  "text": "The only fix?",
+  "file": "vo/line6.wav",
+  "dur": 0.896,
+  "sr": 24000
+ },
+ {
+  "i": 7,
+  "text": "Live in water, like a blue whale.",
+  "file": "vo/line7.wav",
+  "dur": 1.661,
+  "sr": 24000
+ }
+]

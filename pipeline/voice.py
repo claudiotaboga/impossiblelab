@@ -4,13 +4,13 @@ from kokoro_onnx import Kokoro
 from config import VOICE, VOICE_SPEED
 
 LINES = [
-    "You'd sink in olive oil.",
-    "Jump into a pool full of it.",
-    "Oil is lighter than you, even with a full breath.",
-    "You'd weigh about four kilos and keep sinking.",
-    "And it's over eighty times thicker. Every kick drags.",
-    "What still floats?",
-    "Pure body fat. Barely.",
+    "Giant-sized, your legs would snap.",
+    "Grow ten times taller.",
+    "You'd weigh a thousand times more.",
+    "Your bones? Only a hundred times stronger.",
+    "Ten times the stress. One run, and they break.",
+    "The only fix?",
+    "Live in water, like a blue whale.",
 ]
 
 k = Kokoro("models/kokoro-v1.0.onnx", "models/voices-v1.0.bin")

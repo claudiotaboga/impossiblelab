@@ -114,16 +114,24 @@ def rain(dur):
     for k in range(int(dur * 25)):
         i = rng.integers(0, max(1, n - 8000)); x = plink(rng.uniform(900, 2200), 0.15); out[i:i + len(x)] += x * rng.uniform(0.1, 0.4)
     return out * np.clip(np.arange(n) / SR / 0.2, 0, 1)
-put(sfx, gloop(0.9), 0.05, 0.25); put(sfx, bubbling(1.4), 0.1, 0.10)        # hook: figure sinking in the oil tank
-put(sfx, whoosh(0.5, 400, 1800, True), LINES[1]["start"] + 0.25, 0.15)     # jump
-put(sfx, gloop(1.0), B["t_entry"], 0.65)                                    # thick oil swallows the jumper
-put(sfx, whoosh(0.6, 400, 1500, True), LINES[2]["start"] + 0.3, 0.10)      # full breath
-put(sfx, thud(0.45, 60), B["t_floor"], 0.45)                               # lands on the pool floor
-k_t = B["t_kick0"]
-while k_t < LINES[5]["start"] - 0.2:
-    put(sfx, whoosh(0.3, 150, 500, False), k_t, 0.10); k_t += 0.35          # slow, muffled kicks
-put(sfx, gloop(0.9), B["t_fatin"], 0.55)                                    # fat block drops in
-put(sfx, tick(), LINES[6]["start"] + 0.35, 0.3)                             # "barely": the 11 mm label
+def crack(dur=0.35):  # sharp snap: broadband burst + low thump
+    n = int(dur * SR); tt = np.arange(n) / SR
+    return hp(rng.standard_normal(n), 1500) * np.exp(-tt * 40) * 1.2 + thud(dur, 55) * 0.8
+RUNV = B["run_v"]; T_BRK = B["t_break"]
+t_step = 0.15
+while t_step < LINES[1]["start"] - 0.1:                                       # hook: giant footsteps
+    put(sfx, thud(0.45, 45), t_step, 0.55); t_step += 0.60
+put(sfx, whoosh(1.0, 200, 2500, True), LINES[1]["start"] + 0.1, 0.18)        # grow x10
+for k in range(10):                                                           # 10 layers of blocks stack up
+    put(sfx, tick(), LINES[2]["start"] + 0.08 + k * 0.1, 0.25)
+put(sfx, thud(0.4, 80), LINES[2]["start"] + 1.05, 0.35)                       # WEIGHT x1,000 label
+put(sfx, plink(1100, 0.3), LINES[3]["start"] + 0.12, 0.3)                    # bone slab appears
+t_step = LINES[4]["start"] + 0.1
+while t_step < T_BRK - 0.1:                                                   # run: heavier and heavier steps
+    put(sfx, thud(0.45, 45), t_step, 0.6); t_step += 0.60
+put(sfx, crack(0.4), T_BRK, 0.9); put(sfx, thud(0.6, 40), T_BRK + 0.4, 0.7)  # bones give, giant drops to its knees
+put(sfx, gloop(1.0), LINES[5]["start"] + 0.45, 0.35)                          # cut to the lake
+put(sfx, whoomph(1.2), LINES[6]["start"] + 0.2, 0.25)                         # whale surfacing
 for t_cut in B["cuts"]:
     put(sfx, whoosh(0.35, 1800, 500, False), t_cut - 0.15, 0.10)
 put(sfx, thud(0.4, 60), CARD_START, 0.6); put(sfx, whoosh(0.3, 800, 3000), CARD_START - 0.25, 0.2)

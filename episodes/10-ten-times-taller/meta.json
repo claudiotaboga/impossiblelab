@@ -1,0 +1,29 @@
+{
+ "episode_id": "TIL-10",
+ "status": "ready",
+ "qa_passed": true,
+ "width": 1080,
+ "height": 1920,
+ "duration_seconds": 15.0,
+ "title": "What if you were 10 times taller?",
+ "video_url": "https://raw.githubusercontent.com/claudiotaboga/impossiblelab/main/episodes/10-ten-times-taller/video.mp4",
+ "caption": "Giant-sized, your legs would snap. 🦴📏\n\nScale a 1.75 m, 70 kg adult up ten times in every direction: 17.5 m tall, and about 70 tonnes (×1,000).\n\nBut a bone's strength depends on its cross-section, which grows only ×100. So every bone carries ten times the stress.\n\nRunning already loads leg bones to about 55 MPa, with a safety margin of only about 3–4× before they fail. Ten times that, and one run breaks them. Biologist J.B.S. Haldane made this point in 1926.\n\nThe only fix: let water carry the weight. That's how blue whales get so big.\n\nSend this to the tallest friend you have.\n\nA new impossible experiment every day.\n\n⚠️ Don't try this. Don't test your bones with jumps or heavy loads: overloaded bones fracture.\n\n#science #physics #whatif #sciencefacts #squarecubelaw #biology #giants #theimpossiblelab",
+ "sources": [
+  "https://www.marxists.org/archive/haldane/works/1920s/right-size.htm (J.B.S. Haldane, On Being the Right Size, 1926: giants 10× as high, wide and thick weigh 1,000×, bone cross-sections only 100×, each square inch of bone carries 10× the weight; the human thigh-bone breaks under about 10× body weight, so they would break their thighs at every step)",
+  "https://biewenerlab.oeb.harvard.edu/publications/musculoskeletal-design-relation-body-size (Biewener, Musculoskeletal design in relation to body size, J Biomech 1991: peak compressive bone stresses during locomotion −40 to −80 MPa, mean −55 ± 23 MPa; safety factor to compressive failure about 3–4)",
+  "https://www.doitpoms.ac.uk/tlplib/bones/bone_mechanical.php (cortical bone, longitudinal compressive strength 70–280 MPa)",
+  "https://www.discoverwildlife.com/animal-facts/marine-animals/why-are-marine-animals-so-big (water provides buoyancy that supports massive body weights, so marine animals don't need thick, heavy bones like land animals)",
+  "Computed: ×10 length → area ×100, volume and mass ×1,000; 70 kg → 70 t; 1.75 m → 17.5 m; stress = weight/area → ×10; 55 MPa × 10 = 550 MPa vs failure ≈ 55 × 3–4 = 165–220 MPa (≈200)"
+ ],
+ "qa": {
+  "duration_s": 15.0,
+  "integrated_loudness_lufs": -14.1,
+  "true_peak_dbfs": -1.4,
+  "video_kbps_per_second_max": 1987,
+  "audio": "aac 128k 48kHz stereo",
+  "codec": "h264 High yuv420p, faststart",
+  "disclaimer_in_caption": true,
+  "disclaimer_on_card": true,
+  "visual_check": "t=0 and 0.5 (17.5 m giant running past rooftops, red shins, title YOU, 10× / TALLER? readable), grow + 17.5 m bar, block cube with WEIGHT x1,000, slab BONE x100, all 3 chips (4.6, 6.6, 9.0 s), collapse on 'break', lake with whale tail, card at 14.2/14.5 s with red disclaimer (row 3 label shortened after first QA to avoid overlap), last frame back on the running giant; captions in sync and unclipped; nothing important in top 250 / bottom 380 px except tag and footer; handle only @the.impossible.lab"
+ }
+}
