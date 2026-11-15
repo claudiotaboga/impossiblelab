@@ -33,8 +33,8 @@ One adjustment per day at most, logged in the experiment table with its hypothes
 | E1 | 9 Nov 2026 | 16.5 s + slower voice (speed 1.00 vs 1.10) | Clearer narration raises watch ratio | running (3 of 3 reels published at 16.5 s: TIL-02 68 %, TIL-03 59 % vs TIL-01 80 % at 15 s; first read at 48 h on 11 Nov, so far the slower/longer format holds viewers less) |
 | E2 | 10 Nov 2026 00:46 (TIL-03) | Caption comment prompt as a one-tap yes/no question ("Would this ship ever make it to port? Yes or no") instead of an open opinion question | A one-tap answer lowers the effort to comment: comments > 0 per 1,000 IG views (0 so far on ~2,000 views) | 3 of 3 published; provisional fail (12 Nov: 0 comments on 973 IG views: TIL-03 0/160, TIL-04 0/169, TIL-05 0/644 at 19 h); final read 13 Nov at 48 h |
 | E3 | 10 Nov 2026 19:00 (TIL-04, 3 h after the slot) | Flash-forward cold open: the first ~2 s show the climax (mannequin at the 10 m mark, high camera looking down), and the spoken + on-screen hook is a concrete number ("One second. Ten metres up.") before the story restarts from the ground | Hook hold is falling (72 → 67.5 → 61 %); opening on the payoff image + a number raises hook hold back to ≥ the median (67.5 %) | running |
-| E4 | TIL-05 (11 Nov 2026, approved by Claudio) | Back to 15 s and Kokoro speed 1.10 (from 16.5 s / 1.00); E3 cold open kept | At 48 h the 15 s / 1.10 reel held better (hook 72 %, watch 80 %) than 16.5 s / 1.00 (67.5 %, 68 %), and TIL-03/04 kept falling: a tighter, faster reel lifts hook hold and watch ratio back above the median | running (TIL-05 at 21 h: hook 60.5 %, watch 60 %, ≈ median, no lift yet; TIL-06 posts 12 Nov 16:00; TIL-07, the third E4 reel, built and in READY for 13 Nov; judge on 15 Nov when all three are ≥ 48 h) |
-| E5 | TIL-08 (14 Nov 2026), 3 reels | Premise must put stakes on the viewer's own body or an everyday object/food (topic selection rule); caption v2 (E2 stopped) applied at the same time as a minor confound | Own top IG reaches (mercury 1,144, pasta 510 accounts) are body/food; competitor over-performers are body/mind/food (CAMPAIGN_LOG.md, 13 Nov): IG reach at 24 h ≥ 2× the baseline median of 136 accounts | selected 13 Nov; TIL-08 built 13 Nov (shrunk to 1 cm, in READY for 14 Nov 16:00); checkpoints 24 h / 72 h; verdict after TIL-10 at 72 h |
+| E4 | TIL-05 (11 Nov 2026, approved by Claudio) | Back to 15 s and Kokoro speed 1.10 (from 16.5 s / 1.00); E3 cold open kept | At 48 h the 15 s / 1.10 reel held better (hook 72 %, watch 80 %) than 16.5 s / 1.00 (67.5 %, 68 %), and TIL-03/04 kept falling: a tighter, faster reel lifts hook hold and watch ratio back above the median | running (TIL-05 at 21 h: hook 60.5 %, watch 60 %, ≈ median, no lift yet; TIL-06 posts 12 Nov 16:00; TIL-07, the third E4 reel, built and in READY for 13 Nov; judge on 15 Nov when all three are ≥ 48 h) → **verdict 15 Nov: no retention lift** (15 s / 1.10 mean hook 60.0 % / watch 61 % over TIL-05..07 vs 62.5 % / 63 % for 16.5 s / 1.00 over TIL-02..04; IG counts frozen after ~12 h so TIL-07 at 43 h is final). Length is not the retention lever; 15 s kept as the default (Claudio's rule; TIL-08's breakout was at 15 s). Closed. |
+| E5 | TIL-08 (14 Nov 2026), 3 reels | Premise must put stakes on the viewer's own body or an everyday object/food (topic selection rule); caption v2 (E2 stopped) applied at the same time as a minor confound | Own top IG reaches (mercury 1,144, pasta 510 accounts) are body/food; competitor over-performers are body/mind/food (CAMPAIGN_LOG.md, 13 Nov): IG reach at 24 h ≥ 2× the baseline median of 136 accounts | selected 13 Nov; TIL-08 built 13 Nov (shrunk to 1 cm, in READY for 14 Nov 16:00); checkpoints 24 h / 72 h; verdict after TIL-10 at 72 h. **15 Nov early read, reel 1/3:** TIL-08 IG reach 1,090 at 19 h = 8.0× baseline (target ≥ 2×), YT 1,480 at 19 h (1.32× median); retention ≈ median (hook 63.1 %, watch 64 %). Strong positive, n = 1: running (TIL-09 15 Nov, TIL-10 16 Nov) |
 
 ## Snapshots
 | Captured (EET) | Episode | Age | IG views | IG reach | Hook hold | Avg watch s | Shares | Saves | YT views | Followers IG / subs YT |
@@ -88,6 +88,14 @@ One adjustment per day at most, logged in the experiment table with its hypothes
 | 14 Nov 11:08 | TIL-05 | 67.1 h | 712 | 517 | 60.8 % | 9.3 (62 % of 15 s) | 0 | 0 | 1,378 (16 likes) | 1 / 3 |
 | 14 Nov 11:08 | TIL-06 | 43.1 h | 183 | 117 | 63.9 % | 10.4 (69 % of 15 s) | 0 | 0 | 8 (0 likes) | 1 / 3 |
 | 14 Nov 11:08 | TIL-07 | 19.1 h | 177 | 124 | 55.6 % | 7.9 (53 % of 15 s) | 0 | 0 | 894 (11 likes) | 1 / 3 |
+| 15 Nov 11:08 | TIL-01 | 160.0 h | 207 | 137 | 71.9 % | 12.0 (80 % of 15 s) | 0 | 0 | 1,736 (17 likes) | 1 / 5 |
+| 15 Nov 11:08 | TIL-02 | 157.3 h | 1,776 | 1,146 | 67.5 % | 11.2 (68 % of 16.5 s) | 0 | 0 | 1,230 (9 likes) | 1 / 5 |
+| 15 Nov 11:08 | TIL-03 | 130.4 h | 160 | 111 | 61.3 % | 9.8 (59 % of 16.5 s) | 0 | 0 | 1,162 (19 likes) | 1 / 5 |
+| 15 Nov 11:08 | TIL-04 | 112.1 h | 169 | 113 | 58.6 % | 10.2 (62 % of 16.5 s) | 0 | 0 | 520 (9 likes) | 1 / 5 |
+| 15 Nov 11:08 | TIL-05 | 91.1 h | 712 | 517 | 60.8 % | 9.3 (62 % of 15 s) | 0 | 0 | 1,384 (16 likes) | 1 / 5 |
+| 15 Nov 11:08 | TIL-06 | 67.1 h | 183 | 117 | 63.9 % | 10.4 (69 % of 15 s) | 0 | 0 | 9 (0 likes) | 1 / 5 |
+| 15 Nov 11:08 | TIL-07 | 43.1 h | 178 | 125 | 55.2 % | 7.9 (52 % of 15 s) | 0 | 0 | 1,048 (13 likes) | 1 / 5 |
+| 15 Nov 11:08 | TIL-08 | 19.1 h | 1,544 | 1,090 | 63.1 % | 9.5 (64 % of 15 s) | 0 | 1 | 1,480 (9 likes) | 1 / 5 |
 
 ## Findings log
 - **9 Nov (run for TIL-03), reels < 48 h old, provisional:**
@@ -182,5 +190,38 @@ NEXT BUILD INSTRUCTION (from 14 Nov 11:08 check): keep current. E5 is running (T
 - **TIL-08 published on time** at 16:00:02 EET (Make exec 0bc079057dfb49d3b660793c3c6afba4, SUCCESS, 5 operations; IG DfuXtOHk5bT, YT H-dUAmQbBeg): E5 reel 1 of 3, first caption-v2 reel.
 - **Adjustment applied:** none (NEXT BUILD INSTRUCTION followed). TIL-09 = E5 reel 2: queue B "swimming in a pool of olive oil" (chosen over D "toast on Venus": every number verified, and it is the buoyancy family of the best reel, TIL-02). 15 s / 1.10, cold open on a proof image (water vs oil tanks with the person visibly sinking; in-scene labels readable without sound), caption v2, 16:00 on 15 Nov. E5 status: running, 1 of 3 live; review 18 Nov after TIL-10's 24 h.
 
+- **15 Nov 11:08 (daily stats check, Sunday):** total **13,498 views** (IG 4,929 + YT 8,569), **+3,185** since 14 Nov 13:12 (IG +1,544, all TIL-08; YT +1,641: TIL-08 +1,480, TIL-07 +153, TIL-05 +6, TIL-06 +1). YT subscribers 3 → **5**; IG followers 1 (unchanged). Competitor check not due (Mon/Thu). Data store 250779 trimmed (snapshots before 14 Nov, 42 records, removed; newest per media kept).
+
+| Reel | Age | IG views | IG reach | Hook hold | Avg watch | Watch ratio | Shares / saves / comments | per 1,000 reach | YT views |
+|---|---|---|---|---|---|---|---|---|---|
+| TIL-01 whisky | 160 h | 207 | 137 | 71.9 % | 12.0 s | 80 % | 0 / 0 / 0 | 0 / 0 / 0 | 1,736 |
+| TIL-02 mercury | 157 h | 1,776 | 1,146 | 67.5 % | 11.2 s | 68 % | 0 / 0 / 0 | 0 / 0 / 0 | 1,230 |
+| TIL-03 honey | 130 h | 160 | 111 | 61.3 % | 9.8 s | 59 % | 0 / 0 / 0 | 0 / 0 / 0 | 1,162 |
+| TIL-04 gravity | 112 h | 169 | 113 | 58.6 % | 10.2 s | 62 % | 0 / 0 / 0 | 0 / 0 / 0 | 520 |
+| TIL-05 pasta | 91 h | 712 | 517 | 60.8 % | 9.3 s | 62 % | 0 / 0 / 0 | 0 / 0 / 0 | 1,384 |
+| TIL-06 marathon | 67 h | 183 | 117 | 63.9 % | 10.4 s | 69 % | 0 / 0 / 0 | 0 / 0 / 0 | 9 |
+| TIL-07 basketball | 43 h | 178 | 125 | 55.2 % | 7.9 s | 52 % | 0 / 0 / 0 | 0 / 0 / 0 | 1,048 |
+| **TIL-08 shrunk 1 cm** | **19 h** | **1,544** | **1,090** | 63.1 % | 9.5 s | 64 % | 0 / **1** / 0 | 0 / 0.9 / 0 | **1,480** |
+Medians (TIL-01..07): hook hold 61.3 %, watch ratio 62 %; 24 h IG reach baseline 136, YT 24 h 1,118.
+  1. **Breakout: TIL-08 (E5 reel 1, "Big raindrops weigh more than you.")** — 1,090 accounts reached at 19 h = **8.0× the 136 baseline** (and ≈ TIL-02's 1,146 lifetime), 1,544 IG views; YT 1,480 at 19 h = 1.32× median, best YT start so far; first save ever; YT subs +2. Retention only ≈ median (hook 63.1 % vs 61.3 %, watch 64 % vs 62 %), so the lift is distribution/topic, not hold. Confidence: medium that "you vs a familiar object" premises drive reach (now 3 of 3 top IG reaches: mercury pool, pasta, shrunk-you; the other five premises all at 0.8–1.0× baseline), low on its size (one exceptional result is not a pattern; TIL-09/10 decide).
+  2. **Follower conversion is the new bottleneck (confidence medium):** 1,090 new accounts reached and IG followers stayed at 1; 0 shares on 4,929 IG views across 8 reels. Reach can now be bought with the premise; nothing gives a viewer a reason to follow. This is the case for E7 (series teaser end card) after E5.
+  3. **E4 verdict: no retention lift from 15 s / 1.10** (TIL-05..07 hook 60.0 % / watch 61 % vs 62.5 % / 63 % at 16.5 s). Length is not the lever; recommend keeping 15 s (simpler, breakout happened at 15 s). TIL-06 still stuck on YouTube (9 views at 67 h): Studio check on nV-sE7p3f4w still open for Claudio.
+- Experiment ideas from finding 1 (backlog in CAMPAIGN_LOG.md): (a) E5 continues unchanged (TIL-09, TIL-10) — selected; (b) E10 hook pattern "<familiar object> weighs/is more than you" (viewer-vs-object comparison in the first line); (c) E7 series end card to convert the new reach into follows. One variable at a time: finish E5 first.
+
+NEXT BUILD INSTRUCTION (from 15 Nov 11:08 check): keep current. E5 reel 3 = TIL-10 (built today, publishes 16 Nov 16:00): take queue item F "You, 10× taller" (new, top of queue: the viewer's own body at an impossible scale, the TIL-08 family; square-cube numbers) if every number verifies cleanly; otherwise C (coffee the size of a lake). 15 s / 1.10, cold open on a proof image, caption v2, 16:00. No other change. Primary metric: IG reach at 24 h vs baseline 136 (E5 target ≥ 272); secondary: hook hold vs median 61.3 %. E5 verdict at TIL-10's 72 h (19 Nov); next experiment candidate E7 (series teaser) to attack follower conversion.
+
 ## Weekly reviews
-(none yet)
+### Week 1 (8–15 Nov 2026), written 15 Nov 11:08
+- Output: 8 reels published (TIL-01..08), 4 consecutive on-time 16:00 posts since TIL-05; READY buffer working (TIL-09 ready for today). Totals at 15 Nov 11:08: 13,498 views (IG 4,929 + YT 8,569); IG followers 1, YT subscribers 5.
+- What worked: premises where the viewer's own body meets a familiar substance/object (mercury pool 1,146 accounts, shrunk-you 1,090 at 19 h, pasta 517); on-time 16:00 posting (every late post sat at ~110 accounts); YouTube as a steady second channel (median ~1,160 views per Short, long tail for days, IG freezes after ~12 h).
+- What did not: E1 (16.5 s / slower voice) and E4 (back to 15 s / 1.10) — neither moved retention; E2 (one-tap yes/no comment prompt) — 0 comments, stopped; E3 (cold open on climax) — unresolved, confounded. Shares 0 and comments 0 across 4,929 IG views; only 1 save.
+- Bottlenecks, in order: (1) follower conversion (0 IG follows from ~3,400 accounts reached); (2) sharing (0 sends); (3) hook hold stuck at 55–64 % on every reel after TIL-01 (target 70 %).
+- Next week: finish E5 (TIL-09, TIL-10; verdict 19 Nov); then E7 (series teaser end card, conversion) or E9 (body in frame at t = 0, hook hold), chosen on the E5 data. Competitor check Mon 16 Nov: add 1–3 small (< 100 k) format peers.
+
+### Playbook v2 (15 Nov 2026) — consolidates decisions already in force; supersedes v1 where different
+- Format: 15 s, Kokoro `af_heart` speed 1.10 (Claudio's rule, `pipeline/config.py`); Blender primitives, 1080×1920.
+- Topic (provisional rule while E5 runs): a premise with stakes for the viewer's own body or an everyday object/food; avoid pure space/abstract physics premises without a "you" angle.
+- Hook: true-but-wrong-sounding claim at t = 0, proved on screen by an image readable without sound (TIL-08 balance, TIL-09 two tanks).
+- Caption v2: hook line, 3–4 science lines, one share line naming a person type, one series line, "⚠️ Don't try this." line, ≤ 8 hashtags; no comment prompt, no "Follow … for more".
+- Unchanged from v1: three beats with one rounded number each, twist, THE REAL SCIENCE card with the red disclaimer, series tag, word-by-word captions, safe content, verified science, 16:00 slot, buffer-first publishing.
+
