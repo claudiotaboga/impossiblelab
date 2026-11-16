@@ -24,15 +24,16 @@ Buffer: the daily run publishes the first entry here at 16:00 EET (its `meta.jso
 Take the first item that is not in the register. Every premise must be buildable from Blender primitives, safe to show, and its science checkable. Verify every number before use; the notes are starting points, not facts.
 
 E5 (13 Nov): next three topics put stakes on the viewer's own body or an everyday object/food; take them in this order before the numbered list.
+16 Nov (stats check): E5 topic rule kept as the control while E7 runs; lettered items reordered body-first (G, D, H, C, E). With E7, the TIL-NN end card names the next topic, which then becomes binding for the following build.
 
 - A. ~~**Shrunk to 1 cm tall**~~ (done, TIL-08: 13 mg body vs 65 mg 5 mm raindrop; terminal speed ≈4 m/s (53 m/s × √(1/175)); heat loss per kg ×175; Haldane water film ≈1.1× body mass). The 'eat like a shrew' angle was dropped: no clean per-person number.
 - B. ~~**Swimming in a pool of olive oil**~~ (done, TIL-09: oil 0.911 g/cm³ at 20 °C vs you 0.97–0.99 with lungs full (Reference Man 1.058 + 4.8–6 L air) → you sink, apparent weight ≈4.3–5.3 kg; viscosity 84 vs 1.0 mPa·s; pure fat 0.9007 floats with 1.1 % above). The 'strokes feel slow' angle kept as 'every kick drags' (no clean number for swim speed).
 - F. ~~**You, 10× taller**~~ (done, TIL-10: 1.75 m → 17.5 m, 70 kg → 70 t (×1,000), bone strength ×100 → stress ×10; running peak bone stress ≈55 MPa (40–80) with safety factor ≈3–4 (Biewener 1991) → ×10 ≈550 MPa vs ≈200 failure; Haldane 1926 giant thigh-bones; fix = water buoyancy, blue whales). Heat angle dropped (no clean number).
-- C. **A cup of coffee the size of a lake**: how long it would take to cool, and what the steam would do.
-- D. **Making toast on Venus** (food, added 13 Nov for E5): surface ~465 °C at ~92 bar; bread chars in seconds, but the thick CO₂ air conducts heat differently; check NASA Venus fact sheet and bread charring temperatures.
-- E. **A scoop of ice cream on Mercury's night side** (food, added 13 Nov for E5): night side ~−180 °C; ice cream goes glass-hard; check NASA Mercury surface temperatures and the glass transition of frozen sugar solutions (hedge).
-- G. **Your breath on Everest's summit** (body, added 15 Nov): air pressure about one third of sea level; each breath carries about a third of the oxygen; check NOAA/physiology sources for summit pressure and arterial oxygen before use, hedge.
+- G. **Your breath on Everest's summit** (body, added 15 Nov; **next, TIL-11**, 16 Nov reorder): air pressure about one third of sea level; each breath carries about a third of the oxygen; check NOAA/physiology sources for summit pressure and arterial oxygen before use, hedge. Candidate hook number: time of useful consciousness if teleported to ~8,800 m without acclimatisation (FAA AC 61-107B table: ~1–3 min around 25,000–30,000 ft) — verify and hedge.
+- D. **Making toast on Venus** (food, added 13 Nov for E5; **TIL-12**, named on the TIL-11 E7 end card): surface ~465 °C at ~92 bar; bread chars in seconds, but the thick CO₂ air conducts heat differently; check NASA Venus fact sheet and bread charring temperatures.
 - H. **Your own weight on every planet** (body, added 15 Nov): 70 kg person's weight on Moon/Mars/Jupiter from NASA surface gravity; twist candidate: a bathroom scale on Jupiter.
+- C. **A cup of coffee the size of a lake**: how long it would take to cool, and what the steam would do.
+- E. **A scoop of ice cream on Mercury's night side** (food, added 13 Nov for E5): night side ~−180 °C; ice cream goes glass-hard; check NASA Mercury surface temperatures and the glass transition of frozen sugar solutions (hedge).
 
 1. ~~**Diving into a pool of mercury**~~ (done, TIL-02): density 13.5, you float with ~7 % submerged, can't dive or swim; the danger is the vapour above the pool.
 2. ~~**A ship launched into a sea of honey**~~ (done, TIL-03): draft ~28 % shallower, honey thousands of times thicker, 1 m ripples fade in ~1 s, no barnacles. Note: the old claim "the launch wave never travels" was wrong: ship-scale waves (λ ≈ 10 m) survive ~1.5 min in honey; only small ripples die fast.
