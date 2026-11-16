@@ -255,6 +255,24 @@ Medians (TIL-01..08): hook hold 62.4 %, watch ratio 62.5 %; 24 h IG reach baseli
 
 NEXT BUILD INSTRUCTION (from 16 Nov 11:09 check): start **E7** with TIL-11 (built today, publishes 17 Nov 16:00). Topic: queue **G "your breath on Everest's summit"** (body; reordered to the top; verify summit pressure ≈ ⅓ atm and the time-of-useful-consciousness number before use, hedge; if it does not verify cleanly, take H, then D). Keep everything else as TIL-09/10: 15 s / 1.10, cold open on a proof image readable without sound (side-by-side control vs impossible if the premise allows), caption v2, ⚠️ disclaimer on caption + card, 16:00. **The one change:** the last ~1.5 s (after THE REAL SCIENCE card, or merged into it if 15 s does not allow) shows a clean end card "TOMORROW: <next premise in ≤ 5 words>" (e.g. "TOMORROW: TOAST ON VENUS"), and the caption's series line names the same premise ("Tomorrow: toast on Venus."), replacing "A new impossible experiment every day."; no "follow" wording. Name only a premise whose numbers the run has already checked (default D toast on Venus); the named premise is then binding for TIL-12. Primary metric: IG followers + YT subscribers gained per 1,000 IG reach in the 24 h after the post vs baseline ≈ 0.9 (TIL-08+09); secondary: IG reach at 24 h vs E5 median (1,613) and hook hold vs 62.4 %. Review: first read 18 Nov, verdict after TIL-13's 72 h (22 Nov). E5 verdict 19 Nov unchanged.
 
+### Production run 16 Nov 2026 (13:14–19:05 EET)
+- **Snapshot 17:54 CET (18:54 EET):** totals **18,528 views** (IG 8,226 + YT 10,302); followers IG 4 / YT 6 (unchanged since 11:09). Checkpoints: TIL-09 24 h = 3,264 / 2,132 · YT 1,387 (21.2 h; 15.7× baseline, hook hold 72.1 %, watch 74 %); TIL-07 72 h = 180 / 127 · YT 1,213 (74.9 h). Older reels frozen on IG; YT batch unchanged.
+
+| Reel | Age | IG views | IG reach | Hook hold | Avg watch | Watch ratio | Shares / saves | YT views |
+|---|---|---|---|---|---|---|---|---|
+| TIL-01 whisky | 192 h | 208 | 138 | 71.3 % | 11.9 s | 80 % | 0 / 0 | 1,736 |
+| TIL-02 mercury | 189 h | 1,778 | 1,149 | 67.5 % | 11.2 s | 68 % | 0 / 0 | 1,231 |
+| TIL-03 honey | 162 h | 161 | 112 | 61.6 % | 9.8 s | 60 % | 0 / 0 | 1,162 |
+| TIL-04 gravity | 144 h | 170 | 114 | 58.0 % | 10.1 s | 61 % | 0 / 0 | 520 |
+| TIL-05 pasta | 123 h | 715 | 520 | 60.8 % | 9.3 s | 62 % | 0 / 0 | 1,384 |
+| TIL-06 marathon | 99 h | 186 | 120 | 64.8 % | 10.4 s | 69 % | 0 / 0 | 10 |
+| TIL-07 basketball | 75 h | 180 | 127 | 55.1 % | 7.8 s | 52 % | 0 / 0 | 1,213 |
+| TIL-08 shrunk 1 cm | 51 h | 1,548 | 1,093 | 63.0 % | 9.5 s | 63 % | 0 / 1 | 1,658 |
+| TIL-09 olive oil | 27 h | 3,278 | 2,144 | 72.1 % | 11.1 s | 74 % | 0 / 0 | 1,388 |
+| TIL-10 10× taller | 1 h | 2 | 0 | n/a | n/a | n/a | 0 / 0 | 0 |
+- **Findings:** 1. No new evidence vs the 11:09 check (IG frozen after ~20 h; TIL-09 +19 views/+12 accounts). 11:09 findings stand. 2. **TIL-10 went out 2 h 52 min late** (process failure, see CAMPAIGN_LOG decisions); all four earlier late posts reached ~110–140 accounts, so TIL-10 is a confounded E5 data point (confidence in E5 rests on TIL-08/09: medium-high, unchanged).
+- **Adjustment applied:** none (NEXT BUILD INSTRUCTION followed). TIL-11 = queue G "Your breath on Everest's summit", E7 reel 1: end card "TOMORROW: TOAST ON VENUS" (13.45–15 s, under THE REAL SCIENCE card) + caption series line "Tomorrow: toast on Venus."; everything else as TIL-09/10 (15 s / 1.10, side-by-side proof image at t = 0, caption v2, disclaimer on caption + card). E7 status: reel 1 built, publishes 17 Nov 16:00; baseline ≈0.9 follows per 1,000 IG reach; first read 18 Nov. **Binding:** TIL-12 = toast on Venus.
+
 ## Weekly reviews
 ### Week 1 (8–15 Nov 2026), written 15 Nov 11:08
 - Output: 8 reels published (TIL-01..08), 4 consecutive on-time 16:00 posts since TIL-05; READY buffer working (TIL-09 ready for today). Totals at 15 Nov 11:08: 13,498 views (IG 4,929 + YT 8,569); IG followers 1, YT subscribers 5.
