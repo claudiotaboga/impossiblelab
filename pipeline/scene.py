@@ -1,23 +1,24 @@
-"""The Impossible Lab #10 - you, 10x taller (square-cube law).
-Units: metres. The giant is the standard mannequin (1.75 units) scaled x10 = 17.5 m; a 1.75 m person stands at its feet.
-Shots: (hook) giant running down a suburban street, shins glowing red (x10 stress), houses at knee height;
-grow x10 beside a house with a height bar; WEIGHT x1,000: a 10x10x10 cube of 1 m blocks assembles next to one block;
-BONE x100: a 10x10 tile slab (cross-section) appears beside it; run: shins heat up, the giant buckles at "break";
-the only fix: the giant stands chest-deep in a lake, glow gone, a whale surfaces. Card: back to the hook framing.
+"""The Impossible Lab #11 - your breath on Everest's summit.
+Units: metres. Mannequin 1.75 m (pelvis origin, standing pelvis height 0.915).
+Set (origin): SEA LEVEL plinth (x = -1.3, sand) vs EVEREST 8,849 m rock-and-snow peak (x = +1.3). Above each figure a
+glass "breath" bubble: 30 molecules at sea level vs 10 on the summit, 1 in 5 red (O2) in both (air is still ~21 % O2,
+pressure ~1/3). Line 3 shows the 20 missing molecules as ghosts; line 4 a BRAIN O2 gauge drains with a 0:00 -> 2:00
+timer (frame_change_pre handler) and the lights dim on "lights out". Line 5: base camp (x = 40) with tents and a
+climber; line 6: the climber stands on the summit with an orange oxygen bottle + mask, arms up. Last ~1.3 s: hook.
 Usage: python3 scene.py [start end [step]] | [f1,f2,...] | [f]  [--force]   (no args = all frames)
 """
-import bpy, bmesh, addon_utils, math, random, sys, os, json, time
-from mathutils import Vector, Matrix
+import bpy, addon_utils, math, random, sys, os, json, time
+from mathutils import Vector
 from config import FPS, FRAMES as N, DUR
 
-random.seed(10)
+random.seed(11)
 bpy.ops.wm.read_factory_settings(use_empty=True)
 addon_utils.enable("cycles", default_set=True)
 S = bpy.context.scene
 S.render.engine = "CYCLES"; S.cycles.device = "CPU"
 S.cycles.samples = 8; S.cycles.use_denoising = True
 S.cycles.max_bounces = 6; S.cycles.glossy_bounces = 2; S.cycles.diffuse_bounces = 1
-S.cycles.transmission_bounces = 4; S.cycles.transparent_max_bounces = 4
+S.cycles.transmission_bounces = 2; S.cycles.transparent_max_bounces = 8
 S.render.resolution_x, S.render.resolution_y = 486, 864
 S.render.fps = FPS; S.frame_start, S.frame_end = 0, N - 1
 S.render.image_settings.file_format = "PNG"
@@ -37,14 +38,6 @@ def mat(name, base=(0.5, 0.5, 0.5), rough=0.5, metal=0.0, emit=None, estr=0.0):
         b.inputs["Emission Color"].default_value = (*emit, 1)
         b.inputs["Emission Strength"].default_value = estr
     return m
-def noise_mat(name, c1, c2, scale, rough=0.95):
-    m = bpy.data.materials.new(name); m.use_nodes = True; nt = m.node_tree
-    b = nt.nodes["Principled BSDF"]; b.inputs["Roughness"].default_value = rough
-    nz = nt.nodes.new("ShaderNodeTexNoise"); nz.inputs["Scale"].default_value = scale; nz.inputs["Detail"].default_value = 6
-    rp = nt.nodes.new("ShaderNodeValToRGB")
-    rp.color_ramp.elements[0].color = (*c1, 1); rp.color_ramp.elements[1].color = (*c2, 1)
-    nt.links.new(nz.outputs["Fac"], rp.inputs[0]); nt.links.new(rp.outputs[0], b.inputs["Base Color"])
-    return m
 def liquid(name, tint, gloss_col, mixf=0.22):
     m = bpy.data.materials.new(name); m.use_nodes = True; nt = m.node_tree
     for n in list(nt.nodes):
@@ -62,44 +55,24 @@ def liquid(name, tint, gloss_col, mixf=0.22):
     nt.links.new(tr.outputs[0], mx.inputs[1]); nt.links.new(gl.outputs[0], mx.inputs[2])
     nt.links.new(mx.outputs[0], out.inputs[0])
     return m
-
-M_GRASS = noise_mat("grass", (0.12, 0.30, 0.07), (0.24, 0.46, 0.12), 0.08, 0.8)
-M_ROAD = noise_mat("road", (0.10, 0.10, 0.11), (0.18, 0.18, 0.19), 1.5, 0.85)
-M_LINE = mat("line", (0.95, 0.92, 0.80), 0.6)
-M_PLAZA = noise_mat("plaza", (0.55, 0.53, 0.50), (0.68, 0.66, 0.62), 0.6, 0.9)
-M_WALLS = [mat("w1", (0.86, 0.80, 0.68), 0.8), mat("w2", (0.70, 0.78, 0.84), 0.8), mat("w3", (0.90, 0.72, 0.62), 0.8)]
-M_ROOF = mat("roof", (0.45, 0.16, 0.12), 0.7)
-M_WIN = mat("win", (0.15, 0.22, 0.30), 0.15)
-M_TRUNK = mat("trunk", (0.25, 0.16, 0.09), 0.9)
-M_LEAF = mat("leaf", (0.10, 0.32, 0.10), 0.8)
-M_CAR = mat("car", (0.10, 0.35, 0.75), 0.3, 0.3)
-M_SKIN = mat("skin", (0.62, 0.45, 0.32), 0.55)
-M_SHIRT = mat("shirt", (0.95, 0.55, 0.06), 0.6)
-M_PANTS = mat("pants", (0.06, 0.10, 0.28), 0.6)
-M_SHOE = mat("shoe", (0.95, 0.95, 0.95), 0.5)
-M_SHIRT2 = mat("shirt2", (0.15, 0.55, 0.30), 0.6)
-M_BLOCK = mat("block", (0.95, 0.62, 0.15), 0.5)
-M_TILE = mat("tile", (0.85, 0.88, 0.92), 0.4, 0, (0.55, 0.75, 1.0), 0.6)
-M_LBL = mat("lbl", (1.0, 0.7, 0.2), 0.4, 0, (1.0, 0.65, 0.15), 6.0)
-M_LBLB = mat("lblb", (0.4, 0.7, 1.0), 0.4, 0, (0.45, 0.75, 1.0), 6.0)
-M_LBLW = mat("lblw", (1, 1, 1), 0.4, 0, (1, 1, 1), 4.0)
-M_WATER = liquid("lake", (0.30, 0.55, 0.72), (0.18, 0.38, 0.58), 0.30)
-M_WHALE = mat("whale", (0.13, 0.20, 0.32), 0.4)
-M_SAND = noise_mat("sand", (0.60, 0.55, 0.40), (0.72, 0.66, 0.50), 0.3)
-# stress glow on the giant's shins: emission strength animated per frame
-M_HOT = mat("hot", (0.9, 0.05, 0.02), 0.5, 0, (1.0, 0.04, 0.01), 0.0)
-HOT = M_HOT.node_tree.nodes["Principled BSDF"].inputs["Emission Strength"]
-
-world = bpy.data.worlds.new("w"); S.world = world; world.use_nodes = True
-nt = world.node_tree; bg = nt.nodes["Background"]
-tcw = nt.nodes.new("ShaderNodeTexCoord"); sep = nt.nodes.new("ShaderNodeSeparateXYZ")
-nt.links.new(tcw.outputs["Generated"], sep.inputs[0])
-rpw = nt.nodes.new("ShaderNodeValToRGB"); e = rpw.color_ramp.elements
-e[0].position = 0.48; e[0].color = (0.70, 0.78, 0.88, 1); e[1].position = 0.85; e[1].color = (0.28, 0.45, 0.72, 1)
-nt.links.new(sep.outputs["Z"], rpw.inputs[0]); nt.links.new(rpw.outputs[0], bg.inputs[0]); bg.inputs[1].default_value = 1.1
-sun = bpy.data.objects.new("sun", bpy.data.lights.new("sun", "SUN"))
-sun.data.energy = 3.4; sun.data.angle = math.radians(6); sun.data.color = (1.0, 0.95, 0.88)
-sun.rotation_euler = (math.radians(48), 0, math.radians(-30)); S.collection.objects.link(sun)
+def tiles(name, c_tile, c_grout, scale):
+    m = bpy.data.materials.new(name); m.use_nodes = True; nt = m.node_tree
+    b = nt.nodes["Principled BSDF"]; b.inputs["Roughness"].default_value = 0.25
+    br = nt.nodes.new("ShaderNodeTexBrick"); br.offset = 0.0
+    br.inputs["Color1"].default_value = (*c_tile, 1); br.inputs["Color2"].default_value = (*[c * 0.93 for c in c_tile], 1)
+    br.inputs["Mortar"].default_value = (*c_grout, 1); br.inputs["Scale"].default_value = scale
+    br.inputs["Mortar Size"].default_value = 0.02; br.inputs["Brick Width"].default_value = 0.5; br.inputs["Row Height"].default_value = 0.5
+    tc = nt.nodes.new("ShaderNodeTexCoord"); nt.links.new(tc.outputs["Object"], br.inputs["Vector"])
+    nt.links.new(br.outputs["Color"], b.inputs["Base Color"])
+    return m
+def noise_mat(name, c1, c2, scale, rough=0.9):
+    m = bpy.data.materials.new(name); m.use_nodes = True; nt = m.node_tree
+    b = nt.nodes["Principled BSDF"]; b.inputs["Roughness"].default_value = rough
+    nz = nt.nodes.new("ShaderNodeTexNoise"); nz.inputs["Scale"].default_value = scale; nz.inputs["Detail"].default_value = 5
+    rp = nt.nodes.new("ShaderNodeValToRGB")
+    rp.color_ramp.elements[0].color = (*c1, 1); rp.color_ramp.elements[1].color = (*c2, 1)
+    nt.links.new(nz.outputs["Fac"], rp.inputs[0]); nt.links.new(rp.outputs[0], b.inputs["Base Color"])
+    return m
 
 def link(o, m=None, parent=None):
     if m: o.data.materials.append(m)
@@ -108,7 +81,7 @@ def link(o, m=None, parent=None):
 def box(loc, size, m, name="box", parent=None):
     bpy.ops.mesh.primitive_cube_add(size=1, location=loc); o = bpy.context.object
     o.scale = size; o.name = name; bpy.ops.object.transform_apply(scale=True); return link(o, m, parent)
-def cyl_between(a, b, r, m, parent=None, name="limb", caps=True, verts=18):
+def cyl_between(a, b, r, m, parent=None, name="limb", caps=True, verts=16):
     a, b = V(a), V(b); d = b - a
     bpy.ops.mesh.primitive_cylinder_add(vertices=verts, radius=r, depth=d.length, location=(a + b) / 2)
     o = bpy.context.object; o.name = name
@@ -116,225 +89,282 @@ def cyl_between(a, b, r, m, parent=None, name="limb", caps=True, verts=18):
     bpy.ops.object.shade_smooth(); link(o, m, parent)
     if caps:
         for p in (a, b):
-            bpy.ops.mesh.primitive_uv_sphere_add(segments=14, ring_count=7, radius=r, location=p)
+            bpy.ops.mesh.primitive_uv_sphere_add(segments=12, ring_count=6, radius=r, location=p)
             e = bpy.context.object; bpy.ops.object.shade_smooth(); link(e, m, parent)
     return o
 def empty(name, loc=(0, 0, 0), parent=None):
     e = bpy.data.objects.new(name, None); e.location = loc; S.collection.objects.link(e)
     if parent: e.parent = parent
     return e
-def text(body, loc, size, m, rot=(math.radians(90), 0, 0)):
+def text(body, loc, rot, size, m, align="CENTER", parent=None):
     bpy.ops.object.text_add(location=loc, rotation=rot); t = bpy.context.object
-    t.data.body = body; t.data.size = size; t.data.extrude = 0.02; t.data.align_x = "CENTER"; t.data.align_y = "CENTER"
-    t.visible_shadow = False
-    return link(t, m)
-def sphere(loc, r, m, name="sph", parent=None, seg=32):
+    t.data.body = body; t.data.size = size; t.data.extrude = 0.005; t.data.align_x = align; t.data.align_y = "CENTER"
+    return link(t, m, parent)
+def sphere(loc, r, m, name="sph", parent=None, seg=24):
     bpy.ops.mesh.primitive_uv_sphere_add(segments=seg, ring_count=seg // 2, radius=r, location=loc)
     o = bpy.context.object; o.name = name; bpy.ops.object.shade_smooth(); return link(o, m, parent)
 def smooth(x): x = max(0.0, min(1.0, x)); return x * x * (3 - 2 * x)
 def vis(o, on, f, base=(1, 1, 1)):
     o.scale = base if on else (0.0001,) * 3; o.keyframe_insert("scale", frame=f)
-def grid_mesh(name, nx, ny, nz, size, gap, m, origin):
-    """One mesh of nx*ny*nz cubes (edge `size`, spacing size+gap), min corner at origin."""
-    me = bpy.data.meshes.new(name); bm = bmesh.new(); st = size + gap
-    for i in range(nx):
-        for j in range(ny):
-            for k in range(nz):
-                c = V((i * st + size / 2, j * st + size / 2, k * st + size / 2))
-                bmesh.ops.create_cube(bm, size=size, matrix=Matrix.Translation(c))
-    bm.to_mesh(me); bm.free(); o = bpy.data.objects.new(name, me); S.collection.objects.link(o)
-    o.location = origin; return link(o, m)
+def noshadow(o):
+    o.visible_shadow = False
+    return o
+TR = (math.radians(90), 0, 0)
 
-# ---------- ground: grass, a street along x ----------
-box((-40, 0, -0.5), (400, 400, 1.0), M_GRASS, "ground")       # top at z=0, x in [-240, 160]
-box((-40, 0, 0.01), (400, 9, 0.02), M_ROAD, "road")
-for k in range(-40, 27):
-    box((k * 6.0, 0, 0.03), (3.0, 0.25, 0.01), M_LINE, "dash")
-def house(x, y, w, d, h, mw):
-    box((x, y, h / 2), (w, d, h), mw, "house")
-    bpy.ops.mesh.primitive_cone_add(vertices=4, radius1=w * 0.78, depth=3.2, location=(x, y, h + 1.6))
-    r = bpy.context.object; r.rotation_euler = (0, 0, math.radians(45)); r.scale = (1, d / w, 1); link(r, M_ROOF)
-    for k in (-1, 1):
-        box((x + k * w * 0.25, y - d / 2 - 0.02, h * 0.55), (1.4, 0.05, 1.3), M_WIN, "win")
-    box((x, y - d / 2 - 0.02, 1.0), (1.1, 0.05, 2.0), M_WIN, "door")
-for k, x in enumerate(range(-230, 150, 15)):
-    if -175 < x < -115: continue                                # plaza for the cube shot
-    house(x + random.uniform(-2, 2), 14 + random.uniform(0, 3), random.uniform(8, 10), 8, random.uniform(4.5, 5.5), M_WALLS[k % 3])
-def tree(x, y, s=1.0):
-    cyl_between((x, y, 0), (x, y, 2.5 * s), 0.25 * s, M_TRUNK, caps=False, verts=8)
-    sphere((x, y, 3.8 * s), 1.9 * s, M_LEAF, "crown", None, 14)
-for x in range(-235, 150, 11):
-    if -175 < x < -115: continue
-    tree(x + 4, 8.0 + random.uniform(-0.5, 0.5), random.uniform(0.9, 1.2))
-for x in (-52, 12, 47, 95):
-    box((x, -2.0, 0.75), (4.3, 1.8, 1.1), M_CAR, "car"); box((x - 0.3, -2.0, 1.55), (2.4, 1.6, 0.7), M_WIN, "carcab")
-
-# ---------- lake (x > 160): basin floor at -14, water surface at -0.3 ----------
-LX = 210.0
-box((LX, 0, -14.5), (100, 400, 1.0), M_SAND, "lakebed")
-box((LX, 0, -7.15), (100, 400, 13.7), M_WATER, "water").visible_shadow = False
-for y in range(-60, 120, 14):
-    tree(LX + 55, y, 1.2)
-whale = empty("whale")
-bpy.ops.mesh.primitive_uv_sphere_add(segments=28, ring_count=14, radius=1, location=(0, 0, 0))
-o = bpy.context.object; o.scale = (13, 3.0, 2.4); bpy.ops.object.shade_smooth(); link(o, M_WHALE, whale)
-cyl_between((-10, 0, 0.3), (-16, 0, 4.0), 1.0, M_WHALE, whale, "tailstock", caps=True)
-bpy.ops.mesh.primitive_uv_sphere_add(segments=20, ring_count=10, radius=1, location=(-16.5, 0, 4.6))
-o = bpy.context.object; o.scale = (1.6, 4.2, 0.35); bpy.ops.object.shade_smooth(); link(o, M_WHALE, whale)
-whale.rotation_mode = "XYZ"; whale.scale = (0.7, 0.7, 0.7)
-
-# ---------- plaza: one 1 m block vs 1,000 blocks; bone cross-section slab ----------
-PX = -145.0
-box((PX + 5, 0, 0.02), (60, 40, 0.04), M_PLAZA, "plaza")
-CUBE0 = V((PX - 4.8, -4.8, 0.04))
-LAYERS = [grid_mesh(f"layer{k}", 10, 10, 1, 0.94, 0.06, M_BLOCK, CUBE0 + V((0, 0, k * 1.0))) for k in range(10)]
-ONE = grid_mesh("one", 1, 1, 1, 0.94, 0.06, M_BLOCK, V((PX - 8.5, -6.0, 0.04)))
-SLAB = grid_mesh("slab", 10, 10, 1, 0.94, 0.06, M_TILE, V((PX - 4.8, -17.5, 0.04)))
-T1 = text("x1", (PX - 8.0, -6.6, 2.0), 1.1, M_LBL)
-T1000 = text("WEIGHT x1,000", (PX, -5.2, 12.0), 1.45, M_LBL)
-T100 = text("BONE x100", (PX + 0.2, -12.5, 1.2), 2.0, M_LBL, rot=(math.radians(25), 0, 0))
-
-# ---------- people ----------
-def person(shirt):
-    body = empty("body")
-    bpy.ops.mesh.primitive_uv_sphere_add(segments=22, ring_count=11, location=(0, 0, 0.30))
-    o = bpy.context.object; o.scale = (0.20, 0.12, 0.32); bpy.ops.object.shade_smooth(); link(o, shirt, body)
-    bpy.ops.mesh.primitive_uv_sphere_add(segments=22, ring_count=11, location=(0, 0, 0.02))
-    o = bpy.context.object; o.scale = (0.18, 0.13, 0.13); bpy.ops.object.shade_smooth(); link(o, M_PANTS, body)
+# ---------- person mannequin (pelvis at origin, faces -y, shoulders along x) ----------
+STAND = 0.915
+def person(name, shirt):
+    body = empty(name)
+    torso = sphere((0, 0, 0.30), 1.0, shirt, "torso", body, 22); torso.scale = (0.20, 0.12, 0.32)
+    o = sphere((0, 0, 0.02), 1.0, M_PANTS, "hips", body, 22); o.scale = (0.18, 0.13, 0.13)
     cyl_between((0, 0, 0.58), (0, 0, 0.66), 0.045, M_SKIN, body, "neck")
-    sphere((0, 0, 0.76), 0.105, M_SKIN, "head", body, 22)
-    arms, legs, knees, shins = [], [], [], []
+    sphere((0, 0, 0.76), 0.105, M_SKIN, "head", body, 20)
+    arms, legs = [], []
     for side in (-1, 1):
-        sh = empty(f"shoulder{side}", (side * 0.21, 0, 0.5), body)
+        sh = empty(f"{name}sh{side}", (side * 0.21, 0, 0.5), body)
         cyl_between((0, 0, 0), (side * 0.03, 0, -0.30), 0.045, M_SKIN, sh, "upperarm")
         cyl_between((side * 0.03, 0, -0.30), (side * 0.04, 0, -0.58), 0.04, M_SKIN, sh, "forearm")
         sh.rotation_mode = "XYZ"; arms.append(sh)
     for side in (-1, 1):
-        hp = empty(f"hip{side}", (side * 0.09, 0, 0), body)
+        hp = empty(f"{name}hp{side}", (side * 0.09, 0, 0), body)
         cyl_between((0, 0, 0), (side * 0.01, 0, -0.45), 0.068, M_PANTS, hp, "thigh")
-        kn = empty(f"knee{side}", (side * 0.01, 0, -0.45), hp)
-        cyl_between((0, 0, 0), (0, 0, -0.41), 0.05, M_SKIN, kn, "shin")
-        shn = cyl_between((0, 0, -0.06), (0, 0, -0.36), 0.054, M_HOT, kn, "hotshin", caps=False)
-        bpy.ops.mesh.primitive_uv_sphere_add(segments=12, ring_count=6, location=(0, -0.05, -0.43))
-        ft = bpy.context.object; ft.scale = (0.05, 0.12, 0.04); link(ft, M_SHOE, kn)
-        hp.rotation_mode = "XYZ"; kn.rotation_mode = "XYZ"; legs.append(hp); knees.append(kn); shins.append(shn)
+        cyl_between((side * 0.01, 0, -0.45), (side * 0.01, 0, -0.86), 0.05, M_SKIN, hp, "shin")
+        ft = sphere((side * 0.01, -0.05, -0.88), 1.0, M_SHOE, "foot", hp, 12); ft.scale = (0.05, 0.12, 0.04)
+        hp.rotation_mode = "XYZ"; legs.append(hp)
     body.rotation_mode = "XYZ"
-    return body, arms, legs, knees, shins
-STAND = 0.915
-G, G_ARMS, G_LEGS, G_KNEES, G_SHINS = person(M_SHIRT)
-P, P_ARMS, P_LEGS, P_KNEES, P_SHINS = person(M_SHIRT2)
-for s in P_SHINS: s.hide_render = True          # the normal person has no stress glow
-GX = -60.0
-HB = [box((GX + 6.5, -1.0, 8.75), (0.25, 0.25, 17.5), M_LBLW, "hbar"),
-      box((GX + 6.5, -1.0, 17.5), (1.6, 0.25, 0.25), M_LBLW, "htop")]
-HT = text("17.5 m", (GX + 10.2, -1.0, 17.4), 1.5, M_LBLW)
-H1 = text("1.75 m", (GX - 4.2, -1.6, 2.5), 0.9, M_LBLW)
+    return {"body": body, "torso": torso, "arms": arms, "legs": legs}
+def pose(P, f, loc, rot=(0, 0, 0), arm=0.15, leg=(0.0, 0.0), chest=1.0, arm_fwd=0.0):
+    b = P["body"]; b.location = loc; b.rotation_euler = rot
+    b.keyframe_insert("location", frame=f); b.keyframe_insert("rotation_euler", frame=f)
+    P["torso"].scale = (0.20 * chest, 0.12 * chest ** 1.6, 0.32); P["torso"].keyframe_insert("scale", frame=f)
+    for k, sh in enumerate(P["arms"]):
+        side = -1 if k == 0 else 1
+        sh.rotation_euler = (arm_fwd, -side * arm, 0); sh.keyframe_insert("rotation_euler", frame=f)
+    for k, hp in enumerate(P["legs"]):
+        hp.rotation_euler = (leg[k], 0, 0); hp.keyframe_insert("rotation_euler", frame=f)
+
+M_SAND = noise_mat("sand", (0.78, 0.66, 0.45), (0.88, 0.78, 0.58), 6.0)
+M_SNOW = noise_mat("snow", (0.86, 0.90, 0.97), (0.98, 0.99, 1.0), 3.0, 0.7)
+M_ROCK = noise_mat("rock", (0.08, 0.08, 0.10), (0.22, 0.21, 0.24), 2.5)
+M_CSNOW = noise_mat("csnow", (0.55, 0.60, 0.70), (0.74, 0.78, 0.86), 3.0, 0.8)
+M_SEA = mat("sea", (0.05, 0.32, 0.55), 0.15)
+M_PLINTH = mat("plinth", (0.10, 0.11, 0.13), 0.5)
+M_GLASS = liquid("glass", (0.92, 0.97, 1.0), (0.85, 0.92, 1.0), 0.06)
+M_N2 = mat("n2", (0.72, 0.76, 0.82), 0.4)
+M_GHOST = mat("ghost", (1, 1, 1), 0.4, 0, (1, 1, 1), 1.5)
+M_O2 = mat("o2", (1.0, 0.18, 0.10), 0.35, 0, (1.0, 0.18, 0.08), 2.5)
+M_SKIN = mat("skin", (0.62, 0.45, 0.32), 0.55)
+M_SHIRT = mat("shirt", (0.95, 0.18, 0.08), 0.6)
+M_JACKET = mat("jacket", (0.08, 0.55, 0.65), 0.6)
+M_PANTS = mat("pants", (0.06, 0.10, 0.28), 0.6)
+M_SHOE = mat("shoe", (0.95, 0.95, 0.95), 0.5)
+M_LBL = mat("lbl", (1.0, 0.7, 0.2), 0.4, 0, (1.0, 0.65, 0.15), 5.0)
+M_LBLB = mat("lblb", (0.4, 0.7, 1.0), 0.4, 0, (0.4, 0.7, 1.0), 5.0)
+M_WHITE = mat("lblw", (1, 1, 1), 0.4, 0, (1, 1, 1), 3.0)
+M_RED = mat("red", (1.0, 0.25, 0.15), 0.4, 0, (1.0, 0.25, 0.12), 3.0)
+M_GAUGE = mat("gauge", (0.05, 0.05, 0.06), 0.5)
+M_TENT = mat("tent", (1.0, 0.45, 0.05), 0.6)
+M_TENT2 = mat("tent2", (0.95, 0.85, 0.10), 0.6)
+M_TANK = mat("tank", (0.95, 0.42, 0.05), 0.3, 0.6)
+M_MASK = mat("mask", (0.15, 0.15, 0.17), 0.4)
+
+world = bpy.data.worlds.new("w"); S.world = world; world.use_nodes = True
+nt = world.node_tree; bg = nt.nodes["Background"]
+tcw = nt.nodes.new("ShaderNodeTexCoord"); sep = nt.nodes.new("ShaderNodeSeparateXYZ")
+nt.links.new(tcw.outputs["Generated"], sep.inputs[0])
+rpw = nt.nodes.new("ShaderNodeValToRGB"); e = rpw.color_ramp.elements
+e[0].position = 0.45; e[0].color = (0.70, 0.78, 0.90, 1); e[1].position = 0.85; e[1].color = (0.12, 0.28, 0.62, 1)
+nt.links.new(sep.outputs["Z"], rpw.inputs[0]); nt.links.new(rpw.outputs[0], bg.inputs[0]); bg.inputs[1].default_value = 1.0
+sun = bpy.data.objects.new("sun", bpy.data.lights.new("sun", "SUN"))
+sun.data.energy = 3.6; sun.data.angle = math.radians(6); sun.data.color = (1.0, 0.96, 0.90)
+sun.rotation_euler = (math.radians(40), 0, math.radians(-30)); S.collection.objects.link(sun)
+fill = bpy.data.objects.new("fill", bpy.data.lights.new("fill", "AREA"))
+fill.data.energy = 1200; fill.data.size = 10; fill.location = (0, -10, 6); fill.rotation_euler = (math.radians(60), 0, 0)
+S.collection.objects.link(fill)
+fill2 = bpy.data.objects.new("fill2", bpy.data.lights.new("fill2", "AREA"))
+fill2.data.energy = 450; fill2.data.size = 8; fill2.location = (40, -10, 5); fill2.rotation_euler = (math.radians(65), 0, 0)
+S.collection.objects.link(fill2)
+
+# ---------- hook / story set (origin): SEA LEVEL (x = -1.3) vs EVEREST SUMMIT (x = +1.3) ----------
+LX, RX = -1.4, 1.4
+LTOP, RTOP = 0.9, 1.7
+bpy.ops.mesh.primitive_plane_add(size=600, location=(0, 0, 0)); link(bpy.context.object, M_PLINTH)
+box((LX, 0, LTOP / 2), (2.0, 1.8, LTOP), M_PLINTH, "lplinth")
+box((LX, 0, LTOP + 0.06), (2.0, 1.8, 0.12), M_SAND, "sand")
+box((LX, 0.75, LTOP + 0.08), (2.0, 0.3, 0.1), M_SEA, "sea")
+bpy.ops.mesh.primitive_cone_add(vertices=7, radius1=1.15, radius2=0.42, depth=RTOP, location=(RX, 0.05, RTOP / 2))
+cone = bpy.context.object; link(cone, M_ROCK); cone.rotation_euler = (0, 0, 0.3)
+bpy.ops.mesh.primitive_cone_add(vertices=7, radius1=0.72, radius2=0.40, depth=0.7, location=(RX, 0.05, RTOP - 0.33))
+cap = bpy.context.object; link(cap, M_SNOW); cap.rotation_euler = (0, 0, 0.3)
+text("SEA LEVEL", (LX, -0.92, 0.6), TR, 0.27, M_LBLB)
+text("EVEREST 8,849 m", (RX, -1.25, 0.6), TR, 0.24, M_LBL)
+sign = box((RX, -1.2, 0.6), (1.95, 0.04, 0.42), M_GAUGE, "sign")
+
+# breath bubbles: same 1/5 oxygen, summit holds a third of the molecules
+BZ = 3.35; BR = 0.42
+def bubble(cx, n, seed):
+    rnd = random.Random(seed)
+    g = sphere((cx, 0, BZ), BR, M_GLASS, "bubble", None, 32); noshadow(g)
+    mols = []
+    for i in range(n):
+        while True:
+            p = V((rnd.uniform(-1, 1), rnd.uniform(-1, 1), rnd.uniform(-1, 1)))
+            if p.length < 1: break
+        m = M_O2 if i % 5 == 0 else M_N2
+        o = sphere(V((cx, 0, BZ)) + p * (BR - 0.08), 0.06, m, "mol", None, 10)
+        mols.append((o, V((cx, 0, BZ)) + p * (BR - 0.07), rnd.uniform(0, 6.28)))
+    return g, mols
+BL, MOL_L = bubble(LX, 30, 1)
+BRt, MOL_R = bubble(RX, 10, 2)
+# ghost molecules: the two thirds missing on the summit (appear on line 3)
+rnd = random.Random(5); GHOST = []
+for i in range(20):
+    while True:
+        p = V((rnd.uniform(-1, 1), rnd.uniform(-1, 1), rnd.uniform(-1, 1)))
+        if p.length < 1: break
+    o = sphere(V((RX, 0, BZ)) + p * (BR - 0.08), 0.06, M_GHOST, "ghost", None, 10); noshadow(o); GHOST.append(o)
+    wm = o.modifiers.new("wf", "WIREFRAME"); wm.thickness = 0.008
+PCT_L = text("21% O₂", (LX, -0.05, BZ - BR - 0.17), TR, 0.16, M_WHITE)
+PCT_R = text("21% O₂", (RX, -0.05, BZ - BR - 0.17), TR, 0.16, M_WHITE)
+THIRD = text("⅓ THE AIR", (RX, -0.05, BZ - BR - 0.17), TR, 0.16, M_LBL)
+FULL = text("FULL", (LX, -0.05, BZ - BR - 0.17), TR, 0.16, M_LBLB)
+
+# brain-oxygen gauge next to the summit figure (line 4)
+GX = RX + 0.95; GZ0 = RTOP + 0.05; GH = 0.7
+gauge = empty("gauge")
+box((GX, -0.2, GZ0 + GH / 2), (0.24, 0.06, GH + 0.08), M_GAUGE, "gframe", gauge)
+gfill = box((0, 0, 0.5), (0.17, 0.05, 1.0), M_O2, "gfill")
+bpy.ops.object.origin_set(type="ORIGIN_CURSOR")
+gfill.location = (GX, -0.24, GZ0)
+gtxt = text("BRAIN O₂", (GX, -0.24, GZ0 + GH + 0.16), TR, 0.12, M_WHITE, parent=gauge)
+timer = text("0:00", (GX, -0.24, GZ0 - 0.16), TR, 0.14, M_LBL, parent=gauge)
+
+# ---------- base camp set (x = 40) ----------
+CX = 40.0
+bpy.ops.mesh.primitive_plane_add(size=80, location=(CX, 8, 0.01)); link(bpy.context.object, M_CSNOW)
+for (dx, dy, m) in ((-1.6, 0.6, M_TENT), (0.2, 1.4, M_TENT2), (1.7, 0.4, M_TENT), (-0.4, 3.2, M_TENT2)):
+    bpy.ops.mesh.primitive_cone_add(vertices=4, radius1=0.75, radius2=0, depth=0.9, location=(CX + dx, dy, 0.45))
+    t_ = bpy.context.object; t_.rotation_euler = (0, 0, math.radians(45)); link(t_, m)
+for i in range(5):
+    bpy.ops.mesh.primitive_cone_add(vertices=6, radius1=6 + 2 * i, radius2=0.5, depth=7 + 3 * (i % 3), location=(CX - 16 + 8 * i, 30 + 4 * (i % 2), 3.5 + 1.5 * (i % 3)))
+    link(bpy.context.object, M_CSNOW)
+box((CX, -1.22, 2.2), (3.6, 0.04, 0.85), M_GAUGE, "campsign")
+CAMP_LBL = text("BASE CAMP", (CX, -1.3, 2.35), TR, 0.30, M_LBL)
+WEEKS_LBL = text("WEEKS OF ADAPTING", (CX, -1.3, 2.0), TR, 0.20, M_WHITE)
+for o in (CAMP_LBL, WEEKS_LBL): o.visible_shadow = False
+
+FIG_L = person("figL", M_SHIRT)
+FIG_R = person("figR", M_SHIRT)
+FIG_C = person("figC", M_JACKET)      # climber (camp, then summit with oxygen)
+tankset = empty("tankset", (0, 0, 0), FIG_C["body"])
+cyl_between((0, 0.17, 0.05), (0, 0.17, 0.55), 0.09, M_TANK, tankset, "o2tank")
+mask = box((0, -0.10, 0.73), (0.12, 0.06, 0.09), M_MASK, "mask", tankset)
+cyl_between((0, 0.17, 0.55), (0.0, -0.08, 0.70), 0.015, M_MASK, tankset, "hose", caps=False)
+
+O2LBL = text("BOTTLED O\u2082", (RX + 0.85, -0.35, RTOP + 1.1), TR, 0.14, M_LBL)
 
 # ---------- timing ----------
-t2, t3, t4, t5, t6, t7 = (L[i]["start"] for i in range(2, 8))
+t2, t3, t4, t5, t6 = (L[i]["start"] for i in range(2, 7))
 tc = CARD_START
-T_BREAK = next(w["t"] for w in L[5]["words"] if w["w"].startswith("break")) + 0.05
-RUN_V = 7.0
+W4 = {w["w"]: w["t"] for w in L[4]["words"]}
+T_OUT = W4["lights"]                         # lights out
+T_SUMMIT2 = t6 + 0.80                        # cut to the summit with oxygen
+T_LOOP = tc + 0.25                           # back to the hook framing
+
 def mode_of(t):
     if t < t2: return "hook"
-    if t < t3: return "grow"
-    if t < t4: return "weight"
-    if t < t5: return "bone"
-    if t < t6 + 0.4: return "run"
-    if t < tc + 0.25: return "lake"
+    if t < t3: return "bubbles"
+    if t < t4: return "third"
+    if t < t5: return "faint"
+    if t < T_SUMMIT2: return "camp"
+    if t < T_LOOP: return "oxygen"
     return "hook"
 
-def pose(f, body, arms, legs, knees, loc, scl, yaw, ph, amp, hip=None, knee=None, pitch=0.0):
-    body.location = loc; body.scale = (scl,) * 3; body.rotation_euler = (pitch, 0, yaw)
-    s = math.sin(ph)
-    for k, sh in enumerate(arms):
-        side = -1 if k == 0 else 1
-        sh.rotation_euler = (amp * 0.9 * s * (1 if k == 0 else -1), -side * math.radians(8), 0)
-        sh.keyframe_insert("rotation_euler", frame=f)
-    for k, hp in enumerate(legs):
-        sgn = -1 if k == 0 else 1
-        hp.rotation_euler = (hip if hip is not None else amp * s * sgn, 0, 0)
-        kb = knee if knee is not None else max(0.0, amp * 1.3 * math.sin(ph + (0 if k == 0 else math.pi) + 1.2))
-        knees[k].rotation_euler = (kb, 0, 0)
-        hp.keyframe_insert("rotation_euler", frame=f); knees[k].keyframe_insert("rotation_euler", frame=f)
-    body.keyframe_insert("location", frame=f); body.keyframe_insert("rotation_euler", frame=f); body.keyframe_insert("scale", frame=f)
+def timer_txt(scene, *a):
+    t = scene.frame_current / FPS
+    if t < t4: s = 0
+    else: s = min(120, int(120 * min((t - t4 - 0.2) / (T_OUT - t4 - 0.1), 1.0))) if t > t4 + 0.2 else 0
+    timer.data.body = f"{s // 60}:{s % 60:02d}"
+bpy.app.handlers.frame_change_pre.append(timer_txt)
 
-GPOS = {}
+SIT = 0.14   # pelvis height above the surface when sitting slumped
 for f in range(0, N + 1):
     t = f / FPS; m = mode_of(t)
-    glow = 0.0
-    if m == "hook":
-        tau = t if t < t2 else t - tc
-        x = -10 + RUN_V * tau; z = STAND * 10 + 0.5 * abs(math.sin(tau * 5.2))
-        pose(f, G, G_ARMS, G_LEGS, G_KNEES, V((x, 0, z)), 10, math.radians(90), tau * 5.2, 0.6)
-        glow = 2.0 + 0.8 * math.sin(t * 14)
-        pose(f, P, P_ARMS, P_LEGS, P_KNEES, V((x + 9.0, -3.2, STAND)), 1, math.radians(-30), 0, 0.0)
-    elif m == "grow":
-        u = smooth((t - t2 - 0.1) / 1.0); scl = 1 + 9 * u
-        pose(f, G, G_ARMS, G_LEGS, G_KNEES, V((GX, 0, STAND * scl)), scl, 0, 0, 0.0)
-        pose(f, P, P_ARMS, P_LEGS, P_KNEES, V((GX - 2.2, -1.5, STAND)), 1, 0, 0, 0.0)
-    elif m in ("weight", "bone"):
-        pose(f, G, G_ARMS, G_LEGS, G_KNEES, V((GX, 0, STAND * 10)), 10, 0, 0, 0.0)
-        pose(f, P, P_ARMS, P_LEGS, P_KNEES, V((PX - 10.5, -6.5, STAND)), 1, 0, 0, 0.0)
-    elif m == "run":
-        tau = t - t5; x = 10 + RUN_V * tau
-        if t < T_BREAK:
-            z = STAND * 10 + 0.5 * abs(math.sin(tau * 5.2))
-            pose(f, G, G_ARMS, G_LEGS, G_KNEES, V((x, 0, z)), 10, math.radians(90), tau * 5.2, 0.6)
-            glow = 0.3 + 2.7 * smooth(tau / (T_BREAK - t5))
-        else:
-            k = smooth((t - T_BREAK) / 0.45); xb = 10 + RUN_V * (T_BREAK - t5) + 3.0 * k
-            pose(f, G, G_ARMS, G_LEGS, G_KNEES, V((xb, 0, STAND * 10 - 3.5 * k)), 10, math.radians(90), 0, 0.0,
-                 hip=-0.9 * k, knee=1.9 * k, pitch=0.35 * k)
-            glow = 5.0 * (1 - 0.4 * smooth((t - T_BREAK - 0.3) / 0.6))
-        pose(f, P, P_ARMS, P_LEGS, P_KNEES, V((70, -3.5, STAND)), 1, math.radians(-20), 0, 0.0)
-    else:  # lake: standing chest-deep
-        pose(f, G, G_ARMS, G_LEGS, G_KNEES, V((LX - 2, 10, STAND * 10 - 10.6)), 10, math.radians(-10), t * 1.2, 0.05)
-        pose(f, P, P_ARMS, P_LEGS, P_KNEES, V((LX - 52, -6, STAND)), 1, math.radians(20), 0, 0.0)
-    HOT.default_value = max(glow, 0.0); HOT.keyframe_insert("default_value", frame=f)
-    GPOS[f] = G.location.copy()
-    for k, lay in enumerate(LAYERS):
-        vis(lay, m == "bone" or (m == "weight" and t >= t3 + 0.08 + k * 0.1), f)
-    vis(ONE, m in ("weight", "bone"), f); vis(T1, m in ("weight", "bone"), f)
-    vis(T1000, (m == "weight" and t > t3 + 1.05) or m == "bone", f)
-    vis(SLAB, m == "bone" and t > t4 + 0.1, f, (1, 1, 0.3)); vis(T100, m == "bone" and t > t4 + 0.25, f)
-    for o in HB: vis(o, m == "grow" and t > t2 + 1.1, f)
-    vis(HT, m == "grow" and t > t2 + 1.1, f); vis(H1, m == "grow", f)
-    wu = (t - t6) / (DUR - t6)
-    whale.location = V((LX + 1 - 3 * wu, 40, -0.4 + 0.3 * math.sin(t * 2.0))); whale.rotation_euler = (0, 0.04 * math.sin(t * 2), 0)
-    whale.keyframe_insert("location", frame=f); whale.keyframe_insert("rotation_euler", frame=f)
+    # sea-level figure: standing, breathing easy
+    pose(FIG_L, f, V((LX, 0.05, LTOP + 0.12 + STAND)), arm=math.radians(12 + 3 * math.sin(t * 2)), chest=1.0 + 0.04 * math.sin(t * 2.2))
+    # summit figure: sitting, slumping forward; lies down at lights out
+    if m in ("hook",):
+        u = t if t < t2 else t - DUR
+        k = smooth((u + 1.0) / 2.2)                        # slumps during the hook; looped
+        pose(FIG_R, f, V((RX, 0.05, RTOP + SIT)), rot=(0.15 + 0.55 * k, 0, 0), arm=math.radians(10), leg=(-1.45, -1.35),
+             chest=1.0 + 0.08 * math.sin(t * 7))
+    elif m in ("bubbles", "third"):
+        pose(FIG_R, f, V((RX, 0.05, RTOP + SIT)), rot=(0.7, 0, 0), arm=math.radians(10), leg=(-1.45, -1.35), chest=1.0 + 0.08 * math.sin(t * 7))
+    elif m == "faint":
+        k = smooth((t - T_OUT + 0.15) / 0.5)
+        pose(FIG_R, f, V((RX - 0.0, 0.05 - 0.25 * k, RTOP + SIT - 0.02 * k)), rot=(0.7 + 0.85 * k, 0, 0), arm=math.radians(10 + 40 * k),
+             leg=(-1.45 + 0.3 * k, -1.35 + 0.3 * k), chest=1.0 + 0.08 * math.sin(t * 7) * (1 - k))
+    else:
+        pose(FIG_R, f, V((RX, 0.05, -30)))
+    # climber: camp, then summit with oxygen
+    if m == "camp":
+        pose(FIG_C, f, V((CX + 0.3, -0.4, STAND)), rot=(0, 0, math.radians(-15)), arm=math.radians(15 + 4 * math.sin(t * 2)),
+             chest=1.0 + 0.04 * math.sin(t * 2))
+    elif m == "oxygen":
+        k = smooth((t - T_SUMMIT2) / 0.6)
+        pose(FIG_C, f, V((RX, 0.05, RTOP + STAND - 0.05)), rot=(0, 0, math.radians(30)), arm=math.radians(20 + 140 * k), chest=1.0 + 0.04 * math.sin(t * 2))
+    else:
+        pose(FIG_C, f, V((CX, 0, -30)))
+    vis(tankset, m == "oxygen", f); vis(O2LBL, m == "oxygen" and t > T_SUMMIT2 + 0.3, f)
+    vis(BRt, m != "oxygen", f)
+    for (o, p0, ph) in MOL_R: vis(o, m != "oxygen", f)
+    # bubble molecules jitter; on the oxygen shot the summit bubble refills with red O2
+    for (o, p0, ph) in MOL_L + MOL_R:
+        o.location = p0 + V((0.02 * math.sin(t * 5 + ph), 0.02 * math.cos(t * 4 + ph), 0.02 * math.sin(t * 6 + 2 * ph)))
+        o.keyframe_insert("location", frame=f)
+    for i, g in enumerate(GHOST):
+        vis(g, m == "third" and t > t3 + 0.6 + 0.03 * i, f)
+    vis(PCT_L, m in ("bubbles",), f); vis(PCT_R, m in ("bubbles",), f)
+    vis(THIRD, m == "third", f); vis(FULL, m == "third", f)
+    vis(gauge, m == "faint", f)
+    lvl = 1.0 if t < t4 + 0.2 else max(0.06, 1.0 - 0.94 * (t - t4 - 0.2) / (T_OUT - t4 - 0.1))
+    gfill.scale = (1, 1, GH * lvl) if m == "faint" else (0.0001, 0.0001, 0.0001); gfill.keyframe_insert("scale", frame=f)
+    # lights out: dim the sun/fills/world after "lights"
+    dim = 1.0
+    if m == "faint" and t > T_OUT: dim = 1.0 - 0.85 * smooth((t - T_OUT) / 0.35)
+    sun.data.energy = 3.6 * dim; sun.data.keyframe_insert("energy", frame=f)
+    fill.data.energy = 1200 * dim; fill.data.keyframe_insert("energy", frame=f)
+    bg.inputs[1].default_value = 1.0 * (0.25 + 0.75 * dim); bg.inputs[1].keyframe_insert("default_value", frame=f)
 
 # ---------- camera ----------
 cam = bpy.data.objects.new("cam", bpy.data.cameras.new("cam")); S.collection.objects.link(cam); S.camera = cam
-cam.data.sensor_fit = "VERTICAL"; cam.data.sensor_height = 24; cam.data.clip_end = 3000; cam.data.clip_start = 0.05
+cam.data.sensor_fit = "VERTICAL"; cam.data.sensor_height = 24; cam.data.clip_end = 3000; cam.data.clip_start = 0.02
 tgt = empty("tgt"); c = cam.constraints.new("TRACK_TO"); c.target = tgt
 c.track_axis = "TRACK_NEGATIVE_Z"; c.up_axis = "UP_Y"
 def fixed(pa, ta, pb=None, tb=None):
     pb = pb or pa; tb = tb or ta
     return ("lerp", V(pa), V(ta), V(pb), V(tb))
-HOOK = ("follow", (6.0, -42.0, 2.0), (2.0, 0, 9.6))
+HOOK = fixed((0.15, -11.0, 2.1), (0.0, 0, 1.75), (0.1, -10.5, 2.05), (0.0, 0, 1.75))
 SEG = [
-    (0.0, t2 - 0.05, HOOK, 24, 25),
-    (t2 - 0.05, t3 - 0.05, fixed((GX + 2.0, -40.0, 4.0), (GX + 2.0, 0, 8.0), (GX + 2.0, -42.0, 4.5), (GX + 2.0, 0, 8.3)), 24, 24),
-    (t3 - 0.05, t4 - 0.05, fixed((PX - 4.0, -42.0, 7.0), (PX - 1.5, 0, 6.6), (PX - 3.0, -44.0, 7.5), (PX - 1.0, 0, 6.6)), 24, 24),
-    (t4 - 0.05, t5 - 0.05, fixed((PX - 1.0, -58.0, 23.0), (PX, -6.0, 2.4), (PX, -60.0, 24.0), (PX, -6.0, 2.2)), 24, 24),
-    (t5 - 0.05, t6 + 0.4, ("follow", (-6.0, -44.0, 2.5), (1.0, 0, 9.4)), 24, 24),
-    (t6 + 0.4, tc + 0.25, fixed((LX - 24, -38.0, 4.0), (LX - 10, 4, 2.0), (LX - 20, -34.0, 3.5), (LX - 9, 4, 2.0)), 24, 25),
-    (tc + 0.25, DUR + 0.01, HOOK, 25, 25),
+    (0.0, t2 - 0.05, HOOK, 27, 28),
+    (t2 - 0.05, t3 - 0.05, fixed((0.0, -9.6, BZ - 0.4), (0.0, 0, BZ - 0.74), (0.0, -9.0, BZ - 0.4), (0.0, 0, BZ - 0.74)), 30, 30),
+    (t3 - 0.05, t4 - 0.05, fixed((RX + 0.15, -5.8, BZ - 0.2), (RX, 0, BZ - 0.45), (RX + 0.05, -5.3, BZ - 0.2), (RX, 0, BZ - 0.45)), 30, 31),
+    (t4 - 0.05, t5 - 0.05, fixed((RX + 0.6, -5.4, RTOP + 0.95), (RX + 0.35, 0, RTOP + 0.42), (RX + 0.5, -4.9, RTOP + 0.85), (RX + 0.35, 0, RTOP + 0.4)), 30, 30),
+    (t5 - 0.05, T_SUMMIT2, fixed((CX + 0.2, -7.6, 1.9), (CX, 0, 1.25), (CX + 0.1, -7.0, 1.85), (CX, 0, 1.25)), 28, 28),
+    (T_SUMMIT2, T_LOOP, fixed((RX + 0.35, -6.0, RTOP + 1.3), (RX + 0.25, 0, RTOP + 1.0), (RX + 0.3, -5.6, RTOP + 1.3), (RX + 0.25, 0, RTOP + 1.0)), 30, 30),
+    (T_LOOP, DUR + 0.01, HOOK, 27, 26),
 ]
 for f in range(0, N + 1):
     t = f / FPS
     seg = next((s for s in SEG if s[0] <= t < s[1]), SEG[-1])
     u = smooth((t - seg[0]) / (seg[1] - seg[0])); spec = seg[2]
-    if spec[0] == "follow":
-        bp = GPOS[f]; p = V((bp.x, 0, 0)) + V(spec[1]); q = V((bp.x, 0, 0)) + V(spec[2])
-    else:
-        _, pa, ta, pb, tb = spec; p = pa.lerp(pb, u); q = ta.lerp(tb, u)
+    _, pa, ta, pb, tb = spec; p = pa.lerp(pb, u); q = ta.lerp(tb, u)
     cam.location = p; cam.keyframe_insert("location", frame=f)
     tgt.location = q; tgt.keyframe_insert("location", frame=f)
     cam.data.lens = seg[3] + (seg[4] - seg[3]) * u; cam.data.keyframe_insert("lens", frame=f)
 
-json.dump({"t_break": T_BREAK, "t_card": tc, "cuts": [s[0] for s in SEG[1:]], "run_v": RUN_V},
+json.dump({"t_out": T_OUT, "t_summit2": T_SUMMIT2, "t_loop": T_LOOP, "t_card": tc,
+           "cuts": [s[0] for s in SEG[1:]], "molecules_sea": 30, "molecules_summit": 10, "o2_share": "1 in 5 both"},
           open("/home/claude/reel/beats.json", "w"), indent=1)
 
 args = [a for a in (sys.argv[sys.argv.index("--") + 1:] if "--" in sys.argv else sys.argv[1:]) if a != "--force"]

@@ -4,13 +4,12 @@ from kokoro_onnx import Kokoro
 from config import VOICE, VOICE_SPEED
 
 LINES = [
-    "Giant-sized, your legs would snap.",
-    "Grow ten times taller.",
-    "You'd weigh a thousand times more.",
-    "Your bones? Only a hundred times stronger.",
-    "Ten times the stress. One run, and they break.",
-    "The only fix?",
-    "Live in water, like a blue whale.",
+    "Teleported to Everest, you'd faint.",
+    "The air is still one-fifth oxygen.",
+    "It's three times thinner: each breath brings a third.",
+    "Your brain starves. In about two minutes, lights out.",
+    "How do climbers survive?",
+    "Weeks of adapting, and most bring oxygen.",
 ]
 
 k = Kokoro("models/kokoro-v1.0.onnx", "models/voices-v1.0.bin")

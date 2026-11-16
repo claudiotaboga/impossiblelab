@@ -1,0 +1,32 @@
+{
+ "episode_id": "TIL-11",
+ "status": "ready",
+ "qa_passed": true,
+ "width": 1080,
+ "height": 1920,
+ "duration_seconds": 15.0,
+ "title": "What if you breathed on top of Everest?",
+ "video_url": "https://raw.githubusercontent.com/claudiotaboga/impossiblelab/main/episodes/11-everest-breath/video.mp4",
+ "caption": "Teleported to Everest's summit, you'd faint within minutes. 🏔️🫁\n\nThe air up there is still about 21% oxygen, the same as at the beach.\n\nBut the summit air pressure is only about a third of sea level (≈253 vs 760 mmHg), so each breath brings roughly a third of the oxygen.\n\nWithout acclimatisation, useful consciousness at that altitude lasts only about 1–3 minutes (FAA hypoxia tables).\n\nThat's why climbers spend weeks adapting, and about 97% of Everest summits are made with bottled oxygen.\n\nSend this to the friend who wants to climb Everest.\n\nTomorrow: toast on Venus.\n\n⚠️ Don't try this. Climbing too high too fast can cause deadly altitude sickness.\n\n#science #physics #whatif #sciencefacts #everest #biology #altitude #theimpossiblelab",
+ "sources": [
+  "West JB et al. (1983) Barometric pressures at extreme altitudes on Mt. Everest: physiological significance. J Appl Physiol 54:1188-1194 (summit 253 Torr; inspired PO2 ≈43 Torr) https://air.unimi.it/bitstream/2434/176393/2/23-83JAP_Mount_Everest.pdf",
+  "FAA AC 61-107B CHG 1, Figure 2-3 Time of Useful Consciousness: 28,000 ft 2.5–3 min, 30,000 ft 1–2 min (TUC is not the onset of unconsciousness) https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_61-107B_CHG_1.pdf",
+  "NOVA/PBS Everest: rushed to 29,000 ft without acclimatising, 'we would become unconscious within a couple of minutes'; summit oxygen pressure about a third of sea level https://www.pbs.org/wgbh/nova/everest/exposure/higher.html",
+  "NZ Herald / Himalayan Database: about 3% of Everest summits without bottled oxygen (193 of 7,004 before May 2016) https://nzherald.co.nz/world/for-most-on-everest-bottled-oxygen-is-a-must-but-a-few-go-without/QKFZFPVDOU7SQGF4TGO26YLSWA",
+  "Sea-level inspired PO2 = 0.2093 × (760 − 47) ≈ 149 mmHg (standard alveolar gas equation); Everest height 8,848.86 m (2020 China–Nepal survey)",
+  "Next premise check (E7 end card): NASA Venus fact sheet — surface ~737 K (~464 °C), ~92 bar, 96.5% CO2 https://nssdc.gsfc.nasa.gov/planetary/factsheet/venusfact.html"
+ ],
+ "qa": {
+  "duration_s": 15.0,
+  "resolution": "1080x1920",
+  "video": "H.264 High yuv420p, 1.57 Mbps avg, max 1-s window 2.07 Mbps",
+  "audio": "AAC LC 128k 48 kHz stereo",
+  "loudness_lufs": -14.0,
+  "true_peak_dbfs": -1.4,
+  "faststart": true,
+  "frames_checked": "t=0.5, 3.0, 5.6, 8.2, 9.4, 9.55, 10.6, 12.8, 14.2, 14.95: hook readable at t=0, 3 fact chips, card + red disclaimer, E7 TOMORROW pill, captions in sync (two-sentence line shows only the current sentence), labels clear of title/caption zones, handle only @the.impossible.lab",
+  "caption_disclaimer": true,
+  "caption_v2": true,
+  "sha256": "78e86249e703c952fe38c9b397a9139a8b79a16ca03239af06d585be87c1c756"
+ }
+}

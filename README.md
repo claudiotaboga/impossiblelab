@@ -50,3 +50,7 @@ The scenario only publishes payloads with `status: ready`, `qa_passed: true`, 10
 - A full render at 486×864 / 8 samples runs ~5 frames/min on the 2-core sandbox (~65 min for 360 frames); overlaying finished frames at `nice -n 19` while the render runs saves ~10 min at the end.
 - Emissive "glow" materials under AgX Punchy wash out to pink/white above ~3–4 strength; for a saturated red warning glow keep the base colour deep red and the emission strength ≤ 3 (episode 10 shins). Animate it per frame by keyframing the Principled `Emission Strength` input's `default_value`.
 - Big counts (episode 10's 1,000 blocks) are fastest as one bmesh per layer (`grid_mesh()` in `pipeline/reference/scene_ep10.py`); reveal layers with scale keyframes.
+- E7 series teaser (episode 11): `overlay.py` has `NEXT` / `NEXT_START` in the per-episode block; the amber "TOMORROW: …" pill sits at y = 1390 px under THE REAL SCIENCE card (clear of Instagram's bottom UI). Keep it ≤ ~800 px wide at 50 px Inter Black.
+- Captions: a narration line with two sentences now shows only the current sentence once the second one starts (max 2 caption rows; a 3-row caption covered in-scene labels in episode 11).
+- "Missing" items (episode 11's ghost molecules) read well as small spheres with a WIREFRAME modifier (thickness ~0.008) on a white emissive material; transparent glass versions were invisible at 8 samples.
+- Hidden objects keyframed by scale must collapse on all three axes: a box with only z → 0.0001 still renders as a visible flat line (episode 11 gauge).

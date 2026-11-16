@@ -10,19 +10,21 @@ def font(w, s): return ImageFont.truetype(F + f"Inter-{w}.otf", s)
 AMBER = (255, 176, 46); WHITE = (255, 255, 255); INK = (18, 12, 6)
 
 # ---- per-episode content: the only block to change for a new episode ----
-EP_NUM = 10
-TITLE = ["YOU, 10×", "TALLER?"]
+EP_NUM = 11
+TITLE = ["YOUR BREATH", "ON EVEREST?"]
 FACTS = [  # (start, end, text) — times match the narration lines
-    (3.74, 5.24, "70 kg → 70 t  (×1,000)"),
-    (5.44, 7.58, "BONE STRENGTH: ONLY ×100"),
-    (7.78, 10.42, "STRESS ×10 · BONES FAIL AT ≈3–4×"),
+    (2.18, 3.96, "AIR UP THERE: STILL 21% OXYGEN"),
+    (4.16, 6.76, "PRESSURE ≈ ⅓ OF SEA LEVEL"),
+    (6.96, 9.59, "UNADAPTED: USEFUL ~1–3 MIN"),
 ]
-CARD_SUB = "1.75 m, 70 kg adult scaled ×10 in every direction"
-CARD = [("Height · weight", "17.5 m · 70 t", "×10 length → ×1,000 volume and mass"),
-        ("Bone strength", "×100", "grows with cross-section area (length²)"),
-        ("Running stress", "≈550 MPa", "55 MPa ×10 · fails ≈200 (Biewener)"),
+CARD_SUB = "Summit 8,849 m · sudden exposure, no acclimatisation"
+CARD = [("Summit air pressure", "253 mmHg", "sea level 760 · ×0.33 (West 1983)"),
+        ("Oxygen per breath", "43 mmHg", "inspired PO₂ · sea level 149 · O₂ 20.9 %"),
+        ("Useful consciousness", "≈1–3 min", "FAA AC 61-107B · 28–30k ft"),
        ]
-DISCLAIMER = "Don't try this. Don't test your bones with jumps or loads."
+DISCLAIMER = "Don't try this. Climbing too fast can be deadly."
+NEXT = "TOMORROW: TOAST ON VENUS"   # E7 series teaser end card (binding for TIL-12)
+NEXT_START = 13.45
 
 def ease(x): x = max(0, min(1, x)); return 1 - (1 - x) ** 3
 
@@ -80,6 +82,9 @@ def frame(f):
     for l in LINES:
         if l["start"] - 0.05 <= t <= l["end"] + 0.12:
             shown = [w for w in l["words"] if w["t"] <= t] or l["words"][:1]
+            # two-sentence lines: once the second sentence starts, show only it (keeps captions to <= 2 rows)
+            ends = [i for i, w in enumerate(shown[:-1]) if w["w"][-1] in ".?!"]
+            if ends: shown = shown[ends[-1] + 1:]
             rows = wrap(shown, cf, W - 160, d)
             yb = 1330 - (len(rows) - 1) * 40
             for ri, row in enumerate(rows):
@@ -112,6 +117,9 @@ def frame(f):
             dl.text((cx0 + cw - 60, yy + 30), ref, font=font("Medium", 26), fill=(200, 190, 175, int(255 * a)), anchor="rm")
         dl.text((W / 2, cy0 + ch - 50), DISCLAIMER, font=font("SemiBold", 30), fill=(255, 120, 90, int(255 * a)), anchor="mm")
         img.alpha_composite(lay)
+    if t >= NEXT_START:
+        a2 = ease((t - NEXT_START) / 0.35)
+        pill(img, W / 2, 1390 + 30 * (1 - a2), NEXT, font("Black", 50), AMBER, INK, pad=(40, 22), a=a2)
     return img.convert("RGB")
 
 if __name__ == "__main__":
