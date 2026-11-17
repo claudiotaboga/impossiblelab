@@ -20,6 +20,7 @@ Buffer: the daily run publishes the first entry here at 16:00 EET (its `meta.jso
 
 | Episode ID | Folder | Premise | Hook line | Length | SHA-256 | Built |
 |---|---|---|---|---|---|---|
+| TIL-12 | episodes/12-venus-toast | Making toast on Venus (E7 reel 2: end card "TOMORROW: YOUR WEIGHT ON JUPITER"; E5 rule as control) | Venus is hotter than your oven. | 15.0 s (E4) | `4e617b6052dcb9ea689bf800dc6fd8632cd6f32541d45dc736606f7fa8479400` | 17 Nov 2026 20:55 EET |
 
 ## Topic queue
 Take the first item that is not in the register. Every premise must be buildable from Blender primitives, safe to show, and its science checkable. Verify every number before use; the notes are starting points, not facts.

@@ -128,18 +128,22 @@ def heartbeat(t0, t1, bpm0, bpm1):
         t += 60 / (bpm0 + (bpm1 - bpm0) * u)
 def gasp(dur=0.45):  # short breath in (filtered noise swell)
     n = int(dur * SR); return bp(rng.standard_normal(n), 900, 4500) * np.sin(np.linspace(0, np.pi, n)) ** 2
-T_OUT = B["t_out"]; T_SUM2 = B["t_summit2"]
-put(sfx, wind(LINES[3]["start"], 1.0), 0.0, 0.10)                                   # summit wind under hook + bubbles
-put(sfx, gasp(0.45), 0.35, 0.18); put(sfx, gasp(0.45), 1.05, 0.15)                 # shallow gasps on the summit
-for k in range(10):                                                                 # 10 molecules counted (summit bubble)
-    put(sfx, plink(1500 + 40 * k, 0.2), LINES[2]["start"] + 0.15 + k * 0.08, 0.12)
-for k in range(20):                                                                 # 20 ghost molecules: the missing two thirds
-    put(sfx, tick(0.04), LINES[3]["start"] + 0.6 + 0.03 * k, 0.10)
-heartbeat(LINES[4]["start"] + 0.1, T_OUT, 95, 140)                                  # heart races while the gauge drains
-put(sfx, whoosh(0.6, 2500, 200, False), T_OUT, 0.25); put(sfx, thud(0.6, 38), T_OUT + 0.35, 0.6)  # lights out
-put(sfx, wind(LINES[5]["start"] + 0.9 - LINES[5]["start"], 0.6), LINES[5]["start"], 0.08)  # base camp
-put(sfx, whistle(0.7), T_SUM2 + 0.1, 0.10)                                           # oxygen valve hiss
-put(sfx, shimmer(1.2), T_SUM2 + 0.4, 0.12)
+def sizzle(dur):  # dry crackle of bread charring
+    n = int(dur * SR); out = hp(rng.standard_normal(n), 3000) * 0.15
+    for k in range(int(dur * 60)):
+        i = rng.integers(0, max(1, n - 600)); out[i:i + 600] += hp(rng.standard_normal(600), 2000) * np.exp(-np.arange(600) / SR * 400) * rng.uniform(0.3, 1.2)
+    return out * np.clip(np.arange(n) / SR / 0.3, 0, 1) * np.clip((dur - np.arange(n) / SR) / 0.3, 0, 1)
+def rumble(dur):  # heavy air pressing in
+    n = int(dur * SR); tt = np.arange(n) / SR
+    return lp(rng.standard_normal(n), 160) * 2.5 * np.sin(np.linspace(0, np.pi, n)) ** 0.8
+TC = B["t_char"]
+for k in range(12):                                                                 # thermometers climbing
+    put(sfx, tick(0.04), 0.2 + k * 0.11, 0.10)
+put(sfx, whoosh(0.7, 400, 1800), LINES[1]["start"] + 0.0, 0.15)                     # bread lowers onto the fork
+put(sfx, thud(0.3, 120), LINES[1]["start"] + 0.75, 0.25)
+put(sfx, rumble(1.8), LINES[3]["start"], 0.35)                                      # 92 bar pressing in
+put(sfx, sizzle(LINES[5]["start"] - LINES[4]["start"] + 0.6), LINES[4]["start"], 0.30)  # charring
+put(sfx, whoosh(0.5, 3000, 300, False), LINES[6]["start"] + 0.1, 0.18)              # flame that never comes
 for t_cut in B["cuts"]:
     put(sfx, whoosh(0.35, 1800, 500, False), t_cut - 0.15, 0.10)
 put(sfx, thud(0.4, 60), CARD_START, 0.6); put(sfx, whoosh(0.3, 800, 3000), CARD_START - 0.25, 0.2)

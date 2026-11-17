@@ -10,20 +10,20 @@ def font(w, s): return ImageFont.truetype(F + f"Inter-{w}.otf", s)
 AMBER = (255, 176, 46); WHITE = (255, 255, 255); INK = (18, 12, 6)
 
 # ---- per-episode content: the only block to change for a new episode ----
-EP_NUM = 11
-TITLE = ["YOUR BREATH", "ON EVEREST?"]
+EP_NUM = 12
+TITLE = ["TOAST", "ON VENUS?"]
 FACTS = [  # (start, end, text) — times match the narration lines
-    (2.18, 3.96, "AIR UP THERE: STILL 21% OXYGEN"),
-    (4.16, 6.76, "PRESSURE ≈ ⅓ OF SEA LEVEL"),
-    (6.96, 9.59, "UNADAPTED: USEFUL ~1–3 MIN"),
+    (3.49, 5.09, "VENUS 464 °C · OVEN MAX ~260 °C"),
+    (5.29, 7.11, "AIR PRESSURE ≈ 90× EARTH'S"),
+    (7.31, 9.54, "CHARCOAL-MAKING HEAT: 400–500 °C"),
 ]
-CARD_SUB = "Summit 8,849 m · sudden exposure, no acclimatisation"
-CARD = [("Summit air pressure", "253 mmHg", "sea level 760 · ×0.33 (West 1983)"),
-        ("Oxygen per breath", "43 mmHg", "inspired PO₂ · sea level 149 · O₂ 20.9 %"),
-        ("Useful consciousness", "≈1–3 min", "FAA AC 61-107B · 28–30k ft"),
+CARD_SUB = "Venus surface average (NASA fact sheet)"
+CARD = [("Surface temperature", "464 °C", "737 K · home oven max ≈260–290 °C"),
+        ("Air pressure", "92 bar", "≈91× Earth · 96.5 % CO₂, 3.5 % N₂"),
+        ("Plant matter chars", "≈280 °C+", "charcoal kilns finish ≈400–500 °C (FAO)"),
        ]
-DISCLAIMER = "Don't try this. Climbing too fast can be deadly."
-NEXT = "TOMORROW: TOAST ON VENUS"   # E7 series teaser end card (binding for TIL-12)
+DISCLAIMER = "Don't try this. Overheated toasters can start fires."
+NEXT = "TOMORROW: YOUR WEIGHT ON JUPITER"   # E7 series teaser end card (binding for TIL-13)
 NEXT_START = 13.45
 
 def ease(x): x = max(0, min(1, x)); return 1 - (1 - x) ** 3
@@ -119,7 +119,9 @@ def frame(f):
         img.alpha_composite(lay)
     if t >= NEXT_START:
         a2 = ease((t - NEXT_START) / 0.35)
-        pill(img, W / 2, 1390 + 30 * (1 - a2), NEXT, font("Black", 50), AMBER, INK, pad=(40, 22), a=a2)
+        ns = 50
+        while ns > 36 and font("Black", ns).getlength(NEXT) > 820: ns -= 2
+        pill(img, W / 2, 1390 + 30 * (1 - a2), NEXT, font("Black", ns), AMBER, INK, pad=(40, 22), a=a2)
     return img.convert("RGB")
 
 if __name__ == "__main__":

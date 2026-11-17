@@ -4,12 +4,13 @@ from kokoro_onnx import Kokoro
 from config import VOICE, VOICE_SPEED
 
 LINES = [
-    "Teleported to Everest, you'd faint.",
-    "The air is still one-fifth oxygen.",
-    "It's three times thinner: each breath brings a third.",
-    "Your brain starves. In about two minutes, lights out.",
-    "How do climbers survive?",
-    "Weeks of adapting, and most bring oxygen.",
+    "Venus is hotter than your oven.",
+    "Hold out a slice of bread.",
+    "Nearly twice your oven's max.",
+    "The air presses ninety times harder.",
+    "Your bread skips toast and turns to charcoal.",
+    "The weird part?",
+    "No flames. There's no oxygen to burn.",
 ]
 
 k = Kokoro("models/kokoro-v1.0.onnx", "models/voices-v1.0.bin")

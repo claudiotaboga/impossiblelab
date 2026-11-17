@@ -1,7 +1,7 @@
 {
  "episode_id": "TIL-12",
  "status": "ready",
- "qa_passed": false,
+ "qa_passed": true,
  "width": 1080,
  "height": 1920,
  "duration_seconds": 15.0,
@@ -13,5 +13,18 @@
   "GE Appliances, Oven temperature limits (max bake 550 °F ≈ 288 °C; some ranges 500 °F ≈ 260 °C): https://products.geappliances.com/appliance/gea-support-search-content?contentId=18501",
   "FAO, Simple technologies for charcoal making, 4.1 How wood is transformed into charcoal (breakdown begins ≈280 °C; good charcoal final temperature ≈500 °C; kiln levels ≈400 °C): https://www.fao.org/4/X5328E/x5328e05.htm",
   "Teaser TIL-13 checked: NASA NSSDCA planetary fact sheet ratio table (gravity: Moon 0.166, Mars 0.377, Jupiter 2.36 of Earth): https://nssdc.gsfc.nasa.gov/planetary/factsheet//planet_table_ratio.html"
- ]
+ ],
+ "qa": {
+  "duration_s": 15.0,
+  "resolution": "1080x1920",
+  "video": "H.264 High yuv420p, 1.53 Mbps avg, max 1-s window 2.27 Mbps",
+  "audio": "AAC LC 128k 48 kHz stereo",
+  "loudness_lufs": -14.2,
+  "true_peak_dbfs": -1.5,
+  "faststart": true,
+  "frames_checked": "t=0.5, 2.8, 4.3, 6.2, 8.6, 9.5, 10.1, 11.9, 13.3, 14.95: hook readable at t=0 (thermometers climbing, title), 3 fact chips, card + red disclaimer, E7 TOMORROW pill (auto-sized), captions in sync and ≤ 2 rows, labels inside the frame and clear of title/caption zones, handle only @the.impossible.lab",
+  "caption_disclaimer": true,
+  "caption_v2": true,
+  "sha256": "4e617b6052dcb9ea689bf800dc6fd8632cd6f32541d45dc736606f7fa8479400"
+ }
 }
