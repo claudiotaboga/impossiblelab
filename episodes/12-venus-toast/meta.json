@@ -1,0 +1,17 @@
+{
+ "episode_id": "TIL-12",
+ "status": "ready",
+ "qa_passed": false,
+ "width": 1080,
+ "height": 1920,
+ "duration_seconds": 15.0,
+ "title": "What if you made toast on Venus?",
+ "video_url": "https://raw.githubusercontent.com/claudiotaboga/impossiblelab/main/episodes/12-venus-toast/video.mp4",
+ "caption": "Venus is hotter than your oven. 🍞🪐\n\nVenus' surface averages about 464 °C (NASA), nearly twice a home oven's top setting (≈260–290 °C).\n\nThe air there presses about 90 times harder than on Earth (92 bar), and it is 96.5% carbon dioxide.\n\nHold out a slice of bread and it never turns golden: plant matter starts breaking down above ~280 °C, and 400–500 °C is charcoal-making heat.\n\nIt would never catch fire either. There is no free oxygen, so nothing can burn. It just chars.\n\nSend this to the friend who burns every toast.\n\nTomorrow: your weight on Jupiter.\n\n⚠️ Don't try this. Overheated toasters and ovens can start real kitchen fires.\n\n#science #physics #whatif #sciencefacts #venus #space #food #theimpossiblelab",
+ "sources": [
+  "NASA NSSDCA Venus Fact Sheet (surface temperature 737 K / 464 °C, surface pressure 92 bar, surface density ~65 kg/m³, 96.5% CO2 / 3.5% N2, no O2 listed): https://nssdc.gsfc.nasa.gov/planetary/factsheet/venusfact.html",
+  "GE Appliances, Oven temperature limits (max bake 550 °F ≈ 288 °C; some ranges 500 °F ≈ 260 °C): https://products.geappliances.com/appliance/gea-support-search-content?contentId=18501",
+  "FAO, Simple technologies for charcoal making, 4.1 How wood is transformed into charcoal (breakdown begins ≈280 °C; good charcoal final temperature ≈500 °C; kiln levels ≈400 °C): https://www.fao.org/4/X5328E/x5328e05.htm",
+  "Teaser TIL-13 checked: NASA NSSDCA planetary fact sheet ratio table (gravity: Moon 0.166, Mars 0.377, Jupiter 2.36 of Earth): https://nssdc.gsfc.nasa.gov/planetary/factsheet//planet_table_ratio.html"
+ ]
+}

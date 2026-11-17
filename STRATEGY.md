@@ -295,6 +295,25 @@ Medians (TIL-01..09): hook hold 63.0 %, watch ratio 63 %; 24 h IG reach baseline
 
 NEXT BUILD INSTRUCTION (from 17 Nov 11:28 check): keep current. E7 is running (TIL-11 publishes today 16:00 from READY = reel 1). Build **TIL-12 = queue D "Making toast on Venus"** (binding: named on TIL-11's end card and caption; verify bread charring temperature and NASA Venus surface numbers, hedge), as E7 reel 2: same end card "TOMORROW: <next premise in ≤ 5 words>" + matching caption series line, naming a premise whose numbers the run has checked (default H "your weight on every planet", binding for TIL-13). Everything else as TIL-11: 15 s / 1.10, cold open on a side-by-side proof image readable without sound where the premise allows (e.g. EARTH toaster vs VENUS toaster), caption v2, ⚠️ disclaimer on caption + card, **16:00 on time** (send in short separate calls, never inside one blocking wait). Primary metric: IG followers + YT subscribers per 1,000 IG reach in the 24 h after each E7 post vs control ≈ 1.2 (IG, TIL-08..10); secondary: IG reach at 24 h vs E5 median 1,093, hook hold vs 63.0 %. Verdict after TIL-13's 72 h (22 Nov).
 
+### Production run 17 Nov 2026 (13:12–20:50 EET)
+- **Snapshot 18:44 CET (19:44 EET):** totals **21,233 views** (IG 9,767 + YT 11,466); followers IG 6 / YT 6. Make 8451991 exec 94c8bdc9… and 8451995 exec 67372d35… SUCCESS. Checkpoints filled: TIL-10 24 h = 1,534 / 1,078 · YT 1,094 (24.9 h); TIL-08 72 h = 1,548 / 1,093 · 1,670 (69.2 h); TIL-04 7 d = 171 / 115 · 520 (168.7 h).
+
+| Reel | Age | IG views | IG reach | Hook hold | Avg watch | Watch ratio | Shares / saves | YT views |
+|---|---|---|---|---|---|---|---|---|
+| TIL-01 whisky | 216 h | 209 | 138 | 70.8 % | 11.9 s | 79 % | 0 / 0 | 1,736 |
+| TIL-02 mercury | 214 h | 1,778 | 1,149 | 67.5 % | 11.2 s | 68 % | 0 / 0 | 1,237 |
+| TIL-03 honey | 187 h | 162 | 113 | 61.1 % | 9.7 s | 59 % | 0 / 0 | 1,162 |
+| TIL-04 gravity | 168.7 h | 171 | 115 | 57.5 % | 10.0 s | 61 % | 0 / 0 | 520 |
+| TIL-05 pasta | 147.7 h | 715 | 520 | 60.8 % | 9.3 s | 62 % | 0 / 0 | 1,383 |
+| TIL-06 marathon | 123.7 h | 186 | 120 | 64.8 % | 10.4 s | 69 % | 0 / 0 | 10 |
+| TIL-07 basketball | 99.7 h | 180 | 127 | 55.1 % | 7.8 s | 52 % | 0 / 0 | 1,213 |
+| TIL-08 shrunk 1 cm | 75.7 h | 1,548 | 1,093 | 63.0 % | 9.5 s | 63 % | 0 / 1 | 1,671 |
+| TIL-09 olive oil | 51.7 h | 3,284 | 2,147 | 72.1 % | 11.1 s | 74 % | 0 / 0 | 1,440 |
+| TIL-10 10× taller | 24.9 h | 1,534 | 1,078 | 61.1 % | 9.0 s | 60 % | 0 / 0 | 1,094 |
+| TIL-11 Everest breath | 1.0 h | 0 | 0 | n/a | n/a | n/a | 0 / 0 | 0 |
+- **Findings:** 1. No new performance evidence since the 11:28 check (IG frozen on all reels ≥ 24 h; YT +11). The 11:28 findings stand (E5 3/3; retention is the next ceiling; conversion thin). 2. **Process, high confidence:** two consecutive late posts (TIL-10 +2 h 52 min, TIL-11 +3 h 44 min) both came from the long production session stalling before the 16:00 send, not from the build. Publishing should not depend on that session (decision for Claudio, see CAMPAIGN_LOG).
+- **Adjustment applied:** none (NEXT BUILD INSTRUCTION followed). TIL-12 = queue D "Making toast on Venus" (binding), E7 reel 2: end card "TOMORROW: YOUR WEIGHT ON JUPITER" + caption series line "Tomorrow: your weight on Jupiter."; side-by-side proof image at t = 0 (oven vs Venus thermometers), caption v2, disclaimer on caption + card. **Binding:** TIL-13 = queue H "your weight on Jupiter/every planet" (NASA gravity ratios: Moon 0.166, Mars 0.377, Jupiter 2.36). E7 status: reel 1 live (late), reel 2 in READY for 18 Nov 16:00; verdict after TIL-13's 72 h.
+
 ## Weekly reviews
 ### Week 1 (8–15 Nov 2026), written 15 Nov 11:08
 - Output: 8 reels published (TIL-01..08), 4 consecutive on-time 16:00 posts since TIL-05; READY buffer working (TIL-09 ready for today). Totals at 15 Nov 11:08: 13,498 views (IG 4,929 + YT 8,569); IG followers 1, YT subscribers 5.

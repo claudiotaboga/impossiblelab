@@ -1,0 +1,51 @@
+[
+ {
+  "i": 1,
+  "text": "Venus is hotter than your oven.",
+  "file": "vo/line1.wav",
+  "dur": 1.592,
+  "sr": 24000
+ },
+ {
+  "i": 2,
+  "text": "Hold out a slice of bread.",
+  "file": "vo/line2.wav",
+  "dur": 1.297,
+  "sr": 24000
+ },
+ {
+  "i": 3,
+  "text": "Nearly twice your oven's max.",
+  "file": "vo/line3.wav",
+  "dur": 1.597,
+  "sr": 24000
+ },
+ {
+  "i": 4,
+  "text": "The air presses ninety times harder.",
+  "file": "vo/line4.wav",
+  "dur": 1.827,
+  "sr": 24000
+ },
+ {
+  "i": 5,
+  "text": "Your bread skips toast and turns to charcoal.",
+  "file": "vo/line5.wav",
+  "dur": 2.229,
+  "sr": 24000
+ },
+ {
+  "i": 6,
+  "text": "The weird part?",
+  "file": "vo/line6.wav",
+  "dur": 0.776,
+  "sr": 24000
+ },
+ {
+  "i": 7,
+  "text": "No flames. There's no oxygen to burn.",
+  "file": "vo/line7.wav",
+  "dur": 2.276,
+  "sr": 24000
+ }
+]
