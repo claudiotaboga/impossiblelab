@@ -13,13 +13,13 @@
 | 08 | TIL-08 | 14 Nov 2026 16:00:02 (on time; from READY) | Shrunk to 1 cm tall | Big raindrops weigh more than you. | 15.0 s | 0bc079057dfb49d3b660793c3c6afba4 | [DfuXtOHk5bT](https://www.instagram.com/reel/DfuXtOHk5bT/) | [H-dUAmQbBeg](https://youtube.com/shorts/H-dUAmQbBeg) |
 | 09 | TIL-09 | 15 Nov 2026 16:00:04 (on time; from READY) | Swimming in a pool of olive oil | You'd sink in olive oil. | 15.0 s | 9740ce312aac4aab93c8a9caa24b17f9 | [Dfw8h4onOPb](https://www.instagram.com/reel/Dfw8h4onOPb/) | [BsRmjK--TQ0](https://youtube.com/shorts/BsRmjK--TQ0) |
 | 10 | TIL-10 | 16 Nov 2026 18:52:27 (16:00 slot, 2 h 52 min late; from READY) | You, 10× taller | Giant-sized, your legs would snap. | 15.0 s | c1459b84cc93487a80b14f551fde9eb9 | [Dfz1Bv_iXiC](https://www.instagram.com/reel/Dfz1Bv_iXiC/) | [3rZNBHwGljw](https://youtube.com/shorts/3rZNBHwGljw) |
+| 11 | TIL-11 | 17 Nov 2026 19:43:50 (16:00 slot, 3 h 44 min late; from READY) | Your breath on Everest's summit | Teleported to Everest, you'd faint. | 15.0 s | fc5ab187a17444dcb4325dbee01cbf23 | [Df2fs06lLNa](https://www.instagram.com/reel/Df2fs06lLNa/) | [tRJNmZz9L6Y](https://youtube.com/shorts/tRJNmZz9L6Y) |
 
 ## READY TO PUBLISH
 Buffer: the daily run publishes the first entry here at 16:00 EET (its `meta.json` is final and its video is already hosted), moves it to the register, then builds the next episode into this section.
 
 | Episode ID | Folder | Premise | Hook line | Length | SHA-256 | Built |
 |---|---|---|---|---|---|---|
-| TIL-11 | episodes/11-everest-breath | Your breath on Everest's summit (E7 reel 1: series teaser end card "TOMORROW: TOAST ON VENUS"; E5 topic rule as control) | Teleported to Everest, you'd faint. | 15.0 s (E4) | `78e86249e703c952fe38c9b397a9139a8b79a16ca03239af06d585be87c1c756` | 16 Nov 2026 14:30 EET |
 
 ## Topic queue
 Take the first item that is not in the register. Every premise must be buildable from Blender primitives, safe to show, and its science checkable. Verify every number before use; the notes are starting points, not facts.
