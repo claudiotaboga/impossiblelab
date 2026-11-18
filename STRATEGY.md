@@ -314,6 +314,31 @@ NEXT BUILD INSTRUCTION (from 17 Nov 11:28 check): keep current. E7 is running (T
 - **Findings:** 1. No new performance evidence since the 11:28 check (IG frozen on all reels ≥ 24 h; YT +11). The 11:28 findings stand (E5 3/3; retention is the next ceiling; conversion thin). 2. **Process, high confidence:** two consecutive late posts (TIL-10 +2 h 52 min, TIL-11 +3 h 44 min) both came from the long production session stalling before the 16:00 send, not from the build. Publishing should not depend on that session (decision for Claudio, see CAMPAIGN_LOG).
 - **Adjustment applied:** none (NEXT BUILD INSTRUCTION followed). TIL-12 = queue D "Making toast on Venus" (binding), E7 reel 2: end card "TOMORROW: YOUR WEIGHT ON JUPITER" + caption series line "Tomorrow: your weight on Jupiter."; side-by-side proof image at t = 0 (oven vs Venus thermometers), caption v2, disclaimer on caption + card. **Binding:** TIL-13 = queue H "your weight on Jupiter/every planet" (NASA gravity ratios: Moon 0.166, Mars 0.377, Jupiter 2.36). E7 status: reel 1 live (late), reel 2 in READY for 18 Nov 16:00; verdict after TIL-13's 72 h.
 
+### Daily stats check 18 Nov 2026 (11:08 EET, Wednesday, light run)
+- **Snapshot 11:08 EET** (Make 8451991 exec b1999267… and 8451995 exec 2462f0f5… SUCCESS): total **21,806 views** (IG 9,922 + YT 11,884), **+573** since 17 Nov 18:44 CET (IG +155: TIL-11 +154; YT +418: TIL-11 +403, TIL-09 +12, TIL-10 +5, TIL-08 +3). IG followers 6, YT subscribers 6 (unchanged). Competitors not due (Mon/Thu).
+
+| Reel | Age | IG views | IG reach | Hook hold | Avg watch | Watch ratio | Shares / saves / comments | YT views |
+|---|---|---|---|---|---|---|---|---|
+| TIL-01 whisky | 232 h | 209 | 138 | 70.8 % | 11.9 s | 79 % | 0 / 0 / 0 | 1,736 |
+| TIL-02 mercury | 229 h | 1,779 | 1,150 | 67.5 % | 11.2 s | 68 % | 0 / 0 / 0 | 1,237 |
+| TIL-03 honey | 202 h | 162 | 113 | 61.1 % | 9.7 s | 59 % | 0 / 0 / 0 | 1,162 |
+| TIL-04 gravity | 184 h | 171 | 115 | 57.5 % | 10.0 s | 61 % | 0 / 0 / 0 | 520 |
+| TIL-05 pasta | 163 h | 715 | 520 | 60.8 % | 9.3 s | 62 % | 0 / 0 / 0 | 1,383 |
+| TIL-06 marathon | 139 h | 186 | 120 | 64.8 % | 10.4 s | 69 % | 0 / 0 / 0 | 10 |
+| TIL-07 basketball | 115 h | 180 | 127 | 55.1 % | 7.8 s | 52 % | 0 / 0 / 0 | 1,208 |
+| TIL-08 shrunk 1 cm | 91 h | 1,548 | 1,093 | 63.0 % | 9.5 s | 63 % | 0 / 1 / 0 | 1,674 |
+| TIL-09 olive oil | 67 h | 3,284 | 2,149 | 72.1 % | 11.1 s | 74 % | 0 / 0 / 0 | 1,452 |
+| TIL-10 10× taller | 40 h | 1,534 | 1,079 | 61.0 % | 9.0 s | 60 % | 0 / 0 / 0 (1 repost) | 1,099 |
+| **TIL-11 Everest breath** | **15.4 h** | **154** | **122** | **53.2 %** | **6.2 s** | **41 %** | 0 / 0 / 0 | **403** |
+Medians (TIL-01..10): hook hold 62.1 %, watch ratio 63 %; 24 h IG reach baseline 136; E5 median ≈ 1,093; YT 24 h median 1,118.
+- **Findings:**
+  1. **Clear drop — TIL-11 (E5 body premise + E7 reel 1) at 15.4 h: 122 IG accounts = 0.9× the 136 baseline and 0.11× the E5 median; YT 403 = 0.37× TIL-10 at a similar age.** Hook hold 53.2 % and watch ratio 41 % are the **lowest of all 11 reels**. Confidence: medium that the weakness is real (both platforms down together, IG usually freezes after ~20 h), low on the cause (n = 1, < 48 h; not a verdict).
+  2. **Likely cause = the opening, not the slot or the end card (low–medium):** the late post (19:43) is a weaker explanation because TIL-10 went out at 18:52 and still hit 7.9×, and YT (less slot-sensitive) fell in step. The E7 end card sits at 13.45 s and average watch was 6.2 s, so most viewers never saw it — it cannot explain the drop. Plausible mechanism: the first frame (sea level vs summit, breath bubbles) shows a *condition* (thin air) instead of a *visible consequence* on a familiar object; the "you'd faint" payoff only lands later. TIL-08 (balance tipping) and TIL-09 (person sinking in a labelled tank) showed the consequence moving at t = 0.
+  3. **E5 is now 3 of 4, not 4 of 4:** a "you" premise is necessary but not sufficient; the opening image has to prove the claim at a glance. E7 reel 1 conversion: 0 follows on 122 accounts — unreadable at this reach.
+- Experiment ideas from finding 2 (backlog): (a) **E13 consequence-in-motion at t = 0** (the familiar object visibly reacting in the first 0.5 s: needle slamming, body sinking, bread blackening) vs a static comparison; (b) E11 side-by-side control vs impossible as a fixed rule; (c) E9 a human body part in frame at t = 0. **No switch now:** E7 is running (reel 2 TIL-12 today, reel 3 TIL-13 binding) — finish it first.
+
+NEXT BUILD INSTRUCTION (from 18 Nov 11:08 check): keep current (E7 running; one variable at a time). Build **TIL-13 = queue H "Your weight on Jupiter"** (binding: named on TIL-12's end card and caption) as E7 reel 3: end card "TOMORROW: <next premise in ≤ 5 words>" + matching caption series line, naming only a premise whose numbers the run has checked (default C coffee the size of a lake, or E ice cream on Mercury, whichever verifies). Apply the **existing** proof-image rule strictly after TIL-11's weak opening (no new variable, just the playbook): t = 0 must show the consequence already happening on a familiar object, readable without sound — e.g. two bathroom scales side by side, EARTH 70 kg vs JUPITER needle slamming to ≈165 kg (70 × 2.36; NASA, at the 1-bar level, no solid surface — say so in the science card), not a planet or a label-only frame. Everything else as TIL-12: 15 s / 1.10, caption v2, ⚠️ disclaimer on caption + card, **16:00 on time** (short separate calls). Primary metric: IG followers + YT subscribers per 1,000 IG reach in the 24 h after each E7 post vs control ≈ 1.2; secondary: IG reach at 24 h vs E5 median 1,093 and hook hold vs 62.1 %. E7 verdict after TIL-13's 72 h (22 Nov); E5 verdict 19 Nov (now 3 of 4). If TIL-12 also opens below 55 % hook hold, the next experiment after E7 is E13.
+
 ## Weekly reviews
 ### Week 1 (8–15 Nov 2026), written 15 Nov 11:08
 - Output: 8 reels published (TIL-01..08), 4 consecutive on-time 16:00 posts since TIL-05; READY buffer working (TIL-09 ready for today). Totals at 15 Nov 11:08: 13,498 views (IG 4,929 + YT 8,569); IG followers 1, YT subscribers 5.
