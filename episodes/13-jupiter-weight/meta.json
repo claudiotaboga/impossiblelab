@@ -1,0 +1,31 @@
+{
+ "episode_id": "TIL-13",
+ "status": "ready",
+ "qa_passed": true,
+ "width": 1080,
+ "height": 1920,
+ "duration_seconds": 15.0,
+ "title": "What if you stood on a scale on Jupiter?",
+ "video_url": "https://raw.githubusercontent.com/claudiotaboga/impossiblelab/main/episodes/13-jupiter-weight/video.mp4",
+ "caption": "Jupiter would more than double your weight. ⚖️🪐\n\nJupiter's pull is 2.36× Earth's (NASA), so a 70 kg person would see about 165 kg on the scale.\n\nThe same scale reads about 26 kg on Mars and about 12 kg on the Moon.\n\nCatch: Jupiter has no solid ground. Its \"surface gravity\" is measured at the 1-bar level of its atmosphere.\n\nThe twist: Saturn has 95× Earth's mass, yet you'd weigh less there (0.92×, about 64 kg) because it is so wide.\n\nSend this to the friend who always blames the scale.\n\nTomorrow: ice cream on Mercury.\n\n⚠️ Don't try this. Piling on weights to \"feel Jupiter\" can injure your back and knees.\n\n#science #physics #whatif #sciencefacts #jupiter #space #gravity #theimpossiblelab",
+ "sources": [
+  "NASA NSSDCA Planetary Fact Sheet, ratio to Earth values (gravity incl. rotation: Moon 0.166, Mars 0.377, Jupiter 2.36, Saturn 0.916): https://nssdc.gsfc.nasa.gov/planetary/factsheet//planet_table_ratio.html",
+  "NASA NSSDCA ratio notes (gas giants: gravity at the 1 bar level; their surfaces lie deep in the atmosphere): https://nssdc.gsfc.nasa.gov/planetary/factsheet/planetfact_ratio_notes.html",
+  "NASA NSSDCA Jupiter Fact Sheet (acceleration eq., 1 bar 23.12 m/s², ratio 2.364; surface pressure >>1000 bar): https://nssdc.gsfc.nasa.gov/planetary/factsheet/jupiterfact.html",
+  "NASA NSSDCA Saturn Fact Sheet (mass 95.16× Earth; acceleration eq., 1 bar 8.96 m/s², ratio 0.916): https://nssdc.gsfc.nasa.gov/planetary/factsheet/saturnfact.html",
+  "Teaser TIL-14 checked: NASA Mercury facts (night −180 °C): https://science.nasa.gov/mercury/facts ; Univ. of Guelph Ice Cream Technology e-book (below Tg' the freeze-concentrate is a brittle glass): https://books.lib.uoguelph.ca/icecreamtechnologyebook/chapter/theoretical-aspects-of-the-freezing-process/"
+ ],
+ "qa": {
+  "duration_s": 15.0,
+  "resolution": "1080x1920",
+  "video": "H.264 High yuv420p, 2.45 Mbps avg, max 1-s window 4.04 Mbps",
+  "audio": "AAC LC 128k 48 kHz stereo",
+  "loudness_lufs": -14.0,
+  "true_peak_dbfs": -1.5,
+  "faststart": true,
+  "frames_checked": "t=0, 0.5, 3.0, 6.0, 7.8, 9.5, 12.6, 14.5, 14.95: hook readable at t=0 (EARTH 70 kg vs JUPITER readout already at 100 kg and climbing, title), 3 fact chips, card + red disclaimer, E7 TOMORROW pill, captions in sync and <= 2 rows, displays inside the frame and clear of title/caption zones, handle only @the.impossible.lab",
+  "caption_disclaimer": true,
+  "caption_v2": true,
+  "sha256": "d9151b2ddea0244bc237f470adbe4a446210d9edc4de7d56ccc8c107b79ea139"
+ }
+}

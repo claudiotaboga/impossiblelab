@@ -10,21 +10,21 @@ def font(w, s): return ImageFont.truetype(F + f"Inter-{w}.otf", s)
 AMBER = (255, 176, 46); WHITE = (255, 255, 255); INK = (18, 12, 6)
 
 # ---- per-episode content: the only block to change for a new episode ----
-EP_NUM = 12
-TITLE = ["TOAST", "ON VENUS?"]
+EP_NUM = 13
+TITLE = ["YOUR WEIGHT", "ON JUPITER?"]
 FACTS = [  # (start, end, text) — times match the narration lines
-    (3.49, 5.09, "VENUS 464 °C · OVEN MAX ~260 °C"),
-    (5.29, 7.11, "AIR PRESSURE ≈ 90× EARTH'S"),
-    (7.31, 9.54, "CHARCOAL-MAKING HEAT: 400–500 °C"),
+    (2.04, 4.64, "JUPITER PULLS 2.36× EARTH"),
+    (4.84, 8.27, "MARS 0.38× · MOON 0.17×"),
+    (8.47, 10.53, "GAS GIANT: NO SOLID SURFACE"),
 ]
-CARD_SUB = "Venus surface average (NASA fact sheet)"
-CARD = [("Surface temperature", "464 °C", "737 K · home oven max ≈260–290 °C"),
-        ("Air pressure", "92 bar", "≈91× Earth · 96.5 % CO₂, 3.5 % N₂"),
-        ("Plant matter chars", "≈280 °C+", "charcoal kilns finish ≈400–500 °C (FAO)"),
+CARD_SUB = "Surface gravity vs Earth (NASA fact sheets)"
+CARD = [("Jupiter, 1-bar level", "2.36 g", "70 kg reads ≈165 kg · no solid surface"),
+        ("Mars · Moon", "0.377 · 0.166 g", "70 kg reads ≈26 kg · ≈12 kg"),
+        ("Saturn", "0.916 g", "95× Earth's mass · 70 kg reads ≈64 kg"),
        ]
-DISCLAIMER = "Don't try this. Overheated toasters can start fires."
-NEXT = "TOMORROW: YOUR WEIGHT ON JUPITER"   # E7 series teaser end card (binding for TIL-13)
-NEXT_START = 13.45
+DISCLAIMER = "Don't try this. Piling on weights can injure your back."
+NEXT = "TOMORROW: ICE CREAM ON MERCURY"   # E7 series teaser end card (binding for TIL-14)
+NEXT_START = 14.0
 
 def ease(x): x = max(0, min(1, x)); return 1 - (1 - x) ** 3
 

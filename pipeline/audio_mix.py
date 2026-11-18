@@ -136,14 +136,20 @@ def sizzle(dur):  # dry crackle of bread charring
 def rumble(dur):  # heavy air pressing in
     n = int(dur * SR); tt = np.arange(n) / SR
     return lp(rng.standard_normal(n), 160) * 2.5 * np.sin(np.linspace(0, np.pi, n)) ** 0.8
-TC = B["t_char"]
-for k in range(12):                                                                 # thermometers climbing
-    put(sfx, tick(0.04), 0.2 + k * 0.11, 0.10)
-put(sfx, whoosh(0.7, 400, 1800), LINES[1]["start"] + 0.0, 0.15)                     # bread lowers onto the fork
-put(sfx, thud(0.3, 120), LINES[1]["start"] + 0.75, 0.25)
-put(sfx, rumble(1.8), LINES[3]["start"], 0.35)                                      # 92 bar pressing in
-put(sfx, sizzle(LINES[5]["start"] - LINES[4]["start"] + 0.6), LINES[4]["start"], 0.30)  # charring
-put(sfx, whoosh(0.5, 3000, 300, False), LINES[6]["start"] + 0.1, 0.18)              # flame that never comes
+def beep(f=1800, dur=0.06):  # scale display digit tick
+    n = int(dur * SR); tt = np.arange(n) / SR; return np.sin(2 * np.pi * f * tt) * np.exp(-tt * 60)
+def counter(t0, t1, n_ticks, f0, f1, g):  # readout racing up/down
+    for k in range(n_ticks):
+        u = k / max(n_ticks - 1, 1); put(sfx, beep(f0 + (f1 - f0) * u, 0.035), t0 + (t1 - t0) * u ** 0.6, g)
+put(sfx, thud(0.6, 50), 0.05, 0.75); put(sfx, creak(0.5), 0.10, 0.25)           # Jupiter load slams onto the scale
+counter(0.02, B["jup_ramp"][1], 14, 900, 1900, 0.10)
+put(sfx, beep(2200, 0.15), B["jup_ramp"][1] + 0.05, 0.12)
+counter(B["mars_drop"], B["mars_drop"] + 0.75, 10, 1600, 800, 0.08)               # Mars readout falls
+counter(B["moon_drop"], B["moon_drop"] + 0.55, 10, 1600, 700, 0.08)               # Moon readout falls
+for k in range(3): put(sfx, plink(500 + 80 * k, 0.25), B["moon_drop"] + 0.85 + k * 0.75, 0.10)  # light hops
+put(sfx, whoosh(B["sink"][1] - B["sink"][0], 2500, 250, False), B["sink"][0], 0.22)  # falling through clouds
+put(sfx, wind(B["sink"][1] - B["sink"][0], 0.5), B["sink"][0], 0.18)
+counter(B["saturn_drop"], B["saturn_drop"] + 0.8, 6, 1200, 1000, 0.08)             # Saturn: 70 -> 64
 for t_cut in B["cuts"]:
     put(sfx, whoosh(0.35, 1800, 500, False), t_cut - 0.15, 0.10)
 put(sfx, thud(0.4, 60), CARD_START, 0.6); put(sfx, whoosh(0.3, 800, 3000), CARD_START - 0.25, 0.2)

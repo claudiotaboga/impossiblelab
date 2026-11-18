@@ -1,17 +1,18 @@
-"""The Impossible Lab #11 - your breath on Everest's summit.
+"""The Impossible Lab #13 - your weight on Jupiter (and Mars, the Moon, Saturn).
 Units: metres. Mannequin 1.75 m (pelvis origin, standing pelvis height 0.915).
-Set (origin): SEA LEVEL plinth (x = -1.3, sand) vs EVEREST 8,849 m rock-and-snow peak (x = +1.3). Above each figure a
-glass "breath" bubble: 30 molecules at sea level vs 10 on the summit, 1 in 5 red (O2) in both (air is still ~21 % O2,
-pressure ~1/3). Line 3 shows the 20 missing molecules as ghosts; line 4 a BRAIN O2 gauge drains with a 0:00 -> 2:00
-timer (frame_change_pre handler) and the lights dim on "lights out". Line 5: base camp (x = 40) with tents and a
-climber; line 6: the climber stands on the summit with an orange oxygen bottle + mask, arms up. Last ~1.3 s: hook.
+Each station = a physician-style column scale (platform + column + display head facing the camera) with a planet
+sphere behind it. Hook set (origin): EARTH scale (x = -1.3, reads 70 kg) vs JUPITER scale (x = +1.3, readout racing
+100 -> 165 kg in the first 0.6 s, figure sagging, platform squashing). Line 3 MARS (x = 12, 70 -> 26), line 4 MOON
+(x = 22, 70 -> 12, figure bouncing), line 5 Jupiter clouds (x = 34): scale + figure sinking through cloud bands,
+"NO SOLID SURFACE"; lines 6-7 SATURN (x = 46) with a ring, 70 -> 64 kg. Last ~1 s: back to the hook framing.
+Readouts are text objects updated by a frame_change_pre handler.
 Usage: python3 scene.py [start end [step]] | [f1,f2,...] | [f]  [--force]   (no args = all frames)
 """
 import bpy, addon_utils, math, random, sys, os, json, time
 from mathutils import Vector
 from config import FPS, FRAMES as N, DUR
 
-random.seed(11)
+random.seed(13)
 bpy.ops.wm.read_factory_settings(use_empty=True)
 addon_utils.enable("cycles", default_set=True)
 S = bpy.context.scene
@@ -143,198 +144,158 @@ def pose(P, f, loc, rot=(0, 0, 0), arm=0.15, leg=(0.0, 0.0), chest=1.0, arm_fwd=
     for k, hp in enumerate(P["legs"]):
         hp.rotation_euler = (leg[k], 0, 0); hp.keyframe_insert("rotation_euler", frame=f)
 
-M_SAND = noise_mat("sand", (0.78, 0.66, 0.45), (0.88, 0.78, 0.58), 6.0)
-M_SNOW = noise_mat("snow", (0.86, 0.90, 0.97), (0.98, 0.99, 1.0), 3.0, 0.7)
-M_ROCK = noise_mat("rock", (0.08, 0.08, 0.10), (0.22, 0.21, 0.24), 2.5)
-M_CSNOW = noise_mat("csnow", (0.55, 0.60, 0.70), (0.74, 0.78, 0.86), 3.0, 0.8)
-M_SEA = mat("sea", (0.05, 0.32, 0.55), 0.15)
-M_PLINTH = mat("plinth", (0.10, 0.11, 0.13), 0.5)
-M_GLASS = liquid("glass", (0.92, 0.97, 1.0), (0.85, 0.92, 1.0), 0.06)
-M_N2 = mat("n2", (0.72, 0.76, 0.82), 0.4)
-M_GHOST = mat("ghost", (1, 1, 1), 0.4, 0, (1, 1, 1), 1.5)
-M_O2 = mat("o2", (1.0, 0.18, 0.10), 0.35, 0, (1.0, 0.18, 0.08), 2.5)
+def wave_mat(name, cols, scale, rough=0.7, distort=4.0, estr=0.0):
+    """Banded planet: wave texture along z -> colour ramp."""
+    m = bpy.data.materials.new(name); m.use_nodes = True; nt = m.node_tree
+    b = nt.nodes["Principled BSDF"]; b.inputs["Roughness"].default_value = rough
+    wv = nt.nodes.new("ShaderNodeTexWave"); wv.wave_type = "BANDS"; wv.bands_direction = "Z"
+    wv.inputs["Scale"].default_value = scale; wv.inputs["Distortion"].default_value = distort
+    wv.inputs["Detail"].default_value = 3
+    rp = nt.nodes.new("ShaderNodeValToRGB"); el = rp.color_ramp.elements
+    el[0].position = 0.0; el[0].color = (*cols[0], 1); el[1].position = 1.0; el[1].color = (*cols[-1], 1)
+    for i, c in enumerate(cols[1:-1], 1):
+        e = el.new(i / (len(cols) - 1)); e.color = (*c, 1)
+    tc = nt.nodes.new("ShaderNodeTexCoord"); nt.links.new(tc.outputs["Object"], wv.inputs["Vector"])
+    nt.links.new(wv.outputs["Color"], rp.inputs[0]); nt.links.new(rp.outputs[0], b.inputs["Base Color"])
+    if estr:
+        nt.links.new(rp.outputs[0], b.inputs["Emission Color"]); b.inputs["Emission Strength"].default_value = estr
+    return m
+
+M_FLOOR = mat("floor", (0.10, 0.11, 0.13), 0.5)
 M_SKIN = mat("skin", (0.62, 0.45, 0.32), 0.55)
 M_SHIRT = mat("shirt", (0.95, 0.18, 0.08), 0.6)
-M_JACKET = mat("jacket", (0.08, 0.55, 0.65), 0.6)
 M_PANTS = mat("pants", (0.06, 0.10, 0.28), 0.6)
 M_SHOE = mat("shoe", (0.95, 0.95, 0.95), 0.5)
+M_PLAT = mat("plat", (0.92, 0.92, 0.94), 0.3, 0.2)
+M_STEEL = mat("steel", (0.75, 0.77, 0.80), 0.25, 0.9)
+M_HEAD = mat("head", (0.04, 0.04, 0.05), 0.4)
+M_DIG = mat("dig", (1.0, 0.7, 0.2), 0.4, 0, (1.0, 0.62, 0.12), 4.0)
+M_DIGR = mat("digr", (1.0, 0.2, 0.1), 0.4, 0, (1.0, 0.16, 0.06), 3.0)
 M_LBL = mat("lbl", (1.0, 0.7, 0.2), 0.4, 0, (1.0, 0.65, 0.15), 5.0)
 M_LBLB = mat("lblb", (0.4, 0.7, 1.0), 0.4, 0, (0.4, 0.7, 1.0), 5.0)
 M_WHITE = mat("lblw", (1, 1, 1), 0.4, 0, (1, 1, 1), 3.0)
-M_RED = mat("red", (1.0, 0.25, 0.15), 0.4, 0, (1.0, 0.25, 0.12), 3.0)
-M_GAUGE = mat("gauge", (0.05, 0.05, 0.06), 0.5)
-M_TENT = mat("tent", (1.0, 0.45, 0.05), 0.6)
-M_TENT2 = mat("tent2", (0.95, 0.85, 0.10), 0.6)
-M_TANK = mat("tank", (0.95, 0.42, 0.05), 0.3, 0.6)
-M_MASK = mat("mask", (0.15, 0.15, 0.17), 0.4)
+M_EARTH = noise_mat("earth", (0.05, 0.25, 0.60), (0.20, 0.50, 0.25), 2.2, 0.6)
+M_JUP = wave_mat("jup", [(0.85, 0.72, 0.55), (0.62, 0.36, 0.20), (0.95, 0.88, 0.75), (0.70, 0.45, 0.28), (0.90, 0.80, 0.65)], 2.5)
+M_MARS = noise_mat("mars", (0.55, 0.20, 0.08), (0.80, 0.42, 0.20), 3.0)
+M_MOON = noise_mat("moon", (0.35, 0.35, 0.37), (0.75, 0.75, 0.76), 4.0)
+M_SAT = wave_mat("sat", [(0.90, 0.80, 0.55), (0.78, 0.64, 0.40), (0.95, 0.88, 0.68)], 2.0, distort=1.5)
+M_RING = mat("ring", (0.85, 0.75, 0.52), 0.6)
+M_CLOUD1 = wave_mat("cl1", [(0.92, 0.80, 0.62), (0.75, 0.48, 0.28), (0.96, 0.90, 0.80)], 1.2, 0.9, 6.0, estr=0.25)
+M_CLOUD2 = wave_mat("cl2", [(0.70, 0.42, 0.24), (0.88, 0.70, 0.50), (0.55, 0.30, 0.18)], 1.5, 0.9, 6.0, estr=0.25)
 
 world = bpy.data.worlds.new("w"); S.world = world; world.use_nodes = True
 nt = world.node_tree; bg = nt.nodes["Background"]
 tcw = nt.nodes.new("ShaderNodeTexCoord"); sep = nt.nodes.new("ShaderNodeSeparateXYZ")
 nt.links.new(tcw.outputs["Generated"], sep.inputs[0])
 rpw = nt.nodes.new("ShaderNodeValToRGB"); e = rpw.color_ramp.elements
-e[0].position = 0.45; e[0].color = (0.70, 0.78, 0.90, 1); e[1].position = 0.85; e[1].color = (0.12, 0.28, 0.62, 1)
+e[0].position = 0.45; e[0].color = (0.03, 0.03, 0.07, 1); e[1].position = 0.85; e[1].color = (0.01, 0.01, 0.03, 1)
 nt.links.new(sep.outputs["Z"], rpw.inputs[0]); nt.links.new(rpw.outputs[0], bg.inputs[0]); bg.inputs[1].default_value = 1.0
+# stars
+rnd = random.Random(4); M_STAR = mat("star", (1, 1, 1), 0.5, 0, (1, 1, 1), 6.0)
+for i in range(260):
+    sphere((rnd.uniform(-20, 70), rnd.uniform(25, 40), rnd.uniform(-6, 22)), rnd.uniform(0.03, 0.07), M_STAR, "star", None, 6)
 sun = bpy.data.objects.new("sun", bpy.data.lights.new("sun", "SUN"))
-sun.data.energy = 3.6; sun.data.angle = math.radians(6); sun.data.color = (1.0, 0.96, 0.90)
-sun.rotation_euler = (math.radians(40), 0, math.radians(-30)); S.collection.objects.link(sun)
+sun.data.energy = 3.2; sun.data.angle = math.radians(6); sun.data.color = (1.0, 0.96, 0.90)
+sun.rotation_euler = (math.radians(45), 0, math.radians(-25)); S.collection.objects.link(sun)
 fill = bpy.data.objects.new("fill", bpy.data.lights.new("fill", "AREA"))
-fill.data.energy = 1200; fill.data.size = 10; fill.location = (0, -10, 6); fill.rotation_euler = (math.radians(60), 0, 0)
+fill.data.energy = 900; fill.data.size = 14; fill.location = (0, -10, 6); fill.rotation_euler = (math.radians(60), 0, 0)
 S.collection.objects.link(fill)
-fill2 = bpy.data.objects.new("fill2", bpy.data.lights.new("fill2", "AREA"))
-fill2.data.energy = 450; fill2.data.size = 8; fill2.location = (40, -10, 5); fill2.rotation_euler = (math.radians(65), 0, 0)
-S.collection.objects.link(fill2)
+for x0 in (12, 22, 80, 46):
+    fl = bpy.data.objects.new("fl", bpy.data.lights.new("fl", "AREA"))
+    fl.data.energy = 700; fl.data.size = 10; fl.location = (x0, -10, 6); fl.rotation_euler = (math.radians(60), 0, 0)
+    S.collection.objects.link(fl)
 
-# ---------- hook / story set (origin): SEA LEVEL (x = -1.3) vs EVEREST SUMMIT (x = +1.3) ----------
-LX, RX = -1.4, 1.4
-LTOP, RTOP = 0.9, 1.7
-bpy.ops.mesh.primitive_plane_add(size=600, location=(0, 0, 0)); link(bpy.context.object, M_PLINTH)
-box((LX, 0, LTOP / 2), (2.0, 1.8, LTOP), M_PLINTH, "lplinth")
-box((LX, 0, LTOP + 0.06), (2.0, 1.8, 0.12), M_SAND, "sand")
-box((LX, 0.75, LTOP + 0.08), (2.0, 0.3, 0.1), M_SEA, "sea")
-bpy.ops.mesh.primitive_cone_add(vertices=7, radius1=1.15, radius2=0.42, depth=RTOP, location=(RX, 0.05, RTOP / 2))
-cone = bpy.context.object; link(cone, M_ROCK); cone.rotation_euler = (0, 0, 0.3)
-bpy.ops.mesh.primitive_cone_add(vertices=7, radius1=0.72, radius2=0.40, depth=0.7, location=(RX, 0.05, RTOP - 0.33))
-cap = bpy.context.object; link(cap, M_SNOW); cap.rotation_euler = (0, 0, 0.3)
-text("SEA LEVEL", (LX, -0.92, 0.6), TR, 0.27, M_LBLB)
-text("EVEREST 8,849 m", (RX, -1.25, 0.6), TR, 0.24, M_LBL)
-sign = box((RX, -1.2, 0.6), (1.95, 0.04, 0.42), M_GAUGE, "sign")
+bpy.ops.mesh.primitive_plane_add(size=60, location=(4, 0, 0)); link(bpy.context.object, M_FLOOR)
 
-# breath bubbles: same 1/5 oxygen, summit holds a third of the molecules
-BZ = 3.35; BR = 0.42
-def bubble(cx, n, seed):
-    rnd = random.Random(seed)
-    g = sphere((cx, 0, BZ), BR, M_GLASS, "bubble", None, 32); noshadow(g)
-    mols = []
-    for i in range(n):
-        while True:
-            p = V((rnd.uniform(-1, 1), rnd.uniform(-1, 1), rnd.uniform(-1, 1)))
-            if p.length < 1: break
-        m = M_O2 if i % 5 == 0 else M_N2
-        o = sphere(V((cx, 0, BZ)) + p * (BR - 0.08), 0.06, m, "mol", None, 10)
-        mols.append((o, V((cx, 0, BZ)) + p * (BR - 0.07), rnd.uniform(0, 6.28)))
-    return g, mols
-BL, MOL_L = bubble(LX, 30, 1)
-BRt, MOL_R = bubble(RX, 10, 2)
-# ghost molecules: the two thirds missing on the summit (appear on line 3)
-rnd = random.Random(5); GHOST = []
-for i in range(20):
-    while True:
-        p = V((rnd.uniform(-1, 1), rnd.uniform(-1, 1), rnd.uniform(-1, 1)))
-        if p.length < 1: break
-    o = sphere(V((RX, 0, BZ)) + p * (BR - 0.08), 0.06, M_GHOST, "ghost", None, 10); noshadow(o); GHOST.append(o)
-    wm = o.modifiers.new("wf", "WIREFRAME"); wm.thickness = 0.008
-PCT_L = text("21% O₂", (LX, -0.05, BZ - BR - 0.17), TR, 0.16, M_WHITE)
-PCT_R = text("21% O₂", (RX, -0.05, BZ - BR - 0.17), TR, 0.16, M_WHITE)
-THIRD = text("⅓ THE AIR", (RX, -0.05, BZ - BR - 0.17), TR, 0.16, M_LBL)
-FULL = text("FULL", (LX, -0.05, BZ - BR - 0.17), TR, 0.16, M_LBLB)
+# ---------- column scale ----------
+PLAT_H = 0.09
+def scale_unit(name, x, z=0.0, red=False, label="", lmat=None):
+    root = empty(name, (x, 0, z))
+    plat = box((0, 0, PLAT_H / 2), (0.62, 0.62, PLAT_H), M_PLAT, "plat", root)
+    box((0, 0.36, 1.10), (0.07, 0.07, 2.0), M_STEEL, "col", root)
+    box((0, 0.36, 0.06), (0.30, 0.20, 0.06), M_STEEL, "foot", root)
+    box((0, 0.24, 2.35), (0.96, 0.10, 0.54), M_HEAD, "head", root)
+    dig = text("70 kg", (0, 0.17, 2.27), TR, 0.27, M_DIGR if red else M_DIG, parent=root); noshadow(dig)
+    nm = text(label, (0, 0.17, 2.52), TR, 0.12 if len(label) < 12 else 0.085, lmat or M_WHITE, parent=root); noshadow(nm)
+    return {"root": root, "plat": plat, "dig": dig, "name": nm}
+def planet(loc, r, m, name):
+    return sphere(loc, r, m, name, None, 48)
+def sign(body, loc, size, m):
+    o = text(body, loc, TR, size, m); noshadow(o); return o
 
-# brain-oxygen gauge next to the summit figure (line 4)
-GX = RX + 0.95; GZ0 = RTOP + 0.05; GH = 0.7
-gauge = empty("gauge")
-box((GX, -0.2, GZ0 + GH / 2), (0.24, 0.06, GH + 0.08), M_GAUGE, "gframe", gauge)
-gfill = box((0, 0, 0.5), (0.17, 0.05, 1.0), M_O2, "gfill")
-bpy.ops.object.origin_set(type="ORIGIN_CURSOR")
-gfill.location = (GX, -0.24, GZ0)
-gtxt = text("BRAIN O₂", (GX, -0.24, GZ0 + GH + 0.16), TR, 0.12, M_WHITE, parent=gauge)
-timer = text("0:00", (GX, -0.24, GZ0 - 0.16), TR, 0.14, M_LBL, parent=gauge)
-
-# ---------- base camp set (x = 40) ----------
-CX = 40.0
-bpy.ops.mesh.primitive_plane_add(size=80, location=(CX, 8, 0.01)); link(bpy.context.object, M_CSNOW)
-for (dx, dy, m) in ((-1.6, 0.6, M_TENT), (0.2, 1.4, M_TENT2), (1.7, 0.4, M_TENT), (-0.4, 3.2, M_TENT2)):
-    bpy.ops.mesh.primitive_cone_add(vertices=4, radius1=0.75, radius2=0, depth=0.9, location=(CX + dx, dy, 0.45))
-    t_ = bpy.context.object; t_.rotation_euler = (0, 0, math.radians(45)); link(t_, m)
-for i in range(5):
-    bpy.ops.mesh.primitive_cone_add(vertices=6, radius1=6 + 2 * i, radius2=0.5, depth=7 + 3 * (i % 3), location=(CX - 16 + 8 * i, 30 + 4 * (i % 2), 3.5 + 1.5 * (i % 3)))
-    link(bpy.context.object, M_CSNOW)
-box((CX, -1.22, 2.2), (3.6, 0.04, 0.85), M_GAUGE, "campsign")
-CAMP_LBL = text("BASE CAMP", (CX, -1.3, 2.35), TR, 0.30, M_LBL)
-WEEKS_LBL = text("WEEKS OF ADAPTING", (CX, -1.3, 2.0), TR, 0.20, M_WHITE)
-for o in (CAMP_LBL, WEEKS_LBL): o.visible_shadow = False
-
-FIG_L = person("figL", M_SHIRT)
-FIG_R = person("figR", M_SHIRT)
-FIG_C = person("figC", M_JACKET)      # climber (camp, then summit with oxygen)
-tankset = empty("tankset", (0, 0, 0), FIG_C["body"])
-cyl_between((0, 0.17, 0.05), (0, 0.17, 0.55), 0.09, M_TANK, tankset, "o2tank")
-mask = box((0, -0.10, 0.73), (0.12, 0.06, 0.09), M_MASK, "mask", tankset)
-cyl_between((0, 0.17, 0.55), (0.0, -0.08, 0.70), 0.015, M_MASK, tankset, "hose", caps=False)
-
-O2LBL = text("BOTTLED O\u2082", (RX + 0.85, -0.35, RTOP + 1.1), TR, 0.14, M_LBL)
+LX, RX = -0.85, 0.85
+SC_E = scale_unit("scE", LX, label="EARTH", lmat=M_LBLB); SC_J = scale_unit("scJ", RX, red=True, label="JUPITER", lmat=M_LBL)
+planet((LX - 1.2, 9, 3.4), 2.0, M_EARTH, "pEarth"); planet((RX + 1.8, 11, 3.6), 3.4, M_JUP, "pJup")
+MX, MOX, CX, SX = 12.0, 22.0, 80.0, 46.0
+SC_M = scale_unit("scM", MX, label="MARS", lmat=M_LBL); planet((MX + 1.2, 9, 3.4), 2.4, M_MARS, "pMars")
+SC_MO = scale_unit("scMo", MOX, label="MOON"); planet((MOX + 1.2, 9, 3.4), 2.4, M_MOON, "pMoon")
+SC_S = scale_unit("scS", SX, label="SATURN · 95× EARTH'S MASS", lmat=M_LBL); planet((SX + 1.0, 11, 3.6), 2.6, M_SAT, "pSat")
+bpy.ops.mesh.primitive_torus_add(major_radius=4.6, minor_radius=0.5, location=(SX + 1.0, 11, 3.6))
+rg = bpy.context.object; rg.scale = (1, 1, 0.06); rg.rotation_euler = (math.radians(70), math.radians(-12), 0); link(rg, M_RING)
+# moon floor: grey regolith pad
+box((MOX, 0, -0.04), (8, 8, 0.1), M_MOON, "regolith"); box((MX, 0, -0.04), (8, 8, 0.1), M_MARS, "dust")
+# Jupiter clouds set: banded cloud slabs the scale sinks through
+SC_C = scale_unit("scC", CX, red=True, label="JUPITER", lmat=M_LBL)
+bpy.ops.mesh.primitive_plane_add(size=1, location=(CX, 3.0, -8)); wall = bpy.context.object
+wall.scale = (16, 40, 1); wall.rotation_euler = (math.radians(90), 0, 0); bpy.ops.object.transform_apply(scale=True, rotation=True)
+link(wall, M_CLOUD1)
+rnd = random.Random(9); PUFFS = []
+for i in range(14):
+    side = -1 if i % 2 else 1
+    p = sphere((CX + side * rnd.uniform(1.0, 1.9), rnd.uniform(-1.4, 1.5), 1.5 - i * 1.0 + rnd.uniform(-0.3, 0.3)), rnd.uniform(0.35, 0.6),
+               M_CLOUD2 if i % 3 else M_CLOUD1, "puff", None, 14); p.scale = (1.6, 1.0, 0.7); noshadow(p)
+FIG_E = person("figE", M_SHIRT); FIG_J = person("figJ", M_SHIRT); FIG_M = person("figM", M_SHIRT)
+FIG_MO = person("figMo", M_SHIRT); FIG_C = person("figC", M_SHIRT); FIG_S = person("figS", M_SHIRT)
 
 # ---------- timing ----------
-t2, t3, t4, t5, t6 = (L[i]["start"] for i in range(2, 7))
+t2, t3, t4, t5, t6, t7 = (L[i]["start"] for i in range(2, 8))
 tc = CARD_START
-W4 = {w["w"]: w["t"] for w in L[4]["words"]}
-T_OUT = W4["lights"]                         # lights out
-T_SUMMIT2 = t6 + 0.80                        # cut to the summit with oxygen
-T_LOOP = tc + 0.25                           # back to the hook framing
-
+T_LOOP = tc + 0.25
 def mode_of(t):
     if t < t2: return "hook"
-    if t < t3: return "bubbles"
-    if t < t4: return "third"
-    if t < t5: return "faint"
-    if t < T_SUMMIT2: return "camp"
-    if t < T_LOOP: return "oxygen"
+    if t < t3: return "close"
+    if t < t4: return "mars"
+    if t < t5: return "moon"
+    if t < t6: return "clouds"
+    if t < T_LOOP: return "saturn"
     return "hook"
-
-def timer_txt(scene, *a):
+def ramp(t, a, b, v0, v1):
+    return v0 + (v1 - v0) * (1 - (1 - max(0.0, min(1.0, (t - a) / (b - a)))) ** 3)
+def jup_val(t):
+    if t >= T_LOOP: return 165
+    return round(ramp(t, 0.0, 0.65, 100, 165))
+def readouts(scene, *a):
     t = scene.frame_current / FPS
-    if t < t4: s = 0
-    else: s = min(120, int(120 * min((t - t4 - 0.2) / (T_OUT - t4 - 0.1), 1.0))) if t > t4 + 0.2 else 0
-    timer.data.body = f"{s // 60}:{s % 60:02d}"
-bpy.app.handlers.frame_change_pre.append(timer_txt)
+    SC_J["dig"].data.body = f"{jup_val(t)} kg"
+    SC_M["dig"].data.body = f"{round(ramp(t, t3 + 0.15, t3 + 0.9, 70, 26))} kg"
+    SC_MO["dig"].data.body = f"{round(ramp(t, t4 + 0.05, t4 + 0.6, 70, 12))} kg"
+    SC_C["dig"].data.body = "165 kg"
+    SC_S["dig"].data.body = f"{round(ramp(t, t7 + 0.3, t7 + 1.1, 70, 64))} kg"
+bpy.app.handlers.frame_change_pre.append(readouts)
 
-SIT = 0.14   # pelvis height above the surface when sitting slumped
+PZ = PLAT_H + STAND
 for f in range(0, N + 1):
     t = f / FPS; m = mode_of(t)
-    # sea-level figure: standing, breathing easy
-    pose(FIG_L, f, V((LX, 0.05, LTOP + 0.12 + STAND)), arm=math.radians(12 + 3 * math.sin(t * 2)), chest=1.0 + 0.04 * math.sin(t * 2.2))
-    # summit figure: sitting, slumping forward; lies down at lights out
-    if m in ("hook",):
-        u = t if t < t2 else t - DUR
-        k = smooth((u + 1.0) / 2.2)                        # slumps during the hook; looped
-        pose(FIG_R, f, V((RX, 0.05, RTOP + SIT)), rot=(0.15 + 0.55 * k, 0, 0), arm=math.radians(10), leg=(-1.45, -1.35),
-             chest=1.0 + 0.08 * math.sin(t * 7))
-    elif m in ("bubbles", "third"):
-        pose(FIG_R, f, V((RX, 0.05, RTOP + SIT)), rot=(0.7, 0, 0), arm=math.radians(10), leg=(-1.45, -1.35), chest=1.0 + 0.08 * math.sin(t * 7))
-    elif m == "faint":
-        k = smooth((t - T_OUT + 0.15) / 0.5)
-        pose(FIG_R, f, V((RX - 0.0, 0.05 - 0.25 * k, RTOP + SIT - 0.02 * k)), rot=(0.7 + 0.85 * k, 0, 0), arm=math.radians(10 + 40 * k),
-             leg=(-1.45 + 0.3 * k, -1.35 + 0.3 * k), chest=1.0 + 0.08 * math.sin(t * 7) * (1 - k))
-    else:
-        pose(FIG_R, f, V((RX, 0.05, -30)))
-    # climber: camp, then summit with oxygen
-    if m == "camp":
-        pose(FIG_C, f, V((CX + 0.3, -0.4, STAND)), rot=(0, 0, math.radians(-15)), arm=math.radians(15 + 4 * math.sin(t * 2)),
-             chest=1.0 + 0.04 * math.sin(t * 2))
-    elif m == "oxygen":
-        k = smooth((t - T_SUMMIT2) / 0.6)
-        pose(FIG_C, f, V((RX, 0.05, RTOP + STAND - 0.05)), rot=(0, 0, math.radians(30)), arm=math.radians(20 + 140 * k), chest=1.0 + 0.04 * math.sin(t * 2))
-    else:
-        pose(FIG_C, f, V((CX, 0, -30)))
-    vis(tankset, m == "oxygen", f); vis(O2LBL, m == "oxygen" and t > T_SUMMIT2 + 0.3, f)
-    vis(BRt, m != "oxygen", f)
-    for (o, p0, ph) in MOL_R: vis(o, m != "oxygen", f)
-    # bubble molecules jitter; on the oxygen shot the summit bubble refills with red O2
-    for (o, p0, ph) in MOL_L + MOL_R:
-        o.location = p0 + V((0.02 * math.sin(t * 5 + ph), 0.02 * math.cos(t * 4 + ph), 0.02 * math.sin(t * 6 + 2 * ph)))
-        o.keyframe_insert("location", frame=f)
-    for i, g in enumerate(GHOST):
-        vis(g, m == "third" and t > t3 + 0.6 + 0.03 * i, f)
-    vis(PCT_L, m in ("bubbles",), f); vis(PCT_R, m in ("bubbles",), f)
-    vis(THIRD, m == "third", f); vis(FULL, m == "third", f)
-    vis(gauge, m == "faint", f)
-    lvl = 1.0 if t < t4 + 0.2 else max(0.06, 1.0 - 0.94 * (t - t4 - 0.2) / (T_OUT - t4 - 0.1))
-    gfill.scale = (1, 1, GH * lvl) if m == "faint" else (0.0001, 0.0001, 0.0001); gfill.keyframe_insert("scale", frame=f)
-    # lights out: dim the sun/fills/world after "lights"
-    dim = 1.0
-    if m == "faint" and t > T_OUT: dim = 1.0 - 0.85 * smooth((t - T_OUT) / 0.35)
-    sun.data.energy = 3.6 * dim; sun.data.keyframe_insert("energy", frame=f)
-    fill.data.energy = 1200 * dim; fill.data.keyframe_insert("energy", frame=f)
-    bg.inputs[1].default_value = 1.0 * (0.25 + 0.75 * dim); bg.inputs[1].keyframe_insert("default_value", frame=f)
+    pose(FIG_E, f, V((LX, 0, PZ)), arm=math.radians(12 + 3 * math.sin(t * 2)), chest=1.0 + 0.03 * math.sin(t * 2.2))
+    # Jupiter: the load hits at once -> sag (pelvis drops, torso folds), platform squashes
+    k = smooth(t / 0.5) if t < t2 + 2 else 1.0
+    if m == "hook" and t >= T_LOOP: k = 1.0
+    pose(FIG_J, f, V((RX, -0.10 * k, PZ - 0.26 * k)), rot=(0.62 * k, 0, 0), arm=math.radians(6 - 4 * k), arm_fwd=-0.35 * k, leg=(-0.55 * k, -0.55 * k),
+         chest=1.0 + 0.06 * math.sin(t * 6) * k)
+    SC_J["plat"].scale = (1, 1, 1 - 0.55 * k); SC_J["plat"].keyframe_insert("scale", frame=f)
+    pose(FIG_M, f, V((MX, 0, PZ + 0.02 * math.sin(t * 3))), arm=math.radians(14 + 18 * smooth((t - t3 - 0.6) / 0.6)))
+    # Moon: little hops once the readout drops
+    hop = abs(math.sin((t - t4 - 0.6) * 4.2)) * 0.35 if t > t4 + 0.6 and m == "moon" else 0.0
+    pose(FIG_MO, f, V((MOX, 0, PZ + hop)), arm=math.radians(25 + 40 * (hop / 0.35)))
+    # Jupiter clouds: scale + figure sink, clouds rush up
+    if m == "clouds":
+        u = (t - t5) / (t6 - t5); dz = -0.2 - 4.5 * u ** 1.4
+    else: dz = 0.0
+    SC_C["root"].location = (CX, 0, dz); SC_C["root"].keyframe_insert("location", frame=f)
+    pose(FIG_C, f, V((CX, 0, PZ + dz + 0.05 * math.sin(t * 9))), arm=math.radians(70 + 25 * math.sin(t * 8)), leg=(0.25 * math.sin(t * 7), -0.25 * math.sin(t * 7)))
+    # Saturn: shrug after the readout drops below 70
+    sh = smooth((t - t7 - 1.0) / 0.4)
+    pose(FIG_S, f, V((SX, 0, PZ)), arm=math.radians(12 + 55 * sh), arm_fwd=-0.5 * sh)
 
 # ---------- camera ----------
 cam = bpy.data.objects.new("cam", bpy.data.cameras.new("cam")); S.collection.objects.link(cam); S.camera = cam
@@ -343,28 +304,34 @@ tgt = empty("tgt"); c = cam.constraints.new("TRACK_TO"); c.target = tgt
 c.track_axis = "TRACK_NEGATIVE_Z"; c.up_axis = "UP_Y"
 def fixed(pa, ta, pb=None, tb=None):
     pb = pb or pa; tb = tb or ta
-    return ("lerp", V(pa), V(ta), V(pb), V(tb))
-HOOK = fixed((0.15, -11.0, 2.1), (0.0, 0, 1.75), (0.1, -10.5, 2.05), (0.0, 0, 1.75))
+    return (V(pa), V(ta), V(pb), V(tb))
+HOOK = fixed((0.05, -6.7, 1.95), (0.0, 0, 1.6), (0.0, -6.4, 1.95), (0.0, 0, 1.6))
+def station(x, d0=-5.4, d1=-5.0):
+    return fixed((x + 0.1, d0, 1.95), (x, 0, 1.65), (x + 0.05, d1, 1.95), (x, 0, 1.65))
 SEG = [
-    (0.0, t2 - 0.05, HOOK, 27, 28),
-    (t2 - 0.05, t3 - 0.05, fixed((0.0, -9.6, BZ - 0.4), (0.0, 0, BZ - 0.74), (0.0, -9.0, BZ - 0.4), (0.0, 0, BZ - 0.74)), 30, 30),
-    (t3 - 0.05, t4 - 0.05, fixed((RX + 0.15, -5.8, BZ - 0.2), (RX, 0, BZ - 0.45), (RX + 0.05, -5.3, BZ - 0.2), (RX, 0, BZ - 0.45)), 30, 31),
-    (t4 - 0.05, t5 - 0.05, fixed((RX + 0.6, -5.4, RTOP + 0.95), (RX + 0.35, 0, RTOP + 0.42), (RX + 0.5, -4.9, RTOP + 0.85), (RX + 0.35, 0, RTOP + 0.4)), 30, 30),
-    (t5 - 0.05, T_SUMMIT2, fixed((CX + 0.2, -7.6, 1.9), (CX, 0, 1.25), (CX + 0.1, -7.0, 1.85), (CX, 0, 1.25)), 28, 28),
-    (T_SUMMIT2, T_LOOP, fixed((RX + 0.35, -6.0, RTOP + 1.3), (RX + 0.25, 0, RTOP + 1.0), (RX + 0.3, -5.6, RTOP + 1.3), (RX + 0.25, 0, RTOP + 1.0)), 30, 30),
-    (T_LOOP, DUR + 0.01, HOOK, 27, 26),
+    (0.0, t2 - 0.05, HOOK, 30, 31),
+    (t2 - 0.05, t3 - 0.05, fixed((RX - 0.25, -4.5, 2.1), (RX - 0.1, 0, 1.85), (RX - 0.2, -4.1, 2.1), (RX - 0.1, 0, 1.85)), 30, 31),
+    (t3 - 0.05, t4 - 0.05, station(MX), 30, 31),
+    (t4 - 0.05, t5 - 0.05, station(MOX), 30, 31),
+    (t5 - 0.05, t6 - 0.05, "follow", 30, 30),
+    (t6 - 0.05, T_LOOP, station(SX, -5.9, -5.1), 30, 31),
+    (T_LOOP, DUR + 0.01, HOOK, 30, 29),
 ]
 for f in range(0, N + 1):
     t = f / FPS
     seg = next((s for s in SEG if s[0] <= t < s[1]), SEG[-1])
-    u = smooth((t - seg[0]) / (seg[1] - seg[0])); spec = seg[2]
-    _, pa, ta, pb, tb = spec; p = pa.lerp(pb, u); q = ta.lerp(tb, u)
+    u = smooth((t - seg[0]) / (seg[1] - seg[0]))
+    if seg[2] == "follow":
+        uu = (t - t5) / (t6 - t5); dz = -0.2 - 4.5 * uu ** 1.4 if t >= t5 else 0.0
+        p = V((CX + 0.1, -5.4, 1.95 + dz)); q = V((CX, 0, 1.65 + dz))
+    else:
+        pa, ta, pb, tb = seg[2]; p = pa.lerp(pb, u); q = ta.lerp(tb, u)
     cam.location = p; cam.keyframe_insert("location", frame=f)
     tgt.location = q; tgt.keyframe_insert("location", frame=f)
     cam.data.lens = seg[3] + (seg[4] - seg[3]) * u; cam.data.keyframe_insert("lens", frame=f)
 
-json.dump({"t_out": T_OUT, "t_summit2": T_SUMMIT2, "t_loop": T_LOOP, "t_card": tc,
-           "cuts": [s[0] for s in SEG[1:]], "molecules_sea": 30, "molecules_summit": 10, "o2_share": "1 in 5 both"},
+json.dump({"t_loop": T_LOOP, "t_card": tc, "cuts": [s[0] for s in SEG[1:]], "jup_ramp": [0.0, 0.65],
+           "mars_drop": t3 + 0.15, "moon_drop": t4 + 0.05, "sink": [t5, t6], "saturn_drop": t7 + 0.3},
           open("/home/claude/reel/beats.json", "w"), indent=1)
 
 args = [a for a in (sys.argv[sys.argv.index("--") + 1:] if "--" in sys.argv else sys.argv[1:]) if a != "--force"]
