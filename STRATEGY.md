@@ -339,6 +339,26 @@ Medians (TIL-01..10): hook hold 62.1 %, watch ratio 63 %; 24 h IG reach baseline
 
 NEXT BUILD INSTRUCTION (from 18 Nov 11:08 check): keep current (E7 running; one variable at a time). Build **TIL-13 = queue H "Your weight on Jupiter"** (binding: named on TIL-12's end card and caption) as E7 reel 3: end card "TOMORROW: <next premise in ≤ 5 words>" + matching caption series line, naming only a premise whose numbers the run has checked (default C coffee the size of a lake, or E ice cream on Mercury, whichever verifies). Apply the **existing** proof-image rule strictly after TIL-11's weak opening (no new variable, just the playbook): t = 0 must show the consequence already happening on a familiar object, readable without sound — e.g. two bathroom scales side by side, EARTH 70 kg vs JUPITER needle slamming to ≈165 kg (70 × 2.36; NASA, at the 1-bar level, no solid surface — say so in the science card), not a planet or a label-only frame. Everything else as TIL-12: 15 s / 1.10, caption v2, ⚠️ disclaimer on caption + card, **16:00 on time** (short separate calls). Primary metric: IG followers + YT subscribers per 1,000 IG reach in the 24 h after each E7 post vs control ≈ 1.2; secondary: IG reach at 24 h vs E5 median 1,093 and hook hold vs 62.1 %. E7 verdict after TIL-13's 72 h (22 Nov); E5 verdict 19 Nov (now 3 of 4). If TIL-12 also opens below 55 % hook hold, the next experiment after E7 is E13.
 
+### Production run 18 Nov 2026 (13:13–16:10 EET)
+- **TIL-12 published on time** 16:00:07 EET (exec f606781d… SUCCESS, IG Df4q5VSj7PI, YT kHuZS3kFJUI). **Snapshot 15:03 CET (16:03 EET)** (Make 8451991 exec d150c8b2…, 8451995 exec ce696525… SUCCESS): total **21,815 views** (IG 9,925 + YT 11,890); IG followers 6, YT subscribers 6. Checkpoints filled: TIL-05 7 d = 715 / 520 · 1,383 (168.0 h); TIL-09 72 h = 3,284 / 2,149 · 1,453 (72.0 h).
+
+| Reel | Age | IG views | IG reach | Hook hold | Avg watch | Watch ratio | Shares / saves | YT views |
+|---|---|---|---|---|---|---|---|---|
+| TIL-01 whisky | 237 h | 210 | 139 | 71.0 % | 11.8 s | 79 % | 0 / 0 | 1,736 |
+| TIL-02 mercury | 234 h | 1,779 | 1,150 | 67.5 % | 11.2 s | 68 % | 0 / 0 | 1,237 |
+| TIL-03 honey | 207 h | 162 | 113 | 61.1 % | 9.7 s | 59 % | 0 / 0 | 1,162 |
+| TIL-04 gravity | 189 h | 171 | 115 | 57.5 % | 10.0 s | 61 % | 0 / 0 | 520 |
+| TIL-05 pasta | 168 h | 715 | 520 | 60.8 % | 9.3 s | 62 % | 0 / 0 | 1,383 |
+| TIL-06 marathon | 144 h | 186 | 120 | 64.8 % | 10.4 s | 69 % | 0 / 0 | 10 |
+| TIL-07 basketball | 120 h | 180 | 127 | 55.1 % | 7.8 s | 52 % | 0 / 0 | 1,208 |
+| TIL-08 shrunk 1 cm | 96 h | 1,548 | 1,093 | 63.0 % | 9.5 s | 63 % | 0 / 1 | 1,670 |
+| TIL-09 olive oil | 72 h | 3,284 | 2,149 | 72.1 % | 11.1 s | 74 % | 0 / 0 | 1,453 |
+| TIL-10 10× taller | 46 h | 1,534 | 1,079 | 61.0 % | 9.0 s | 60 % | 0 / 0 | 1,104 |
+| TIL-11 Everest breath | 20.3 h | 156 | 124 | 53.2 % | 6.2 s | 41 % | 0 / 0 (1 repost) | 407 |
+| TIL-12 toast on Venus | 0.05 h | 0 | 0 | n/a | n/a | n/a | 0 / 0 | 0 |
+- **Findings:** 1. No new performance evidence since 11:08 (IG frozen on reels ≥ 24 h; TIL-11 +2 accounts, +4 YT) — the 11:08 findings stand (TIL-11 weakest opening; E5 3 of 4). 2. **Process, high confidence:** on-time posting restored (build done 14:33, buffer hosted, send at 16:00:07 in its own call) — the README fix works when the run does not stall.
+- **Adjustment applied:** none (NEXT BUILD INSTRUCTION 18 Nov 11:08 followed). TIL-13 = queue H "Your weight on Jupiter", E7 reel 3: t = 0 shows the consequence moving (JUPITER readout 100 → 165 kg, figure sagging, platform squashing) beside an EARTH 70 kg control; end card "TOMORROW: ICE CREAM ON MERCURY" + caption series line. **Binding:** TIL-14 = queue E "Ice cream on Mercury" (NASA night −180 °C checked; Tg' value still to source). E7 status: reels 1–2 live (TIL-11 late, TIL-12 on time), reel 3 in READY for 19 Nov 16:00; verdict after TIL-13's 72 h (22 Nov).
+
 ## Weekly reviews
 ### Week 1 (8–15 Nov 2026), written 15 Nov 11:08
 - Output: 8 reels published (TIL-01..08), 4 consecutive on-time 16:00 posts since TIL-05; READY buffer working (TIL-09 ready for today). Totals at 15 Nov 11:08: 13,498 views (IG 4,929 + YT 8,569); IG followers 1, YT subscribers 5.
