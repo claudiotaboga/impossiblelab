@@ -1,0 +1,31 @@
+{
+ "episode_id": "TIL-14",
+ "status": "ready",
+ "qa_passed": true,
+ "width": 1080,
+ "height": 1920,
+ "duration_seconds": 15.0,
+ "title": "What if you scooped ice cream on Mercury?",
+ "video_url": "https://raw.githubusercontent.com/claudiotaboga/impossiblelab/main/episodes/14-mercury-ice-cream/video.mp4",
+ "caption": "On Mercury's night side, ice cream would crack like glass. 🍨🪐\n\nMercury's night side drops to about −180 °C (NASA). Your freezer sits at −18 °C (FDA).\n\nIce cream is ice crystals held in a sugary syrup. Below roughly −28 to −32 °C that syrup turns into a brittle glass, so a spoon chips it instead of scooping.\n\nThe twist: a Mercury night lasts about 88 Earth days. When the Sun comes up, the ground reaches about 430 °C.\n\nSend this to the friend who microwaves the ice cream tub to soften it.\n\nTomorrow: what if Earth stopped spinning?\n\n⚠️ Don't try this. Ultra-cold food (dry ice, liquid-nitrogen desserts) can burn your mouth and skin.\n\n#science #physics #whatif #sciencefacts #mercury #space #icecream #theimpossiblelab",
+ "sources": [
+  "NASA Science, Mercury facts (day up to 430 °C / 800 °F; night as low as −180 °C / −290 °F; one solar day = 176 Earth days → night ≈ 88 Earth days): https://science.nasa.gov/mercury/facts",
+  "U.S. FDA, Are You Storing Food Safely? (freezer at 0 °F / −18 °C): https://www.fda.gov/consumers/consumer-updates/are-you-storing-food-safely",
+  "Physics World, A physicist's guide to ice cream (glass transition around −28 to −32 °C): https://physicsworld.com/a/a-physicists-guide-to-ice-cream-the-complex-science-behind-one-of-the-worlds-most-popular-desserts/",
+  "Univ. of Guelph, Ice Cream Technology e-book, Theoretical aspects of the freezing process (below Tg' the unfrozen phase changes from a viscoelastic liquid to a brittle, amorphous solid glass): https://books.lib.uoguelph.ca/icecreamtechnologyebook/chapter/theoretical-aspects-of-the-freezing-process/",
+  "Teaser TIL-15 (Earth stops spinning): equatorial speed ≈ 465 m/s ≈ 1,670 km/h (40,075 km / 23.93 h sidereal day) — to be re-verified in the TIL-15 build"
+ ],
+ "qa": {
+  "duration_s": 15.0,
+  "resolution": "1080x1920",
+  "video": "H.264 High yuv420p, 2.21 Mbps avg, max 1-s window 2.92 Mbps",
+  "audio": "AAC LC 128k 48 kHz stereo",
+  "loudness_lufs": -14.1,
+  "true_peak_dbfs": -1.5,
+  "faststart": true,
+  "frames_checked": "t=0, 0.5, 1.6, 3.0, 5.0, 7.5, 9.9, 12.0, 13.3, 14.5, 14.6, last: hook readable at t=0 (EARTH -18 °C vs MERCURY NIGHT -180 °C, spoon striking; cracks + shards by 0.5 s), 3 fact chips, card + red disclaimer, E7 TOMORROW pill, captions in sync and <= 2 rows, labels inside the frame and clear of title/caption zones, handle only @the.impossible.lab",
+  "caption_disclaimer": true,
+  "caption_v2": true,
+  "sha256": "45879d7ab4d3ab803afc787c391ad7a37d5adfbde32387c23251d3e2dd35ac08"
+ }
+}

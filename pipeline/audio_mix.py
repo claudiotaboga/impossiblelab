@@ -141,15 +141,21 @@ def beep(f=1800, dur=0.06):  # scale display digit tick
 def counter(t0, t1, n_ticks, f0, f1, g):  # readout racing up/down
     for k in range(n_ticks):
         u = k / max(n_ticks - 1, 1); put(sfx, beep(f0 + (f1 - f0) * u, 0.035), t0 + (t1 - t0) * u ** 0.6, g)
-put(sfx, thud(0.6, 50), 0.05, 0.75); put(sfx, creak(0.5), 0.10, 0.25)           # Jupiter load slams onto the scale
-counter(0.02, B["jup_ramp"][1], 14, 900, 1900, 0.10)
-put(sfx, beep(2200, 0.15), B["jup_ramp"][1] + 0.05, 0.12)
-counter(B["mars_drop"], B["mars_drop"] + 0.75, 10, 1600, 800, 0.08)               # Mars readout falls
-counter(B["moon_drop"], B["moon_drop"] + 0.55, 10, 1600, 700, 0.08)               # Moon readout falls
-for k in range(3): put(sfx, plink(500 + 80 * k, 0.25), B["moon_drop"] + 0.85 + k * 0.75, 0.10)  # light hops
-put(sfx, whoosh(B["sink"][1] - B["sink"][0], 2500, 250, False), B["sink"][0], 0.22)  # falling through clouds
-put(sfx, wind(B["sink"][1] - B["sink"][0], 0.5), B["sink"][0], 0.18)
-counter(B["saturn_drop"], B["saturn_drop"] + 0.8, 6, 1200, 1000, 0.08)             # Saturn: 70 -> 64
+def clink(f=3200, dur=0.5):  # spoon on glassy ice: bright inharmonic ring
+    n = int(dur * SR); tt = np.arange(n) / SR
+    return sum(np.sin(2 * np.pi * f * r * tt) * np.exp(-tt * (14 + 6 * k)) for k, r in enumerate([1, 1.52, 2.31, 3.07])) * 0.35
+def squish(dur=0.45):  # spoon sinking into soft ice cream
+    n = int(dur * SR); return lp(rng.standard_normal(n), 700) * np.sin(np.linspace(0, np.pi, n)) ** 1.5 * 1.2
+def tinkles(t0, dur, k=10):  # falling shards
+    for j in range(k): put(sfx, plink(rng.uniform(2500, 4200), 0.12), t0 + rng.uniform(0.15, dur), rng.uniform(0.04, 0.09))
+put(sfx, squish(0.6), 0.02, 0.35)                                                    # Earth: spoon sinks in
+for i, ti in enumerate(B["impacts"]):                                               # Mercury: strikes, cracks, shards
+    put(sfx, clink(3200 - 300 * i), ti, 0.45); put(sfx, crack(0.3), ti, 0.35); tinkles(ti, 0.9, 10 if i != 1 else 4)
+put(sfx, squish(0.5), B["freezer_dip"], 0.30)                                        # freezer: easy scoop
+put(sfx, crack(0.35), B["cracks"], 0.45); put(sfx, clink(2600, 0.6), B["cracks"] + 0.05, 0.25)  # syrup -> glass cracks
+counter(B["glass"] - 1.05, B["glass"] - 0.1, 8, 1500, 900, 0.06)                    # temperature -18 -> -30
+counter(B["cuts"][4] + 0.15, B["sunrise"] - 0.1, 16, 700, 1500, 0.06)               # night counter, day 1 -> 88
+put(sfx, whoomph(1.0), B["sunrise"] - 0.1, 0.5); put(sfx, sizzle(1.1), B["sunrise"] + 0.2, 0.30)  # sunrise, scoop bakes
 for t_cut in B["cuts"]:
     put(sfx, whoosh(0.35, 1800, 500, False), t_cut - 0.15, 0.10)
 put(sfx, thud(0.4, 60), CARD_START, 0.6); put(sfx, whoosh(0.3, 800, 3000), CARD_START - 0.25, 0.2)

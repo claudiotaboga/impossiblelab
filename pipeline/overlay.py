@@ -10,20 +10,20 @@ def font(w, s): return ImageFont.truetype(F + f"Inter-{w}.otf", s)
 AMBER = (255, 176, 46); WHITE = (255, 255, 255); INK = (18, 12, 6)
 
 # ---- per-episode content: the only block to change for a new episode ----
-EP_NUM = 13
-TITLE = ["YOUR WEIGHT", "ON JUPITER?"]
+EP_NUM = 14
+TITLE = ["ICE CREAM", "ON MERCURY?"]
 FACTS = [  # (start, end, text) — times match the narration lines
-    (2.04, 4.64, "JUPITER PULLS 2.36× EARTH"),
-    (4.84, 8.27, "MARS 0.38× · MOON 0.17×"),
-    (8.47, 10.53, "GAS GIANT: NO SOLID SURFACE"),
+    (2.11, 4.13, "MERCURY AT NIGHT: −180 °C"),
+    (4.33, 5.87, "HOME FREEZER: −18 °C"),
+    (6.07, 8.56, "GLASS POINT ≈ −30 °C"),
 ]
-CARD_SUB = "Surface gravity vs Earth (NASA fact sheets)"
-CARD = [("Jupiter, 1-bar level", "2.36 g", "70 kg reads ≈165 kg · no solid surface"),
-        ("Mars · Moon", "0.377 · 0.166 g", "70 kg reads ≈26 kg · ≈12 kg"),
-        ("Saturn", "0.916 g", "95× Earth's mass · 70 kg reads ≈64 kg"),
+CARD_SUB = "Why the scoop turns brittle"
+CARD = [("Mercury, night side", "−180 °C", "night ≈88 days · day 430 °C"),
+        ("Home freezer (FDA)", "−18 °C", "0 °F · still scoopable"),
+        ("Ice cream glass point", "≈ −30 °C", "−28 to −32 °C · syrup → glass"),
        ]
-DISCLAIMER = "Don't try this. Piling on weights can injure your back."
-NEXT = "TOMORROW: ICE CREAM ON MERCURY"   # E7 series teaser end card (binding for TIL-14)
+DISCLAIMER = "Don't try this. Ultra-cold food like dry ice burns."
+NEXT = "TOMORROW: EARTH STOPS SPINNING"   # E7 series teaser end card (binding for TIL-15)
 NEXT_START = 14.0
 
 def ease(x): x = max(0, min(1, x)); return 1 - (1 - x) ** 3

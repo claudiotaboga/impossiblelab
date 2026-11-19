@@ -4,13 +4,13 @@ from kokoro_onnx import Kokoro
 from config import VOICE, VOICE_SPEED
 
 LINES = [
-    "Jupiter more than doubles your weight.",
-    "Seventy kilos here, about one sixty-five there.",
-    "On Mars, the same you weighs twenty-six.",
-    "On the Moon, just twelve.",
-    "But Jupiter has no ground to stand on.",
+    "This ice cream cracks like glass.",
+    "Night on Mercury: minus one eighty.",
+    "Your freezer: minus eighteen.",
+    "Below minus thirty, its syrup turns to glass.",
+    "Your spoon won't scoop. It chips.",
     "The weird part?",
-    "On giant Saturn, you'd weigh less than here.",
+    "Night lasts three months. Then it bakes.",
 ]
 
 k = Kokoro("models/kokoro-v1.0.onnx", "models/voices-v1.0.bin")
