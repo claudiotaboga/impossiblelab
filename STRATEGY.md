@@ -386,6 +386,27 @@ Medians (TIL-01..11): hook hold 61.1 %, watch ratio 62 %; 24 h IG reach baseline
 
 NEXT BUILD INSTRUCTION (from 19 Nov 11:08 check): start **E13 (reel 1 of 3) on TIL-14 = queue E "Ice cream on Mercury's night side"** (binding: named on TIL-13's end card and caption). The one variable is the opening visual: within the first 0.5 s, a familiar scoop of ice cream visibly reacts to the impossible condition beside an Earth control, readable without sound — e.g. EARTH: a spoon sinks into a soft scoop; MERCURY NIGHT −180 °C: the same spoon strikes the scoop and it shatters like glass. No thermometer/readout-only or planet-only first frame. Keep everything else as TIL-13: hook line as a claim that sounds wrong but is true, 15 s / 1.10, caption v2, ⚠️ "Don't try this." on caption + card, E7 end card "TOMORROW: <next premise>" (default C coffee the size of a lake, only if its numbers verify), 16:00 on time (short separate calls). Science: source a Tg' value for ice cream before use (Univ. of Guelph dairy e-book or a peer-reviewed source; hedge if only a range exists) and NASA Mercury night −180 °C / day 430 °C; if the glass-shatter claim cannot be sourced, show a "rock-hard, spoon bounces" consequence instead. Primary metric: hook hold vs median 61.1 % (E13 target ≥ 65 % mean over TIL-14..16); secondary: IG reach at 24 h vs E5 median 1,093. Review at TIL-16's 48 h. E7 verdict 22 Nov.
 
+### Production run 19 Nov 2026 (13:12–16:20 EET)
+- **TIL-13 published on time** 16:00:07 EET (exec bcdb68f4… SUCCESS, IG Df7PsCnDpPL, YT yABGZH8K4Yg). **Snapshot 15:03 CET (16:03 EET)** (Make 8451991 exec 0764f118…, 8451995 exec 4cfc8037… SUCCESS): total **23,826 views** (IG 10,892 + YT 12,934); IG followers 6, YT subscribers 6. Checkpoints filled: TIL-12 24 h = 966 / 744 · 920 (24.0 h); TIL-10 72 h = 1,534 / 1,079 · 1,118 (69.2 h); TIL-06 7 d = 186 / 120 · 10 (168.0 h). Snapshot store trimmed to the newest 3 captures (deleted 18 Nov 12:14 and 15:03 CET).
+
+| Reel | Age | IG views | IG reach | Hook hold | Avg watch | Watch ratio | Shares / saves | YT views |
+|---|---|---|---|---|---|---|---|---|
+| TIL-01 whisky | 261 h | 210 | 139 | 71.0 % | 11.8 s | 79 % | 0 / 0 | 1,737 |
+| TIL-02 mercury | 258 h | 1,779 | 1,150 | 67.5 % | 11.2 s | 68 % | 0 / 0 | 1,237 |
+| TIL-03 honey | 231 h | 162 | 113 | 61.1 % | 9.7 s | 59 % | 0 / 0 | 1,162 |
+| TIL-04 gravity | 213 h | 171 | 115 | 57.5 % | 10.0 s | 61 % | 0 / 0 | 520 |
+| TIL-05 pasta | 192 h | 716 | 521 | 60.7 % | 9.3 s | 62 % | 0 / 0 | 1,383 |
+| TIL-06 marathon | 168 h | 186 | 120 | 64.8 % | 10.4 s | 69 % | 0 / 0 | 10 |
+| TIL-07 basketball | 144 h | 180 | 127 | 55.1 % | 7.8 s | 52 % | 0 / 0 | 1,208 |
+| TIL-08 shrunk 1 cm | 120 h | 1,548 | 1,093 | 63.0 % | 9.5 s | 63 % | 0 / 1 | 1,679 |
+| TIL-09 olive oil | 96 h | 3,284 | 2,149 | 72.1 % | 11.1 s | 74 % | 0 / 0 | 1,458 |
+| TIL-10 10× taller | 69 h | 1,534 | 1,079 | 61.0 % | 9.0 s | 60 % | 0 / 0 | 1,118 |
+| TIL-11 Everest breath | 44 h | 156 | 124 | 53.2 % | 6.2 s | 41 % | 0 / 0 | 502 |
+| **TIL-12 toast on Venus** | **24.0 h** | **966** | **744** | **61.1 %** | **9.0 s** | **60 %** | 0 / 0 | **920** |
+| TIL-13 Jupiter weight | 0.05 h | 0 | 0 | n/a | n/a | n/a | 0 / 0 | 0 |
+- **Findings:** 1. **TIL-12 at 24 h = 744 IG accounts (5.5× baseline, 0.68× E5 median 1,093), hook hold 61.1 % = median** — the topic rule delivered distribution, the readout-style opening did not lift retention; consistent with the E13 rationale (confidence medium, n = 5 openings). 2. **E7 still no conversion:** IG followers / YT subscribers 6 / 6 since 17 Nov over 868 accounts reached by TIL-11+12 (0 per 1,000 vs control ≈1.2); verdict after TIL-13's 72 h on 22 Nov (low–medium). 3. YT TIL-12 920 at 24 h = 0.82× YT median 1,118 (low; YT batches).
+- **Adjustment applied:** none — NEXT BUILD INSTRUCTION (19 Nov 11:08) followed: **TIL-14 = queue E "Ice cream on Mercury's night side", E13 reel 1**: t = 0 shows the consequence moving (spoon strikes the MERCURY NIGHT −180 °C scoop at 0.12 s, cracks + glassy shards by 0.3 s) beside an EARTH −18 °C control the spoon sinks into. Science sourced: NASA night −180 °C / day 430 °C / solar day 176 d; FDA freezer −18 °C; glass transition ≈ −28 to −32 °C (Physics World) and brittle glass below Tg' (Univ. of Guelph) → "shatter" kept as "cracks like glass / chips". One logged deviation: the E7 teaser names queue #10 "EARTH STOPS SPINNING" (default C coffee lake had no checkable cooling source today). **Binding:** TIL-15 = queue #10. E13 status: reel 1 in READY for 20 Nov 16:00; review at TIL-16's 48 h.
+
 ## Weekly reviews
 ### Week 1 (8–15 Nov 2026), written 15 Nov 11:08
 - Output: 8 reels published (TIL-01..08), 4 consecutive on-time 16:00 posts since TIL-05; READY buffer working (TIL-09 ready for today). Totals at 15 Nov 11:08: 13,498 views (IG 4,929 + YT 8,569); IG followers 1, YT subscribers 5.
