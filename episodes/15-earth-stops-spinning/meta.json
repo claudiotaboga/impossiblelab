@@ -1,0 +1,41 @@
+{
+ "episode_id": "TIL-15",
+ "status": "ready",
+ "qa_passed": true,
+ "width": 1080,
+ "height": 1920,
+ "duration_seconds": 15.0,
+ "title": "What if Earth stopped spinning for one second?",
+ "video_url": "https://raw.githubusercontent.com/claudiotaboga/impossiblelab/main/episodes/15-earth-stops-spinning/video.mp4",
+ "caption": "Your coffee would break the sound barrier. ☕🌍\n\nThe ground at the equator moves east at about 465 m/s (40,075 km every 23.93 h, NASA). Sound in air: 343 m/s at 20 °C.\n\nStop Earth's spin for one second and the ground halts, but everything loose keeps going east at that speed.\n\nHalfway to the pole (45°) it's still about 329 m/s, close to the speed of sound. At the North Pole: almost nothing.\n\nSend this to the friend who never secures the coffee in the car.\n\nTomorrow: boiling an egg on Everest. 🔔 Follow @the.impossible.lab (or subscribe on YouTube) so you don't miss it.\n\n⚠️ Don't try this. The same physics hits you in a car that brakes hard: loose objects (and unbelted people) keep moving. Buckle up and secure loose items.\n\n#science #physics #whatif #sciencefacts #earth #space #coffee #theimpossiblelab",
+ "sources": [
+  "NASA NSSDC Earth Fact Sheet (equatorial radius 6378.137 km, sidereal rotation period 23.9345 h): https://nssdc.gsfc.nasa.gov/planetary/factsheet/earthfact.html",
+  "Computed: 2π × 6378.137 km / 23.9345 h = 1,674 km/h = 465.1 m/s; × cos 45° = 328.9 m/s",
+  "Space.com, 'What would happen if Earth stopped spinning?' (A. Layden, BGSU): ~1,000 mph at the equator; unattached things keep moving: https://www.space.com/what-would-happen-if-earth-stopped-spinning",
+  "BBC Sky at Night (P. Wozniakiewicz, Univ. of Kent): equator 'over 400 metres per second', speed falls toward the poles; sudden stop flings us eastwards: https://www.skyatnightmagazine.com/space-science/what-happen-earth-stopped-rotating",
+  "Speed of sound in dry air 343 m/s at 20 °C: https://en.wikipedia.org/wiki/Speed_of_sound"
+ ],
+ "qa": {
+  "duration_s": 15.0,
+  "resolution": "1080x1920",
+  "video": "H.264 High yuv420p, max 2.82 Mbps per 1-s window",
+  "audio": "AAC 128k 48 kHz stereo",
+  "loudness_lufs": -14.1,
+  "true_peak_dbfs": -1.3,
+  "faststart": true,
+  "frames_checked": [
+   "0.5 hook",
+   "3.2 stop",
+   "4.95 launch",
+   "7.0 chip 1",
+   "10.6 chip 2",
+   "12.9 chip 3",
+   "14.3 card+disclaimer",
+   "14.95 last"
+  ],
+  "disclaimer_caption": true,
+  "disclaimer_card": true,
+  "handle": "@the.impossible.lab only",
+  "follow_invite": "pill 5.0-8.2 s + end card + caption"
+ }
+}

@@ -148,14 +148,17 @@ def squish(dur=0.45):  # spoon sinking into soft ice cream
     n = int(dur * SR); return lp(rng.standard_normal(n), 700) * np.sin(np.linspace(0, np.pi, n)) ** 1.5 * 1.2
 def tinkles(t0, dur, k=10):  # falling shards
     for j in range(k): put(sfx, plink(rng.uniform(2500, 4200), 0.12), t0 + rng.uniform(0.15, dur), rng.uniform(0.04, 0.09))
-put(sfx, squish(0.6), 0.02, 0.35)                                                    # Earth: spoon sinks in
-for i, ti in enumerate(B["impacts"]):                                               # Mercury: strikes, cracks, shards
-    put(sfx, clink(3200 - 300 * i), ti, 0.45); put(sfx, crack(0.3), ti, 0.35); tinkles(ti, 0.9, 10 if i != 1 else 4)
-put(sfx, squish(0.5), B["freezer_dip"], 0.30)                                        # freezer: easy scoop
-put(sfx, crack(0.35), B["cracks"], 0.45); put(sfx, clink(2600, 0.6), B["cracks"] + 0.05, 0.25)  # syrup -> glass cracks
-counter(B["glass"] - 1.05, B["glass"] - 0.1, 8, 1500, 900, 0.06)                    # temperature -18 -> -30
-counter(B["cuts"][4] + 0.15, B["sunrise"] - 0.1, 16, 700, 1500, 0.06)               # night counter, day 1 -> 88
-put(sfx, whoomph(1.0), B["sunrise"] - 0.1, 0.5); put(sfx, sizzle(1.1), B["sunrise"] + 0.2, 0.30)  # sunrise, scoop bakes
+# ---- episode 15 SFX: Earth stops spinning ----
+def boom(dur=0.6):  # sonic-boom style double crack
+    return crack(dur) + np.concatenate([np.zeros(int(0.09 * SR)), crack(dur)])[: int(dur * SR)] * 0.7
+for i, tl in enumerate(B["launch"]):                                               # objects fly east
+    put(sfx, boom(0.6), tl, 0.55); put(sfx, whoosh(0.7, 400, 5000), tl - 0.02, 0.45)
+put(sfx, rumble(B["stop"] - B["cuts"][0]), B["cuts"][0], 0.35)                      # spinning globe hum
+put(sfx, thud(0.7, 42), B["stop"], 0.9); put(sfx, clang(0.6), B["stop"], 0.25)        # dead stop
+put(sfx, whoosh(0.5, 600, 4000), B["mini"], 0.35)                                   # mini mug leaves the equator
+counter(B["bars1"], B["bars1"] + 0.45, 8, 900, 1600, 0.06)                          # bars grow
+counter(B["bars2"] + 0.15, B["bars2"] + 0.75, 8, 1600, 1100, 0.06)                   # 465 -> 329
+put(sfx, wind(1.8, 0.6), B["pole"] + 0.1, 0.15)                                      # calm at the pole
 for t_cut in B["cuts"]:
     put(sfx, whoosh(0.35, 1800, 500, False), t_cut - 0.15, 0.10)
 put(sfx, thud(0.4, 60), CARD_START, 0.6); put(sfx, whoosh(0.3, 800, 3000), CARD_START - 0.25, 0.2)

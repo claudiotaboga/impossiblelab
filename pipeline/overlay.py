@@ -10,20 +10,20 @@ def font(w, s): return ImageFont.truetype(F + f"Inter-{w}.otf", s)
 AMBER = (255, 176, 46); WHITE = (255, 255, 255); INK = (18, 12, 6)
 
 # ---- per-episode content: the only block to change for a new episode ----
-EP_NUM = 14
-TITLE = ["ICE CREAM", "ON MERCURY?"]
+EP_NUM = 15
+TITLE = ["EARTH STOPS", "SPINNING?"]
 FACTS = [  # (start, end, text) — times match the narration lines
-    (2.11, 4.13, "MERCURY AT NIGHT: −180 °C"),
-    (4.33, 5.87, "HOME FREEZER: −18 °C"),
-    (6.07, 8.56, "GLASS POINT ≈ −30 °C"),
+    (6.10, 8.60, "EQUATOR: ≈465 m/s · SOUND: 343 m/s"),
+    (8.95, 11.10, "45° N: ≈329 m/s"),
+    (12.29, 13.55, "NORTH POLE: ≈0 m/s"),
 ]
-CARD_SUB = "Why the scoop turns brittle"
-CARD = [("Mercury, night side", "−180 °C", "night ≈88 days · day 430 °C"),
-        ("Home freezer (FDA)", "−18 °C", "0 °F · still scoopable"),
-        ("Ice cream glass point", "≈ −30 °C", "−28 to −32 °C · syrup → glass"),
+CARD_SUB = "How fast the ground carries you east"
+CARD = [("Equator", "465 m/s", "40,075 km ÷ 23.93 h (NASA)"),
+        ("45° latitude", "329 m/s", "465 × cos 45° · sound 343 m/s at 20 °C"),
+        ("North Pole", "≈ 0 m/s", "on the spin axis"),
        ]
-DISCLAIMER = "Don't try this. Ultra-cold food like dry ice burns."
-NEXT = "TOMORROW: EARTH STOPS SPINNING"   # E7 series teaser end card (binding for TIL-15)
+DISCLAIMER = "Don't try this. Braking cars fling loose things too."
+NEXT = "TOMORROW: BOILING AN EGG ON EVEREST"   # series teaser end card (binding for TIL-16)
 NEXT_START = 14.0
 
 # ---- follow invite (Claudio, 20 Nov 2026: "invite the viewer to subscribe to the channel") — house rule, every reel ----

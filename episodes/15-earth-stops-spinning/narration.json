@@ -1,0 +1,51 @@
+[
+ {
+  "i": 1,
+  "text": "Your coffee breaks the sound barrier.",
+  "dur": 1.66,
+  "start": 0.2,
+  "end": 1.86
+ },
+ {
+  "i": 2,
+  "text": "Stop Earth's spin for one second.",
+  "dur": 1.706,
+  "start": 2.06,
+  "end": 3.766
+ },
+ {
+  "i": 3,
+  "text": "The ground stops. Your mug doesn't.",
+  "dur": 1.768,
+  "start": 3.966,
+  "end": 5.734
+ },
+ {
+  "i": 4,
+  "text": "At the equator, nearly five hundred metres a second.",
+  "dur": 2.713,
+  "start": 5.934,
+  "end": 8.647
+ },
+ {
+  "i": 5,
+  "text": "Halfway to the pole: still near sound speed.",
+  "dur": 2.299,
+  "start": 8.847,
+  "end": 11.146
+ },
+ {
+  "i": 6,
+  "text": "And at the pole?",
+  "dur": 0.747,
+  "start": 11.346,
+  "end": 12.093
+ },
+ {
+  "i": 7,
+  "text": "Your coffee barely moves.",
+  "dur": 1.27,
+  "start": 12.293,
+  "end": 13.563
+ }
+]
