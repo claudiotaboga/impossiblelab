@@ -16,13 +16,14 @@
 | 11 | TIL-11 | 17 Nov 2026 19:43:50 (16:00 slot, 3 h 44 min late; from READY) | Your breath on Everest's summit | Teleported to Everest, you'd faint. | 15.0 s | fc5ab187a17444dcb4325dbee01cbf23 | [Df2fs06lLNa](https://www.instagram.com/reel/Df2fs06lLNa/) | [tRJNmZz9L6Y](https://youtube.com/shorts/tRJNmZz9L6Y) |
 | 12 | TIL-12 | 18 Nov 2026 16:00:07 (on time; from READY) | Making toast on Venus | Venus is hotter than your oven. | 15.0 s | f606781d7b974503bf70f026443103e6 | [Df4q5VSj7PI](https://www.instagram.com/reel/Df4q5VSj7PI/) | [kHuZS3kFJUI](https://youtube.com/shorts/kHuZS3kFJUI) |
 | 13 | TIL-13 | 19 Nov 2026 16:00:07 (on time; from READY) | Your weight on Jupiter | Jupiter more than doubles your weight. | 15.0 s | bcdb68f45e5e4a7497fc54bdb70c107a | [Df7PsCnDpPL](https://www.instagram.com/reel/Df7PsCnDpPL/) | [yABGZH8K4Yg](https://youtube.com/shorts/yABGZH8K4Yg) |
+| 14 | TIL-14 | 20 Nov 2026 16:00:04 (on time; from READY) | A scoop of ice cream on Mercury's night side | This ice cream cracks like glass. | 15.0 s | 5661f04ebab846fa8fc029ff34c9c46a | [Df90gUOirkY](https://www.instagram.com/reel/Df90gUOirkY/) | [as3BaHKjHbE](https://youtube.com/shorts/as3BaHKjHbE) |
 
 ## READY TO PUBLISH
 Buffer: the daily run publishes the first entry here at 16:00 EET (its `meta.json` is final and its video is already hosted), moves it to the register, then builds the next episode into this section.
 
 | Episode ID | Folder | Premise | Hook line | Length | SHA-256 | Built |
 |---|---|---|---|---|---|---|
-| TIL-14 | episodes/14-mercury-ice-cream | A scoop of ice cream on Mercury's night side (E13 reel 1: consequence in motion at t = 0; E7 end card "TOMORROW: EARTH STOPS SPINNING"; E5 rule as control) | This ice cream cracks like glass. | 15.0 s (E4) | `45879d7ab4d3ab803afc787c391ad7a37d5adfbde32387c23251d3e2dd35ac08` | 19 Nov 2026 14:22 EET |
+| TIL-15 | episodes/15-earth-stops-spinning | Earth stops spinning for one second (E13 reel 2: table contents launch east beside a NORMAL EARTH control at 0.08 s; E16 follow pill 5.0–8.2 s + end card; end card "TOMORROW: BOILING AN EGG ON EVEREST") | Your coffee breaks the sound barrier. | 15.0 s (E4) | `8b030641f93f911d9679da3711674bfac7808e2c40c1d648c43ea54bcc2bd6e2` | 20 Nov 2026 14:30 EET |
 
 ## Topic queue
 Take the first item that is not in the register. Every premise must be buildable from Blender primitives, safe to show, and its science checkable. Verify every number before use; the notes are starting points, not facts.
@@ -47,9 +48,10 @@ E5 (13 Nov): next three topics put stakes on the viewer's own body or an everyda
 7. ~~**Running a marathon at the speed of sound**~~ (done, TIL-06; taken ahead of #5/#6 as the most visceral fully computable premise): 123 s; drag ≥ 17 kN with CdA 0.24 m² (the old ~35 kN note was too high); ≥ 5.8 MW ≈ 17,000× an elite ~341 W; 1 g turn radius 12 km.
 8. **Shouting on Venus**: 92 bar, ~465 °C, air ~65× denser; your voice changes (hedge: modelled, uncertain).
 9. **Every cat on Earth meowing at once**: total sound power less than one car engine; sound arrives staggered.
-10. **Earth stops spinning for one second** (**next = TIL-15, binding: named on the TIL-14 E7 end card "TOMORROW: EARTH STOPS SPINNING" and caption**; taken ahead of C because the coffee-lake cooling numbers had no checkable source on 19 Nov; equatorial speed ≈465 m/s = 40,075 km / 23.93 h, re-verify against NASA before use): everything loose keeps moving east at up to ~465 m/s; at ~45° N that is about the speed of sound.
+10. ~~**Earth stops spinning for one second**~~ (done, TIL-15: NASA equatorial radius 6378.137 km / sidereal day 23.9345 h → 465 m/s; × cos 45° = 329 m/s vs sound 343 m/s at 20 °C; pole ≈ 0; Space.com/Layden + Sky at Night/Wozniakiewicz: loose things keep moving east).
 11. **A bowling ball dropped onto a trampoline made of soap film** (pick only if the science checks out cleanly).
 13. ~~**Basketball on the Moon**~~ (done, TIL-07: 1 m Earth leap → 6.05 m, 5.5 s airtime, free throw ≈21 m in dome air ≈ 5× too far): 1/6 gravity (1.62 m/s²): the same jump goes ~6× higher and hangs ~6× longer; a free throw needs a much flatter, slower shot. Check: lunar g, standing-jump heights.
 14. **A paper plane thrown from the International Space Station**: orbital speed ~7.7 km/s, no lift in near-vacuum, the plane stays in orbit beside you; re-entry heating if it ever drops (check published paper-plane-from-space experiments).
 15. **A snowball fight on Mars**: thin CO₂ air, −60 °C average, snow there is partly dry ice that sublimates; check Phoenix lander snowfall data and CO₂ frost point (~−125 °C at Mars pressure).
-16. **A boiled egg on top of Everest** (food + a place everyone knows, added 19 Nov for E5): water boils at about 70 °C at the summit, so the egg takes far longer; check boiling point at ~253 mmHg and egg-white/yolk setting temperatures (~62–70 °C) before use.
+16. **A boiled egg on top of Everest** (**next = TIL-16, binding: named on the TIL-15 end card "TOMORROW: BOILING AN EGG ON EVEREST" and caption**) (food + a place everyone knows, added 19 Nov for E5): water boils at about 70 °C at the summit, so the egg takes far longer; check boiling point at ~253 mmHg and egg-white/yolk setting temperatures (~62–70 °C) before use.
+17. **Popcorn on Mars** (food, E5, added 20 Nov): Mars' thin air (~0.6 % of Earth's) vs the steam pressure a kernel needs to burst (~9 bar inside the hull at ~180 °C); check whether kernels pop or just dry out; verify Mars surface pressure (NASA) and popping pressure/temperature (peer-reviewed popcorn physics, e.g. Virot & Ponomarenko 2015) before use.
