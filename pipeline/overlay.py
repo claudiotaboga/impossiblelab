@@ -26,6 +26,13 @@ DISCLAIMER = "Don't try this. Ultra-cold food like dry ice burns."
 NEXT = "TOMORROW: EARTH STOPS SPINNING"   # E7 series teaser end card (binding for TIL-15)
 NEXT_START = 14.0
 
+# ---- follow invite (Claudio, 20 Nov 2026: "invite the viewer to subscribe to the channel") — house rule, every reel ----
+# Shown mid-reel, while most viewers are still watching (avg watch ≈ 9 s; the 13.5 s end card is seen by few),
+# and again on the end card. Placed between the captions (~1330 px) and Instagram's bottom UI (> 1540 px).
+FOLLOW_TEXT = "FOLLOW · A NEW IMPOSSIBLE EXPERIMENT EVERY DAY"
+FOLLOW_START, FOLLOW_END = 5.0, 8.2
+END_FOLLOW = "FOLLOW @the.impossible.lab"
+
 def ease(x): x = max(0, min(1, x)); return 1 - (1 - x) ** 3
 
 def shadow_text(base, xy, text, fnt, fill, anchor="mm", blur=10, alpha=170, stroke=0):
@@ -122,6 +129,13 @@ def frame(f):
         ns = 50
         while ns > 36 and font("Black", ns).getlength(NEXT) > 820: ns -= 2
         pill(img, W / 2, 1390 + 30 * (1 - a2), NEXT, font("Black", ns), AMBER, INK, pad=(40, 22), a=a2)
+        pill(img, W / 2, 1488 + 30 * (1 - a2), END_FOLLOW, font("Black", 38), WHITE, INK, pad=(34, 16), a=a2)
+    # mid-reel follow invite
+    if FOLLOW_START <= t <= FOLLOW_END and t < CARD_START:
+        a3 = min(ease((t - FOLLOW_START) / 0.3), ease((FOLLOW_END - t) / 0.3))
+        fs = 36
+        while fs > 28 and font("ExtraBold", fs).getlength(FOLLOW_TEXT) > 860: fs -= 1
+        pill(img, W / 2, 1478 + 18 * (1 - a3), FOLLOW_TEXT, font("ExtraBold", fs), AMBER, INK, pad=(30, 16), a=a3)
     return img.convert("RGB")
 
 if __name__ == "__main__":
