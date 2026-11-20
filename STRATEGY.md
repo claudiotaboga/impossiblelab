@@ -407,6 +407,34 @@ NEXT BUILD INSTRUCTION (from 19 Nov 11:08 check): start **E13 (reel 1 of 3) on T
 - **Findings:** 1. **TIL-12 at 24 h = 744 IG accounts (5.5× baseline, 0.68× E5 median 1,093), hook hold 61.1 % = median** — the topic rule delivered distribution, the readout-style opening did not lift retention; consistent with the E13 rationale (confidence medium, n = 5 openings). 2. **E7 still no conversion:** IG followers / YT subscribers 6 / 6 since 17 Nov over 868 accounts reached by TIL-11+12 (0 per 1,000 vs control ≈1.2); verdict after TIL-13's 72 h on 22 Nov (low–medium). 3. YT TIL-12 920 at 24 h = 0.82× YT median 1,118 (low; YT batches).
 - **Adjustment applied:** none — NEXT BUILD INSTRUCTION (19 Nov 11:08) followed: **TIL-14 = queue E "Ice cream on Mercury's night side", E13 reel 1**: t = 0 shows the consequence moving (spoon strikes the MERCURY NIGHT −180 °C scoop at 0.12 s, cracks + glassy shards by 0.3 s) beside an EARTH −18 °C control the spoon sinks into. Science sourced: NASA night −180 °C / day 430 °C / solar day 176 d; FDA freezer −18 °C; glass transition ≈ −28 to −32 °C (Physics World) and brittle glass below Tg' (Univ. of Guelph) → "shatter" kept as "cracks like glass / chips". One logged deviation: the E7 teaser names queue #10 "EARTH STOPS SPINNING" (default C coffee lake had no checkable cooling source today). **Binding:** TIL-15 = queue #10. E13 status: reel 1 in READY for 20 Nov 16:00; review at TIL-16's 48 h.
 
+### Stats check 20 Nov 2026 11:08 EET (light run, Friday)
+- Make 8451991 exec 17a30e55… and 8451995 exec d053425b… (both returned; capture 10:08 CET = 11:08 EET present for all 13 IG + 13 YT media). **Total 26,400 views (IG 12,359 + YT 14,041), +2,574 since 19 Nov 15:03 CET.** IG followers 6 (unchanged), **YT subscribers 6 → 7**. Competitors not due (Mon/Thu). Data store 250779 trimmed 100 → 52 (19 Nov 10:08 + 12:14 CET snapshots removed; newest per media kept).
+
+| Reel | Age | IG views | IG reach | Hook hold | Avg watch | Watch ratio | Shares / saves / reposts | YT views |
+|---|---|---|---|---|---|---|---|---|
+| TIL-01 whisky | 280 h | 210 | 139 | 71.0 % | 11.8 s | 79 % | 0 / 0 / 1 | 1,737 |
+| TIL-02 mercury | 277 h | 1,779 | 1,150 | 67.5 % | 11.2 s | 68 % | 0 / 0 / 2 | 1,237 |
+| TIL-03 honey | 250 h | 162 | 113 | 61.1 % | 9.7 s | 59 % | 0 / 0 / 0 | 1,162 |
+| TIL-04 gravity | 232 h | 171 | 115 | 57.5 % | 10.0 s | 61 % | 0 / 0 / 0 | 520 |
+| TIL-05 pasta | 211 h | 716 | 521 | 60.7 % | 9.3 s | 62 % | 0 / 0 / 0 | 1,383 |
+| TIL-06 marathon | 187 h | 186 | 120 | 64.8 % | 10.4 s | 69 % | 0 / 0 / 0 | 10 |
+| TIL-07 basketball | 163 h | 180 | 127 | 55.1 % | 7.8 s | 52 % | 0 / 0 / 0 | 1,208 |
+| TIL-08 shrunk 1 cm | 139 h | 1,548 | 1,093 | 63.0 % | 9.5 s | 63 % | 0 / 1 / 0 | 1,681 |
+| TIL-09 olive oil | 115 h | 3,285 | 2,149 | 72.1 % | 11.1 s | 74 % | 0 / 0 / 0 | 1,464 |
+| TIL-10 10× taller | 88 h | 1,534 | 1,079 | 61.0 % | 9.0 s | 60 % | 0 / 0 / 1 | 1,120 |
+| TIL-11 Everest breath | 63 h | 156 | 124 | 53.2 % | 6.2 s | 41 % | 0 / 0 / 1 | 551 |
+| TIL-12 toast on Venus | 43 h | 968 | 749 | 61.1 % | 9.0 s | 60 % | 0 / 0 / 0 | 928 |
+| **TIL-13 Jupiter weight** | **19.1 h** | **1,464** | **1,040** | **66.1 %** | **8.6 s** | **58 %** | 0 / 0 / 2 | **1,040** |
+Medians (TIL-01..12): hook hold 61.1 %, watch ratio 61 %; 24 h IG reach baseline 136; E5 24 h median 1,093; YT 24 h median 1,118. Shares: 0 of 12,359 IG views over 13 reels; saves 1.
+- **Findings:**
+  1. **TIL-13 (strict proof-image opening: EARTH 70 kg vs JUPITER readout racing to 165 kg with the figure sagging inside 0.65 s) = 1,040 IG accounts at 19.1 h (7.6× the 136 baseline, 0.95× E5 median; > 1,000 IG views in 24 h) and hook hold 66.1 %, the 3rd best of 13 and +5 pts on the median.** Openings where the body/object visibly reacts (TIL-08 63.0 %, TIL-09 72.1 %, TIL-13 66.1 %; mean 67.1 %) vs condition/readout-only openings (TIL-11 53.2 %, TIL-12 61.1 %; mean 57.2 %). Supports the E13 hypothesis before E13 itself starts measuring; confidence low–medium (n = 5, TIL-13 < 48 h, IG counts usually freeze after ~20 h). TIL-13 is pre-E13 evidence, not an E13 reel.
+  2. **E7 (end-card teaser) heading for FAIL (low–medium):** 3 of 3 reels published; IG followers 6 → 6 and YT subs 6 → 7 since 17 Nov across 1,913 accounts reached by TIL-11..13 (≈ 0.5 per 1,000 incl. YT vs control ≈ 1.2 IG per 1,000). Avg watch 6.2–9.0 s vs card at ~13.45 s: most viewers never reach it. Verdict 22 Nov at TIL-13's 72 h; if it fails the cause is placement, which points to E15 (teaser in the first half).
+  3. **Shares remain the dead metric (medium):** 0 shares on 12,359 IG views over 13 reels; the only redistribution is reposts (TIL-13: 2, total 8). The caption share line does not work; E14 (on-screen share beat) stays the next candidate after E13.
+- Experiment ideas from finding 1 (backlog): (a) **E13 running** (consequence in motion at t = 0); (b) E9 human body part in frame at t = 0 — TIL-13's sagging figure suggests it compounds with E13 (later test); (c) E11 fixed side-by-side control vs impossible as the permanent opening rule after E13 passes (retest before permanent).
+- **Selection: keep current** — E13 reel 1 (TIL-14) publishes today 16:00 from READY; one variable at a time, ≥ 3 reels before judging.
+
+NEXT BUILD INSTRUCTION (from 20 Nov 11:08 check): keep current (E13 reel 2 of 3). Build **TIL-15 = queue #10 "Earth stops spinning for one second"** (binding: TIL-14 end card + caption). E13 variable unchanged: within the first 0.5 s a familiar object (and, where safe, the viewer's figure) visibly reacts beside an Earth control — e.g. NORMAL EARTH: a coffee mug standing still on a table; EARTH STOPPED: the same mug and table contents launching east at speed, readable without sound — no globe-only or speed-readout-only first frame (TIL-11/12 pattern held 53–61 %). Keep the E5 body/everyday-object framing ("you and your kitchen keep moving at 465 m/s"), safe content (objects fly; no injured people on screen), hook line as a claim that sounds wrong but is true, 15 s / 1.10, caption v2, ⚠️ "Don't try this." on caption + card, E7 end card "TOMORROW: <next premise>" unchanged as a constant until its 22 Nov verdict, 16:00 on time (short separate calls). Science: re-verify equatorial speed ≈ 465 m/s (NASA: 40,075 km / sidereal day 23.93 h) and the latitude scaling (v = 465 × cos φ; ≈ 329 m/s at 45° vs sound ≈ 343 m/s at 20 °C, so "about the speed of sound" must be stated as "close to"). Primary metric: hook hold vs median 61.1 % (E13 target ≥ 65 % mean over TIL-14..16); secondary: IG reach at 24 h vs E5 median 1,093. Review at TIL-16's 48 h (24 Nov 16:00).
+
 ## Weekly reviews
 ### Week 1 (8–15 Nov 2026), written 15 Nov 11:08
 - Output: 8 reels published (TIL-01..08), 4 consecutive on-time 16:00 posts since TIL-05; READY buffer working (TIL-09 ready for today). Totals at 15 Nov 11:08: 13,498 views (IG 4,929 + YT 8,569); IG followers 1, YT subscribers 5.
