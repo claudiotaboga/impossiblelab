@@ -148,17 +148,16 @@ def squish(dur=0.45):  # spoon sinking into soft ice cream
     n = int(dur * SR); return lp(rng.standard_normal(n), 700) * np.sin(np.linspace(0, np.pi, n)) ** 1.5 * 1.2
 def tinkles(t0, dur, k=10):  # falling shards
     for j in range(k): put(sfx, plink(rng.uniform(2500, 4200), 0.12), t0 + rng.uniform(0.15, dur), rng.uniform(0.04, 0.09))
-# ---- episode 15 SFX: Earth stops spinning ----
-def boom(dur=0.6):  # sonic-boom style double crack
-    return crack(dur) + np.concatenate([np.zeros(int(0.09 * SR)), crack(dur)])[: int(dur * SR)] * 0.7
-for i, tl in enumerate(B["launch"]):                                               # objects fly east
-    put(sfx, boom(0.6), tl, 0.55); put(sfx, whoosh(0.7, 400, 5000), tl - 0.02, 0.45)
-put(sfx, rumble(B["stop"] - B["cuts"][0]), B["cuts"][0], 0.35)                      # spinning globe hum
-put(sfx, thud(0.7, 42), B["stop"], 0.9); put(sfx, clang(0.6), B["stop"], 0.25)        # dead stop
-put(sfx, whoosh(0.5, 600, 4000), B["mini"], 0.35)                                   # mini mug leaves the equator
-counter(B["bars1"], B["bars1"] + 0.45, 8, 900, 1600, 0.06)                          # bars grow
-counter(B["bars2"] + 0.15, B["bars2"] + 0.75, 8, 1600, 1100, 0.06)                   # 465 -> 329
-put(sfx, wind(1.8, 0.6), B["pole"] + 0.1, 0.15)                                      # calm at the pole
+# ---- episode 16 SFX: boiling an egg on Everest ----
+put(sfx, bubbling(DUR), 0.0, 0.10)                                                  # rolling boil under everything
+put(sfx, squish(0.4), B["land"], 0.55); put(sfx, thud(0.3, 90), B["land"], 0.35)      # eggs land: firm thud + runny squish
+put(sfx, wind(B["cuts"][1] - B["cuts"][0], 0.8), B["cuts"][0], 0.22)                 # thin summit wind
+put(sfx, shimmer(0.6), B["thin"], 0.18)                                             # air thins out
+counter(B["heat"], B["boil"], 10, 700, 1400, 0.05)                                  # thermometer climbs 20 -> 70
+put(sfx, bubbling(1.2), B["boil"], 0.22)                                            # boil kicks in at 70
+put(sfx, beep(2200, 0.08), B["w80"], 0.12); put(sfx, beep(2200, 0.08), B["w80"] + 0.18, 0.12)  # 80 °C mark lights up
+for tp in B["taps"]: put(sfx, clink(2600, 0.25), tp, 0.18); put(sfx, squish(0.35), tp + 0.02, 0.45)  # spoon tap + wobble
+put(sfx, shimmer(0.5), B["set"], 0.15)                                              # yolk sets
 for t_cut in B["cuts"]:
     put(sfx, whoosh(0.35, 1800, 500, False), t_cut - 0.15, 0.10)
 put(sfx, thud(0.4, 60), CARD_START, 0.6); put(sfx, whoosh(0.3, 800, 3000), CARD_START - 0.25, 0.2)

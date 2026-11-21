@@ -10,20 +10,20 @@ def font(w, s): return ImageFont.truetype(F + f"Inter-{w}.otf", s)
 AMBER = (255, 176, 46); WHITE = (255, 255, 255); INK = (18, 12, 6)
 
 # ---- per-episode content: the only block to change for a new episode ----
-EP_NUM = 15
-TITLE = ["EARTH STOPS", "SPINNING?"]
+EP_NUM = 16
+TITLE = ["AN EGG ON", "EVEREST?"]
 FACTS = [  # (start, end, text) — times match the narration lines
-    (6.10, 8.60, "EQUATOR: ≈465 m/s · SOUND: 343 m/s"),
-    (8.95, 11.10, "45° N: ≈329 m/s"),
-    (12.29, 13.55, "NORTH POLE: ≈0 m/s"),
+    (3.85, 5.55, "SUMMIT AIR: ≈1/3 OF SEA-LEVEL PRESSURE"),
+    (7.40, 9.50, "EGG WHITE (OVALBUMIN) SETS AT ≈80 °C"),
+    (12.45, 13.88, "YOLK SETS AT ≈62–70 °C"),
 ]
-CARD_SUB = "How fast the ground carries you east"
-CARD = [("Equator", "465 m/s", "40,075 km ÷ 23.93 h (NASA)"),
-        ("45° latitude", "329 m/s", "465 × cos 45° · sound 343 m/s at 20 °C"),
-        ("North Pole", "≈ 0 m/s", "on the spin axis"),
+CARD_SUB = "Why an egg stays soft on Everest"
+CARD = [("Summit air", "≈ 1/3 atm", "253 vs 760 mmHg (West 1983)"),
+        ("Water boils at", "≈ 70 °C", "68–72 °C on the summit (CK-12, IFLScience)"),
+        ("White sets at", "≈ 80 °C", "ovalbumin, 54 % of the white · yolk 62–70 °C"),
        ]
-DISCLAIMER = "Don't try this. Braking cars fling loose things too."
-NEXT = "TOMORROW: BOILING AN EGG ON EVEREST"   # series teaser end card (binding for TIL-16)
+DISCLAIMER = "Don't try this. Undercooked eggs can carry Salmonella."
+NEXT = "TOMORROW: POPCORN ON MARS"   # series teaser end card (binding for TIL-17)
 NEXT_START = 14.0
 
 # ---- follow invite (Claudio, 20 Nov 2026: "invite the viewer to subscribe to the channel") — house rule, every reel ----

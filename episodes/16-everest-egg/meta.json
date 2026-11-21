@@ -1,0 +1,45 @@
+{
+ "episode_id": "TIL-16",
+ "status": "ready",
+ "qa_passed": true,
+ "width": 1080,
+ "height": 1920,
+ "duration_seconds": 15.0,
+ "title": "What if you boiled an egg on top of Everest?",
+ "video_url": "https://raw.githubusercontent.com/claudiotaboga/impossiblelab/main/episodes/16-everest-egg/video.mp4",
+ "caption": "Boiling water can't cook this egg on Everest. 🥚🏔️\n\nAt the summit the air pressure is about a third of sea level (253 vs 760 mmHg), so water boils at only about 70 °C instead of 100 °C.\n\nMost of the egg white is ovalbumin, which needs about 80 °C to set. The yolk sets at roughly 62–70 °C, so the yolk can firm up while the white stays soft. That's why high-altitude cooks reach for a pressure cooker.\n\nSend this to the friend who times their boiled eggs to the second.\n\nTomorrow: popcorn on Mars. 🔔 Follow @the.impossible.lab (or subscribe on YouTube) so you don't miss it.\n\n⚠️ Don't try this. Undercooked eggs can carry Salmonella, and water at 70 °C still scalds.\n\n#science #physics #whatif #sciencefacts #everest #cooking #eggs #theimpossiblelab",
+ "sources": [
+  "West JB et al. (1983) Barometric pressures at extreme altitudes on Mt. Everest, J Appl Physiol 54:1188-1194 (summit 253 Torr ≈ 1/3 of 760): https://air.unimi.it/bitstream/2434/176393/2/23-83JAP_Mount_Everest.pdf",
+  "CK-12 / LibreTexts Introductory Chemistry 13.9 Boiling: 'the boiling point on top of Mount Everest is only about 70°C' (8,848 m): https://chem.libretexts.org/Bookshelves/Introductory_Chemistry/Introductory_Chemistry_(CK-12)/13:_States_of_Matter/13.09:_Boiling",
+  "IFLScience, 'This is why you can't boil an egg on Mount Everest': water boils at 68 °C with about one-third of sea-level pressure; ovalbumin (up to 54 % of the white) doesn't coagulate until 80 °C; yolk needs at least 70 °C; recommends a pressure cooker: https://www.iflscience.com/this-is-why-you-cant-boil-an-egg-on-mount-everest-74028",
+  "Modern Pastry and Plated Desserts (BCcampus open textbook), Coagulation: white coagulates 60–65 °C, yolk 62–70 °C; ovalbumin 54 %, ovotransferrin 12 % of white proteins: https://opentextbc.ca/modernpastryandplateddesserts/chapter/coagulation/",
+  "Computed check: Antoine equation for water at 253 mmHg → 71.9 °C (consistent with the 68–72 °C range); Everest height 8,848.86 m (2020 China–Nepal survey) → 8,849 m",
+  "Next premise (E7-style end card): popcorn on Mars — to be verified in the TIL-17 build (Mars surface pressure ≈0.6 % of Earth's, NASA; kernel bursts at ≈9 atm internal steam pressure)"
+ ],
+ "qa": {
+  "duration_s": 15.0,
+  "resolution": "1080x1920",
+  "video": "H.264 High yuv420p, max 2.72 Mbps per 1-s window",
+  "audio": "AAC 128k 48 kHz stereo",
+  "loudness_lufs": -14.0,
+  "true_peak_dbfs": -1.5,
+  "faststart": true,
+  "frames_checked": [
+   "0.0 eggs dropping",
+   "0.5 hook (COOKED vs RUNNY)",
+   "2.6 summit",
+   "4.0/4.4/4.9 chip 1 + air dots",
+   "6.5 FOLLOW pill + 70 °C boil",
+   "8.0 chip 2 (80 °C mark)",
+   "10.3 spoon tap",
+   "13.0 chip 3 yolk set",
+   "14.4 card+disclaimer",
+   "14.95 last (card, TOMORROW, FOLLOW)"
+  ],
+  "disclaimer_caption": true,
+  "disclaimer_card": true,
+  "handle": "@the.impossible.lab only",
+  "follow_invite": "pill 5.0-8.2 s + end card + caption",
+  "fix_applied": "thermometer labels hidden during the air beat (overlapped the AIR label at 4.4 s); card row 3 relabelled 'White sets at'"
+ }
+}

@@ -4,13 +4,13 @@ from kokoro_onnx import Kokoro
 from config import VOICE, VOICE_SPEED
 
 LINES = [
-    "This ice cream cracks like glass.",
-    "Night on Mercury: minus one eighty.",
-    "Your freezer: minus eighteen.",
-    "Below minus thirty, its syrup turns to glass.",
-    "Your spoon won't scoop. It chips.",
+    "Boiling water can't cook this egg.",
+    "Same pot, on top of Everest.",
+    "A third of the air pressure, so water boils near seventy degrees.",
+    "Most of the white needs about eighty to set.",
+    "So it stays soft and wobbly.",
     "The weird part?",
-    "Night lasts three months. Then it bakes.",
+    "The yolk can set before the white.",
 ]
 
 k = Kokoro("models/kokoro-v1.0.onnx", "models/voices-v1.0.bin")
