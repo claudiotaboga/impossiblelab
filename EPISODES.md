@@ -17,7 +17,7 @@
 | 12 | TIL-12 | 18 Nov 2026 16:00:07 (on time; from READY) | Making toast on Venus | Venus is hotter than your oven. | 15.0 s | f606781d7b974503bf70f026443103e6 | [Df4q5VSj7PI](https://www.instagram.com/reel/Df4q5VSj7PI/) | [kHuZS3kFJUI](https://youtube.com/shorts/kHuZS3kFJUI) |
 | 13 | TIL-13 | 19 Nov 2026 16:00:07 (on time; from READY) | Your weight on Jupiter | Jupiter more than doubles your weight. | 15.0 s | bcdb68f45e5e4a7497fc54bdb70c107a | [Df7PsCnDpPL](https://www.instagram.com/reel/Df7PsCnDpPL/) | [yABGZH8K4Yg](https://youtube.com/shorts/yABGZH8K4Yg) |
 | 14 | TIL-14 | 20 Nov 2026 16:00:04 (on time; from READY) | A scoop of ice cream on Mercury's night side | This ice cream cracks like glass. | 15.0 s | 5661f04ebab846fa8fc029ff34c9c46a | [Df90gUOirkY](https://www.instagram.com/reel/Df90gUOirkY/) | [as3BaHKjHbE](https://youtube.com/shorts/as3BaHKjHbE) |
-| 15 | TIL-15 | 21 Nov 2026 16:00:03 (on time; from READY) | Earth stops spinning for one second | Your coffee breaks the sound barrier. | 15.0 s | 5c5090e3914b429eb5299760d4038ca5 | [DgAZSURDzAy](https://www.instagram.com/reel/DgAZSURDzAy/) | [gJNJxehlwhk](https://youtube.com/shorts/gJNJxehlwhk) |
+| 15 | TIL-15 | 21 Nov 2026 16:00:03 (on time; from READY) | Earth stops spinning for one second | Your coffee breaks the sound barrier. | 15.0 s | 5c5090e3914b429eb5299760d4038ca5 · FB 179aee7005fc4184954ea10a027bd96a | [DgAZSURDzAy](https://www.instagram.com/reel/DgAZSURDzAy/) | [gJNJxehlwhk](https://youtube.com/shorts/gJNJxehlwhk) |
 
 ## READY TO PUBLISH
 Buffer: the daily run publishes the first entry here at 16:00 EET (its `meta.json` is final and its video is already hosted), moves it to the register, then builds the next episode into this section.
