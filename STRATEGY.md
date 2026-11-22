@@ -143,6 +143,11 @@ One adjustment per day at most, logged in the experiment table with its hypothes
 | 21 Nov 16:02 | TIL-13 | 48.0 h | 1,554 | 1,110 | 65.8 % | 8.6 (58 % of 15 s) | 0 | 0 | 1,068 (10 likes, 1 comment) | 6 / 7 |
 | 21 Nov 16:02 | TIL-14 | 24.0 h | 444 | 327 | 66.7 % | 7.7 (51 % of 15 s) | 0 | 0 | 1,276 (9 likes) | 6 / 7 |
 | 21 Nov 16:02 | TIL-15 | 0.03 h | 0 | 0 | n/a | 0 | 0 | 0 | 0 | 6 / 7 |
+| 22 Nov 17:47 | TIL-09 | 169.8 h | 3,285 | 2,149 | 72.1 % | 11.1 (74 % of 15 s) | 0 | 0 | 1,478 (8 likes) | 6 / 7 |
+| 22 Nov 17:47 | TIL-13 | 73.8 h | 1,564 | 1,117 | 65.4 % | 8.6 (57 % of 15 s) | 0 | 0 | 1,081 (10 likes, 1 comment) | 6 / 7 |
+| 22 Nov 17:47 | TIL-14 | 49.8 h | 445 | 328 | 66.8 % | 7.7 (51 % of 15 s) | 0 | 0 | 1,292 (9 likes) | 6 / 7 |
+| 22 Nov 17:47 | TIL-15 | 25.8 h | 1,730 | 1,211 | 64.8 % | 12.6 (84 % of 15 s) | 0 | 0 | 583 (7 likes) | 6 / 7 |
+| 22 Nov 17:47 | TIL-16 | 0.02 h | 0 | 0 | n/a | 0 | 0 | 0 | 0 | 6 / 7 |
 
 ## Findings log
 - **9 Nov (run for TIL-03), reels < 48 h old, provisional:**
