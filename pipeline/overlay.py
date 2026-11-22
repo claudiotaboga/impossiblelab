@@ -10,20 +10,20 @@ def font(w, s): return ImageFont.truetype(F + f"Inter-{w}.otf", s)
 AMBER = (255, 176, 46); WHITE = (255, 255, 255); INK = (18, 12, 6)
 
 # ---- per-episode content: the only block to change for a new episode ----
-EP_NUM = 16
-TITLE = ["AN EGG ON", "EVEREST?"]
+EP_NUM = 17
+TITLE = ["POPCORN", "ON MARS?"]
 FACTS = [  # (start, end, text) — times match the narration lines
-    (3.85, 5.55, "SUMMIT AIR: ≈1/3 OF SEA-LEVEL PRESSURE"),
-    (7.40, 9.50, "EGG WHITE (OVALBUMIN) SETS AT ≈80 °C"),
-    (12.45, 13.88, "YOLK SETS AT ≈62–70 °C"),
+    (3.85, 5.60, "MARS AIR: ≈0.6 % OF EARTH'S"),
+    (5.95, 8.30, "HULL BURSTS AT ≈9 ATM (135 PSI)"),
+    (12.30, 13.80, "LAB, 1/30 ATM: ≈5× FEWER DUDS"),
 ]
-CARD_SUB = "Why an egg stays soft on Everest"
-CARD = [("Summit air", "≈ 1/3 atm", "253 vs 760 mmHg (West 1983)"),
-        ("Water boils at", "≈ 70 °C", "68–72 °C on the summit (CK-12, IFLScience)"),
-        ("White sets at", "≈ 80 °C", "ovalbumin, 54 % of the white · yolk 62–70 °C"),
+CARD_SUB = "Why thin air makes bigger popcorn"
+CARD = [("Mars air", "≈ 0.6 %", "6.36 mb (NASA) vs Earth's 1,013 mb"),
+        ("Hull bursts at", "≈ 9 atm", "135 psi, ≈175 °C, 13.5–14 % water (popcorn.org)"),
+        ("Low-pressure pop", "≈ 2× vol.", "at 1/30 atm, duds ÷5 (Quinn, Hong & Both 2005)"),
        ]
-DISCLAIMER = "Don't try this. Undercooked eggs can carry Salmonella."
-NEXT = "TOMORROW: POPCORN ON MARS"   # series teaser end card (binding for TIL-17)
+DISCLAIMER = "Don't try this. Hot oil and popping kernels can burn."
+NEXT = "TOMORROW: WATER ON THE MOON"   # series teaser end card (binding for TIL-18)
 NEXT_START = 14.0
 
 # ---- follow invite (Claudio, 20 Nov 2026: "invite the viewer to subscribe to the channel") — house rule, every reel ----

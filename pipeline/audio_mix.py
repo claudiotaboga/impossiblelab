@@ -148,16 +148,22 @@ def squish(dur=0.45):  # spoon sinking into soft ice cream
     n = int(dur * SR); return lp(rng.standard_normal(n), 700) * np.sin(np.linspace(0, np.pi, n)) ** 1.5 * 1.2
 def tinkles(t0, dur, k=10):  # falling shards
     for j in range(k): put(sfx, plink(rng.uniform(2500, 4200), 0.12), t0 + rng.uniform(0.15, dur), rng.uniform(0.04, 0.09))
-# ---- episode 16 SFX: boiling an egg on Everest ----
-put(sfx, bubbling(DUR), 0.0, 0.10)                                                  # rolling boil under everything
-put(sfx, squish(0.4), B["land"], 0.55); put(sfx, thud(0.3, 90), B["land"], 0.35)      # eggs land: firm thud + runny squish
-put(sfx, wind(B["cuts"][1] - B["cuts"][0], 0.8), B["cuts"][0], 0.22)                 # thin summit wind
-put(sfx, shimmer(0.6), B["thin"], 0.18)                                             # air thins out
-counter(B["heat"], B["boil"], 10, 700, 1400, 0.05)                                  # thermometer climbs 20 -> 70
-put(sfx, bubbling(1.2), B["boil"], 0.22)                                            # boil kicks in at 70
-put(sfx, beep(2200, 0.08), B["w80"], 0.12); put(sfx, beep(2200, 0.08), B["w80"] + 0.18, 0.12)  # 80 °C mark lights up
-for tp in B["taps"]: put(sfx, clink(2600, 0.25), tp, 0.18); put(sfx, squish(0.35), tp + 0.02, 0.45)  # spoon tap + wobble
-put(sfx, shimmer(0.5), B["set"], 0.15)                                              # yolk sets
+def pop(g=1.0, f=None):  # popcorn pop: short bright snap + small body
+    n = int(0.09 * SR); tt = np.arange(n) / SR; f = f or rng.uniform(500, 1100)
+    return (hp(rng.standard_normal(n), 1800) * np.exp(-tt * 90) * 0.9 + np.sin(2 * np.pi * f * tt) * np.exp(-tt * 60) * 0.6) * g
+# ---- episode 17 SFX: popcorn on Mars ----
+put(sfx, sizzle(DUR), 0.0, 0.06)                                                    # hot pan under everything
+for tp in B["pops"]:
+    if tp < B["cuts"][0]: put(sfx, pop(), tp, rng.uniform(0.35, 0.6))               # hook: both pans popping
+put(sfx, wind(B["cuts"][1] - B["cuts"][0], 0.7), B["cuts"][0], 0.2)                 # thin Mars wind
+put(sfx, shimmer(0.6), B["thin"], 0.18)                                             # air vanishes
+counter(B["g0"], B["g1"], 9, 600, 1500, 0.05)                                       # gauge climbs 0 -> 9 atm
+put(sfx, creak(0.4), B["g1"], 0.12)                                                 # hull strains
+put(sfx, pop(1.0, 420), B["burst"], 0.9); put(sfx, whoomph(0.6), B["burst"], 0.35)  # the big burst
+put(sfx, whoomph(0.5), B["puff"], 0.3)                                              # Mars flake puffs to 2x
+put(sfx, beep(1500, 0.08), B["earth"], 0.1)
+put(sfx, beep(900, 0.1), B["duds"], 0.12); put(sfx, beep(900, 0.1), B["duds"] + 0.16, 0.12)  # duds ringed
+for k in range(6): put(sfx, pop(0.6), B["t_loop"] + 0.05 + k * 0.12, 0.3)           # loop: pans pop again
 for t_cut in B["cuts"]:
     put(sfx, whoosh(0.35, 1800, 500, False), t_cut - 0.15, 0.10)
 put(sfx, thud(0.4, 60), CARD_START, 0.6); put(sfx, whoosh(0.3, 800, 3000), CARD_START - 0.25, 0.2)

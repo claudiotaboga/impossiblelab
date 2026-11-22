@@ -1,0 +1,51 @@
+[
+ {
+  "i": 1,
+  "text": "Popcorn pops bigger on Mars.",
+  "dur": 1.689,
+  "start": 0.2,
+  "end": 1.889
+ },
+ {
+  "i": 2,
+  "text": "Same kernels, same pan.",
+  "dur": 1.426,
+  "start": 2.089,
+  "end": 3.515
+ },
+ {
+  "i": 3,
+  "text": "Mars has under one percent of our air.",
+  "dur": 1.902,
+  "start": 3.715,
+  "end": 5.617
+ },
+ {
+  "i": 4,
+  "text": "Steam bursts the hull at about nine atmospheres.",
+  "dur": 2.525,
+  "start": 5.817,
+  "end": 8.342
+ },
+ {
+  "i": 5,
+  "text": "With no air pushing back, it puffs up twice as big.",
+  "dur": 2.647,
+  "start": 8.542,
+  "end": 11.189
+ },
+ {
+  "i": 6,
+  "text": "The bonus?",
+  "dur": 0.629,
+  "start": 11.389,
+  "end": 12.018
+ },
+ {
+  "i": 7,
+  "text": "About five times fewer duds.",
+  "dur": 1.585,
+  "start": 12.218,
+  "end": 13.803
+ }
+]

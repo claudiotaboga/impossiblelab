@@ -1,0 +1,45 @@
+{
+ "episode_id": "TIL-17",
+ "status": "ready",
+ "qa_passed": true,
+ "width": 1080,
+ "height": 1920,
+ "duration_seconds": 15.0,
+ "title": "What if you made popcorn on Mars?",
+ "video_url": "https://raw.githubusercontent.com/claudiotaboga/impossiblelab/main/episodes/17-popcorn-on-mars/video.mp4",
+ "caption": "Popcorn pops bigger on Mars. 🍿🔴\n\nMars' air is only about 0.6 % of Earth's (6.36 vs 1,013 mbar). Inside each kernel, steam still has to build to roughly 9 atmospheres (135 psi, about 175 °C) before the hull bursts.\n\nWith almost no air pushing back, that steam puffs the starch further: in a lab test at 1/30 of normal air pressure, popcorn's expansion volume more than doubled and about five times fewer kernels were left unpopped. Mars' air is thinner still.\n\nSend this to the friend who always burns the popcorn.\n\nTomorrow: a glass of water on the Moon. 🔔 Follow @the.impossible.lab (or subscribe on YouTube) so you don't miss it.\n\n⚠️ Don't try this. Hot oil, steam and popping kernels can burn, and low-pressure chambers are lab equipment, not kitchen gear.\n\n#science #physics #whatif #sciencefacts #mars #popcorn #space #theimpossiblelab",
+ "sources": [
+  "NASA NSSDCA Mars Fact Sheet: surface pressure 6.36 mb at mean radius (4.0–8.7 mb by season); average temperature ~214 K (−59 °C): https://nssdc.gsfc.nasa.gov/planetary/factsheet/marsfact.html",
+  "Earth standard sea-level pressure 1,013.25 hPa (International Standard Atmosphere) → 6.36 / 1,013 = 0.63 % ≈ 0.6 %",
+  "Popcorn Board, What Makes Popcorn Pop: 13.5–14 % moisture; 'pressure inside the grain will reach 135 pounds per square inch before finally bursting the hull'; kernel heats to about 347 °F (≈175 °C); swells 40–50× its size: https://popcorn.org/All-About-Popcorn/What-Makes-Popcorn-Pop",
+  "Quinn P., Hong D., Both J.A. (2005) 'Increasing the Size of a Piece of Popcorn' (arXiv cond-mat/0409424): at ≈1/30 atm, 'lowering the pressure more than doubles the value of σ, the expansion volume' (oil popping ~10–17.5 → 25–27.5 cm³/g); unpopped kernels decrease by about a factor of 5: https://arxiv.org/abs/cond-mat/0409424",
+  "Nature News (P. Ball, 2004) via BioEd Online, 'Popcorn gets poppier': kernels blow up bigger at low pressure, up to twice the volume: https://www.bioedonline.org/news/nature-news-archive/popcorn-gets-poppier/",
+  "Scope note: the lab test was at 1/30 atm; Mars (~1/160 atm) is thinner still, so the reel says 'bigger' / 'up to twice' and cites the lab values; heating assumed in a hot pan (Mars air at −59 °C would otherwise cool it)",
+  "Next premise (end card): a glass of water on the Moon — to be verified in the TIL-18 build (lunar surface pressure, water triple point 611.657 Pa)"
+ ],
+ "qa": {
+  "duration_s": 15.0,
+  "resolution": "1080x1920",
+  "video": "H.264 High yuv420p, max 2.62 Mbps per 1-s window",
+  "audio": "AAC 128k 48 kHz stereo",
+  "loudness_lufs": -14.3,
+  "true_peak_dbfs": -1.2,
+  "faststart": true,
+  "frames_checked": [
+   "0.0 hook (title, EARTH vs MARS pans)",
+   "0.5 first pops, Mars flakes bigger",
+   "4.8 chip 1 + air dots gone",
+   "7.0 chip 2 + gauge 5 ATM + FOLLOW pill",
+   "9.3 EARTH SIZE vs Mars flake",
+   "10.4 MARS: 2× VOLUME",
+   "12.9 chip 3 + DUDS 5 vs 1",
+   "14.4 card + disclaimer + TOMORROW + FOLLOW",
+   "14.95 last frame"
+  ],
+  "disclaimer_caption": true,
+  "disclaimer_card": true,
+  "handle": "@the.impossible.lab only",
+  "follow_invite": "pill 5.0-8.2 s + end card + caption",
+  "fix_applied": "test stills: hook camera moved closer (pans side by side, handles to the back), gauge moved into frame, labels resized; gauge readout moved beside the dial"
+ }
+}

@@ -4,13 +4,13 @@ from kokoro_onnx import Kokoro
 from config import VOICE, VOICE_SPEED
 
 LINES = [
-    "Boiling water can't cook this egg.",
-    "Same pot, on top of Everest.",
-    "A third of the air pressure, so water boils near seventy degrees.",
-    "Most of the white needs about eighty to set.",
-    "So it stays soft and wobbly.",
-    "The weird part?",
-    "The yolk can set before the white.",
+    "Popcorn pops bigger on Mars.",
+    "Same kernels, same pan.",
+    "Mars has under one percent of our air.",
+    "Steam bursts the hull at about nine atmospheres.",
+    "With no air pushing back, it puffs up twice as big.",
+    "The bonus?",
+    "About five times fewer duds.",
 ]
 
 k = Kokoro("models/kokoro-v1.0.onnx", "models/voices-v1.0.bin")
