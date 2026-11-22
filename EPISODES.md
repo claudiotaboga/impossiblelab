@@ -25,6 +25,7 @@ Buffer: the daily run publishes the first entry here at 16:00 EET (its `meta.jso
 
 | Episode ID | Folder | Premise | Hook line | Length | SHA-256 | Built |
 |---|---|---|---|---|---|---|
+| TIL-17 | episodes/17-popcorn-on-mars | Popcorn on Mars (E13 opening as constant: EARTH vs MARS pans pop from 0.08 s, Mars flakes 2× volume; protected middle: air dots vanish → gauge 0 → 9 ATM → burst → EARTH-size flake vs Mars flake puffing to 2×; duds EARTH 5 vs MARS 1; E16 follow pill 5.0–8.2 s + end card; end card "TOMORROW: WATER ON THE MOON") | Popcorn pops bigger on Mars. | 15.0 s (E4) | `45e5046e6ec0017e4196767e352eefe9ec13fe1b0a60322c064155bfcf237616` | 22 Nov 2026 19:10 EET |
 
 ## Topic queue
 Take the first item that is not in the register. Every premise must be buildable from Blender primitives, safe to show, and its science checkable. Verify every number before use; the notes are starting points, not facts.
