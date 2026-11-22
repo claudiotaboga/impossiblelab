@@ -18,13 +18,13 @@
 | 13 | TIL-13 | 19 Nov 2026 16:00:07 (on time; from READY) | Your weight on Jupiter | Jupiter more than doubles your weight. | 15.0 s | bcdb68f45e5e4a7497fc54bdb70c107a | [Df7PsCnDpPL](https://www.instagram.com/reel/Df7PsCnDpPL/) | [yABGZH8K4Yg](https://youtube.com/shorts/yABGZH8K4Yg) |
 | 14 | TIL-14 | 20 Nov 2026 16:00:04 (on time; from READY) | A scoop of ice cream on Mercury's night side | This ice cream cracks like glass. | 15.0 s | 5661f04ebab846fa8fc029ff34c9c46a | [Df90gUOirkY](https://www.instagram.com/reel/Df90gUOirkY/) | [as3BaHKjHbE](https://youtube.com/shorts/as3BaHKjHbE) |
 | 15 | TIL-15 | 21 Nov 2026 16:00:03 (on time; from READY) | Earth stops spinning for one second | Your coffee breaks the sound barrier. | 15.0 s | 5c5090e3914b429eb5299760d4038ca5 · FB 179aee7005fc4184954ea10a027bd96a | [DgAZSURDzAy](https://www.instagram.com/reel/DgAZSURDzAy/) | [gJNJxehlwhk](https://youtube.com/shorts/gJNJxehlwhk) |
+| 16 | TIL-16 | 22 Nov 2026 17:45:56 (16:00 slot, 1 h 46 min late — scheduled run started late; from READY) | Boiling an egg on Everest | Boiling water can't cook this egg. | 15.0 s | 6bf8b6a6a17f49ccaeb21a0555176a06 · FB e71b7fa5b94a47a6aa71e789329d12f0 | [DgDKLqEDmPH](https://www.instagram.com/reel/DgDKLqEDmPH/) | [7OjiRahIKHk](https://youtube.com/shorts/7OjiRahIKHk) |
 
 ## READY TO PUBLISH
 Buffer: the daily run publishes the first entry here at 16:00 EET (its `meta.json` is final and its video is already hosted), moves it to the register, then builds the next episode into this section.
 
 | Episode ID | Folder | Premise | Hook line | Length | SHA-256 | Built |
 |---|---|---|---|---|---|---|
-| TIL-16 | episodes/16-everest-egg | Boiling an egg on Everest (E13 reel 3: SEA LEVEL vs EVEREST egg halves drop at 0.08 s — sea-level halves hold their dome, the Everest half slumps RUNNY; E16 follow pill 5.0–8.2 s + end card; end card "TOMORROW: POPCORN ON MARS") | Boiling water can't cook this egg. | 15.0 s (E4) | `cb068bd6ef027627e3514647730b16406a33d379c45cdf3c2ce6f06b2a0cc1c9` | 21 Nov 2026 15:00 EET |
 
 ## Topic queue
 Take the first item that is not in the register. Every premise must be buildable from Blender primitives, safe to show, and its science checkable. Verify every number before use; the notes are starting points, not facts.
