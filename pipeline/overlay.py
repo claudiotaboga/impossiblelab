@@ -10,20 +10,20 @@ def font(w, s): return ImageFont.truetype(F + f"Inter-{w}.otf", s)
 AMBER = (255, 176, 46); WHITE = (255, 255, 255); INK = (18, 12, 6)
 
 # ---- per-episode content: the only block to change for a new episode ----
-EP_NUM = 17
-TITLE = ["POPCORN", "ON MARS?"]
+EP_NUM = 18
+TITLE = ["WATER", "ON THE MOON?"]
 FACTS = [  # (start, end, text) — times match the narration lines
-    (3.85, 5.60, "MARS AIR: ≈0.6 % OF EARTH'S"),
-    (5.95, 8.30, "HULL BURSTS AT ≈9 ATM (135 PSI)"),
-    (12.30, 13.80, "LAB, 1/30 ATM: ≈5× FEWER DUDS"),
+    (3.55, 5.25, "MOON AIR: ≈3×10⁻¹⁵ BAR"),
+    (5.55, 7.45, "NO AIR PRESSURE → BOILS AT 20 °C"),
+    (11.85, 13.75, "POLAR CRATERS: BELOW −238 °C"),
 ]
-CARD_SUB = "Why thin air makes bigger popcorn"
-CARD = [("Mars air", "≈ 0.6 %", "6.36 mb (NASA) vs Earth's 1,013 mb"),
-        ("Hull bursts at", "≈ 9 atm", "135 psi, ≈175 °C, 13.5–14 % water (popcorn.org)"),
-        ("Low-pressure pop", "≈ 2× vol.", "at 1/30 atm, duds ÷5 (Quinn, Hong & Both 2005)"),
+CARD_SUB = "Why an open glass boils into ice"
+CARD = [("Moon air (night)", "≈ 3×10⁻¹⁵ bar", "NASA NSSDC; Earth ≈ 1.013 bar"),
+        ("Liquid water needs", "≥ 611.657 Pa", "triple point of water, 0.01 °C"),
+        ("Polar crater floors", "< −238 °C", "−397 °F (LRO Diviner, 2009)"),
        ]
-DISCLAIMER = "Don't try this. Hot oil and popping kernels can burn."
-NEXT = "TOMORROW: WATER ON THE MOON"   # series teaser end card (binding for TIL-18)
+DISCLAIMER = "Don't try this. Vacuum chambers are lab equipment."
+NEXT = "TOMORROW: A BALLOON ON MARS"   # series teaser end card (binding for TIL-19)
 NEXT_START = 14.0
 
 # ---- follow invite (Claudio, 20 Nov 2026: "invite the viewer to subscribe to the channel") — house rule, every reel ----

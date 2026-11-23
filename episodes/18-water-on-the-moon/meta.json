@@ -1,0 +1,40 @@
+{
+ "episode_id": "TIL-18",
+ "status": "ready",
+ "qa_passed": true,
+ "width": 1080,
+ "height": 1920,
+ "duration_seconds": 15.0,
+ "title": "What if you left a glass of water on the Moon?",
+ "video_url": "https://raw.githubusercontent.com/claudiotaboga/impossiblelab/main/episodes/18-water-on-the-moon/video.mp4",
+ "caption": "This water boils and freezes at the same time. 💧🌕\n\nThe Moon has almost no air: about 3×10⁻¹⁵ bar at night (NASA), against about 1 bar on Earth. Liquid water needs at least 611.657 Pa of pressure (its triple point), so an open glass boils even at room temperature.\n\nBoiling pulls heat out of the water, so what's left freezes, and then the ice slowly turns straight into vapour too. Only the permanently dark polar craters, measured below −238 °C (−397 °F) by NASA's Lunar Reconnaissance Orbiter, are cold enough to keep ice.\n\nSend this to the friend who always leaves a glass of water on the table.\n\nTomorrow: a balloon on Mars. 🔔 Follow @the.impossible.lab (or subscribe on YouTube) so you don't miss it.\n\n⚠️ Don't try this. Vacuum chambers are lab equipment, not toys: glass under vacuum can implode.\n\n#science #physics #whatif #sciencefacts #moon #water #space #theimpossiblelab",
+ "sources": [
+  "NASA NSSDC Moon Fact Sheet: surface pressure (night) 3 x 10^-15 bar (2 x 10^-12 torr); diurnal range 95-390 K - https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html",
+  "Harvard Natural Sciences Lecture Demonstrations: room-temperature water boils in an evacuated bell jar and then freezes due to rapid surface evaporation - https://sciencedemonstrations.fas.harvard.edu/presentations/boilingfreezing-water-vacuum",
+  "Univ. of Illinois Physics Van Q&A: evaporation cools the remaining water until it freezes; with continued pumping the ice itself sublimes - https://van.physics.illinois.edu/qa/listing.php?id=1597",
+  "Triple point of water: 611.657 Pa, 273.16 K (0.01 C) - https://en.wikipedia.org/wiki/Triple_point ; NIST kelvin realization - https://www.nist.gov/si-redefinition/kelvin-present-realization",
+  "Space.com (18 Sep 2009), LRO Diviner: minimum brightness temperatures in permanently shadowed polar craters below -397 F (about -238 C), craters suspected to harbor water ice - https://www.space.com/7311-moon-craters-coldest-place-solar-system.html"
+ ],
+ "qa": {
+  "duration_s": 15.0,
+  "resolution": "1080x1920",
+  "video": "H.264 High yuv420p, avg 1.77 Mbps, max 2.39 Mbps in any 1-s window",
+  "audio": "AAC 128k 48 kHz stereo",
+  "loudness": "-14.1 LUFS integrated, true peak -1.5 dBFS",
+  "faststart": true,
+  "frames_inspected": [
+   "t0.5 hook (EARTH calm vs MOON erupting)",
+   "t1.6 ice crust",
+   "t2.8 glass set on Moon table",
+   "t4.2 chip 1 + tea erupting",
+   "t6.2 chip 2 + FOLLOW pill",
+   "t7.0 FOLLOW pill clear of props/captions",
+   "t8.6 ice crusts + thermometer 2 °C",
+   "t10.2 sublimation close-up",
+   "t12.5 crater + chip 3",
+   "t14.95 card with disclaimer + TOMORROW + FOLLOW line"
+  ],
+  "caption_checks": "disclaimer line, follow invite, share line, 8 hashtags, no yes/no prompt",
+  "fixes": "hook 'BOILS + FREEZES' label hidden at the loop (peeked beside the card); card reference lines shortened (overlapped labels)"
+ }
+}

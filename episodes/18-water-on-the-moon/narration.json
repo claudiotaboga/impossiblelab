@@ -1,0 +1,51 @@
+[
+ {
+  "i": 1,
+  "text": "This water boils and freezes.",
+  "file": "vo/line1.wav",
+  "dur": 1.527,
+  "sr": 24000
+ },
+ {
+  "i": 2,
+  "text": "Same glass, on the Moon.",
+  "file": "vo/line2.wav",
+  "dur": 1.273,
+  "sr": 24000
+ },
+ {
+  "i": 3,
+  "text": "Its air is trillions of times thinner.",
+  "file": "vo/line3.wav",
+  "dur": 1.774,
+  "sr": 24000
+ },
+ {
+  "i": 4,
+  "text": "Water boils even at room temperature.",
+  "file": "vo/line4.wav",
+  "dur": 2.046,
+  "sr": 24000
+ },
+ {
+  "i": 5,
+  "text": "Boiling steals heat, so it freezes.",
+  "file": "vo/line5.wav",
+  "dur": 1.894,
+  "sr": 24000
+ },
+ {
+  "i": 6,
+  "text": "Even the ice won't last.",
+  "file": "vo/line6.wav",
+  "dur": 1.26,
+  "sr": 24000
+ },
+ {
+  "i": 7,
+  "text": "Except in dark craters, below minus two hundred.",
+  "file": "vo/line7.wav",
+  "dur": 2.545,
+  "sr": 24000
+ }
+]
