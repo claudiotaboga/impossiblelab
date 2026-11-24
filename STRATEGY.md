@@ -148,6 +148,12 @@ One adjustment per day at most, logged in the experiment table with its hypothes
 | 22 Nov 17:47 | TIL-14 | 49.8 h | 445 | 328 | 66.8 % | 7.7 (51 % of 15 s) | 0 | 0 | 1,292 (9 likes) | 6 / 7 |
 | 22 Nov 17:47 | TIL-15 | 25.8 h | 1,730 | 1,211 | 64.8 % | 12.6 (84 % of 15 s) | 0 | 0 | 583 (7 likes) | 6 / 7 |
 | 22 Nov 17:47 | TIL-16 | 0.02 h | 0 | 0 | n/a | 0 | 0 | 0 | 0 | 6 / 7 |
+| 24 Nov 16:02 | TIL-13 | 120.0 h | 1,569 | 1,122 | 65.3 % | 8.6 (57 % of 15 s) | 0 | 0 | 1,088 (10 likes, 1 comment) | 6 / 8 |
+| 24 Nov 16:02 | TIL-14 | 96.0 h | 445 | 328 | 66.8 % | 7.6 (51 % of 15 s) | 0 | 0 | 1,309 (9 likes) | 6 / 8 |
+| 24 Nov 16:02 | TIL-15 | 72.0 h | 1,731 | 1,212 | 64.8 % | 12.6 (84 % of 15 s) | 0 | 0 | 659 (9 likes) | 6 / 8 |
+| 24 Nov 16:02 | TIL-16 | 46.3 h | 1,659 | 1,155 | 62.3 % | 8.6 (58 % of 15 s) | 0 | 0 | 307 (3 likes) | 6 / 8 |
+| 24 Nov 16:02 | TIL-17 | 19.5 h | 785 | 580 | 62.3 % | 8.5 (56 % of 15 s) | 0 | 0 | 605 (6 likes) | 6 / 8 |
+| 24 Nov 16:02 | TIL-18 | 0.03 h | 0 | 0 | n/a | 0 | 0 | 0 | 0 | 6 / 8 |
 
 ## Findings log
 - **9 Nov (run for TIL-03), reels < 48 h old, provisional:**
@@ -566,3 +572,19 @@ Other reels unchanged (IG frozen). Totals **32,406 views (IG 16,297 + YT 16,109)
 - **Findings:** 1. TIL-16 at 24 h: 1,155 accounts (1.06× E5 median), hook hold 62.3 %, watch 58 % → E13 mean 64.6 % over 3 reels (target 65 %; verdict 29 Nov) (medium). 2. E5 reels cluster at ~1.1 k accounts (6 of 9); the one breakout had hook hold 72 % and watch 74 % — retention must be exceptional to leave the tier (low–medium). 3. YT anomaly: TIL-16 6 YT views at 27 h (cf. TIL-06), platform-side, IG/FB unaffected (low).
 - **Adjustment applied:** none — 22 Nov 13:20 instruction followed: **TIL-18 = #18 "A glass of water on the Moon" = E17 reel 1** (cascade middle: glass boils 2.5 s → air vanishes 3.9 s → tea 4.7 s → soup 5.9 s → vase 6.9 s → four ice crusts 7.9–9.2 s → ice steams away 9.9 s → polar crater 11.8 s); E13 opening (EARTH glass calm vs MOON glass erupting from 0.08 s, iced over by ~1 s); caption v2 + follow line; ⚠️ on caption + card. Science: NASA NSSDC 3×10⁻¹⁵ bar (night); triple point 611.657 Pa; Harvard bell-jar demo; LRO Diviner < −397 °F (≈ −238 °C). Teaser binds **TIL-19 = #19 balloon on Mars (E17 reel 2)**. Experiment status: E13 complete (verdict 29 Nov), E16 running, **E17 reel 1 in READY for 24 Nov 16:00**.
 - **Process risk:** the scheduled production session started +4 h 33 (22 Nov) and +7 h 18 (23 Nov) late; the buffer protects the build but not the 16:00 slot.
+
+### Production run 24 Nov 2026 (13:12–16:20 EET, on schedule)
+- **TIL-18 published on time** 16:00:03 EET (exec f31d65d0… SUCCESS, 5 operations; IG DgIHp5VDuHL, YT 7QnidzPiyQ0; FB exec c0ad2340… SUCCESS, 3 operations). A duplicate webhook delivery at 16:00:50 was stopped by the lock (exec 6c98317f… "Duplicate key") but auto-deactivated scenario 8451092; re-activated by this run. Snapshot = post-publish confirmation run 16:02 EET (no pre-publish stats run under the Make-credit rule).
+
+| Reel | Age | IG views | IG reach | Hook hold | Avg watch | Watch ratio | Shares / saves | YT views |
+|---|---|---|---|---|---|---|---|---|
+| TIL-09 olive oil | 216 h | 3,285 | 2,149 | 72.1 % | 11.1 s | 74 % | 0 / 0 | 1,486 |
+| TIL-13 Jupiter weight | 120 h | 1,569 | 1,122 | 65.3 % | 8.6 s | 57 % | 0 / 0 | 1,088 |
+| TIL-14 ice cream on Mercury | 96 h | 445 | 328 | 66.8 % | 7.6 s | 51 % | 0 / 0 | 1,309 |
+| TIL-15 Earth stops spinning | 72 h | 1,731 | 1,212 | 64.8 % | 12.6 s | 84 % | 0 / 0 | 659 |
+| TIL-16 egg on Everest | 46 h | 1,659 | 1,155 | 62.3 % | 8.6 s | 58 % | 0 / 0 | 307 |
+| **TIL-17 popcorn on Mars (late)** | **19.5 h** | **785** | **580** | **62.3 %** | **8.5 s** | **56 %** | 0 / 0 | **605** |
+| TIL-18 water on the Moon | 0 h | 0 | 0 | – | – | – | – | 0 |
+Totals **34,111 views (IG 17,085 + YT 17,026)**; IG followers 6, YT subscribers 8. Medians TIL-01..16: hook hold 62.7 %, watch ratio 60 %; E5 24 h IG reach median 1,093.
+- **Findings:** 1. TIL-17 at 19.5 h: 580 accounts (0.53× E5 median at a younger age; posted 4 h 32 late), retention at the medians — the off-slot post is the likeliest drag (low–medium). 2. TIL-15 72 h final: watch 84 % still the best of 17 (medium). 3. TIL-16 YT 6 → 307 at 46 h: the anomaly was batch lag (medium).
+- **Adjustment applied:** none — 22 Nov 13:20 instruction followed: **TIL-19 = #19 "A balloon on Mars" = E17 reel 2** (E13 opening: EARTH vs MARS balloons, Mars one pops at 1.0 s; cascade middle: air vanishes 4.2 s → balloon swells 4.5 → marshmallows 6.1 → snack bag 6.8 → glove 7.5 → ×2 → ×20 8.6–10.6 → tears 10.7 → pop 11.6 → rip vs sound bars 11.8); caption v2 + follow line; ⚠️ on caption + card. Teaser binds **TIL-20 = #20 candle in space (E17 reel 3)**. Experiment status: E13 complete (verdict 29 Nov), E16 running, **E17 reel 1 live, reel 2 in READY for 25 Nov 16:00**.
