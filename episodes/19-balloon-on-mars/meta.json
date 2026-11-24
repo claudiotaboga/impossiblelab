@@ -1,0 +1,45 @@
+{
+ "episode_id": "TIL-19",
+ "status": "ready",
+ "qa_passed": true,
+ "width": 1080,
+ "height": 1920,
+ "duration_seconds": 15.0,
+ "title": "What if you took a balloon to Mars?",
+ "video_url": "https://raw.githubusercontent.com/claudiotaboga/impossiblelab/main/episodes/19-balloon-on-mars/video.mp4",
+ "caption": "This balloon would pop on its own on Mars. 🎈🔴\n\nMars' air is only about 0.6 % of Earth's (6.36 mbar, NASA). Anything sealed with Earth air inside pushes outward: snacks puff, bags bulge, gloves inflate. A tied balloon would try to swell over 100 times its volume (Boyle's law: ×116 to ×159 depending on temperature), so the latex tears long before.\n\nThe rip itself runs at about 570 m/s through stretched latex, more than twice the speed of sound on Mars (about 240 m/s, measured by NASA's Perseverance rover).\n\nSend this to the friend who always brings balloons to the party.\n\nTomorrow: a candle in space. 🔔 Follow @the.impossible.lab (or subscribe on YouTube) so you don't miss it.\n\n⚠️ Don't try this. Popping balloons near your face can hurt eyes and ears, and vacuum chambers are lab equipment, not toys.\n\n#science #physics #whatif #sciencefacts #mars #space #balloon #theimpossiblelab",
+ "sources": [
+  "https://nssdc.gsfc.nasa.gov/planetary/factsheet/marsfact.html",
+  "https://www.isu.edu/physics/outreach/physics-class-demos/thermodynamics/balloon-in-vacuum",
+  "https://www.avs.org/AVS/media/Files/Education/SEW/expanding_balloon.pdf",
+  "https://physicsworld.com/a/balloon-bursts-approach-the-speed-of-sound/",
+  "https://www.sciencenews.org/article/mars-two-sound-speeds-laser-helicopter"
+ ],
+ "qa": {
+  "duration_s": 15.0,
+  "resolution": "1080x1920",
+  "video": "H.264 High yuv420p, 24 fps, faststart",
+  "audio": "AAC LC 128k 48 kHz stereo",
+  "max_1s_video_mbps": 2.25,
+  "loudness_lufs": -14.1,
+  "true_peak_dbfs": -1.0,
+  "frames_inspected": [
+   "0.5",
+   "2.6",
+   "4.5",
+   "6.5 (FOLLOW pill)",
+   "7.8",
+   "9.9",
+   "11.0",
+   "11.9",
+   "12.8",
+   "13.9 (card + disclaimer)",
+   "14.95 (end card + follow)"
+  ],
+  "disclaimer_caption": true,
+  "disclaimer_card": true,
+  "follow_invite": "pill 5.0-8.2 s + end card + caption",
+  "sha256": "03a7b7ddbc1f44c9a8c20cb85a9dd0a71d445a6229a5377ec5e4b16f76515cf5",
+  "checked": "2026-11-24 EET"
+ }
+}

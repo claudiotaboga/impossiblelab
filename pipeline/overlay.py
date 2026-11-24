@@ -10,20 +10,20 @@ def font(w, s): return ImageFont.truetype(F + f"Inter-{w}.otf", s)
 AMBER = (255, 176, 46); WHITE = (255, 255, 255); INK = (18, 12, 6)
 
 # ---- per-episode content: the only block to change for a new episode ----
-EP_NUM = 18
-TITLE = ["WATER", "ON THE MOON?"]
+EP_NUM = 19
+TITLE = ["BALLOON", "ON MARS?"]
 FACTS = [  # (start, end, text) — times match the narration lines
-    (3.55, 5.25, "MOON AIR: ≈3×10⁻¹⁵ BAR"),
-    (5.55, 7.45, "NO AIR PRESSURE → BOILS AT 20 °C"),
-    (11.85, 13.75, "POLAR CRATERS: BELOW −238 °C"),
+    (3.75, 5.65, "MARS AIR: ≈0.6 % OF EARTH'S"),
+    (8.58, 10.45, "SEALED AIR WANTS ×100+ VOLUME"),
+    (11.48, 13.30, "RIP ≈570 m/s · MARS SOUND ≈240 m/s"),
 ]
-CARD_SUB = "Why an open glass boils into ice"
-CARD = [("Moon air (night)", "≈ 3×10⁻¹⁵ bar", "NASA NSSDC; Earth ≈ 1.013 bar"),
-        ("Liquid water needs", "≥ 611.657 Pa", "triple point of water, 0.01 °C"),
-        ("Polar crater floors", "< −238 °C", "−397 °F (LRO Diviner, 2009)"),
+CARD_SUB = "Why a tied balloon can't survive Mars"
+CARD = [("Mars surface air", "≈ 6.36 mbar", "NASA NSSDC; Earth ≈ 1,013 mbar"),
+        ("Sealed air would swell", "×116 to ×159", "Boyle's law, at −59 °C to 20 °C"),
+        ("Rip vs sound", "≈ 570 vs ≈ 240 m/s", "PRL 2015; Perseverance 2022"),
        ]
 DISCLAIMER = "Don't try this. Vacuum chambers are lab equipment."
-NEXT = "TOMORROW: A BALLOON ON MARS"   # series teaser end card (binding for TIL-19)
+NEXT = "TOMORROW: A CANDLE IN SPACE"   # series teaser end card (binding for TIL-20)
 NEXT_START = 14.0
 
 # ---- follow invite (Claudio, 20 Nov 2026: "invite the viewer to subscribe to the channel") — house rule, every reel ----

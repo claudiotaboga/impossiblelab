@@ -151,21 +151,27 @@ def tinkles(t0, dur, k=10):  # falling shards
 def pop(g=1.0, f=None):  # popcorn pop: short bright snap + small body
     n = int(0.09 * SR); tt = np.arange(n) / SR; f = f or rng.uniform(500, 1100)
     return (hp(rng.standard_normal(n), 1800) * np.exp(-tt * 90) * 0.9 + np.sin(2 * np.pi * f * tt) * np.exp(-tt * 60) * 0.6) * g
-# ---- episode 18 SFX: a glass of water on the Moon ----
-def hiss(dur):  # violent vacuum boil: bright noise
-    n = int(dur * SR); return bp(rng.standard_normal(n), 2500, 9000) * np.sin(np.linspace(0, np.pi, n)) ** 0.5
-put(sfx, bubbling(B["hf"] + 0.35 - B["hb"]), B["hb"], 0.5); put(sfx, hiss(0.6), B["hb"], 0.12)   # hook: Moon glass erupts
-put(sfx, crack(0.35), B["hf"] + 0.3, 0.35); tinkles(B["hf"] + 0.3, 0.6, 6)                        # hook: ice crust snaps on
-put(sfx, clink(2600, 0.4), B["set"], 0.25)                                                         # glass set on the Moon table
-put(sfx, bubbling(B["freeze"][0] - B["set"]), B["set"], 0.35)                                      # glass boils
+# ---- episode 19 SFX: a balloon on Mars ----
+def stretch(dur):  # rubbery creak of latex stretching
+    n = int(dur * SR); tt = np.arange(n) / SR
+    return bp(rng.standard_normal(n), 300, 1400) * (0.5 + 0.5 * np.sin(2 * np.pi * (14 + 10 * tt / dur) * tt)) * np.clip(tt / 0.2, 0, 1) * 0.8
+def bang(dur=0.5):  # balloon pop: sharp broadband crack + short low body
+    n = int(dur * SR); tt = np.arange(n) / SR
+    return hp(rng.standard_normal(n), 900) * np.exp(-tt * 55) * 1.6 + thud(dur, 70) * 0.7
+def puff(dur=0.4):  # soft air swell
+    n = int(dur * SR); return lp(rng.standard_normal(n), 1200) * np.sin(np.linspace(0, np.pi, n)) ** 1.2
+put(sfx, stretch(B["hp"] - B["hs"]), B["hs"], 0.25)                                               # hook: Mars balloon swells
+put(sfx, bang(), B["hp"], 0.75); tinkles(B["hp"] + 0.05, 0.5, 5)                                   # hook: pop
+put(sfx, thud(0.3, 80), B["set"], 0.35)                                                            # balloon set on the table
 put(sfx, shimmer(0.6), B["thin"], 0.18)                                                            # air vanishes
-for key, fz in (("mug", 1), ("bowl", 2), ("vase", 3)):                                             # cascade: each vessel erupts
-    put(sfx, hiss(0.35), B[key], 0.12); put(sfx, bubbling(B["freeze"][fz] - B[key]), B[key], 0.25)
-for k, tf in enumerate(B["freeze"]):                                                               # ice crusts snap on, one by one
-    put(sfx, crack(0.3), tf + 0.1, 0.25 + 0.05 * k); put(sfx, clink(3000 + 300 * k, 0.4), tf + 0.12, 0.12)
-put(sfx, shimmer(1.2), B["sub"], 0.15)                                                             # ice steams away
-put(sfx, wind(1.2, 0.5), B["cuts"][4], 0.12); tinkles(B["icep"], 1.0, 8)                           # crater: cold glints
-put(sfx, bubbling(0.4), B["t_loop"] + 0.08, 0.4); put(sfx, crack(0.3), B["t_loop"] + 0.6, 0.25)   # loop: hook replays
+put(sfx, stretch(1.2), B["sw"], 0.12)                                                              # balloon starts to swell
+for key, f0 in (("mal", 900), ("bag", 600), ("glv", 750)):                                         # cascade: each item puffs
+    put(sfx, puff(0.4), B[key], 0.35); put(sfx, squeak(0.18, f0 * 2.5), B[key] + 0.1, 0.06)
+put(sfx, stretch(B["rip"] - B["cuts"][2]), B["cuts"][2], 0.25)                                     # big swell, latex straining
+put(sfx, crack(0.25), B["rip"], 0.25); put(sfx, crack(0.2), B["rip"] + 0.3, 0.2)                   # tear lines race
+put(sfx, bang(0.6), B["pop"], 0.9)                                                                 # pop
+put(sfx, whoosh(0.5, 3000, 600, False), B["bars"], 0.12)                                           # speed bars race
+put(sfx, stretch(0.8), B["t_loop"] + 0.08, 0.2)                                                    # loop: hook replays
 for t_cut in B["cuts"]:
     put(sfx, whoosh(0.35, 1800, 500, False), t_cut - 0.15, 0.10)
 put(sfx, thud(0.4, 60), CARD_START, 0.6); put(sfx, whoosh(0.3, 800, 3000), CARD_START - 0.25, 0.2)

@@ -1,0 +1,51 @@
+[
+ {
+  "i": 1,
+  "text": "This balloon pops on its own.",
+  "file": "vo/line1.wav",
+  "dur": 1.44,
+  "sr": 24000
+ },
+ {
+  "i": 2,
+  "text": "Same balloon, carried to Mars.",
+  "file": "vo/line2.wav",
+  "dur": 1.714,
+  "sr": 24000
+ },
+ {
+  "i": 3,
+  "text": "Its air is under one percent of ours.",
+  "file": "vo/line3.wav",
+  "dur": 1.914,
+  "sr": 24000
+ },
+ {
+  "i": 4,
+  "text": "Sealed things swell: snacks, bags, gloves.",
+  "file": "vo/line4.wav",
+  "dur": 2.514,
+  "sr": 24000
+ },
+ {
+  "i": 5,
+  "text": "It tries to grow over a hundred times.",
+  "file": "vo/line5.wav",
+  "dur": 1.869,
+  "sr": 24000
+ },
+ {
+  "i": 6,
+  "text": "And the rip?",
+  "file": "vo/line6.wav",
+  "dur": 0.626,
+  "sr": 24000
+ },
+ {
+  "i": 7,
+  "text": "Over twice as fast as sound there.",
+  "file": "vo/line7.wav",
+  "dur": 1.861,
+  "sr": 24000
+ }
+]

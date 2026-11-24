@@ -4,13 +4,13 @@ from kokoro_onnx import Kokoro
 from config import VOICE, VOICE_SPEED
 
 LINES = [
-    "This water boils and freezes.",
-    "Same glass, on the Moon.",
-    "Its air is trillions of times thinner.",
-    "Water boils even at room temperature.",
-    "Boiling steals heat, so it freezes.",
-    "Even the ice won't last.",
-    "Except in dark craters, below minus two hundred.",
+    "This balloon pops on its own.",
+    "Same balloon, carried to Mars.",
+    "Its air is under one percent of ours.",
+    "Sealed things swell: snacks, bags, gloves.",
+    "It tries to grow over a hundred times.",
+    "And the rip?",
+    "Over twice as fast as sound there.",
 ]
 
 k = Kokoro("models/kokoro-v1.0.onnx", "models/voices-v1.0.bin")
