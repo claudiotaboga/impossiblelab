@@ -129,6 +129,7 @@ Transferable principles (19 Nov update, hypotheses):
 | E18 | Loop ending: the last frame rhymes with frame 0 so the replay is seamless (follow end card kept, shown before the rhyme frame) | ending | watch ratio (TIL-15 84 % suggests replays count) + IG reach at 24 h | backlog (added 22 Nov; after E17) |
 
 ## Decisions
+- 24 Nov 18:51: **topic variety rule** (Claudio: "topics are very similar lately"): TIL-11..20 = 9/10 space/altitude, 6/10 low-pressure boiling. Lanes A body · B animals · C kitchen/everyday · D ships/engineering · E scale/time · S space; no lane twice in a row; space ≤ 1 in 5; low-pressure/boiling banned to 10 Dec; E5 kept. TIL-20 (candle in space) stays (promised by TIL-19's card); its end card names V1 (toast butter-side down). Queue: EPISODES.md "Variety block".
 - 13 Nov: **stop E2** (one-tap yes/no comment prompt): 0 comments on ~1,000 IG views over TIL-03/04/05; also conflicts with the brief's "no engagement bait". Caption v2 from TIL-08: hook line, 3–4 science lines, one share line naming a person type, one series line ("A new impossible experiment every day."), disclaimer, ≤ 8 hashtags; no "Follow … for more", no question prompt. Logged as a minor confound for E5.
 - 13 Nov: **retain** 16:00 slot, buffer-first publishing, cold open on the climax (E3, unresolved), 15 s / 1.10 (E4, verdict 15 Nov).
 - 13 Nov: **selected E5** (see STRATEGY.md NEXT BUILD INSTRUCTION). Confidence low–medium: n = 5 own reels; topic is confounded with slot timing (TIL-05 was also the first on-time post).

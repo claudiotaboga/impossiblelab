@@ -35,6 +35,23 @@ Take the first item that is not in the register. Every premise must be buildable
 E5 (13 Nov): next three topics put stakes on the viewer's own body or an everyday object/food; take them in this order before the numbered list.
 16 Nov (stats check): E5 topic rule kept as the control while E7 runs; lettered items reordered body-first (G, D, H, C, E). With E7, the TIL-NN end card names the next topic, which then becomes binding for the following build.
 
+**24 Nov (Claudio: "topics are very similar lately") — VARIETY RULE, standing.** TIL-11..20 are 9 of 10 space/altitude premises and 6 of 10 the same low-pressure/boiling mechanism (pasta, egg, popcorn, water, balloon); the data also says space sits at median and body/everyday wins (E5). From TIL-21:
+- Rotate lanes: **A** your body · **B** animals vs you · **C** kitchen & everyday physics on Earth · **D** ships & engineering · **E** scale/speed/time · **S** space. Never the same lane twice in a row.
+- **Space/planets (S): at most 1 in any 5 reels. Low pressure / boiling / vacuum: banned until 10 Dec.**
+- E5 still applies: every premise keeps a "you" or everyday-object stake. When picking the TIL-NN end card, name the first item below that respects the rotation.
+- TIL-20 (candle in space) stays: TIL-19's end card already promises it. TIL-20's end card must name **V1**.
+
+Variety block (take in order, before the old lists; verify every number):
+- V1. **[C] Does toast really land butter-side down?** Table height (~75 cm) gives the slice only about half a turn before it lands (Matthews 1995, European Journal of Physics; Ig Nobel 1996); from a ~3 m table it would land butter-up. Verify the paper and the rotation numbers.
+- V2. **[A] Every bacterium in your body on one scale**: about 38 trillion bacteria ≈ 0.2 kg, roughly a mango (Sender, Fuchs & Milo 2016, PLOS Biology; revises the old "10:1, 2 kg" claim). Verify both numbers.
+- V3. **[D] Pushing a 100,000-tonne ship with one finger**: in calm water there is no static friction, so ~10 N moves it; a = 10⁻⁷ m/s² → roughly 0.6 m after an hour (water drag negligible at that speed; hedge on wind/current). Verify displacement for a real ship class and the drag claim.
+- V4. **[B] A mantis shrimp punch against your aquarium glass**: club ~23 m/s, accelerating ~10,000 g; the strike is so fast that it boils water into a collapsing bubble that flashes and hits a second time (Patek et al. 2004, Nature); large smashers are known to crack aquarium glass. Verify speed, g and the glass claim (hedge if only anecdotal).
+- V5. **[E] If sound travelled at walking speed**: 343 m/s → 1.4 m/s; across a 5 m kitchen your "hi" arrives ~3.6 s after your lips move, and a car horn arrives after the car. Verify 343 m/s at 20 °C; show everyday scenes only.
+- V6. **[A] Your heart at a hummingbird's pace**: hummingbird heart up to ~1,200 bpm vs your ~70 at rest (~17×); a whole day of your heartbeats in about 1.4 h. Verify the bpm source.
+- V7. **[D] A ship made of ice (Project Habakkuk)**: WWII Britain planned an aircraft-carrier hull of pykrete (ice + ~14 % sawdust), far stronger than plain ice and slow to melt; a prototype was built on a Canadian lake in 1943. Frame with ice cubes from your freezer. Verify pykrete strength and the prototype facts.
+- V8. **[C] Every cat on Earth meowing at once** (old #9; total sound power under one car engine — verify before use).
+- V9. **[S] A paper plane thrown from the ISS** (old #14; the one space slot in V5–V9).
+
 - A. ~~**Shrunk to 1 cm tall**~~ (done, TIL-08: 13 mg body vs 65 mg 5 mm raindrop; terminal speed ≈4 m/s (53 m/s × √(1/175)); heat loss per kg ×175; Haldane water film ≈1.1× body mass). The 'eat like a shrew' angle was dropped: no clean per-person number.
 - B. ~~**Swimming in a pool of olive oil**~~ (done, TIL-09: oil 0.911 g/cm³ at 20 °C vs you 0.97–0.99 with lungs full (Reference Man 1.058 + 4.8–6 L air) → you sink, apparent weight ≈4.3–5.3 kg; viscosity 84 vs 1.0 mPa·s; pure fat 0.9007 floats with 1.1 % above). The 'strokes feel slow' angle kept as 'every kick drags' (no clean number for swim speed).
 - F. ~~**You, 10× taller**~~ (done, TIL-10: 1.75 m → 17.5 m, 70 kg → 70 t (×1,000), bone strength ×100 → stress ×10; running peak bone stress ≈55 MPa (40–80) with safety factor ≈3–4 (Biewener 1991) → ×10 ≈550 MPa vs ≈200 failure; Haldane 1926 giant thigh-bones; fix = water buoyancy, blue whales). Heat angle dropped (no clean number).
