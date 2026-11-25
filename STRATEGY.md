@@ -588,3 +588,20 @@ Other reels unchanged (IG frozen). Totals **32,406 views (IG 16,297 + YT 16,109)
 Totals **34,111 views (IG 17,085 + YT 17,026)**; IG followers 6, YT subscribers 8. Medians TIL-01..16: hook hold 62.7 %, watch ratio 60 %; E5 24 h IG reach median 1,093.
 - **Findings:** 1. TIL-17 at 19.5 h: 580 accounts (0.53× E5 median at a younger age; posted 4 h 32 late), retention at the medians — the off-slot post is the likeliest drag (low–medium). 2. TIL-15 72 h final: watch 84 % still the best of 17 (medium). 3. TIL-16 YT 6 → 307 at 46 h: the anomaly was batch lag (medium).
 - **Adjustment applied:** none — 22 Nov 13:20 instruction followed: **TIL-19 = #19 "A balloon on Mars" = E17 reel 2** (E13 opening: EARTH vs MARS balloons, Mars one pops at 1.0 s; cascade middle: air vanishes 4.2 s → balloon swells 4.5 → marshmallows 6.1 → snack bag 6.8 → glove 7.5 → ×2 → ×20 8.6–10.6 → tears 10.7 → pop 11.6 → rip vs sound bars 11.8); caption v2 + follow line; ⚠️ on caption + card. Teaser binds **TIL-20 = #20 candle in space (E17 reel 3)**. Experiment status: E13 complete (verdict 29 Nov), E16 running, **E17 reel 1 live, reel 2 in READY for 25 Nov 16:00**.
+
+### Production run 25 Nov 2026 (13:12–16:20 EET, on schedule)
+- **TIL-19 published on time by the guard task** 16:00:10 EET (exec db810191… SUCCESS; IG DgKsj76qPzQ, YT MZOVYps1WYU; FB exec bcb33db0… SUCCESS) — single delivery, no duplicate; this run (fallback only) sent nothing. Snapshot = guard's post-publish capture 16:02–16:03 EET.
+
+| Reel | Age | IG views | IG reach | Hook hold | Avg watch | Watch ratio | Shares / saves | YT views |
+|---|---|---|---|---|---|---|---|---|
+| TIL-09 olive oil | 240 h | 3,285 | 2,149 | 72.1 % | 11.1 s | 74 % | 0 / 0 | 1,493 |
+| TIL-13 Jupiter weight | 144 h | 1,571 | 1,124 | 65.3 % | 8.6 s | 57 % | 0 / 0 | 1,089 |
+| TIL-14 ice cream on Mercury | 120 h | 445 | 328 | 66.8 % | 7.6 s | 51 % | 0 / 0 | 1,309 |
+| TIL-15 Earth stops spinning | 96 h | 1,731 | 1,212 | 64.8 % | 12.6 s | 84 % | 0 / 0 | 660 |
+| TIL-16 egg on Everest | 70 h | 1,659 | 1,155 | 62.3 % | 8.7 s | 58 % | 0 / 0 | 387 |
+| TIL-17 popcorn on Mars (late) | 43.5 h | 800 | 590 | 62.4 % | 8.5 s | 57 % | 0 / 0 | 682 |
+| **TIL-18 water on the Moon (E17 r1)** | **24.0 h** | **166** | **125** | **56.0 %** | **8.0 s** | **54 %** | 0 / 0 | **388** |
+| TIL-19 balloon on Mars (E17 r2) | 0 h | 0 | 0 | – | – | – | – | 0 |
+Totals **34,852 views (IG 17,268 + YT 17,584)**; IG followers 6, YT subscribers 8. Medians TIL-01..17: hook hold 62.4 %, watch ratio 60 %; E5 24 h IG reach median 1,093.
+- **Findings:** 1. E17 reel 1 (TIL-18) at 24 h: 125 accounts (0.11× E5 median), hook 56.0 %, watch 54 % — no completion lift; the drop starts at the opening (medium–low, n = 1). 2. Two low-pressure space premises in a row fell (TIL-17 590 at 43.5 h, TIL-18 125) — supports the 24 Nov variety rule (low–medium). 3. TIL-16 final ~1.16 k accounts; YT batch lag confirmed (387) (medium).
+- **Adjustment applied:** none — 22 Nov 13:20 instruction followed (n = 1 does not clearly contradict it; TIL-20 completes E17's three reels for the 29 Nov verdict): **TIL-20 = #20 "A candle in space" = E17 reel 3** (E13 opening: EARTH teardrop vs ORBIT ball flame at 0.08 s; cascade: hot air rises vs stalls 3.4 → blue 4.2 → timers 5.5 → Earth out at 10 MIN 6.7 → orbit 45 MIN 7.7 → wax ball 8.1–9.6 → pulses 10.2 → dies 11.3 → wax fog 11.3 → warning ring 12.3); caption v2 + follow line; ⚠️ on caption + card. Teaser binds **TIL-21 = V1 toast butter-side down** (lane C, variety rule). Experiment status: E13 complete, E16 running, **E17 reel 1 weak at 24 h, reel 2 live today, reel 3 in READY for 26 Nov 16:00** — verdict 29 Nov.
