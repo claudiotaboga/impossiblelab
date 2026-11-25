@@ -21,13 +21,13 @@
 | 16 | TIL-16 | 22 Nov 2026 17:45:56 (16:00 slot, 1 h 46 min late — scheduled run started late; from READY) | Boiling an egg on Everest | Boiling water can't cook this egg. | 15.0 s | 6bf8b6a6a17f49ccaeb21a0555176a06 · FB e71b7fa5b94a47a6aa71e789329d12f0 | [DgDKLqEDmPH](https://www.instagram.com/reel/DgDKLqEDmPH/) | [7OjiRahIKHk](https://youtube.com/shorts/7OjiRahIKHk) |
 | 17 | TIL-17 | 23 Nov 2026 20:31:46 (16:00 slot, 4 h 32 min late — scheduled run started at 20:30; from READY) | Popcorn on Mars | Popcorn pops bigger on Mars. | 15.0 s | ca4871a9dfec4d9582eb8aa9c3381d81 · FB 6d7d06c0cdb74747b991b957da3982e9 | [DgGB9LwjSoV](https://www.instagram.com/reel/DgGB9LwjSoV/) | [2kRxqWRTU2c](https://youtube.com/shorts/2kRxqWRTU2c) |
 | 18 | TIL-18 | 24 Nov 2026 16:00:03 (on time; from READY) | A glass of water on the Moon | This water boils and freezes. | 15.0 s | f31d65d0b02a48d4a63ed3afeb6b3403 · FB c0ad234099b642798f0aebba7acbce96 | [DgIHp5VDuHL](https://www.instagram.com/reel/DgIHp5VDuHL/) | [7QnidzPiyQ0](https://youtube.com/shorts/7QnidzPiyQ0) |
+| 19 | TIL-19 | 25 Nov 2026 16:00:10 (on time; from READY) | A balloon on Mars | This balloon pops on its own. | 15.0 s | db810191005c46019236b504fc00bb04 · FB bcb33db00b474254984af507ae671d2f | [DgKsj76qPzQ](https://www.instagram.com/reel/DgKsj76qPzQ/) | [MZOVYps1WYU](https://youtube.com/shorts/MZOVYps1WYU) |
 
 ## READY TO PUBLISH
 Buffer: the daily run publishes the first entry here at 16:00 EET (its `meta.json` is final and its video is already hosted), moves it to the register, then builds the next episode into this section.
 
 | Episode ID | Folder | Premise | Hook line | Length | SHA-256 | Built |
 |---|---|---|---|---|---|---|
-| TIL-19 | episodes/19-balloon-on-mars | A balloon on Mars (E17 cascade middle reel 2: EARTH vs MARS balloons, Mars one swells from 0.08 s and pops at 1.0 s; middle: balloon set on a Mars table 2.4 s → air dots vanish 4.2 s → balloon swells 4.5 s → marshmallows puff 6.1 s → snack bag bulges 6.8 s → glove inflates 7.5 s → balloon ×2 → ×20 ("NEEDS ×100+") 8.6–10.6 s → tear lines 10.7 s → pop 11.6 s → RIP 570 vs MARS SOUND 240 m/s bars 11.8 s; E16 follow pill 5.0–8.2 s + end card; end card "TOMORROW: A CANDLE IN SPACE") | This balloon pops on its own. | 15.0 s (E4) | `03a7b7ddbc1f44c9a8c20cb85a9dd0a71d445a6229a5377ec5e4b16f76515cf5` | 24 Nov 2026 13:49 EET |
 
 ## Topic queue
 Take the first item that is not in the register. Every premise must be buildable from Blender primitives, safe to show, and its science checkable. Verify every number before use; the notes are starting points, not facts.
