@@ -10,20 +10,20 @@ def font(w, s): return ImageFont.truetype(F + f"Inter-{w}.otf", s)
 AMBER = (255, 176, 46); WHITE = (255, 255, 255); INK = (18, 12, 6)
 
 # ---- per-episode content: the only block to change for a new episode ----
-EP_NUM = 19
-TITLE = ["BALLOON", "ON MARS?"]
+EP_NUM = 20
+TITLE = ["A CANDLE", "IN SPACE?"]
 FACTS = [  # (start, end, text) — times match the narration lines
-    (3.75, 5.65, "MARS AIR: ≈0.6 % OF EARTH'S"),
-    (8.58, 10.45, "SEALED AIR WANTS ×100+ VOLUME"),
-    (11.48, 13.30, "RIP ≈570 m/s · MARS SOUND ≈240 m/s"),
+    (3.40, 5.20, "NO GRAVITY: HOT AIR CAN'T RISE"),
+    (5.55, 7.70, "MIR CANDLES: UP TO 45 MIN"),
+    (11.40, 13.30, "WAX FOG CLOUD: 2–3× THE FLAME"),
 ]
-CARD_SUB = "Why a tied balloon can't survive Mars"
-CARD = [("Mars surface air", "≈ 6.36 mbar", "NASA NSSDC; Earth ≈ 1,013 mbar"),
-        ("Sealed air would swell", "×116 to ×159", "Boyle's law, at −59 °C to 20 °C"),
-        ("Rip vs sound", "≈ 570 vs ≈ 240 m/s", "PRL 2015; Perseverance 2022"),
+CARD_SUB = "Why flames burn round and blue in orbit"
+CARD = [("Flame in orbit", "round, ≈ 1.5 cm", "NASA Shuttle tests: blue, soot-free"),
+        ("Burn time on Mir", "up to 45 min", "NASA; same candles ≤ 10 min on Earth"),
+        ("After it goes out", "fog 2–3× flame", "NASA: flammable wax vapour"),
        ]
-DISCLAIMER = "Don't try this. Vacuum chambers are lab equipment."
-NEXT = "TOMORROW: A CANDLE IN SPACE"   # series teaser end card (binding for TIL-20)
+DISCLAIMER = "Don't try this. Fire in a sealed cabin is deadly."
+NEXT = "TOMORROW: DOES TOAST LAND BUTTER-DOWN?"   # series teaser end card (binding for TIL-21 = V1)
 NEXT_START = 14.0
 
 # ---- follow invite (Claudio, 20 Nov 2026: "invite the viewer to subscribe to the channel") — house rule, every reel ----

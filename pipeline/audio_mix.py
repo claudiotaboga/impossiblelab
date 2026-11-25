@@ -151,27 +151,29 @@ def tinkles(t0, dur, k=10):  # falling shards
 def pop(g=1.0, f=None):  # popcorn pop: short bright snap + small body
     n = int(0.09 * SR); tt = np.arange(n) / SR; f = f or rng.uniform(500, 1100)
     return (hp(rng.standard_normal(n), 1800) * np.exp(-tt * 90) * 0.9 + np.sin(2 * np.pi * f * tt) * np.exp(-tt * 60) * 0.6) * g
-# ---- episode 19 SFX: a balloon on Mars ----
-def stretch(dur):  # rubbery creak of latex stretching
+# ---- episode 20 SFX: a candle in space ----
+def strike(dur=0.45):  # match strike + flare
     n = int(dur * SR); tt = np.arange(n) / SR
-    return bp(rng.standard_normal(n), 300, 1400) * (0.5 + 0.5 * np.sin(2 * np.pi * (14 + 10 * tt / dur) * tt)) * np.clip(tt / 0.2, 0, 1) * 0.8
-def bang(dur=0.5):  # balloon pop: sharp broadband crack + short low body
+    return bp(rng.standard_normal(n), 1500, 7000) * np.exp(-tt * 14) * 1.2 + lp(rng.standard_normal(n), 700) * np.exp(-tt * 5) * 0.6
+def flame_hum(dur, f=110):  # soft steady burn
     n = int(dur * SR); tt = np.arange(n) / SR
-    return hp(rng.standard_normal(n), 900) * np.exp(-tt * 55) * 1.6 + thud(dur, 70) * 0.7
-def puff(dur=0.4):  # soft air swell
-    n = int(dur * SR); return lp(rng.standard_normal(n), 1200) * np.sin(np.linspace(0, np.pi, n)) ** 1.2
-put(sfx, stretch(B["hp"] - B["hs"]), B["hs"], 0.25)                                               # hook: Mars balloon swells
-put(sfx, bang(), B["hp"], 0.75); tinkles(B["hp"] + 0.05, 0.5, 5)                                   # hook: pop
-put(sfx, thud(0.3, 80), B["set"], 0.35)                                                            # balloon set on the table
-put(sfx, shimmer(0.6), B["thin"], 0.18)                                                            # air vanishes
-put(sfx, stretch(1.2), B["sw"], 0.12)                                                              # balloon starts to swell
-for key, f0 in (("mal", 900), ("bag", 600), ("glv", 750)):                                         # cascade: each item puffs
-    put(sfx, puff(0.4), B[key], 0.35); put(sfx, squeak(0.18, f0 * 2.5), B[key] + 0.1, 0.06)
-put(sfx, stretch(B["rip"] - B["cuts"][2]), B["cuts"][2], 0.25)                                     # big swell, latex straining
-put(sfx, crack(0.25), B["rip"], 0.25); put(sfx, crack(0.2), B["rip"] + 0.3, 0.2)                   # tear lines race
-put(sfx, bang(0.6), B["pop"], 0.9)                                                                 # pop
-put(sfx, whoosh(0.5, 3000, 600, False), B["bars"], 0.12)                                           # speed bars race
-put(sfx, stretch(0.8), B["t_loop"] + 0.08, 0.2)                                                    # loop: hook replays
+    return lp(rng.standard_normal(n), 400) * 0.6 * np.clip(tt / 0.2, 0, 1) * np.clip((dur - tt) / 0.2, 0, 1)
+def puff(dur=0.4):  # soft air puff / blow-out
+    n = int(dur * SR); tt = np.arange(n) / SR
+    return lp(rng.standard_normal(n), 1200) * np.sin(np.linspace(0, np.pi, n)) ** 2
+put(sfx, strike(), B["ign"], 0.45); put(sfx, strike(), B["ign"] + 0.06, 0.35)                     # both wicks light
+put(sfx, flame_hum(1.4), B["ign"] + 0.2, 0.25)
+put(sfx, shimmer(0.8), B["hot"], 0.15)                                                            # hot air rises / stays
+put(sfx, whoomph(0.6), B["blue"], 0.35)                                                           # flame turns blue
+counter(B["timers"], B["earth_out"], 10, 1600, 1600, 0.06)                                        # Earth timer
+put(sfx, puff(0.35), B["earth_out"], 0.4)                                                         # Earth candle out
+counter(B["timers"], B["t45"], 24, 2000, 2400, 0.05)                                              # orbit timer runs on
+put(sfx, gloop(0.8), B["wax"] + 0.3, 0.25)                                                        # wax melts into a ball
+for k in range(3): put(sfx, whoomph(0.3), B["pulse"] + 0.2 + k / 1.6, 0.18)                      # flame pulses
+put(sfx, puff(0.5), B["out"], 0.5)                                                                # flame dies
+put(sfx, whoosh(1.0, 300, 1200), B["fog"], 0.2)                                                   # wax fog swells
+for k in range(3): put(sfx, beep(1200, 0.08), B["ring"] + k * 0.5, 0.12)                          # warning ring
+put(sfx, strike(), B["t_loop"] + 0.08, 0.35)                                                      # loop: hook replays
 for t_cut in B["cuts"]:
     put(sfx, whoosh(0.35, 1800, 500, False), t_cut - 0.15, 0.10)
 put(sfx, thud(0.4, 60), CARD_START, 0.6); put(sfx, whoosh(0.3, 800, 3000), CARD_START - 0.25, 0.2)

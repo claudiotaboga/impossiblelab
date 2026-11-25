@@ -1,11 +1,11 @@
-"""The Impossible Lab #19 - a balloon on Mars (E17 cascade middle, reel 2).
+"""The Impossible Lab #20 - a candle in space (E17 cascade middle, reel 3).
 Usage: python3 scene.py [start end [step]] | [f1,f2,...] | [f]  [--force]   (no args = all frames)
 """
 import bpy, addon_utils, math, random, sys, os, json, time
 from mathutils import Vector
 from config import FPS, FRAMES as N, DUR
 
-random.seed(19)
+random.seed(20)
 bpy.ops.wm.read_factory_settings(use_empty=True)
 addon_utils.enable("cycles", default_set=True)
 S = bpy.context.scene
@@ -141,271 +141,247 @@ def open_cyl(loc, r, d, m, name, thick=0.006, verts=40):
     return o
 
 
-# ================= episode 19: a balloon on Mars (E17 cascade middle, reel 2) =================
-# Hook (x = 0): EARTH balloon (left, calm) vs MARS balloon (right, butterscotch sky wall): from 0.08 s the Mars balloon
-# swells and pops at ~1.0 s (latex shreds). Line 2: Mars surface set (x = 30), a fresh tied balloon on a table beside
-# a plate of marshmallows, a sealed snack bag and a rubber glove. Line 3: air dots vanish, the balloon starts to swell.
-# Line 4 (cascade): marshmallows puff -> snack bag bulges -> glove fingers inflate. Line 5: balloon keeps swelling,
-# "VOLUME xN" climbs while "NEEDS x100+" is shown, latex thins (lighter colour). Line 6: tear lines race across it.
-# Line 7: pop, shreds fly; RIP vs SOUND speed bars race. Last ~1.4 s: hook framing (loop).
+
+# ================= episode 20: a candle in space (E17 cascade middle, reel 3) =================
+# Hook (wide): EARTH candle (left, kitchen tiles) vs ORBIT candle (right, station panel + porthole): both wicks light at
+# 0.08 s; Earth flame = yellow teardrop, orbit flame = round ball. Line 2: close on the orbit candle (porthole Earth).
+# Line 3 (cascade, wide): hot-air dots stream up on Earth, spread evenly and stall in orbit -> orbit flame turns blue.
+# Line 4: timers: Earth candle shrinks, drips, goes out at 10 MIN; orbit timer runs on to 45 MIN.
+# Line 5 (close): orbit candle melts into a floating molten wax ball, no drips. Line 6: flame pulses, shrinks, dies.
+# Line 7: a white wax-fog sphere swells to ~2.5x the flame; red warning ring pulses. Last ~1.2 s: hook framing (loop).
 M_TABLE = noise_mat("table", (0.55, 0.36, 0.22), (0.66, 0.45, 0.28), 7.0, 0.45)
-M_WALLE = tiles("wallE", (0.20, 0.30, 0.40), (0.12, 0.16, 0.20), 4.0)
-M_WALLM = mat("wallM", (0.55, 0.28, 0.14), 0.9)
-M_GLASS = liquid("glass", (0.97, 0.99, 1.0), (0.92, 0.96, 1.0), 0.02)
-def latex(name, col):
-    m = mat(name, col, 0.22); return m
-M_BALE = latex("balE", (0.80, 0.04, 0.05))
-M_BALM = latex("balM", (0.80, 0.04, 0.05))
-M_BALS = latex("balS", (0.80, 0.04, 0.05))
-M_SHRED = latex("shred", (0.80, 0.04, 0.05))
-M_STRING = mat("string", (0.95, 0.95, 0.92), 0.6)
-M_WEIGHT = mat("weight", (0.15, 0.15, 0.17), 0.3, 0.8)
-M_MALLOW = mat("mallow", (0.97, 0.95, 0.92), 0.85)
-M_PLATE = mat("plate", (0.35, 0.55, 0.80), 0.3)
-M_BAG = mat("bag", (0.95, 0.70, 0.10), 0.25, 0.6)
-M_BAGB = mat("bagb", (0.85, 0.15, 0.10), 0.3, 0.5)
-M_GLOVE = mat("glove", (0.15, 0.55, 0.85), 0.35)
-M_GROUND = noise_mat("marsground", (0.45, 0.20, 0.09), (0.70, 0.38, 0.18), 2.5, 0.95)
-M_ROCK = noise_mat("rock", (0.30, 0.13, 0.06), (0.50, 0.26, 0.12), 6.0, 0.9)
+M_WALLE = tiles("wallE", (0.62, 0.55, 0.45), (0.35, 0.30, 0.25), 4.0)
+M_WALLS = tiles("wallS", (0.16, 0.18, 0.22), (0.06, 0.07, 0.09), 1.5)
+M_WAX = mat("wax", (0.96, 0.93, 0.86), 0.45)
+M_WAXL = mat("waxl", (0.98, 0.90, 0.72), 0.12)
+M_HOLD = mat("holder", (0.65, 0.66, 0.70), 0.25, 0.9)
+M_WICK = mat("wick", (0.05, 0.04, 0.03), 0.8)
 M_DARK = mat("dark", (0.04, 0.04, 0.05), 0.5)
-M_AIR = mat("air", (0.6, 0.85, 1.0), 0.4, 0, (0.55, 0.85, 1.0), 3.0)
+M_EARTHP = mat("earthp", (0.2, 0.45, 0.9), 0.5, 0, (0.15, 0.4, 1.0), 1.2)
+M_PANL = mat("panl", (0.6, 0.9, 1.0), 0.4, 0, (0.5, 0.85, 1.0), 2.0)
 M_LBLB = mat("lblb", (0.4, 0.7, 1.0), 0.4, 0, (0.4, 0.75, 1.0), 5.0)
 M_WHITE = mat("lblw", (1, 1, 1), 0.4, 0, (1, 1, 1), 3.0)
 M_AMB = mat("lbla", (1.0, 0.65, 0.15), 0.4, 0, (1.0, 0.6, 0.12), 4.0)
-M_RIP = mat("rip", (1.0, 0.95, 0.8), 0.4, 0, (1.0, 0.95, 0.75), 6.0)
 M_REDL = mat("redl", (1.0, 0.2, 0.1), 0.4, 0, (1.0, 0.18, 0.06), 3.0)
+M_HOT = mat("hot", (1.0, 0.5, 0.15), 0.4, 0, (1.0, 0.45, 0.1), 3.0)
+M_FE = mat("flameE", (1.0, 0.75, 0.25), 0.5, 0, (1.0, 0.62, 0.15), 3.2)
+M_FEC = mat("flameEc", (0.3, 0.5, 1.0), 0.5, 0, (0.25, 0.45, 1.0), 2.5)
+
+def shell_mat(name, col, estr, blend=0.45):
+    """emissive rim, see-through centre (spherical diffusion flame / fog)"""
+    m = bpy.data.materials.new(name); m.use_nodes = True; nt = m.node_tree
+    for n in list(nt.nodes):
+        if n.type != "OUTPUT_MATERIAL": nt.nodes.remove(n)
+    out = next(n for n in nt.nodes if n.type == "OUTPUT_MATERIAL")
+    tr = nt.nodes.new("ShaderNodeBsdfTransparent"); em = nt.nodes.new("ShaderNodeEmission")
+    em.inputs[0].default_value = (*col, 1); em.inputs[1].default_value = estr
+    lw = nt.nodes.new("ShaderNodeLayerWeight"); lw.inputs["Blend"].default_value = blend
+    pw = nt.nodes.new("ShaderNodeMath"); pw.operation = "POWER"; pw.inputs[1].default_value = 0.6
+    nt.links.new(lw.outputs["Facing"], pw.inputs[0])
+    mx = nt.nodes.new("ShaderNodeMixShader"); nt.links.new(pw.outputs[0], mx.inputs[0])
+    nt.links.new(tr.outputs[0], mx.inputs[1]); nt.links.new(em.outputs[0], mx.inputs[2]); nt.links.new(mx.outputs[0], out.inputs[0])
+    m["em"] = em.name
+    return m, em
+M_FS, EM_FS = shell_mat("flameS", (1.0, 0.72, 0.25), 6.0, 0.32)
+M_FOG, EM_FOG = shell_mat("fog", (0.95, 0.95, 0.92), 1.4, 0.35)
 
 world = bpy.data.worlds.new("w"); S.world = world; world.use_nodes = True
-S.view_settings.exposure = -0.5
-WBG = world.node_tree.nodes["Background"]; WBG.inputs[0].default_value = (0.55, 0.32, 0.18, 1); WBG.inputs[1].default_value = 0.3
+S.view_settings.exposure = -0.4
+WBG = world.node_tree.nodes["Background"]; WBG.inputs[0].default_value = (0.05, 0.05, 0.07, 1); WBG.inputs[1].default_value = 0.4
 
 # ---------- timing ----------
 t2, t3, t4, t5, t6, t7 = (L[i]["start"] for i in range(2, 8))
 tc = CARD_START
 T_LOOP = tc + 0.25
-T_HS = 0.08                  # hook: Mars balloon starts swelling
-T_HP = 1.00                  # hook: pop
-T_SET = t2 + 0.6             # Mars balloon lands on the table
-T_THIN = t3 + 0.45           # air dots vanish
-T_SW = t3 + 0.75             # Mars balloon starts to swell
-T_MAL = t4 + 0.25            # cascade 1: marshmallows puff
-T_BAG = t4 + 0.95            # cascade 2: snack bag bulges
-T_GLV = t4 + 1.65            # cascade 3: glove inflates
-T_RIP = t6 + 0.05            # tear lines start
-T_POP = t7 + 0.10            # pop
-T_BARS = t7 + 0.35           # speed bars race
-VMAX = 20.0                  # volume factor reached before it tears (shown), needs x100+
+T_IGN = 0.08                 # both wicks light
+T_HOT = t3 + 0.15            # hot-air dots start
+T_BLUE = t3 + 0.95           # orbit flame turns blue
+T_TIM = t4 + 0.10            # timers start
+T_EOUT = t4 + 1.30           # Earth candle out at 10 MIN
+T_45 = t5 - 0.25             # orbit timer reaches 45 MIN
+T_WAX = t5 + 0.15            # wax melts into a ball
+T_WAXF = T_WAX + 1.5
+T_PULSE = t6                 # flame pulses before it dies
+T_OUT = t7 - 0.02            # flame out
+T_FOG = t7 + 0.05            # wax-fog sphere swells
+T_RING = t7 + 1.0            # warning ring
 
-def balloon(x, y, zk, R0, m, name):
-    """balloon = sphere scaled z 1.15 + knot; zk = knot height. returns dict"""
-    b = sphere((x, y, zk + R0 * 1.15), 1.0, m, name, None, 40)
-    k = noshadow(sphere((x, y, zk), 0.012, m, name + "knot", None, 10)); k.scale = (1, 1, 1.4)
-    return dict(o=b, k=k, x=x, y=y, zk=zk, R0=R0)
-def set_bal(d, s, f, hide=False):
-    R = d["R0"] * s
-    o = d["o"]
-    if hide: o.scale = (0.0001,) * 3
-    else: o.scale = (R, R, R * 1.15)
-    o.location = (d["x"], d["y"], d["zk"] + R * 1.15 - 0.004)
-    o.keyframe_insert("scale", frame=f); o.keyframe_insert("location", frame=f)
-    vis(d["k"], not hide, f, (1, 1, 1.4))
+TOP = 0.90; EX, SX = -0.11, 0.11
+H0 = 0.10; CR = 0.022
+box((0, 0, TOP / 2), (1.6, 0.8, TOP), M_TABLE, "counter")
+box((-0.8, 0.35, 1.5), (1.6, 0.06, 3.0), M_WALLE, "wallE")
+box((0.8, 0.35, 1.5), (1.6, 0.06, 3.0), M_WALLS, "wallS")
+box((0.0, 0.31, 1.5), (0.012, 0.03, 3.0), M_DARK, "divider")
+# station details: panel light strips + porthole with Earth
+for (x, z) in ((0.30, 1.22), (0.30, 0.98)):
+    box((x, 0.315, z), (0.10, 0.01, 0.012), M_PANL, "strip")
+cyl((0.21, 0.318, 1.05), 0.050, 0.012, M_HOLD, "port_rim", rot=(math.radians(90), 0, 0))
+cyl((0.21, 0.312, 1.05), 0.042, 0.012, M_DARK, "port_glass", rot=(math.radians(90), 0, 0))
+sphere((0.222, 0.30, 1.025), 0.028, M_EARTHP, "earthball")
 
-def shreds(cx, cy, cz, R, n, seed, mm):
-    rs = random.Random(seed); out = []
-    for k in range(n):
-        u = rs.uniform(-1, 1); a = rs.uniform(0, math.tau); dirv = V((math.sqrt(1 - u * u) * math.cos(a), math.sqrt(1 - u * u) * math.sin(a), u))
-        bpy.ops.mesh.primitive_ico_sphere_add(subdivisions=1, radius=1.0, location=(cx, cy, cz)); o = bpy.context.object
-        link(o, mm); noshadow(o)
-        out.append(dict(o=o, d=dirv, sp=rs.uniform(0.6, 1.4), sz=rs.uniform(0.018, 0.034), spin=V((rs.uniform(-9, 9), rs.uniform(-9, 9), rs.uniform(-9, 9)))))
-    return out
-def anim_shreds(SH, c, R, tp, t, f, g=3.71, until=99):
-    for s in SH:
-        o = s["o"]
-        if tp <= t < until:
-            dt = t - tp
-            p = V(c) + s["d"] * (R + s["sp"] * 1.2 * dt) + V((0, 0, -0.5 * g * dt * dt))
-            o.location = p; sz = s["sz"]; o.scale = (sz, sz * 0.5, sz * 0.18)
-            o.rotation_euler = s["spin"] * dt
-        else:
-            o.location = c; o.scale = (0.0001,) * 3; o.rotation_euler = (0, 0, 0)
-        o.keyframe_insert("location", frame=f); o.keyframe_insert("scale", frame=f); o.keyframe_insert("rotation_euler", frame=f)
+def candle(x, name):
+    cyl((x, 0, TOP + 0.006), 0.04, 0.012, M_HOLD, name + "holder")
+    body = cyl((x, 0, TOP + 0.012 + H0 / 2), CR, H0, M_WAX, name + "body")
+    wick = cyl((x, 0, TOP + 0.012 + H0 + 0.006), 0.0018, 0.012, M_WICK, name + "wick", verts=8)
+    return body, wick
+EB, EW = candle(EX, "e"); SB, SW = candle(SX, "s")
+def set_candle(body, wick, x, h, f):
+    body.scale = (1, 1, max(h, 0.001) / H0); body.location = (x, 0, TOP + 0.012 + h / 2)
+    wick.location = (x, 0, TOP + 0.012 + h + 0.006)
+    for o in (body, wick):
+        o.keyframe_insert("scale", frame=f); o.keyframe_insert("location", frame=f)
+# Earth flame: teardrop (sphere stretched up) + small blue base
+FE = sphere((EX, 0, 1.0), 1.0, M_FE, "flameE", None, 24); noshadow(FE)
+FEC = sphere((EX, 0, 1.0), 1.0, M_FEC, "flameEc", None, 12); noshadow(FEC)
+# orbit flame: sphere shell
+FS = sphere((SX, 0, 1.0), 1.0, M_FS, "flameS", None, 32); noshadow(FS)
+# lights at the flames
+LE = bpy.data.objects.new("le", bpy.data.lights.new("le", "POINT")); LE.data.shadow_soft_size = 0.01; S.collection.objects.link(LE)
+LS = bpy.data.objects.new("ls", bpy.data.lights.new("ls", "POINT")); LS.data.shadow_soft_size = 0.01; S.collection.objects.link(LS)
+LE.data.color = (1.0, 0.7, 0.35)
+# drips on the Earth candle
+DRIPS = []
+for k, a in enumerate((-60, -20, 25, 70)):
+    xx = EX + (CR + 0.002) * math.sin(math.radians(a)); yy = -(CR + 0.002) * math.cos(math.radians(a))
+    o = cyl((xx, yy, 0), 0.0035, 1.0, M_WAXL, "drip", verts=10)
+    DRIPS.append((o, xx, yy, 0.02 + 0.012 * k))
+# molten wax ball (orbit candle)
+WB = sphere((SX, 0, 1.0), 1.0, M_WAXL, "waxball", None, 32)
+# fog + warning ring
+FOG = sphere((SX, 0, 1.0), 1.0, M_FOG, "fog", None, 32); noshadow(FOG)
+bpy.ops.mesh.primitive_torus_add(major_radius=1.0, minor_radius=0.035, major_segments=64, minor_segments=8, location=(SX, -0.02, 1.0), rotation=(math.radians(90), 0, 0))
+RING = link(bpy.context.object, M_REDL); RING.name = "ring"; noshadow(RING)
+# hot-air dots
+HOT_E, HOT_S = [], []
+rh = random.Random(3)
+for k in range(14):
+    HOT_E.append((noshadow(sphere((EX, 0, 1), 0.0045, M_HOT, "hotE", None, 8)), rh.uniform(0, 1), rh.uniform(-1, 1)))
+for k in range(16):
+    u = rh.uniform(-0.9, 0.9); a = rh.uniform(0, math.tau)
+    d = V((math.sqrt(1 - u * u) * math.cos(a), math.sqrt(1 - u * u) * math.sin(a) * 0.4 - 0.6, u)).normalized()
+    HOT_S.append((noshadow(sphere((SX, 0, 1), 0.0045, M_HOT, "hotS", None, 8)), d, rh.uniform(0, 0.4)))
+# labels
+LBL_Y = -0.05
+LB_E = label("EARTH", (EX, LBL_Y, 1.165), 0.030, M_WHITE); LB_S = label("ORBIT", (SX, LBL_Y, 1.165), 0.030, M_LBLB)
+SUB_E = label("", (EX, LBL_Y, 1.130), 0.020, M_AMB); SUB_S = label("", (SX, LBL_Y, 1.130), 0.020, M_AMB)
+WAX_T = label("MOLTEN\nWAX BALL", (SX - 0.036, -0.06, 1.012), 0.0115, M_AMB, align="RIGHT")
+NODRIP_T = label("NO DRIPS", (SX - 0.036, -0.06, 0.968), 0.0115, M_WHITE, align="RIGHT")
+FOG_T = label("FLAMMABLE", (SX, -0.10, 1.003), 0.016, M_REDL)
+kl = bpy.data.objects.new("key", bpy.data.lights.new("key", "AREA")); kl.data.energy = 30; kl.data.size = 1.5
+kl.data.color = (1.0, 0.92, 0.8); kl.location = (-0.6, -1.6, 1.9); kl.rotation_euler = (math.radians(50), 0, math.radians(-20)); S.collection.objects.link(kl)
+kl2 = bpy.data.objects.new("key2", bpy.data.lights.new("key2", "AREA")); kl2.data.energy = 18; kl2.data.size = 1.2
+kl2.data.color = (0.85, 0.9, 1.0); kl2.location = (0.7, -1.5, 1.7); kl2.rotation_euler = (math.radians(50), 0, math.radians(25)); S.collection.objects.link(kl2)
 
-# ================= HOOK set (x = 0) =================
-TOP = 0.90
-LX, RX = -0.20, 0.20
-box((0, 0, TOP / 2), (2.6, 1.0, TOP), M_TABLE, "counter")
-box((-1.0, 0.6, 1.8), (2.0, 0.1, 3.6), M_WALLE, "wallE")
-box((1.0, 0.6, 1.8), (2.0, 0.1, 3.6), M_WALLM, "wallM")
-ZK = TOP + 0.08
-for xx in (LX, RX):
-    box((xx, 0, TOP + 0.015), (0.04, 0.04, 0.03), M_WEIGHT, "hweight")
-    cyl_between((xx, 0, TOP + 0.03), (xx, 0, ZK), 0.0018, M_STRING, None, "hstring", caps=False, verts=6)
-HB_E = balloon(LX, 0, ZK, 0.09, M_BALE, "hbalE")
-HB_M = balloon(RX, 0, ZK, 0.09, M_BALM, "hbalM")
-HSH = shreds(RX, 0, ZK + 0.2, 0.17, 26, 5, M_SHRED)
-label("EARTH", (LX, 0.5, 1.36), 0.10, M_LBLB); label("AIR: 1 BAR", (LX, 0.5, 1.27), 0.06, M_WHITE)
-label("MARS", (RX, 0.5, 1.36), 0.10, M_WHITE); label("AIR: 0.006 BAR", (RX, 0.5, 1.27), 0.05, M_WHITE)
-kl = bpy.data.objects.new("kitchen", bpy.data.lights.new("kitchen", "AREA")); kl.data.energy = 260; kl.data.size = 3
-kl.data.color = (1.0, 0.92, 0.8); kl.location = (-1.0, -2.8, 3.0); kl.rotation_euler = (math.radians(45), 0, math.radians(-20)); S.collection.objects.link(kl)
-kl2 = bpy.data.objects.new("kitchen2", bpy.data.lights.new("kitchen2", "AREA")); kl2.data.energy = 160; kl2.data.size = 2.5
-kl2.data.color = (0.95, 0.95, 1.0); kl2.location = (1.4, -2.6, 2.4); kl2.rotation_euler = (math.radians(50), 0, math.radians(25)); S.collection.objects.link(kl2)
-
-# ================= MARS surface set (x = 30) =================
-MX = 30.0; MT = 0.55
-bpy.ops.mesh.primitive_plane_add(size=160, location=(MX, 40, 0)); link(bpy.context.object, M_GROUND)
-rr = random.Random(9)
-for k in range(40):
-    bpy.ops.mesh.primitive_ico_sphere_add(subdivisions=1, radius=rr.uniform(0.05, 0.35), location=(MX + rr.uniform(-6, 6), rr.uniform(0.8, 14), 0))
-    o = bpy.context.object; o.scale = (1, rr.uniform(0.7, 1.2), rr.uniform(0.3, 0.7)); link(o, M_ROCK)
-for (dx, dy, h, r) in ((-9, 40, 4.0, 9.0), (8, 50, 5.0, 12.0), (0, 70, 7, 16)):
-    bpy.ops.mesh.primitive_cone_add(vertices=24, radius1=r, depth=h, location=(MX + dx, dy, h / 2)); link(bpy.context.object, M_ROCK)
-box((MX, 0, MT - 0.02), (1.05, 0.42, 0.04), M_TABLE, "mtable_top")
-for (dx, dy) in ((-0.47, -0.16), (0.47, -0.16), (-0.47, 0.16), (0.47, 0.16)):
-    box((MX + dx, dy, (MT - 0.04) / 2), (0.03, 0.03, MT - 0.04), M_DARK, "leg")
-# balloon (right of centre), knot just above the table
-BX = MX + 0.24; BZK = MT + 0.06
-box((BX, 0.02, MT + 0.015), (0.04, 0.04, 0.03), M_WEIGHT, "mweight")
-cyl_between((BX, 0.02, MT + 0.03), (BX, 0.02, BZK), 0.0018, M_STRING, None, "mstring", caps=False, verts=6)
-MB = balloon(BX, 0.02, BZK, 0.08, M_BALS, "mbal")
-MB_GROUP = [MB["o"], MB["k"]] + [o for o in bpy.data.objects if o.name.startswith(("mweight", "mstring"))]
-SH = shreds(BX, 0.02, BZK + 0.25, 0.217, 44, 11, M_SHRED)
-# plate of marshmallows (left)
-PX = MX - 0.36
-cyl((PX, 0.0, MT + 0.006), 0.085, 0.012, M_PLATE, "plate")
-MAL = []
-for (dx, dy) in ((-0.035, -0.02), (0.0, 0.025), (0.035, -0.02), (0.0, -0.035), (-0.04, 0.03), (0.04, 0.03)):
-    o = cyl((PX + dx, dy, MT + 0.012 + 0.014), 0.016, 0.028, M_MALLOW, "mallow", verts=16)
-    MAL.append(o)
-# snack bag (left of centre): pillow
-GX = MX - 0.12
-bpy.ops.mesh.primitive_cube_add(size=1, location=(GX, 0.02, MT + 0.115)); BAG = link(bpy.context.object, M_BAG); BAG.name = "bag"
-BAG.modifiers.new("ss", "SUBSURF").levels = 3; bpy.ops.object.shade_smooth()
-BAGC = box((GX, 0.02, MT + 0.235), (0.17, 0.035, 0.018), M_BAGB, "bagcrimp"); BAGC2 = box((GX, 0.02, MT + 0.008), (0.17, 0.035, 0.014), M_BAGB, "bagcrimp2")
-BAGS = label("SNACKS", (GX, -0.09, MT + 0.12), 0.034, M_REDL); BAGS.visible_shadow = False
-# rubber glove (centre), lying on the table, fingers up the screen
-VX = MX + 0.03
-GLV = empty("glove", (VX, -0.02, MT + 0.012))
-palm = sphere((0, 0, 0), 1.0, M_GLOVE, "palm", GLV, 24)
-FING = []
-for k, (dx, ln, ang) in enumerate(((-0.03, 0.050, 18), (-0.012, 0.062, 6), (0.008, 0.066, -2), (0.026, 0.058, -10), (0.044, 0.040, -48))):
-    e = empty(f"fing{k}", (dx, 0, 0.05 if k < 4 else 0.005), GLV); e.rotation_euler = (0, math.radians(ang), 0)
-    o = sphere((0, 0, ln / 2), 1.0, M_GLOVE, "finger", e, 16); FING.append((o, ln))
-cuff = cyl((0.0, 0, -0.07), 0.035, 0.035, M_GLOVE, "cuff", rot=(0, 0, 0), parent=GLV)
-GLV.rotation_euler = (0, 0, 0)   # standing glove, palm facing the camera
-GLV.location = (VX, 0.03, MT + 0.085)
-AIR = []
-rnd = random.Random(21)
-for k in range(40):
-    o = noshadow(sphere((MX + rnd.uniform(-0.5, 0.5), -0.10 + rnd.uniform(-0.1, 0.1), MT + 0.12 + rnd.uniform(0, 0.33)), 0.012, M_AIR, "air", None, 8))
-    AIR.append((o, V(o.location), rnd.uniform(0, math.tau), k != 13))
-AIR_T = label("", (MX, -0.15, MT + 0.50), 0.045, M_LBLB)
-VOL_T = label("", (MX - 0.14, -0.14, MT + 0.36), 0.05, M_AMB)
-NEED_T = label("NEEDS ×100+", (MX - 0.14, -0.14, MT + 0.44), 0.05, M_WHITE)
-# speed bars (after the pop), in front of the table, under where the balloon was
-BAR_Y = -0.12
-RIPB = empty("ripb", (MX - 0.42, BAR_Y, MT + 0.47)); box((0.5, 0, 0), (1.0, 0.01, 0.04), M_RIP, "ripbar", RIPB)
-SNDB = empty("sndb", (MX - 0.42, BAR_Y, MT + 0.33)); box((0.5, 0, 0), (1.0, 0.01, 0.04), M_LBLB, "sndbar", SNDB)
-RIP_T = label("BALLOON RIP ≈ 570 m/s", (MX - 0.42, BAR_Y, MT + 0.54), 0.05, M_RIP, align="LEFT")
-SND_T = label("MARS SOUND ≈ 240 m/s", (MX - 0.42, BAR_Y, MT + 0.40), 0.05, M_LBLB, align="LEFT")
-sun = bpy.data.objects.new("msun", bpy.data.lights.new("msun", "SUN")); sun.data.energy = 3.5
-sun.data.color = (1.0, 0.93, 0.85); sun.rotation_euler = (math.radians(50), 0, math.radians(-35)); S.collection.objects.link(sun)
-# tear lines on the swollen balloon (sphere surface points), revealed progressively
-RIPS = []
-RB = 0.08 * VMAX ** (1 / 3); CB = V((BX, 0.02, BZK + RB * 1.15 - 0.004))
-rt = random.Random(4)
-def surf_pt(pol, phi):
-    return CB + V((RB * 1.01 * math.sin(pol) * math.sin(phi), -RB * 1.01 * math.sin(pol) * math.cos(phi), RB * 1.16 * math.cos(pol)))
-for br in range(5):
-    pol, phi = math.radians(70), math.radians(-10)
-    dp, dq = rt.uniform(-1, 1), rt.uniform(-1, 1)
-    nrm = math.hypot(dp, dq); dp, dq = dp / nrm * 0.16, dq / nrm * 0.16
-    for s in range(6):
-        p1 = surf_pt(pol, phi); pol2 = pol + dp + rt.uniform(-0.06, 0.06); phi2 = phi + dq + rt.uniform(-0.06, 0.06)
-        p2 = surf_pt(pol2, phi2)
-        o = cyl_between(p1, p2, 0.0035, M_RIP, None, "rip", caps=False, verts=6); noshadow(o)
-        RIPS.append((o, T_RIP + s * 0.11 + br * 0.03)); pol, phi = pol2, phi2
-
-# ---------- text handler ----------
-def vol_at(t):
-    if t < T_SW: return 1.0
-    if t < t5: return 1.0 + 1.0 * smooth((t - T_SW) / (t5 - T_SW))          # x2 by line 5
-    return 2.0 + (VMAX - 2.0) * smooth((t - t5) / (T_RIP - t5 - 0.1))      # x20 when it tears
+# ---------- state functions ----------
+def e_height(t):  return H0 - 0.06 * smooth((t - T_TIM) / (T_EOUT - T_TIM)) if t < T_LOOP else H0
+def s_height(t):  return H0 - 0.065 * smooth((t - T_WAX) / (T_WAXF - T_WAX)) if t < T_LOOP else H0
+def e_timer(t):   return 10.0 * smooth((t - T_TIM) / (T_EOUT - T_TIM))
+def s_timer(t):   return 45.0 * smooth((t - T_TIM) / (T_45 - T_TIM))
 def handler(scene, *a):
     t = scene.frame_current / FPS
-    AIR_T.data.body = "AIR: EARTH" if t < T_THIN else "AIR: MARS (0.6 %)"
-    VOL_T.data.body = f"VOLUME ×{vol_at(t):.0f}"
+    if t3 - 0.05 <= t < t4 - 0.05:
+        SUB_E.data.body = "HOT AIR RISES"; SUB_S.data.body = "BLUE · NO SOOT" if t >= T_BLUE else "HOT AIR STAYS"
+    elif t4 - 0.05 <= t < t5 - 0.05:
+        SUB_E.data.body = "OUT AT 10 MIN" if t >= T_EOUT else f"{e_timer(t):.0f} MIN"
+        SUB_S.data.body = f"{s_timer(t):.0f} MIN" + (" · STILL LIT" if t >= T_45 - 0.1 else "")
+    else:
+        SUB_E.data.body = ""; SUB_S.data.body = ""
 bpy.app.handlers.frame_change_pre.append(handler)
 
 # ---------- animation ----------
 for f in range(0, N + 1):
     t = f / FPS
-    # hook balloons (replay after T_LOOP)
-    tt = t - T_LOOP if t >= T_LOOP else t
-    set_bal(HB_E, 1.0, f)
-    hs = 1.0 + 0.9 * smooth((tt - T_HS) / (T_HP - T_HS)) ** 0.8 if tt >= T_HS else 1.0
-    set_bal(HB_M, hs, f, hide=(T_HP <= tt < (t2 if t < T_LOOP else 99)) or (t >= t2 and t < T_LOOP))
-    anim_shreds(HSH, (RX, 0, ZK + 0.09 * 1.9 * 1.15), 0.09 * 1.9, T_HP + (T_LOOP if t >= T_LOOP else 0), t, f, 9.81, t2 if t < T_LOOP else 99)
-    # Mars balloon: lands, swells, tears, pops
-    DZ = 0.30 * (1 - smooth((t - t2) / 0.6)) if t < T_SET else 0.0
-    s = vol_at(t) ** (1 / 3)
-    gone = t >= T_POP
-    MB["zk"] = BZK + DZ; set_bal(MB, s, f, hide=gone)
-    for o in MB_GROUP[2:]:
-        if "z0" not in o: o["z0"] = o.location.z
-        o.location.z = o["z0"] + DZ; o.keyframe_insert("location", frame=f)
-    # latex thins: colour lightens as it stretches
-    lt = smooth((vol_at(t) - 1) / (VMAX - 1))
-    bsdf(M_BALS).inputs["Base Color"].default_value = (0.80 + 0.15 * lt, 0.04 + 0.30 * lt, 0.05 + 0.28 * lt, 1)
-    bsdf(M_BALS).inputs["Base Color"].keyframe_insert("default_value", frame=f)
-    anim_shreds(SH, CB, RB, T_POP, t, f, 3.71)
-    for (o, tr) in RIPS: vis(o, tr <= t < T_POP, f)
-    # cascade
-    m = smooth((t - T_MAL) / 0.4)
-    for o in MAL: o.scale = (1 + 0.55 * m, 1 + 0.55 * m, 1 + 0.75 * m); o.keyframe_insert("scale", frame=f)
-    b = smooth((t - T_BAG) / 0.45)
-    BAG.scale = (0.18 + 0.07 * b, 0.03 + 0.11 * b, 0.20 + 0.07 * b); BAG.keyframe_insert("scale", frame=f)
-    hz = 0.40 * BAG.scale[2]; BAG.location.z = MT + 0.012 + hz; BAG.keyframe_insert("location", frame=f)
-    for o, zz in ((BAGC, MT + 0.012 + 2 * hz), (BAGC2, MT + 0.012)):
-        o.location.z = zz; o.scale = (0.75 + 0.35 * b, 1, 1); o.keyframe_insert("location", frame=f); o.keyframe_insert("scale", frame=f)
-    BAGS.location.z = MT + 0.012 + hz; BAGS.keyframe_insert("location", frame=f)
-    g = smooth((t - T_GLV) / 0.45)
-    palm.scale = (0.038 + 0.024 * g, 0.010 + 0.035 * g, 0.048 + 0.022 * g); palm.keyframe_insert("scale", frame=f)
-    for (o, ln) in FING:
-        rr_ = 0.006 + 0.012 * g; o.scale = (rr_, rr_, ln / 2 * (0.85 + 0.45 * g)); o.location.z = ln / 2 * (0.85 + 0.45 * g)
+    loop = t >= T_LOOP
+    tt = t - T_LOOP if loop else t
+    ign = smooth((tt - T_IGN) / 0.3)
+    fl = 1 + 0.06 * math.sin(t * 23) + 0.04 * math.sin(t * 37)
+    # candles
+    he = e_height(t); hs = s_height(t)
+    set_candle(EB, EW, EX, he, f); set_candle(SB, SW, SX, hs, f)
+    # Earth flame
+    eon = ign * (0 if (T_EOUT <= t < T_LOOP) else 1) * (1 - 0.6 * smooth((t - (T_EOUT - 0.3)) / 0.3) if t < T_LOOP else 1)
+    zt = TOP + 0.012 + he + 0.008
+    FE.scale = (0.011 * eon * fl, 0.011 * eon * fl, 0.034 * eon * fl) if eon > 0.01 else (0.0001,) * 3
+    FE.location = (EX + 0.001 * math.sin(t * 11), 0, zt + 0.026 * eon)
+    FEC.scale = (0.006 * eon, 0.006 * eon, 0.007 * eon) if eon > 0.01 else (0.0001,) * 3
+    FEC.location = (EX, 0, zt + 0.002)
+    for o in (FE, FEC): o.keyframe_insert("scale", frame=f); o.keyframe_insert("location", frame=f)
+    LE.location = (EX, -0.03, zt + 0.03); LE.data.energy = 0.6 * eon; LE.keyframe_insert("location", frame=f); LE.data.keyframe_insert("energy", frame=f)
+    # drips (line 4 only)
+    for (o, xx, yy, ln) in DRIPS:
+        g = smooth((t - T_TIM - 0.2) / 0.8) if (t4 - 0.05 <= t < t5 - 0.05) else 0.0
+        L_ = max(0.0001, ln * g); top_z = TOP + 0.012 + he
+        o.scale = (1, 1, L_) if g > 0 else (0.0001,) * 3; o.location = (xx, yy, top_z - L_ / 2)
         o.keyframe_insert("scale", frame=f); o.keyframe_insert("location", frame=f)
-    # air dots
-    for (o, p0, ph, goes) in AIR:
-        o.location = p0 + V((0.02 * math.sin(t * 7 + ph), 0, 0.02 * math.cos(t * 6 + ph * 2))); o.keyframe_insert("location", frame=f)
-        sc = 1.0 if not (goes and t >= T_THIN) else max(0.0001, 1 - (t - T_THIN) / 0.25)
-        if t < t3 - 0.05 or t >= t4: sc = 0.0001
-        o.scale = (sc, sc, sc); o.keyframe_insert("scale", frame=f)
-    vis(AIR_T, t3 - 0.05 <= t < t4, f)
-    vis(VOL_T, t5 - 0.05 <= t < t6 - 0.05, f); vis(NEED_T, t5 + 0.5 <= t < t6 - 0.05, f)   # hidden in the close-up (edge crop)
-    vis(BAGS, t4 - 0.05 <= t < t5, f)
-    # speed bars race (rip bar 570 vs sound 240 -> lengths 0.84 / 0.354 m)
-    u = smooth((t - T_BARS) / 0.9)
-    RIPB.scale = (max(0.0001, 0.84 * u), 1, 1) if t >= T_BARS and t < T_LOOP else (0.0001,) * 3
-    SNDB.scale = (max(0.0001, 0.354 * u), 1, 1) if t >= T_BARS and t < T_LOOP else (0.0001,) * 3
-    RIPB.keyframe_insert("scale", frame=f); SNDB.keyframe_insert("scale", frame=f)
-    vis(RIP_T, T_BARS <= t < tc, f); vis(SND_T, T_BARS + 0.2 <= t < tc, f)
+    # orbit flame + wax ball
+    wb = smooth((t - T_WAX) / (T_WAXF - T_WAX)) if not loop else 0.0
+    RWB = 0.030 * wb ** 0.6
+    ztop = TOP + 0.012 + hs
+    WB.scale = (RWB, RWB, RWB) if RWB > 0.001 else (0.0001,) * 3
+    WB.location = (SX + 0.002 * math.sin(t * 3), 0, ztop + RWB * 0.55); WB.keyframe_insert("scale", frame=f); WB.keyframe_insert("location", frame=f)
+    die = smooth((t - T_PULSE) / (T_OUT - T_PULSE)) if not loop else 0.0
+    pulse = 1 + (0.18 * math.sin(math.tau * 1.6 * (t - T_PULSE)) if (T_PULSE <= t < T_OUT and not loop) else 0)
+    son = ign * (0 if (T_OUT <= t < T_LOOP) else 1)
+    rs = 0.030 * son * (1 - 0.45 * die) * pulse * (1 + 0.015 * math.sin(t * 9))
+    zc = ztop + 2 * RWB * 0.55 + 0.016 if wb > 0 else ztop + 0.020
+    FS.scale = (rs, rs, rs) if rs > 0.001 else (0.0001,) * 3; FS.location = (SX, 0, zc)
+    FS.keyframe_insert("scale", frame=f); FS.keyframe_insert("location", frame=f)
+    blue = smooth((t - T_BLUE) / 0.6) if not loop else 0.0
+    EM_FS.inputs[0].default_value = (1.0 - 0.78 * blue, 0.72 - 0.30 * blue, 0.25 + 0.75 * blue, 1)
+    EM_FS.inputs[1].default_value = (3.0 + 1.5 * blue) * (1 - 0.5 * die)
+    EM_FS.inputs[0].keyframe_insert("default_value", frame=f); EM_FS.inputs[1].keyframe_insert("default_value", frame=f)
+    LS.location = (SX, -0.04, zc); LS.data.energy = 0.5 * son * (1 - 0.5 * die)
+    LS.data.color = (1.0 - 0.7 * blue, 0.75 - 0.25 * blue, 0.35 + 0.65 * blue)
+    LS.keyframe_insert("location", frame=f); LS.data.keyframe_insert("energy", frame=f); LS.data.keyframe_insert("color", frame=f)
+    # fog
+    fg = smooth((t - T_FOG) / 0.9) if (T_FOG <= t < T_LOOP) else 0.0
+    rf = 0.065 * fg ** 0.7 * (1 + 0.03 * math.sin(t * 4))
+    FOG.scale = (rf, rf, rf) if rf > 0.002 else (0.0001,) * 3; FOG.location = (SX, 0, ztop + 0.03 + 0.004 * math.sin(t * 2))
+    FOG.keyframe_insert("scale", frame=f); FOG.keyframe_insert("location", frame=f)
+    rg = smooth((t - T_RING) / 0.25) if (T_RING <= t < tc) else 0.0
+    rr_ = 0.078 * rg * (1 + 0.05 * math.sin(math.tau * 2 * (t - T_RING)))
+    RING.scale = (rr_, rr_, rr_) if rr_ > 0.002 else (0.0001,) * 3; RING.location = (SX, -0.02, ztop + 0.03)
+    RING.keyframe_insert("scale", frame=f); RING.keyframe_insert("location", frame=f)
+    # hot-air dots (line 3)
+    on3 = t3 - 0.05 <= t < t4 - 0.05
+    for (o, ph, sw) in HOT_E:
+        if on3 and t >= T_HOT:
+            u = ((t - T_HOT) * 0.9 + ph) % 1.0
+            o.location = (EX + 0.012 * sw + 0.006 * math.sin(u * 9 + ph * 7), 0, zt + 0.045 + u * 0.10)
+            s_ = 1.0 - u * 0.6; o.scale = (s_, s_, s_)
+        else: o.scale = (0.0001,) * 3
+        o.keyframe_insert("location", frame=f); o.keyframe_insert("scale", frame=f)
+    for (o, d, dl) in HOT_S:
+        if on3 and t >= T_HOT + dl:
+            r_ = 0.03 + 0.03 * smooth((t - T_HOT - dl) / 1.2)
+            o.location = V((SX, 0, zc)) + d * r_
+            o.scale = (1, 1, 1)
+        else: o.scale = (0.0001,) * 3
+        o.keyframe_insert("location", frame=f); o.keyframe_insert("scale", frame=f)
+    vis(SUB_E, t3 - 0.05 <= t < t5 - 0.05, f); vis(SUB_S, t3 - 0.05 <= t < t5 - 0.05, f)
+    vis(WAX_T, T_WAX + 0.4 <= t < t6, f); vis(NODRIP_T, T_WAX + 0.9 <= t < t6, f)
+    vis(FOG_T, T_RING <= t < tc, f)
+    wide = (t < t2 - 0.05) or (t3 - 0.05 <= t < t5 - 0.05) or t >= T_LOOP
+    vis(LB_E, wide, f); vis(LB_S, wide, f)
 
 # ---------- camera ----------
 cam = bpy.data.objects.new("cam", bpy.data.cameras.new("cam")); S.collection.objects.link(cam); S.camera = cam
-cam.data.sensor_fit = "VERTICAL"; cam.data.sensor_height = 24; cam.data.clip_end = 3000; cam.data.clip_start = 0.02
+cam.data.sensor_fit = "VERTICAL"; cam.data.sensor_height = 24; cam.data.clip_end = 100; cam.data.clip_start = 0.02
 tgt = empty("tgt"); c = cam.constraints.new("TRACK_TO"); c.target = tgt
 c.track_axis = "TRACK_NEGATIVE_Z"; c.up_axis = "UP_Y"
 def fixed(pa, ta, pb=None, tb=None):
     pb = pb or pa; tb = tb or ta
     return (V(pa), V(ta), V(pb), V(tb))
-HOOK = fixed((0.0, -1.10, 1.30), (0.0, -0.02, 1.08), (0.0, -1.04, 1.29), (0.0, -0.02, 1.08))
+WIDE_Z = 1.035
+HOOK = fixed((0.0, -0.80, 1.06), (0.0, 0, WIDE_Z), (0.0, -0.76, 1.06), (0.0, 0, WIDE_Z))
+CLOSE = fixed((SX - 0.03, -0.60, 1.03), (SX - 0.03, 0, 1.005), (SX - 0.03, -0.56, 1.03), (SX - 0.03, 0, 1.005))
 SEG = [
-    (0.0, t2 - 0.05, HOOK, 20, 20),
-    (t2 - 0.05, t3 - 0.05, fixed((MX + 0.3, -2.6, 1.15), (MX + 0.05, 0, 0.80), (MX + 0.1, -1.9, 1.0), (MX + 0.0, 0, 0.76)), 22, 24),
-    (t3 - 0.05, t5 - 0.05, fixed((MX - 0.05, -1.75, 1.02), (MX - 0.05, 0, 0.72), (MX - 0.05, -1.62, 1.0), (MX - 0.05, 0, 0.72)), 24, 24),
-    (t5 - 0.05, t6 - 0.05, fixed((MX + 0.08, -1.85, 1.10), (MX + 0.1, 0, 0.82), (MX + 0.12, -1.95, 1.12), (MX + 0.12, 0, 0.85)), 24, 24),
-    (t6 - 0.05, t7 - 0.05, fixed((BX, -1.25, 1.0), (BX, 0, 0.90), (BX, -1.15, 1.0), (BX, 0, 0.90)), 26, 26),
-    (t7 - 0.05, T_LOOP, fixed((MX, -1.9, 1.05), (MX, 0, 0.80), (MX, -1.8, 1.04), (MX, 0, 0.80)), 24, 24),
-    (T_LOOP, DUR + 0.01, HOOK, 20, 20),
+    (0.0, t2 - 0.05, HOOK, 30, 30),
+    (t2 - 0.05, t3 - 0.05, fixed((SX + 0.05, -0.75, 1.06), (SX + 0.03, 0, 1.03), (SX, -0.62, 1.04), (SX, 0, 1.02)), 30, 30),
+    (t3 - 0.05, t5 - 0.05, fixed((0.0, -0.82, 1.06), (0.0, 0, WIDE_Z), (0.0, -0.78, 1.06), (0.0, 0, WIDE_Z)), 30, 30),
+    (t5 - 0.05, t7 - 0.05, CLOSE, 30, 32),
+    (t7 - 0.05, T_LOOP, fixed((SX - 0.02, -0.66, 1.03), (SX - 0.02, 0, 1.0), (SX - 0.02, -0.62, 1.03), (SX - 0.02, 0, 1.0)), 30, 30),
+    (T_LOOP, DUR + 0.01, HOOK, 30, 30),
 ]
 for f in range(0, N + 1):
     t = f / FPS
@@ -416,8 +392,8 @@ for f in range(0, N + 1):
     tgt.location = q; tgt.keyframe_insert("location", frame=f)
     cam.data.lens = seg[3] + (seg[4] - seg[3]) * u; cam.data.keyframe_insert("lens", frame=f)
 
-json.dump({"t_loop": T_LOOP, "t_card": tc, "cuts": [s[0] for s in SEG[1:]], "hs": T_HS, "hp": T_HP, "set": T_SET,
-           "thin": T_THIN, "sw": T_SW, "mal": T_MAL, "bag": T_BAG, "glv": T_GLV, "rip": T_RIP, "pop": T_POP, "bars": T_BARS},
+json.dump({"t_loop": T_LOOP, "t_card": tc, "cuts": [s[0] for s in SEG[1:]], "ign": T_IGN, "hot": T_HOT, "blue": T_BLUE,
+           "timers": T_TIM, "earth_out": T_EOUT, "t45": T_45, "wax": T_WAX, "pulse": T_PULSE, "out": T_OUT, "fog": T_FOG, "ring": T_RING},
           open("/home/claude/reel/beats.json", "w"), indent=1)
 
 args = [a for a in (sys.argv[sys.argv.index("--") + 1:] if "--" in sys.argv else sys.argv[1:]) if a != "--force"]
