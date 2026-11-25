@@ -175,3 +175,4 @@ Older reels (TIL-01..14, published before Facebook was added on 21 Nov) uploaded
 |---|---|---|---|
 | 22 Nov 2026 19:25 | TIL-09 (Swimming in a pool of olive oil; IG 3,285 views) | 1a65e77b3fc34bbab28cffbd3067a216 SUCCESS, 3 ops (lock FB-TIL-09) | episodes/09-olive-oil-pool/meta.json (follow line added) |
 | 24 Nov 2026 19:25 | TIL-02 (Diving into a pool of mercury; IG 1,779 views) | aa3f773948304208979eaf9137f8d90a SUCCESS, 3 ops (lock FB-TIL-02) | episodes/02-mercury-pool/meta.json (caption unchanged: follow + disclaimer already present) |
+| 25 Nov 2026 19:25 | TIL-13 (Your weight on Jupiter; IG 1,571 views) | 873b105ad6b1496b838c4e50d5675e3a SUCCESS, 3 ops (lock FB-TIL-13) | episodes/13-jupiter-weight/meta.json (follow line added; stale "Tomorrow" line dropped) |
