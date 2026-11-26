@@ -138,231 +138,209 @@ def open_cyl(loc, r, d, m, name, thick=0.006, verts=40):
     bpy.ops.object.mode_set(mode="OBJECT")
     if thick > 0.0045:
         sol = o.modifiers.new("shell", "SOLIDIFY"); sol.thickness = thick
-    return o
 
 
-
-# ================= episode 20: a candle in space (E17 cascade middle, reel 3) =================
-# Hook (wide): EARTH candle (left, kitchen tiles) vs ORBIT candle (right, station panel + porthole): both wicks light at
-# 0.08 s; Earth flame = yellow teardrop, orbit flame = round ball. Line 2: close on the orbit candle (porthole Earth).
-# Line 3 (cascade, wide): hot-air dots stream up on Earth, spread evenly and stall in orbit -> orbit flame turns blue.
-# Line 4: timers: Earth candle shrinks, drips, goes out at 10 MIN; orbit timer runs on to 45 MIN.
-# Line 5 (close): orbit candle melts into a floating molten wax ball, no drips. Line 6: flame pulses, shrinks, dies.
-# Line 7: a white wax-fog sphere swells to ~2.5x the flame; red warning ring pulses. Last ~1.2 s: hook framing (loop).
-M_TABLE = noise_mat("table", (0.55, 0.36, 0.22), (0.66, 0.45, 0.28), 7.0, 0.45)
-M_WALLE = tiles("wallE", (0.62, 0.55, 0.45), (0.35, 0.30, 0.25), 4.0)
-M_WALLS = tiles("wallS", (0.16, 0.18, 0.22), (0.06, 0.07, 0.09), 1.5)
-M_WAX = mat("wax", (0.96, 0.93, 0.86), 0.45)
-M_WAXL = mat("waxl", (0.98, 0.90, 0.72), 0.12)
-M_HOLD = mat("holder", (0.65, 0.66, 0.70), 0.25, 0.9)
-M_WICK = mat("wick", (0.05, 0.04, 0.03), 0.8)
-M_DARK = mat("dark", (0.04, 0.04, 0.05), 0.5)
-M_EARTHP = mat("earthp", (0.2, 0.45, 0.9), 0.5, 0, (0.15, 0.4, 1.0), 1.2)
-M_PANL = mat("panl", (0.6, 0.9, 1.0), 0.4, 0, (0.5, 0.85, 1.0), 2.0)
-M_LBLB = mat("lblb", (0.4, 0.7, 1.0), 0.4, 0, (0.4, 0.75, 1.0), 5.0)
+# ================= episode 21: does toast land butter-down? (single escalating scene) =================
+# Hook: buttered toast slides off a 75 cm kitchen table at 0.08 s, flips half a turn, lands BUTTER-DOWN by ~0.9 s.
+# L2: replay with a 75 CM height bar. L3: two kitchen scales: toast ~40 g vs butter pat <=4 g (butter lifts off).
+# L4: slow-mo drop with ghost copies along the arc -> "1/2 TURN". L5: cascade: a row of 8 school tables, toasts drop
+# one after another, 5 of 8 land butter-down, counter -> "62 % BUTTER-DOWN". L6: the table grows to 3 m (camera tilts up).
+# L7: toast slides off the 3 m table, follow-cam: a full turn, lands BUTTER-UP. After the card starts: hook framing (loop).
+M_WOOD = noise_mat("wood", (0.50, 0.32, 0.18), (0.62, 0.42, 0.25), 7.0, 0.45)
+M_FLOOR = tiles("floor", (0.78, 0.76, 0.72), (0.45, 0.43, 0.40), 1.2)
+M_WALL = tiles("wall", (0.55, 0.68, 0.70), (0.85, 0.88, 0.86), 3.0)
+M_CREAM = mat("cream", (0.92, 0.90, 0.84), 0.8)
+M_TOAST = noise_mat("toast", (0.62, 0.36, 0.12), (0.80, 0.52, 0.20), 30.0, 0.85)
+M_CRUST = mat("crust", (0.36, 0.18, 0.06), 0.8)
+M_BUT = mat("butter", (1.0, 0.86, 0.30), 0.25, 0, (1.0, 0.8, 0.2), 0.25)
+M_GHOST = mat("ghost", (0.95, 0.85, 0.6), 0.6, 0, (1.0, 0.85, 0.55), 0.6)
+M_PLATE = mat("plate", (0.95, 0.95, 0.97), 0.2)
+M_SCALE = mat("scale", (0.85, 0.86, 0.88), 0.3, 0.3)
+M_DARK = mat("dark", (0.04, 0.05, 0.06), 0.4)
 M_WHITE = mat("lblw", (1, 1, 1), 0.4, 0, (1, 1, 1), 3.0)
-M_AMB = mat("lbla", (1.0, 0.65, 0.15), 0.4, 0, (1.0, 0.6, 0.12), 4.0)
-M_REDL = mat("redl", (1.0, 0.2, 0.1), 0.4, 0, (1.0, 0.18, 0.06), 3.0)
-M_HOT = mat("hot", (1.0, 0.5, 0.15), 0.4, 0, (1.0, 0.45, 0.1), 3.0)
-M_FE = mat("flameE", (1.0, 0.75, 0.25), 0.5, 0, (1.0, 0.62, 0.15), 3.2)
-M_FEC = mat("flameEc", (0.3, 0.5, 1.0), 0.5, 0, (0.25, 0.45, 1.0), 2.5)
-
-def shell_mat(name, col, estr, blend=0.45):
-    """emissive rim, see-through centre (spherical diffusion flame / fog)"""
-    m = bpy.data.materials.new(name); m.use_nodes = True; nt = m.node_tree
-    for n in list(nt.nodes):
-        if n.type != "OUTPUT_MATERIAL": nt.nodes.remove(n)
-    out = next(n for n in nt.nodes if n.type == "OUTPUT_MATERIAL")
-    tr = nt.nodes.new("ShaderNodeBsdfTransparent"); em = nt.nodes.new("ShaderNodeEmission")
-    em.inputs[0].default_value = (*col, 1); em.inputs[1].default_value = estr
-    lw = nt.nodes.new("ShaderNodeLayerWeight"); lw.inputs["Blend"].default_value = blend
-    pw = nt.nodes.new("ShaderNodeMath"); pw.operation = "POWER"; pw.inputs[1].default_value = 0.6
-    nt.links.new(lw.outputs["Facing"], pw.inputs[0])
-    mx = nt.nodes.new("ShaderNodeMixShader"); nt.links.new(pw.outputs[0], mx.inputs[0])
-    nt.links.new(tr.outputs[0], mx.inputs[1]); nt.links.new(em.outputs[0], mx.inputs[2]); nt.links.new(mx.outputs[0], out.inputs[0])
-    m["em"] = em.name
-    return m, em
-M_FS, EM_FS = shell_mat("flameS", (1.0, 0.72, 0.25), 6.0, 0.32)
-M_FOG, EM_FOG = shell_mat("fog", (0.95, 0.95, 0.92), 1.4, 0.35)
+M_AMB = mat("lbla", (1.0, 0.55, 0.08), 0.4, 0, (1.0, 0.5, 0.06), 3.0)
+M_RED = mat("redl", (0.9, 0.04, 0.02), 0.4, 0, (1.0, 0.06, 0.03), 3.0)
+M_GRN = mat("grnl", (0.05, 0.8, 0.15), 0.4, 0, (0.08, 1.0, 0.25), 2.4)
+M_LCD = mat("lcd", (0.4, 1.0, 0.8), 0.4, 0, (0.35, 1.0, 0.75), 3.0)
 
 world = bpy.data.worlds.new("w"); S.world = world; world.use_nodes = True
-S.view_settings.exposure = -0.4
-WBG = world.node_tree.nodes["Background"]; WBG.inputs[0].default_value = (0.05, 0.05, 0.07, 1); WBG.inputs[1].default_value = 0.4
+S.view_settings.exposure = -0.5
+WBG = world.node_tree.nodes["Background"]; WBG.inputs[0].default_value = (0.75, 0.78, 0.82, 1); WBG.inputs[1].default_value = 0.35
 
 # ---------- timing ----------
 t2, t3, t4, t5, t6, t7 = (L[i]["start"] for i in range(2, 8))
 tc = CARD_START
 T_LOOP = tc + 0.25
-T_IGN = 0.08                 # both wicks light
-T_HOT = t3 + 0.15            # hot-air dots start
-T_BLUE = t3 + 0.95           # orbit flame turns blue
-T_TIM = t4 + 0.10            # timers start
-T_EOUT = t4 + 1.30           # Earth candle out at 10 MIN
-T_45 = t5 - 0.25             # orbit timer reaches 45 MIN
-T_WAX = t5 + 0.15            # wax melts into a ball
-T_WAXF = T_WAX + 1.5
-T_PULSE = t6                 # flame pulses before it dies
-T_OUT = t7 - 0.02            # flame out
-T_FOG = t7 + 0.05            # wax-fog sphere swells
-T_RING = t7 + 1.0            # warning ring
+DROP_A = (0.08, 0.85)            # hook drop (start, duration)
+DROP_B = (t2 + 0.55, 0.85)       # replay with the 75 cm bar
+T_LIFT = t3 + 0.55               # butter lifts onto its own scale
+DROP_C = (t4 + 0.05, 1.45)       # slow-mo with ghosts
+DROP_D = (t7 + 0.02, 1.25)       # from the 3 m table
+T_GROW = (t6 - 0.05, t7 - 0.05)  # table grows 0.75 -> 3.0 m
+ROW_T0 = t5 + 0.15; ROW_DT = 0.33; ROW_DUR = 0.75
+ROW_DOWN = [1, 1, 0, 1, 1, 0, 1, 0]   # 5 of 8 butter-down (62.5 %)
 
-TOP = 0.90; EX, SX = -0.11, 0.11
-H0 = 0.10; CR = 0.022
-box((0, 0, TOP / 2), (1.6, 0.8, TOP), M_TABLE, "counter")
-box((-0.8, 0.35, 1.5), (1.6, 0.06, 3.0), M_WALLE, "wallE")
-box((0.8, 0.35, 1.5), (1.6, 0.06, 3.0), M_WALLS, "wallS")
-box((0.0, 0.31, 1.5), (0.012, 0.03, 3.0), M_DARK, "divider")
-# station details: panel light strips + porthole with Earth
-for (x, z) in ((0.30, 1.22), (0.30, 0.98)):
-    box((x, 0.315, z), (0.10, 0.01, 0.012), M_PANL, "strip")
-cyl((0.21, 0.318, 1.05), 0.050, 0.012, M_HOLD, "port_rim", rot=(math.radians(90), 0, 0))
-cyl((0.21, 0.312, 1.05), 0.042, 0.012, M_DARK, "port_glass", rot=(math.radians(90), 0, 0))
-sphere((0.222, 0.30, 1.025), 0.028, M_EARTHP, "earthball")
-
-def candle(x, name):
-    cyl((x, 0, TOP + 0.006), 0.04, 0.012, M_HOLD, name + "holder")
-    body = cyl((x, 0, TOP + 0.012 + H0 / 2), CR, H0, M_WAX, name + "body")
-    wick = cyl((x, 0, TOP + 0.012 + H0 + 0.006), 0.0018, 0.012, M_WICK, name + "wick", verts=8)
-    return body, wick
-EB, EW = candle(EX, "e"); SB, SW = candle(SX, "s")
-def set_candle(body, wick, x, h, f):
-    body.scale = (1, 1, max(h, 0.001) / H0); body.location = (x, 0, TOP + 0.012 + h / 2)
-    wick.location = (x, 0, TOP + 0.012 + h + 0.006)
-    for o in (body, wick):
-        o.keyframe_insert("scale", frame=f); o.keyframe_insert("location", frame=f)
-# Earth flame: teardrop (sphere stretched up) + small blue base
-FE = sphere((EX, 0, 1.0), 1.0, M_FE, "flameE", None, 24); noshadow(FE)
-FEC = sphere((EX, 0, 1.0), 1.0, M_FEC, "flameEc", None, 12); noshadow(FEC)
-# orbit flame: sphere shell
-FS = sphere((SX, 0, 1.0), 1.0, M_FS, "flameS", None, 32); noshadow(FS)
-# lights at the flames
-LE = bpy.data.objects.new("le", bpy.data.lights.new("le", "POINT")); LE.data.shadow_soft_size = 0.01; S.collection.objects.link(LE)
-LS = bpy.data.objects.new("ls", bpy.data.lights.new("ls", "POINT")); LS.data.shadow_soft_size = 0.01; S.collection.objects.link(LS)
-LE.data.color = (1.0, 0.7, 0.35)
-# drips on the Earth candle
-DRIPS = []
-for k, a in enumerate((-60, -20, 25, 70)):
-    xx = EX + (CR + 0.002) * math.sin(math.radians(a)); yy = -(CR + 0.002) * math.cos(math.radians(a))
-    o = cyl((xx, yy, 0), 0.0035, 1.0, M_WAXL, "drip", verts=10)
-    DRIPS.append((o, xx, yy, 0.02 + 0.012 * k))
-# molten wax ball (orbit candle)
-WB = sphere((SX, 0, 1.0), 1.0, M_WAXL, "waxball", None, 32)
-# fog + warning ring
-FOG = sphere((SX, 0, 1.0), 1.0, M_FOG, "fog", None, 32); noshadow(FOG)
-bpy.ops.mesh.primitive_torus_add(major_radius=1.0, minor_radius=0.035, major_segments=64, minor_segments=8, location=(SX, -0.02, 1.0), rotation=(math.radians(90), 0, 0))
-RING = link(bpy.context.object, M_REDL); RING.name = "ring"; noshadow(RING)
-# hot-air dots
-HOT_E, HOT_S = [], []
-rh = random.Random(3)
-for k in range(14):
-    HOT_E.append((noshadow(sphere((EX, 0, 1), 0.0045, M_HOT, "hotE", None, 8)), rh.uniform(0, 1), rh.uniform(-1, 1)))
-for k in range(16):
-    u = rh.uniform(-0.9, 0.9); a = rh.uniform(0, math.tau)
-    d = V((math.sqrt(1 - u * u) * math.cos(a), math.sqrt(1 - u * u) * math.sin(a) * 0.4 - 0.6, u)).normalized()
-    HOT_S.append((noshadow(sphere((SX, 0, 1), 0.0045, M_HOT, "hotS", None, 8)), d, rh.uniform(0, 0.4)))
+# ---------- hero kitchen ----------
+TOP0, TOP3 = 0.75, 3.0
+TW, TD, TT = 0.90, 0.60, 0.035
+XE = TW / 2                      # table edge x
+bpy.ops.mesh.primitive_plane_add(size=1, location=(3, 4, 0)); fl = bpy.context.object; fl.scale = (30, 30, 1); link(fl, M_FLOOR)
+box((0.3, 0.75, 2.5), (5.0, 0.06, 5.0), M_WALL, "wall")
+box((-1.2, 0.70, 0.45), (1.4, 0.06, 0.9), M_CREAM, "cupboard")
+def ubox(loc, size, m, name):
+    bpy.ops.mesh.primitive_cube_add(size=1, location=loc); o = bpy.context.object; o.scale = size; o.name = name; return link(o, m)
+TOPB = ubox((0, 0, TOP0 - TT / 2), (TW, TD, TT), M_WOOD, "top")
+LEGS = []
+for sx in (-1, 1):
+    for sy in (-1, 1):
+        lg = cyl((sx * (TW / 2 - 0.05), sy * (TD / 2 - 0.05), 0.5), 0.022, 1.0, M_WOOD, "leg", verts=12); LEGS.append(lg)
+PLATE = cyl((0.30, 0, TOP0 + 0.006), 0.11, 0.012, M_PLATE, "plate", verts=40)
+def make_toast(m_bread, m_but, name):
+    t = ubox((0, 0, 0), (0.15, 0.14, 0.02), m_bread, name)
+    b = ubox((0, 0, 0), (0.115, 0.105, 0.007), m_but, name + "_butter")
+    return t, b
+T1, B1 = make_toast(M_TOAST, M_BUT, "hero")
+GH = [make_toast(M_GHOST, M_GHOST, f"ghost{k}") for k in range(4)]
+for g in GH:
+    for o in g: noshadow(o)
+SPLAT = cyl((0, 0, 0.002), 1.0, 0.003, M_BUT, "splat", verts=24)
+# scales (line 3)
+SC = []
+for k, x in enumerate((0.02, 0.27)):
+    base = ubox((x, -0.05, TOP0 + 0.02), (0.17, 0.17, 0.04), M_SCALE, f"scale{k}")
+    pan = ubox((x, -0.05, TOP0 + 0.043), (0.15, 0.15, 0.006), M_PLATE, f"pan{k}")
+    lcd = ubox((x, -0.137, TOP0 + 0.02), (0.12, 0.004, 0.032), M_DARK, f"lcd{k}")
+    SC.append((base, pan, lcd, x))
+RD0 = label("", (0.02, -0.142, TOP0 + 0.020), 0.026, M_LCD); RD1 = label("", (0.27, -0.142, TOP0 + 0.020), 0.026, M_LCD)
+TL0 = label("TOAST", (0.02, -0.15, TOP0 + 0.085), 0.034, M_WHITE); TL1 = label("BUTTER", (0.27, -0.15, TOP0 + 0.085), 0.034, M_AMB)
 # labels
-LBL_Y = -0.05
-LB_E = label("EARTH", (EX, LBL_Y, 1.165), 0.030, M_WHITE); LB_S = label("ORBIT", (SX, LBL_Y, 1.165), 0.030, M_LBLB)
-SUB_E = label("", (EX, LBL_Y, 1.130), 0.020, M_AMB); SUB_S = label("", (SX, LBL_Y, 1.130), 0.020, M_AMB)
-WAX_T = label("MOLTEN\nWAX BALL", (SX - 0.036, -0.06, 1.012), 0.0115, M_AMB, align="RIGHT")
-NODRIP_T = label("NO DRIPS", (SX - 0.036, -0.06, 0.968), 0.0115, M_WHITE, align="RIGHT")
-FOG_T = label("FLAMMABLE", (SX, -0.10, 1.003), 0.016, M_REDL)
-kl = bpy.data.objects.new("key", bpy.data.lights.new("key", "AREA")); kl.data.energy = 30; kl.data.size = 1.5
-kl.data.color = (1.0, 0.92, 0.8); kl.location = (-0.6, -1.6, 1.9); kl.rotation_euler = (math.radians(50), 0, math.radians(-20)); S.collection.objects.link(kl)
-kl2 = bpy.data.objects.new("key2", bpy.data.lights.new("key2", "AREA")); kl2.data.energy = 18; kl2.data.size = 1.2
-kl2.data.color = (0.85, 0.9, 1.0); kl2.location = (0.7, -1.5, 1.7); kl2.rotation_euler = (math.radians(50), 0, math.radians(25)); S.collection.objects.link(kl2)
+LB_DOWN = label("BUTTER-DOWN", (0.64, -0.10, 0.36), 0.085, M_RED)
+LB_UP = label("BUTTER-UP", (0.72, -0.10, 0.34), 0.085, M_GRN)
+BAR = ubox((0.95, -0.05, TOP0 / 2), (0.012, 0.012, TOP0), M_AMB, "bar"); noshadow(BAR)
+BAR_T = label("75 CM", (0.92, -0.06, 0.16), 0.085, M_AMB, align="RIGHT")
+HALF_T = label("½ TURN", (0.80, -0.10, 0.34), 0.095, M_AMB)
+BAR3 = ubox((0.95, -0.05, TOP3 / 2), (0.02, 0.02, TOP3), M_AMB, "bar3"); noshadow(BAR3)
+BAR3_T = label("3 M", (0.78, -0.06, 2.15), 0.22, M_AMB)
+key = bpy.data.objects.new("key", bpy.data.lights.new("key", "AREA")); key.data.energy = 220; key.data.size = 2.5
+key.data.color = (1.0, 0.94, 0.85); key.location = (-0.8, -2.2, 3.2); key.rotation_euler = (math.radians(40), 0, math.radians(-20)); S.collection.objects.link(key)
+fill = bpy.data.objects.new("fill", bpy.data.lights.new("fill", "AREA")); fill.data.energy = 90; fill.data.size = 2.0
+fill.data.color = (0.85, 0.9, 1.0); fill.location = (1.8, -1.8, 1.6); fill.rotation_euler = (math.radians(60), 0, math.radians(45)); S.collection.objects.link(fill)
 
-# ---------- state functions ----------
-def e_height(t):  return H0 - 0.06 * smooth((t - T_TIM) / (T_EOUT - T_TIM)) if t < T_LOOP else H0
-def s_height(t):  return H0 - 0.065 * smooth((t - T_WAX) / (T_WAXF - T_WAX)) if t < T_LOOP else H0
-def e_timer(t):   return 10.0 * smooth((t - T_TIM) / (T_EOUT - T_TIM))
-def s_timer(t):   return 45.0 * smooth((t - T_TIM) / (T_45 - T_TIM))
+# ---------- school row (line 5) ----------
+RX = 6.0; RY = [k * 1.15 for k in range(8)]
+ROW = []
+for k, y in enumerate(RY):
+    box((RX, y, TOP0 - TT / 2), (TW, TD, TT), M_WOOD, "rtop")
+    for sx in (-1, 1):
+        for sy in (-1, 1):
+            cyl((RX + sx * (TW / 2 - 0.05), y + sy * (TD / 2 - 0.05), (TOP0 - TT) / 2), 0.022, TOP0 - TT, M_WOOD, "rleg", verts=10)
+    cyl((RX + 0.30, y, TOP0 + 0.006), 0.11, 0.012, M_PLATE, "rplate", verts=32)
+    t, b = make_toast(M_TOAST, M_BUT, f"r{k}")
+    mk = cyl((RX + 0.62, y, 0.003), 0.10, 0.004, M_RED if ROW_DOWN[k] else M_GRN, "rmark", verts=24); noshadow(mk)
+    ROW.append((t, b, mk, y))
+CNT = label("", (RX + 0.55, 1.6, 1.22), 0.17, M_RED)
+rk = bpy.data.objects.new("rkey", bpy.data.lights.new("rkey", "AREA")); rk.data.energy = 900; rk.data.size = 5
+rk.location = (RX + 1.5, 2.0, 4.5); rk.rotation_euler = (math.radians(15), 0, math.radians(20)); S.collection.objects.link(rk)
+
+# ---------- toast motion ----------
+def drop_pose(t, t0, dur, top, turns_end, x_rest=0.34, y=0.0, x0=0.0, land_dx=0.17):
+    """return (location, rot_y) of a toast that slides off the +x edge and falls to the floor"""
+    zr = top + 0.012 + 0.010
+    u = (t - t0) / dur
+    if u <= 0: return V((x0 + x_rest, y, zr)), 0.0
+    u = min(u, 1.0)
+    if u < 0.22:                                  # slide + tip over the edge
+        s = smooth(u / 0.22)
+        return V((x0 + x_rest + (XE + 0.02 - x_rest) * s, y, zr - 0.004 * s)), 0.35 * s ** 2
+    s = (u - 0.22) / 0.78
+    z = zr + (0.010 - zr) * s * s
+    x = x0 + XE + 0.02 + land_dx * s
+    th = 0.35 + (turns_end - 0.35) * s
+    return V((x, y, z)), th
+def place(o_t, o_b, loc, th, f, scale_t=(0.15, 0.14, 0.02)):
+    o_t.location = loc; o_t.rotation_euler = (0, th, 0); o_t.scale = scale_t
+    off = V((0, 0, 0.0135)); off.rotate(o_t.rotation_euler)
+    o_b.location = loc + off; o_b.rotation_euler = (0, th, 0); o_b.scale = (0.115, 0.105, 0.007)
+    for o in (o_t, o_b):
+        o.keyframe_insert("location", frame=f); o.keyframe_insert("rotation_euler", frame=f); o.keyframe_insert("scale", frame=f)
+def hide(o_t, o_b, f):
+    for o in (o_t, o_b):
+        o.scale = (0.0001,) * 3; o.keyframe_insert("scale", frame=f)
+        o.keyframe_insert("location", frame=f); o.keyframe_insert("rotation_euler", frame=f)
+def top_z(t):
+    if t < T_GROW[0] or t >= T_LOOP: return TOP0
+    return TOP0 + (TOP3 - TOP0) * smooth((t - T_GROW[0]) / (T_GROW[1] - T_GROW[0]))
+
 def handler(scene, *a):
     t = scene.frame_current / FPS
     if t3 - 0.05 <= t < t4 - 0.05:
-        SUB_E.data.body = "HOT AIR RISES"; SUB_S.data.body = "BLUE · NO SOOT" if t >= T_BLUE else "HOT AIR STAYS"
-    elif t4 - 0.05 <= t < t5 - 0.05:
-        SUB_E.data.body = "OUT AT 10 MIN" if t >= T_EOUT else f"{e_timer(t):.0f} MIN"
-        SUB_S.data.body = f"{s_timer(t):.0f} MIN" + (" · STILL LIT" if t >= T_45 - 0.1 else "")
-    else:
-        SUB_E.data.body = ""; SUB_S.data.body = ""
+        RD0.data.body = f"{40 * smooth((t - t3 - 0.1) / 0.6):.0f} g"
+        RD1.data.body = f"{4 * smooth((t - T_LIFT - 0.4) / 0.5):.0f} g" if t >= T_LIFT + 0.4 else "0 g"
+    if t5 - 0.05 <= t < t6 - 0.05:
+        landed = [k for k in range(8) if t >= ROW_T0 + k * ROW_DT + ROW_DUR]
+        dn = sum(ROW_DOWN[k] for k in landed)
+        CNT.data.body = "62 % BUTTER-DOWN" if len(landed) == 8 else (f"DOWN {dn} · UP {len(landed) - dn}" if landed else "")
 bpy.app.handlers.frame_change_pre.append(handler)
 
-# ---------- animation ----------
 for f in range(0, N + 1):
     t = f / FPS
     loop = t >= T_LOOP
-    tt = t - T_LOOP if loop else t
-    ign = smooth((tt - T_IGN) / 0.3)
-    fl = 1 + 0.06 * math.sin(t * 23) + 0.04 * math.sin(t * 37)
-    # candles
-    he = e_height(t); hs = s_height(t)
-    set_candle(EB, EW, EX, he, f); set_candle(SB, SW, SX, hs, f)
-    # Earth flame
-    eon = ign * (0 if (T_EOUT <= t < T_LOOP) else 1) * (1 - 0.6 * smooth((t - (T_EOUT - 0.3)) / 0.3) if t < T_LOOP else 1)
-    zt = TOP + 0.012 + he + 0.008
-    FE.scale = (0.011 * eon * fl, 0.011 * eon * fl, 0.034 * eon * fl) if eon > 0.01 else (0.0001,) * 3
-    FE.location = (EX + 0.001 * math.sin(t * 11), 0, zt + 0.026 * eon)
-    FEC.scale = (0.006 * eon, 0.006 * eon, 0.007 * eon) if eon > 0.01 else (0.0001,) * 3
-    FEC.location = (EX, 0, zt + 0.002)
-    for o in (FE, FEC): o.keyframe_insert("scale", frame=f); o.keyframe_insert("location", frame=f)
-    LE.location = (EX, -0.03, zt + 0.03); LE.data.energy = 0.6 * eon; LE.keyframe_insert("location", frame=f); LE.data.keyframe_insert("energy", frame=f)
-    # drips (line 4 only)
-    for (o, xx, yy, ln) in DRIPS:
-        g = smooth((t - T_TIM - 0.2) / 0.8) if (t4 - 0.05 <= t < t5 - 0.05) else 0.0
-        L_ = max(0.0001, ln * g); top_z = TOP + 0.012 + he
-        o.scale = (1, 1, L_) if g > 0 else (0.0001,) * 3; o.location = (xx, yy, top_z - L_ / 2)
-        o.keyframe_insert("scale", frame=f); o.keyframe_insert("location", frame=f)
-    # orbit flame + wax ball
-    wb = smooth((t - T_WAX) / (T_WAXF - T_WAX)) if not loop else 0.0
-    RWB = 0.030 * wb ** 0.6
-    ztop = TOP + 0.012 + hs
-    WB.scale = (RWB, RWB, RWB) if RWB > 0.001 else (0.0001,) * 3
-    WB.location = (SX + 0.002 * math.sin(t * 3), 0, ztop + RWB * 0.55); WB.keyframe_insert("scale", frame=f); WB.keyframe_insert("location", frame=f)
-    die = smooth((t - T_PULSE) / (T_OUT - T_PULSE)) if not loop else 0.0
-    pulse = 1 + (0.18 * math.sin(math.tau * 1.6 * (t - T_PULSE)) if (T_PULSE <= t < T_OUT and not loop) else 0)
-    son = ign * (0 if (T_OUT <= t < T_LOOP) else 1)
-    rs = 0.030 * son * (1 - 0.45 * die) * pulse * (1 + 0.015 * math.sin(t * 9))
-    zc = ztop + 2 * RWB * 0.55 + 0.016 if wb > 0 else ztop + 0.020
-    FS.scale = (rs, rs, rs) if rs > 0.001 else (0.0001,) * 3; FS.location = (SX, 0, zc)
-    FS.keyframe_insert("scale", frame=f); FS.keyframe_insert("location", frame=f)
-    blue = smooth((t - T_BLUE) / 0.6) if not loop else 0.0
-    EM_FS.inputs[0].default_value = (1.0 - 0.78 * blue, 0.72 - 0.30 * blue, 0.25 + 0.75 * blue, 1)
-    EM_FS.inputs[1].default_value = (3.0 + 1.5 * blue) * (1 - 0.5 * die)
-    EM_FS.inputs[0].keyframe_insert("default_value", frame=f); EM_FS.inputs[1].keyframe_insert("default_value", frame=f)
-    LS.location = (SX, -0.04, zc); LS.data.energy = 0.5 * son * (1 - 0.5 * die)
-    LS.data.color = (1.0 - 0.7 * blue, 0.75 - 0.25 * blue, 0.35 + 0.65 * blue)
-    LS.keyframe_insert("location", frame=f); LS.data.keyframe_insert("energy", frame=f); LS.data.keyframe_insert("color", frame=f)
-    # fog
-    fg = smooth((t - T_FOG) / 0.9) if (T_FOG <= t < T_LOOP) else 0.0
-    rf = 0.065 * fg ** 0.7 * (1 + 0.03 * math.sin(t * 4))
-    FOG.scale = (rf, rf, rf) if rf > 0.002 else (0.0001,) * 3; FOG.location = (SX, 0, ztop + 0.03 + 0.004 * math.sin(t * 2))
-    FOG.keyframe_insert("scale", frame=f); FOG.keyframe_insert("location", frame=f)
-    rg = smooth((t - T_RING) / 0.25) if (T_RING <= t < tc) else 0.0
-    rr_ = 0.078 * rg * (1 + 0.05 * math.sin(math.tau * 2 * (t - T_RING)))
-    RING.scale = (rr_, rr_, rr_) if rr_ > 0.002 else (0.0001,) * 3; RING.location = (SX, -0.02, ztop + 0.03)
-    RING.keyframe_insert("scale", frame=f); RING.keyframe_insert("location", frame=f)
-    # hot-air dots (line 3)
-    on3 = t3 - 0.05 <= t < t4 - 0.05
-    for (o, ph, sw) in HOT_E:
-        if on3 and t >= T_HOT:
-            u = ((t - T_HOT) * 0.9 + ph) % 1.0
-            o.location = (EX + 0.012 * sw + 0.006 * math.sin(u * 9 + ph * 7), 0, zt + 0.045 + u * 0.10)
-            s_ = 1.0 - u * 0.6; o.scale = (s_, s_, s_)
-        else: o.scale = (0.0001,) * 3
-        o.keyframe_insert("location", frame=f); o.keyframe_insert("scale", frame=f)
-    for (o, d, dl) in HOT_S:
-        if on3 and t >= T_HOT + dl:
-            r_ = 0.03 + 0.03 * smooth((t - T_HOT - dl) / 1.2)
-            o.location = V((SX, 0, zc)) + d * r_
-            o.scale = (1, 1, 1)
-        else: o.scale = (0.0001,) * 3
-        o.keyframe_insert("location", frame=f); o.keyframe_insert("scale", frame=f)
-    vis(SUB_E, t3 - 0.05 <= t < t5 - 0.05, f); vis(SUB_S, t3 - 0.05 <= t < t5 - 0.05, f)
-    vis(WAX_T, T_WAX + 0.4 <= t < t6, f); vis(NODRIP_T, T_WAX + 0.9 <= t < t6, f)
-    vis(FOG_T, T_RING <= t < tc, f)
-    wide = (t < t2 - 0.05) or (t3 - 0.05 <= t < t5 - 0.05) or t >= T_LOOP
-    vis(LB_E, wide, f); vis(LB_S, wide, f)
+    tz = top_z(t)
+    # table (top + legs follow height)
+    TOPB.location = (0, 0, tz - TT / 2); TOPB.keyframe_insert("location", frame=f)
+    for lg in LEGS:
+        h = tz - TT; lg.scale = (1, 1, h); lg.location = (lg.location.x, lg.location.y, h / 2)
+        lg.keyframe_insert("scale", frame=f); lg.keyframe_insert("location", frame=f)
+    PLATE.location = (0.30, 0, tz + 0.006); PLATE.keyframe_insert("location", frame=f)
+    # hero toast
+    splat = False; on_scale = t3 - 0.05 <= t < t4 - 0.05 and not loop
+    if loop: loc, th = drop_pose(t, 99, 1, TOP0, math.pi)
+    elif t < t2 - 0.05: loc, th = drop_pose(t, *DROP_A, TOP0, math.pi); splat = t >= sum(DROP_A)
+    elif t < t3 - 0.05: loc, th = drop_pose(t, *DROP_B, TOP0, math.pi); splat = t >= sum(DROP_B)
+    elif on_scale: loc, th = V((0.02, -0.05, TOP0 + 0.046 + 0.010)), 0.0
+    elif t < t5 - 0.05: loc, th = drop_pose(t, *DROP_C, TOP0, math.pi); splat = t >= sum(DROP_C)
+    elif t < t6 - 0.05: loc, th = None, 0
+    elif t < t7: loc, th = drop_pose(t, 99, 1, tz, 0)
+    else: loc, th = drop_pose(t, *DROP_D, TOP3, 2 * math.pi)
+    if loc is None: hide(T1, B1, f)
+    else:
+        place(T1, B1, loc, th, f)
+        if on_scale:   # butter pat lifts off the toast onto scale 2
+            k = smooth((t - T_LIFT) / 0.45); arc = math.sin(math.pi * k) * 0.08
+            B1.location = V((0.02 + 0.25 * k, -0.05, TOP0 + 0.046 + 0.0235 - 0.0165 * k + arc)); B1.keyframe_insert("location", frame=f)
+    SPLAT.scale = (0.085, 0.078, 1) if splat else (0.0001,) * 3
+    if loc is not None: SPLAT.location = (loc.x, loc.y, 0.002)
+    SPLAT.keyframe_insert("scale", frame=f); SPLAT.keyframe_insert("location", frame=f)
+    # ghosts along the slow-mo arc (line 4)
+    for j, (gt, gb) in enumerate(GH):
+        s_at = DROP_C[0] + DROP_C[1] * (0.30 + 0.17 * j)
+        if t4 - 0.05 <= t < t5 - 0.05 and t >= s_at:
+            gl, gth = drop_pose(s_at, *DROP_C, TOP0, math.pi); place(gt, gb, gl, gth, f)
+        else: hide(gt, gb, f)
+    # school row
+    for k, (rt, rb, mk, y) in enumerate(ROW):
+        t0 = ROW_T0 + k * ROW_DT
+        if t5 - 0.05 <= t < t6 - 0.05:
+            if ROW_DOWN[k]: loc_r, th_r = drop_pose(t, t0, ROW_DUR, TOP0, math.pi, y=y, x0=RX)
+            else:
+                loc_r, _ = drop_pose(t, t0, ROW_DUR, TOP0, 0.0, y=y, x0=RX)
+                u = max(0, min(1, (t - t0) / ROW_DUR)); th_r = 0.9 * math.sin(math.pi * u)
+            place(rt, rb, loc_r, th_r, f)
+            vis(mk, t >= t0 + ROW_DUR, f)
+        else:
+            place(rt, rb, *drop_pose(t, 99, 1, TOP0, 0, y=y, x0=RX), f); vis(mk, False, f)
+    # labels
+    landA = sum(DROP_A) <= t < t2 - 0.05; landB = sum(DROP_B) <= t < t3 - 0.05
+    vis(LB_DOWN, (landA or landB) and not loop, f)
+    vis(BAR, t2 + 0.1 <= t < t3 - 0.05, f, base=(0.012, 0.012, TOP0)); vis(BAR_T, t2 + 0.1 <= t < t3 - 0.05, f)
+    for o in (RD0, RD1, TL0): vis(o, on_scale, f)
+    vis(TL1, on_scale and t >= T_LIFT + 0.3, f)
+    for (b_, p_, l_, x_) in SC:
+        for o, bs in ((b_, (0.17, 0.17, 0.04)), (p_, (0.15, 0.15, 0.006)), (l_, (0.12, 0.004, 0.032))): vis(o, on_scale, f, base=bs)
+    vis(HALF_T, sum(DROP_C) - 0.05 <= t < t5 - 0.05, f)
+    vis(CNT, t5 - 0.05 <= t < t6 - 0.05, f)
+    vis(BAR3, T_GROW[1] - 0.2 <= t < t7 + 0.5, f, base=(0.02, 0.02, TOP3)); vis(BAR3_T, T_GROW[1] - 0.2 <= t < t7 + 0.5, f)
+    vis(LB_UP, sum(DROP_D) - 0.03 <= t < T_LOOP, f)
 
 # ---------- camera ----------
 cam = bpy.data.objects.new("cam", bpy.data.cameras.new("cam")); S.collection.objects.link(cam); S.camera = cam
@@ -372,28 +350,45 @@ c.track_axis = "TRACK_NEGATIVE_Z"; c.up_axis = "UP_Y"
 def fixed(pa, ta, pb=None, tb=None):
     pb = pb or pa; tb = tb or ta
     return (V(pa), V(ta), V(pb), V(tb))
-WIDE_Z = 1.035
-HOOK = fixed((0.0, -0.80, 1.06), (0.0, 0, WIDE_Z), (0.0, -0.76, 1.06), (0.0, 0, WIDE_Z))
-CLOSE = fixed((SX - 0.03, -0.60, 1.03), (SX - 0.03, 0, 1.005), (SX - 0.03, -0.56, 1.03), (SX - 0.03, 0, 1.005))
+HOOK = fixed((1.30, -1.50, 1.30), (0.52, 0, 0.36), (1.24, -1.42, 1.26), (0.52, 0, 0.36))
 SEG = [
-    (0.0, t2 - 0.05, HOOK, 30, 30),
-    (t2 - 0.05, t3 - 0.05, fixed((SX + 0.05, -0.75, 1.06), (SX + 0.03, 0, 1.03), (SX, -0.62, 1.04), (SX, 0, 1.02)), 30, 30),
-    (t3 - 0.05, t5 - 0.05, fixed((0.0, -0.82, 1.06), (0.0, 0, WIDE_Z), (0.0, -0.78, 1.06), (0.0, 0, WIDE_Z)), 30, 30),
-    (t5 - 0.05, t7 - 0.05, CLOSE, 30, 32),
-    (t7 - 0.05, T_LOOP, fixed((SX - 0.02, -0.66, 1.03), (SX - 0.02, 0, 1.0), (SX - 0.02, -0.62, 1.03), (SX - 0.02, 0, 1.0)), 30, 30),
-    (T_LOOP, DUR + 0.01, HOOK, 30, 30),
+    (0.0, t2 - 0.05, HOOK, 24, 24),
+    (t2 - 0.05, t3 - 0.05, fixed((-0.10, -1.95, 1.20), (0.50, 0, 0.36), (0.0, -1.85, 1.15), (0.50, 0, 0.36)), 24, 24),
+    (t3 - 0.05, t4 - 0.05, fixed((0.30, -0.95, 1.08), (0.15, -0.05, 0.79), (0.29, -0.90, 1.06), (0.15, -0.05, 0.79)), 28, 28),
+    (t4 - 0.05, t5 - 0.05, fixed((0.55, -2.05, 0.95), (0.55, 0, 0.36), (0.55, -1.95, 0.92), (0.55, 0, 0.36)), 24, 24),
+    (t5 - 0.05, t6 - 0.05, fixed((RX + 1.55, -1.75, 1.45), (RX + 0.25, 2.2, 0.62), (RX + 1.45, -1.55, 1.40), (RX + 0.25, 2.2, 0.62)), 26, 26),
+    (t6 - 0.05, t7, fixed((1.30, -1.50, 1.30), (0.52, 0, 0.36), (2.6, -3.6, 2.7), (0.50, 0, 1.85)), 24, 24),
+    (t7, T_LOOP, None, 24, 24),
+    (T_LOOP, DUR + 0.01, HOOK, 24, 24),
 ]
 for f in range(0, N + 1):
     t = f / FPS
     seg = next((s for s in SEG if s[0] <= t < s[1]), SEG[-1])
     u = smooth((t - seg[0]) / (seg[1] - seg[0]))
-    pa, ta, pb, tb = seg[2]; p = pa.lerp(pb, u); q = ta.lerp(tb, u)
+    if seg[2] is None:   # follow-cam on the falling toast (3 m table)
+        lz, _ = drop_pose(t, *DROP_D, TOP3, 2 * math.pi)
+        k = smooth((t - t7) / 0.30)
+        zt = max(0.22, lz.z - 0.15)
+        qf = V((0.55, 0, zt)); pf = qf + V((0.80, -1.55, 0.85))
+        p = V((2.6, -3.6, 2.7)).lerp(pf, k); q = V((0.50, 0, 1.85)).lerp(qf, k)
+    else:
+        pa, ta, pb, tb = seg[2]; p = pa.lerp(pb, u); q = ta.lerp(tb, u)
     cam.location = p; cam.keyframe_insert("location", frame=f)
     tgt.location = q; tgt.keyframe_insert("location", frame=f)
     cam.data.lens = seg[3] + (seg[4] - seg[3]) * u; cam.data.keyframe_insert("lens", frame=f)
 
-json.dump({"t_loop": T_LOOP, "t_card": tc, "cuts": [s[0] for s in SEG[1:]], "ign": T_IGN, "hot": T_HOT, "blue": T_BLUE,
-           "timers": T_TIM, "earth_out": T_EOUT, "t45": T_45, "wax": T_WAX, "pulse": T_PULSE, "out": T_OUT, "fog": T_FOG, "ring": T_RING},
+M_PLATEL = mat("lplate", (0.02, 0.02, 0.03), 0.6)
+for o, nch in ((LB_DOWN, 11), (LB_UP, 9), (BAR_T, 5), (HALF_T, 6), (BAR3_T, 4), (TL0, 5), (TL1, 6), (CNT, 16)):
+    o.rotation_euler = (0, 0, 0); cc = o.constraints.new("TRACK_TO"); cc.target = cam
+    cc.track_axis = "TRACK_Z"; cc.up_axis = "UP_Y"
+    sz = o.data.size; w = nch * sz * 0.72 + sz * 0.5
+    bpy.ops.mesh.primitive_plane_add(size=1); pl = bpy.context.object; pl.name = o.name + "_bg"
+    pl.data.materials.append(M_PLATEL); noshadow(pl); pl.visible_glossy = False
+    ox = -w / 2 + sz * 0.25 if o.data.align_x == "RIGHT" else 0.0
+    for v in pl.data.vertices: v.co.x = v.co.x * w + ox; v.co.y = v.co.y * sz * 1.35; v.co.z = -0.012
+    pl.parent = o
+json.dump({"t_loop": T_LOOP, "t_card": tc, "cuts": [s[0] for s in SEG[1:]], "drop_a": DROP_A, "drop_b": DROP_B,
+           "lift": T_LIFT, "drop_c": DROP_C, "row_t0": ROW_T0, "row_dt": ROW_DT, "grow": T_GROW, "drop_d": DROP_D},
           open("/home/claude/reel/beats.json", "w"), indent=1)
 
 args = [a for a in (sys.argv[sys.argv.index("--") + 1:] if "--" in sys.argv else sys.argv[1:]) if a != "--force"]

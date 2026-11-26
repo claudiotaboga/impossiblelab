@@ -1,0 +1,51 @@
+[
+ {
+  "i": 1,
+  "text": "Blame the table, not the butter.",
+  "file": "vo/line1.wav",
+  "dur": 1.567,
+  "sr": 24000
+ },
+ {
+  "i": 2,
+  "text": "Toast slides off a normal table.",
+  "file": "vo/line2.wav",
+  "dur": 1.757,
+  "sr": 24000
+ },
+ {
+  "i": 3,
+  "text": "Butter is a tenth of its weight, at most.",
+  "file": "vo/line3.wav",
+  "dur": 1.913,
+  "sr": 24000
+ },
+ {
+  "i": 4,
+  "text": "It only has time for half a turn.",
+  "file": "vo/line4.wav",
+  "dur": 1.689,
+  "sr": 24000
+ },
+ {
+  "i": 5,
+  "text": "In nearly ten thousand drops, sixty-two percent hit butter-down.",
+  "file": "vo/line5.wav",
+  "dur": 3.476,
+  "sr": 24000
+ },
+ {
+  "i": 6,
+  "text": "The fix?",
+  "file": "vo/line6.wav",
+  "dur": 0.6,
+  "sr": 24000
+ },
+ {
+  "i": 7,
+  "text": "A table three metres tall.",
+  "file": "vo/line7.wav",
+  "dur": 1.399,
+  "sr": 24000
+ }
+]

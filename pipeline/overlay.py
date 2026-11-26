@@ -10,20 +10,20 @@ def font(w, s): return ImageFont.truetype(F + f"Inter-{w}.otf", s)
 AMBER = (255, 176, 46); WHITE = (255, 255, 255); INK = (18, 12, 6)
 
 # ---- per-episode content: the only block to change for a new episode ----
-EP_NUM = 20
-TITLE = ["A CANDLE", "IN SPACE?"]
+EP_NUM = 21
+TITLE = ["WHY TOAST LANDS", "BUTTER-DOWN"]
 FACTS = [  # (start, end, text) — times match the narration lines
-    (3.40, 5.20, "NO GRAVITY: HOT AIR CAN'T RISE"),
-    (5.55, 7.70, "MIR CANDLES: UP TO 45 MIN"),
-    (11.40, 13.30, "WAX FOG CLOUD: 2–3× THE FLAME"),
+    (3.95, 5.85, "BUTTER: ≤ 10 % OF A ~40 g SLICE"),
+    (6.10, 7.75, "75 CM TABLE → ABOUT ½ TURN"),
+    (8.00, 11.40, "SCHOOL TEST: 62 % OF ~10,000 DROPS"),
 ]
-CARD_SUB = "Why flames burn round and blue in orbit"
-CARD = [("Flame in orbit", "round, ≈ 1.5 cm", "NASA Shuttle tests: blue, soot-free"),
-        ("Burn time on Mir", "up to 45 min", "NASA; same candles ≤ 10 min on Earth"),
-        ("After it goes out", "fog 2–3× flame", "NASA: flammable wax vapour"),
+CARD_SUB = "Why falling toast usually lands butter-down"
+CARD = [("Table 0.7–1.8 m", "≈ ½ turn", "Matthews 1995, Eur. J. Phys. 16:172"),
+        ("Butter on a slice", "≤ 10 % of 40 g", "Effect negligible (Stewart, Sci. Am.)"),
+        ("Table for butter-up", "≈ 3 m", "Full 360° turn · Ig Nobel Physics 1996"),
        ]
-DISCLAIMER = "Don't try this. Fire in a sealed cabin is deadly."
-NEXT = "TOMORROW: DOES TOAST LAND BUTTER-DOWN?"   # series teaser end card (binding for TIL-21 = V1)
+DISCLAIMER = "Don't try this. Don't climb on tables or stack them."
+NEXT = "TOMORROW: ALL YOUR BACTERIA ON A SCALE"   # series teaser end card (binding for TIL-22 = V2)
 NEXT_START = 14.0
 
 # ---- follow invite (Claudio, 20 Nov 2026: "invite the viewer to subscribe to the channel") — house rule, every reel ----

@@ -1,0 +1,49 @@
+{
+ "episode_id": "TIL-21",
+ "status": "ready",
+ "qa_passed": true,
+ "width": 1080,
+ "height": 1920,
+ "duration_seconds": 15.0,
+ "title": "Why does toast land butter-side down?",
+ "video_url": "https://raw.githubusercontent.com/claudiotaboga/impossiblelab/main/episodes/21-toast-butter-down/video.mp4",
+ "caption": "Blame the table, not the butter. 🍞🧈\n\nToast sliding off a normal table (about 75 cm) only has time for roughly half a turn before it hits the floor, so the buttered side ends up underneath. Physicist Robert Matthews worked it out in 1995 (European Journal of Physics) and won the 1996 Ig Nobel Prize in Physics for it. The butter itself is at most about 10 % of a 40 g slice and barely matters.\n\nIn a school experiment with nearly 10,000 drops, 62 % landed butter-down. To get a full turn and land butter-up, the table would need to be about 3 metres tall.\n\nSend this to the friend who blames bad luck every time breakfast hits the floor.\n\nTomorrow: every bacterium in your body on one scale. 🔔 Follow @the.impossible.lab (or subscribe on YouTube) so you don't miss it.\n\n⚠️ Don't try this. Don't climb on tables or stack furniture to test it.\n\n#science #physics #whatif #sciencefacts #toast #murphyslaw #theimpossiblelab",
+ "sources": [
+  "https://ui.adsabs.harvard.edu/abs/1995EJPh...16..172M/abstract",
+  "https://en.wikipedia.org/wiki/Buttered_toast_phenomenon",
+  "https://whydomath.org/Reading_Room_Material/ian_stewart/anthro/anthro.html",
+  "https://www.ipm.org/show/amomentofscience/2019-09-18/murphys-toast",
+  "https://diyhpl.us/~bryan/irc/extropians/extracted-extropians-archive/archive/0105/83777.html",
+  "https://www.sciencefocus.com/science/why-does-toast-often-land-butter-side-down"
+ ],
+ "qa": {
+  "duration_s": 15.0,
+  "resolution": "1080x1920",
+  "video": "H.264 High yuv420p, 24 fps, faststart",
+  "audio": "AAC LC 128k 48 kHz stereo",
+  "max_1s_video_mbps": 3.02,
+  "loudness_lufs": -14.2,
+  "true_peak_dbfs": -1.1,
+  "frames_inspected": [
+   "0.5",
+   "1.2",
+   "2.9",
+   "4.6",
+   "6.6 (FOLLOW pill)",
+   "7.6 (FOLLOW pill)",
+   "9.0",
+   "10.9",
+   "11.35",
+   "12.0",
+   "13.0",
+   "13.72",
+   "14.2 (card + disclaimer)",
+   "14.95 (end card + follow)"
+  ],
+  "disclaimer_caption": true,
+  "disclaimer_card": true,
+  "follow_invite": "pill 5.0-8.2 s + end card + caption",
+  "sha256": "ab27f3673695614d9a9b0b4750f6be136a282db27d052cb936661bfcf51c5b47",
+  "checked": "2026-11-26 EET"
+ }
+}

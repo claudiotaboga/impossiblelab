@@ -4,13 +4,13 @@ from kokoro_onnx import Kokoro
 from config import VOICE, VOICE_SPEED
 
 LINES = [
-    "In space, fire is round.",
-    "Light a candle in orbit.",
-    "Hot air can't rise, so it balls up.",
-    "It burns slowly, up to forty-five minutes.",
-    "No drips: the wax melts into a ball.",
-    "The real danger?",
-    "It dies, leaving a flammable wax cloud.",
+    "Blame the table, not the butter.",
+    "Toast slides off a normal table.",
+    "Butter is a tenth of its weight, at most.",
+    "It only has time for half a turn.",
+    "In nearly ten thousand drops, sixty-two percent hit butter-down.",
+    "The fix?",
+    "A table three metres tall.",
 ]
 
 k = Kokoro("models/kokoro-v1.0.onnx", "models/voices-v1.0.bin")

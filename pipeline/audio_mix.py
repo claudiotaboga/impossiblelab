@@ -151,29 +151,31 @@ def tinkles(t0, dur, k=10):  # falling shards
 def pop(g=1.0, f=None):  # popcorn pop: short bright snap + small body
     n = int(0.09 * SR); tt = np.arange(n) / SR; f = f or rng.uniform(500, 1100)
     return (hp(rng.standard_normal(n), 1800) * np.exp(-tt * 90) * 0.9 + np.sin(2 * np.pi * f * tt) * np.exp(-tt * 60) * 0.6) * g
-# ---- episode 20 SFX: a candle in space ----
-def strike(dur=0.45):  # match strike + flare
+# ---- episode 21 SFX: does toast land butter-down? ----
+def slide(dur=0.25):  # toast sliding over a plate
     n = int(dur * SR); tt = np.arange(n) / SR
-    return bp(rng.standard_normal(n), 1500, 7000) * np.exp(-tt * 14) * 1.2 + lp(rng.standard_normal(n), 700) * np.exp(-tt * 5) * 0.6
-def flame_hum(dur, f=110):  # soft steady burn
+    return bp(rng.standard_normal(n), 900, 4000) * np.sin(np.linspace(0, np.pi, n)) * 0.7
+def splat(g=1.0):  # buttered toast hits the floor: soft slap + thud
+    n = int(0.25 * SR); tt = np.arange(n) / SR
+    return (lp(rng.standard_normal(n), 1800) * np.exp(-tt * 30) * 1.2 + thud(0.25, 80) * 0.7) * g
+def ding(f=1320, dur=0.5):  # bright success chime
     n = int(dur * SR); tt = np.arange(n) / SR
-    return lp(rng.standard_normal(n), 400) * 0.6 * np.clip(tt / 0.2, 0, 1) * np.clip((dur - tt) / 0.2, 0, 1)
-def puff(dur=0.4):  # soft air puff / blow-out
+    return (np.sin(2 * np.pi * f * tt) + 0.5 * np.sin(2 * np.pi * f * 1.5 * tt)) * np.exp(-tt * 6) * 0.6
+def buzz(dur=0.25):  # low "wrong" buzz
     n = int(dur * SR); tt = np.arange(n) / SR
-    return lp(rng.standard_normal(n), 1200) * np.sin(np.linspace(0, np.pi, n)) ** 2
-put(sfx, strike(), B["ign"], 0.45); put(sfx, strike(), B["ign"] + 0.06, 0.35)                     # both wicks light
-put(sfx, flame_hum(1.4), B["ign"] + 0.2, 0.25)
-put(sfx, shimmer(0.8), B["hot"], 0.15)                                                            # hot air rises / stays
-put(sfx, whoomph(0.6), B["blue"], 0.35)                                                           # flame turns blue
-counter(B["timers"], B["earth_out"], 10, 1600, 1600, 0.06)                                        # Earth timer
-put(sfx, puff(0.35), B["earth_out"], 0.4)                                                         # Earth candle out
-counter(B["timers"], B["t45"], 24, 2000, 2400, 0.05)                                              # orbit timer runs on
-put(sfx, gloop(0.8), B["wax"] + 0.3, 0.25)                                                        # wax melts into a ball
-for k in range(3): put(sfx, whoomph(0.3), B["pulse"] + 0.2 + k / 1.6, 0.18)                      # flame pulses
-put(sfx, puff(0.5), B["out"], 0.5)                                                                # flame dies
-put(sfx, whoosh(1.0, 300, 1200), B["fog"], 0.2)                                                   # wax fog swells
-for k in range(3): put(sfx, beep(1200, 0.08), B["ring"] + k * 0.5, 0.12)                          # warning ring
-put(sfx, strike(), B["t_loop"] + 0.08, 0.35)                                                      # loop: hook replays
+    return np.sign(np.sin(2 * np.pi * 140 * tt)) * 0.25 * np.exp(-tt * 6)
+for (t0, d) in (B["drop_a"], B["drop_b"], B["drop_c"]):
+    put(sfx, slide(), t0, 0.35); put(sfx, whoosh(d * 0.7, 400, 1600), t0 + d * 0.25, 0.12)
+    put(sfx, splat(), t0 + d, 0.6)
+put(sfx, buzz(), sum(B["drop_a"]) + 0.05, 0.25)
+counter(B["lift"] - 0.45, B["lift"] + 0.15, 8, 1800, 1800, 0.05)        # scale readout 0 -> 40 g
+put(sfx, squeak(0.2, 1900), B["lift"], 0.12); put(sfx, beep(2200, 0.08), B["lift"] + 0.9, 0.12)  # butter pat lifted
+for k in range(8):
+    tk = B["row_t0"] + k * B["row_dt"]
+    put(sfx, slide(0.15), tk, 0.18); put(sfx, splat(0.8), tk + 0.75, 0.35)
+put(sfx, creak(0.6), B["grow"][0] + 0.05, 0.3); put(sfx, whoosh(0.6, 300, 1500), B["grow"][0] + 0.1, 0.18)  # table grows
+put(sfx, slide(), B["drop_d"][0], 0.35); put(sfx, whoosh(1.0, 300, 2400), B["drop_d"][0] + 0.25, 0.2)
+put(sfx, splat(0.8), sum(B["drop_d"]), 0.5); put(sfx, ding(), sum(B["drop_d"]) + 0.02, 0.35)        # butter-up!
 for t_cut in B["cuts"]:
     put(sfx, whoosh(0.35, 1800, 500, False), t_cut - 0.15, 0.10)
 put(sfx, thud(0.4, 60), CARD_START, 0.6); put(sfx, whoosh(0.3, 800, 3000), CARD_START - 0.25, 0.2)
