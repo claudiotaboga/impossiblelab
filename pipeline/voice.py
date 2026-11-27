@@ -4,13 +4,13 @@ from kokoro_onnx import Kokoro
 from config import VOICE, VOICE_SPEED
 
 LINES = [
-    "Blame the table, not the butter.",
-    "Toast slides off a normal table.",
-    "Butter is a tenth of its weight, at most.",
-    "It only has time for half a turn.",
-    "In nearly ten thousand drops, sixty-two percent hit butter-down.",
-    "The fix?",
-    "A table three metres tall.",
+    "Your bacteria weigh about an apple.",
+    "Every germ in you, on one scale.",
+    "Nearly forty trillion, more than your own cells.",
+    "Each is so tiny, they total two hundred grams.",
+    "Most live in your gut.",
+    "The twist?",
+    "One trip to the toilet can flip the count.",
 ]
 
 k = Kokoro("models/kokoro-v1.0.onnx", "models/voices-v1.0.bin")

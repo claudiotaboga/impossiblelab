@@ -1,11 +1,11 @@
-"""The Impossible Lab #20 - a candle in space (E17 cascade middle, reel 3).
+"""The Impossible Lab #22 - every bacterium in your body on one scale (lane A, E17 cascade middle kept).
 Usage: python3 scene.py [start end [step]] | [f1,f2,...] | [f]  [--force]   (no args = all frames)
 """
 import bpy, addon_utils, math, random, sys, os, json, time
 from mathutils import Vector
 from config import FPS, FRAMES as N, DUR
 
-random.seed(20)
+random.seed(22)
 bpy.ops.wm.read_factory_settings(use_empty=True)
 addon_utils.enable("cycles", default_set=True)
 S = bpy.context.scene
@@ -140,28 +140,36 @@ def open_cyl(loc, r, d, m, name, thick=0.006, verts=40):
         sol = o.modifiers.new("shell", "SOLIDIFY"); sol.thickness = thick
 
 
-# ================= episode 21: does toast land butter-down? (single escalating scene) =================
-# Hook: buttered toast slides off a 75 cm kitchen table at 0.08 s, flips half a turn, lands BUTTER-DOWN by ~0.9 s.
-# L2: replay with a 75 CM height bar. L3: two kitchen scales: toast ~40 g vs butter pat <=4 g (butter lifts off).
-# L4: slow-mo drop with ghost copies along the arc -> "1/2 TURN". L5: cascade: a row of 8 school tables, toasts drop
-# one after another, 5 of 8 land butter-down, counter -> "62 % BUTTER-DOWN". L6: the table grows to 3 m (camera tilts up).
-# L7: toast slides off the 3 m table, follow-cam: a full turn, lands BUTTER-UP. After the card starts: hook framing (loop).
+# ================= episode 22: every bacterium in your body on one scale =================
+# Hook: a jar of glowing green "bacteria" drops onto a balance at 0.08 s (beam slams left), an apple drops on the other
+# pan at 0.40 s and the beam swings back to almost level (0.2 kg vs a ~182 g apple).
+# L2: a see-through body beside the table; its gut beads stream out into the empty jar; beam goes from apple-down to level.
+# L3: two stacks of discs, 1 disc = 1 trillion: BACTERIA 38 vs YOUR CELLS 30, growing together, green keeps going.
+# L4: one human cell vs one bacterium (~1,000x smaller), then back to the balance: "ALL OF THEM ~200 g".
+# L5: close on the body: the colon lights up. L6: back to the stacks. L7: flush: the top third of the green stack
+# flies off, green drops below red -> "HUMAN CELLS AHEAD". After the card starts: hook framing (loop).
 M_WOOD = noise_mat("wood", (0.50, 0.32, 0.18), (0.62, 0.42, 0.25), 7.0, 0.45)
 M_FLOOR = tiles("floor", (0.78, 0.76, 0.72), (0.45, 0.43, 0.40), 1.2)
 M_WALL = tiles("wall", (0.55, 0.68, 0.70), (0.85, 0.88, 0.86), 3.0)
 M_CREAM = mat("cream", (0.92, 0.90, 0.84), 0.8)
-M_TOAST = noise_mat("toast", (0.62, 0.36, 0.12), (0.80, 0.52, 0.20), 30.0, 0.85)
-M_CRUST = mat("crust", (0.36, 0.18, 0.06), 0.8)
-M_BUT = mat("butter", (1.0, 0.86, 0.30), 0.25, 0, (1.0, 0.8, 0.2), 0.25)
-M_GHOST = mat("ghost", (0.95, 0.85, 0.6), 0.6, 0, (1.0, 0.85, 0.55), 0.6)
-M_PLATE = mat("plate", (0.95, 0.95, 0.97), 0.2)
-M_SCALE = mat("scale", (0.85, 0.86, 0.88), 0.3, 0.3)
-M_DARK = mat("dark", (0.04, 0.05, 0.06), 0.4)
+M_STEEL = mat("steel", (0.80, 0.81, 0.84), 0.25, 0.9)
+M_BRASS = mat("brass", (0.85, 0.62, 0.25), 0.3, 0.9)
+M_GLASS = liquid("glass", (0.95, 0.98, 0.98), (0.9, 0.95, 1.0), 0.0)
+M_BODY = liquid("body", (0.70, 0.86, 0.98), (0.75, 0.88, 1.0), 0.30)
+M_BUG = mat("bug", (0.01, 0.38, 0.04), 0.3, 0, (0.03, 0.8, 0.08), 0.7)
+M_COLON = mat("colon", (0.10, 0.55, 0.18), 0.5, 0, (0.15, 1.0, 0.3), 0.4)
+M_APPLE = mat("apple", (0.62, 0.03, 0.03), 0.35)
+M_STEM = mat("stem", (0.25, 0.15, 0.05), 0.8)
+M_LEAF = mat("leaf", (0.15, 0.45, 0.10), 0.6)
+M_GDISC = mat("gdisc", (0.10, 0.70, 0.20), 0.35, 0, (0.10, 0.9, 0.25), 0.6)
+M_RDISC = mat("rdisc", (0.75, 0.08, 0.10), 0.35, 0, (0.9, 0.10, 0.12), 0.35)
+M_CELL = mat("cell", (0.85, 0.35, 0.40), 0.45, 0, (0.9, 0.3, 0.35), 0.25)
+M_NUC = mat("nuc", (0.35, 0.10, 0.30), 0.5)
+M_NAVY = mat("navy", (0.03, 0.05, 0.10), 0.9)
 M_WHITE = mat("lblw", (1, 1, 1), 0.4, 0, (1, 1, 1), 3.0)
 M_AMB = mat("lbla", (1.0, 0.55, 0.08), 0.4, 0, (1.0, 0.5, 0.06), 3.0)
 M_RED = mat("redl", (0.9, 0.04, 0.02), 0.4, 0, (1.0, 0.06, 0.03), 3.0)
 M_GRN = mat("grnl", (0.05, 0.8, 0.15), 0.4, 0, (0.08, 1.0, 0.25), 2.4)
-M_LCD = mat("lcd", (0.4, 1.0, 0.8), 0.4, 0, (0.35, 1.0, 0.75), 3.0)
 
 world = bpy.data.worlds.new("w"); S.world = world; world.use_nodes = True
 S.view_settings.exposure = -0.5
@@ -171,176 +179,223 @@ WBG = world.node_tree.nodes["Background"]; WBG.inputs[0].default_value = (0.75, 
 t2, t3, t4, t5, t6, t7 = (L[i]["start"] for i in range(2, 8))
 tc = CARD_START
 T_LOOP = tc + 0.25
-DROP_A = (0.08, 0.85)            # hook drop (start, duration)
-DROP_B = (t2 + 0.55, 0.85)       # replay with the 75 cm bar
-T_LIFT = t3 + 0.55               # butter lifts onto its own scale
-DROP_C = (t4 + 0.05, 1.45)       # slow-mo with ghosts
-DROP_D = (t7 + 0.02, 1.25)       # from the 3 m table
-T_GROW = (t6 - 0.05, t7 - 0.05)  # table grows 0.75 -> 3.0 m
-ROW_T0 = t5 + 0.15; ROW_DT = 0.33; ROW_DUR = 0.75
-ROW_DOWN = [1, 1, 0, 1, 1, 0, 1, 0]   # 5 of 8 butter-down (62.5 %)
+JAR_DROP = (0.08, 0.17)          # jar falls onto the left pan
+APP_DROP = (0.40, 0.15)          # apple falls onto the right pan
+STREAM = (t2 + 0.15, t3 - 0.35)  # gut beads fly into the jar
+DISC = (t3 + 0.12, 0.034)        # stacks grow: start, seconds per disc
+T_CELL, T_BUG, T_X = t4 + 0.05, t4 + 0.55, t4 + 1.05
+T_BAL2 = t4 + 1.40               # back to the balance: "~200 g"
+T_GLOW = t5 + 0.10
+FLUSH = (t7 + 0.25, 0.075)       # top green discs fly off: start, seconds per disc
+NG, NR, NG_END = 38, 30, 25
 
-# ---------- hero kitchen ----------
-TOP0, TOP3 = 0.75, 3.0
-TW, TD, TT = 0.90, 0.60, 0.035
-XE = TW / 2                      # table edge x
-bpy.ops.mesh.primitive_plane_add(size=1, location=(3, 4, 0)); fl = bpy.context.object; fl.scale = (30, 30, 1); link(fl, M_FLOOR)
-box((0.3, 0.75, 2.5), (5.0, 0.06, 5.0), M_WALL, "wall")
-box((-1.2, 0.70, 0.45), (1.4, 0.06, 0.9), M_CREAM, "cupboard")
-def ubox(loc, size, m, name):
-    bpy.ops.mesh.primitive_cube_add(size=1, location=loc); o = bpy.context.object; o.scale = size; o.name = name; return link(o, m)
-TOPB = ubox((0, 0, TOP0 - TT / 2), (TW, TD, TT), M_WOOD, "top")
-LEGS = []
+# ---------- kitchen + balance ----------
+TOP = 0.75
+bpy.ops.mesh.primitive_plane_add(size=1, location=(0, 4, 0)); fl = bpy.context.object; fl.scale = (40, 40, 1); link(fl, M_FLOOR)
+box((-0.3, 0.75, 2.5), (5.0, 0.06, 5.0), M_WALL, "wall")
+box((1.5, 0.70, 0.45), (1.4, 0.06, 0.9), M_CREAM, "cupboard")
+box((0, 0, TOP - 0.0175), (1.0, 0.6, 0.035), M_WOOD, "top")
 for sx in (-1, 1):
     for sy in (-1, 1):
-        lg = cyl((sx * (TW / 2 - 0.05), sy * (TD / 2 - 0.05), 0.5), 0.022, 1.0, M_WOOD, "leg", verts=12); LEGS.append(lg)
-PLATE = cyl((0.30, 0, TOP0 + 0.006), 0.11, 0.012, M_PLATE, "plate", verts=40)
-def make_toast(m_bread, m_but, name):
-    t = ubox((0, 0, 0), (0.15, 0.14, 0.02), m_bread, name)
-    b = ubox((0, 0, 0), (0.115, 0.105, 0.007), m_but, name + "_butter")
-    return t, b
-T1, B1 = make_toast(M_TOAST, M_BUT, "hero")
-GH = [make_toast(M_GHOST, M_GHOST, f"ghost{k}") for k in range(4)]
-for g in GH:
-    for o in g: noshadow(o)
-SPLAT = cyl((0, 0, 0.002), 1.0, 0.003, M_BUT, "splat", verts=24)
-# scales (line 3)
-SC = []
-for k, x in enumerate((0.02, 0.27)):
-    base = ubox((x, -0.05, TOP0 + 0.02), (0.17, 0.17, 0.04), M_SCALE, f"scale{k}")
-    pan = ubox((x, -0.05, TOP0 + 0.043), (0.15, 0.15, 0.006), M_PLATE, f"pan{k}")
-    lcd = ubox((x, -0.137, TOP0 + 0.02), (0.12, 0.004, 0.032), M_DARK, f"lcd{k}")
-    SC.append((base, pan, lcd, x))
-RD0 = label("", (0.02, -0.142, TOP0 + 0.020), 0.026, M_LCD); RD1 = label("", (0.27, -0.142, TOP0 + 0.020), 0.026, M_LCD)
-TL0 = label("TOAST", (0.02, -0.15, TOP0 + 0.085), 0.034, M_WHITE); TL1 = label("BUTTER", (0.27, -0.15, TOP0 + 0.085), 0.034, M_AMB)
-# labels
-LB_DOWN = label("BUTTER-DOWN", (0.64, -0.10, 0.36), 0.085, M_RED)
-LB_UP = label("BUTTER-UP", (0.72, -0.10, 0.34), 0.085, M_GRN)
-BAR = ubox((0.95, -0.05, TOP0 / 2), (0.012, 0.012, TOP0), M_AMB, "bar"); noshadow(BAR)
-BAR_T = label("75 CM", (0.92, -0.06, 0.16), 0.085, M_AMB, align="RIGHT")
-HALF_T = label("½ TURN", (0.80, -0.10, 0.34), 0.095, M_AMB)
-BAR3 = ubox((0.95, -0.05, TOP3 / 2), (0.02, 0.02, TOP3), M_AMB, "bar3"); noshadow(BAR3)
-BAR3_T = label("3 M", (0.78, -0.06, 2.15), 0.22, M_AMB)
+        cyl((sx * 0.45, sy * 0.25, (TOP - 0.035) / 2), 0.022, TOP - 0.035, M_WOOD, "leg", verts=12)
+BX = 0.10                         # balance centre x
+box((BX, 0, TOP + 0.02), (0.30, 0.14, 0.04), M_STEEL, "bbase")
+cyl((BX, 0, TOP + 0.17), 0.013, 0.26, M_BRASS, "post", verts=16)
+PIV = V((BX, 0, TOP + 0.30)); ARM, STR = 0.18, 0.12
+sphere(PIV, 0.022, M_BRASS, "pivot")
+bpy.ops.mesh.primitive_cube_add(size=1, location=PIV); BEAM = bpy.context.object; BEAM.scale = (2 * ARM + 0.04, 0.018, 0.016); link(BEAM, M_BRASS)
+PANS, STRS = [], []
+for k in range(2):
+    PANS.append(cyl((0, 0, 0), 0.078, 0.010, M_STEEL, f"pan{k}", verts=40))
+    STRS.append(cyl((0, 0, 0), 0.0035, 1.0, M_BRASS, f"str{k}", verts=8))
+JAR_R, JAR_H = 0.05, 0.12
+JAR = cyl((0, 0, 0), JAR_R, JAR_H, M_GLASS, "jar", verts=40)
+noshadow(JAR); JAR.visible_glossy = True
+bpy.ops.object.mode_set(mode="EDIT"); bm = bmesh.from_edit_mesh(JAR.data)
+bmesh.ops.delete(bm, geom=[fc for fc in bm.faces if fc.normal.z > 0.9], context="FACES"); bmesh.update_edit_mesh(JAR.data)
+bpy.ops.object.mode_set(mode="OBJECT")
+APPLE = sphere((0, 0, 0), 0.045, M_APPLE, "apple", seg=32); APPLE.scale = (1, 1, 0.88)
+STEM = cyl((0, 0, 0), 0.004, 0.03, M_STEM, "stem", verts=8)
+LEAF = sphere((0, 0, 0), 0.016, M_LEAF, "leaf", seg=12); LEAF.scale = (1.4, 0.5, 0.25)
+# jar beads (final positions relative to the jar's bottom centre)
+JB = []
+rnd = random.Random(7)
+for k in range(64):
+    lay = k // 9; ang = rnd.uniform(0, 2 * math.pi); rr = rnd.uniform(0.0, JAR_R - 0.015)
+    rel = V((rr * math.cos(ang), rr * math.sin(ang), 0.014 + lay * 0.0155 + rnd.uniform(0, 0.004)))
+    JB.append((sphere((0, 0, 0), 0.0125, M_BUG, f"jb{k}", seg=10), rel))
+def beam_angle(t):
+    """>0 = left (jar) pan down"""
+    if t >= T_LOOP or t < t2 - 0.05:
+        tt = t if t < T_LOOP else 99
+        if tt < sum(JAR_DROP): return 0.0
+        if tt < APP_DROP[0] + APP_DROP[1]: return 0.38 * smooth((tt - sum(JAR_DROP)) / 0.12)
+        d = tt - sum(APP_DROP)
+        return 0.025 + 0.355 * math.exp(-d * 3.2) * math.cos(2 * math.pi * 1.25 * d)
+    if t < t3 - 0.05:   # filling from the body: apple-down -> level
+        fr = smooth((t - STREAM[0]) / (STREAM[1] - STREAM[0] + 0.5))
+        return -0.30 + 0.325 * fr
+    return 0.025
+def pan_pos(k, a):
+    sgn = -1 if k == 0 else 1
+    end = PIV + V((sgn * ARM * math.cos(a), 0, sgn * ARM * math.sin(a)))
+    return end, end - V((0, 0, STR))
+
+# ---------- body (see-through) ----------
+BXB = -0.72; BYB = 0.10
+BODY = []
+BODY.append(cyl_between((BXB - 0.09, BYB, 0.04), (BXB - 0.09, BYB, 0.86), 0.065, M_BODY, name="legL"))
+BODY.append(cyl_between((BXB + 0.09, BYB, 0.04), (BXB + 0.09, BYB, 0.86), 0.065, M_BODY, name="legR"))
+TORSO = sphere((BXB, BYB, 1.13), 0.20, M_BODY, "torso", seg=32); TORSO.scale = (1.0, 0.62, 1.55)
+HEAD = sphere((BXB, BYB, 1.62), 0.11, M_BODY, "head", seg=24)
+cyl_between((BXB, BYB, 1.43), (BXB, BYB, 1.52), 0.045, M_BODY, name="neck")
+cyl_between((BXB - 0.22, BYB, 1.38), (BXB - 0.27, BYB, 0.88), 0.045, M_BODY, name="armL")
+cyl_between((BXB + 0.22, BYB, 1.38), (BXB + 0.27, BYB, 0.88), 0.045, M_BODY, name="armR")
+for o in list(S.objects):
+    if o.name.startswith(("torso", "head", "neck", "arm", "leg", "Sphere")) and o.data and o.data.materials and o.data.materials[0] == M_BODY:
+        noshadow(o)
+GUT = V((BXB, BYB - 0.02, 0.98))
+bpy.ops.mesh.primitive_torus_add(major_radius=0.10, minor_radius=0.024, location=GUT, rotation=(math.radians(90), 0, 0))
+COLON = bpy.context.object; COLON.name = "colon"; bpy.ops.object.shade_smooth(); link(COLON, M_COLON)
+GB = [sphere(GUT + V((0.10 * math.cos(a), -0.03, 0.10 * math.sin(a))), 0.010, M_BUG, f"gb{k}", seg=8)
+      for k, a in enumerate([2 * math.pi * k / 26 for k in range(26)])]
+COLON_T = label("COLON", (BXB + 0.20, -0.16, 1.22), 0.05, M_GRN)
+
+# ---------- stacks (1 disc = 1 trillion) ----------
+SX = 6.0; PITCH = 0.03; DR = 0.20; DH = 0.025
+box((SX, 1.2, 2.5), (5.0, 0.06, 5.0), M_WALL, "swall")
+GD = [cyl((SX - 0.30, 0, 0.02 + k * PITCH), DR, DH, M_GDISC, f"gd{k}", verts=40) for k in range(NG)]
+RDs = [cyl((SX + 0.30, 0, 0.02 + k * PITCH), DR, DH, M_RDISC, f"rd{k}", verts=40) for k in range(NR)]
+G_LAB = label("BACTERIA", (SX - 0.30, -0.25, 0.62), 0.06, M_GRN)
+R_LAB = label("YOUR CELLS", (SX + 0.32, -0.25, 0.62), 0.06, M_WHITE)
+G_CNT = label("", (SX - 0.30, -0.25, 1.62), 0.11, M_GRN)
+R_CNT = label("", (SX + 0.30, -0.25, 1.32), 0.11, M_WHITE)
+AHEAD = label("HUMAN CELLS AHEAD", (SX, -0.30, 1.30), 0.075, M_RED)
+sk = bpy.data.objects.new("skey", bpy.data.lights.new("skey", "AREA")); sk.data.energy = 500; sk.data.size = 3
+sk.location = (SX - 1.0, -2.5, 3.2); sk.rotation_euler = (math.radians(40), 0, math.radians(-20)); S.collection.objects.link(sk)
+
+# ---------- cells (one human cell vs one bacterium) ----------
+CX = -6.0
+box((CX, 0.8, 1.5), (4.0, 0.06, 3.0), M_NAVY, "cwall")
+box((CX, 0.0, 0.40), (3.0, 1.6, 0.04), M_NAVY, "cfloor")
+CELL = sphere((CX - 0.12, 0, 1.0), 0.26, M_CELL, "cell", seg=40)
+NUC = sphere((CX - 0.12, -0.10, 1.03), 0.10, M_NUC, "nuc", seg=24); NUC.parent = None
+BUG = cyl_between((CX + 0.36, 0, 0.95), (CX + 0.42, 0, 0.99), 0.017, M_BUG, name="bug")
+BUGP = [o for o in S.objects if o.name.startswith("Sphere") and o.location.x > CX + 0.3 and o.location.x < CX + 0.5]
+bpy.ops.mesh.primitive_torus_add(major_radius=0.07, minor_radius=0.004, location=(CX + 0.39, -0.02, 0.97), rotation=(math.radians(90), 0, 0))
+RING = bpy.context.object; RING.name = "ring"; link(RING, M_AMB)
+C_LAB = label("1 HUMAN CELL", (CX - 0.12, -0.32, 1.0), 0.05, M_WHITE)
+B_LAB = label("1 BACTERIUM", (CX + 0.40, -0.25, 0.82), 0.045, M_GRN)
+X_LAB = label("~1,000× SMALLER", (CX + 0.40, -0.25, 1.13), 0.045, M_AMB)
+ck = bpy.data.objects.new("ckey", bpy.data.lights.new("ckey", "AREA")); ck.data.energy = 260; ck.data.size = 2
+ck.location = (CX - 0.8, -1.8, 2.2); ck.rotation_euler = (math.radians(45), 0, math.radians(-25)); S.collection.objects.link(ck)
+
+# kitchen labels
+L_BUG = label("BACTERIA", (BX - 0.16, -0.12, TOP + 0.42), 0.030, M_GRN)
+L_APP = label("1 APPLE", (BX + 0.17, -0.12, TOP + 0.42), 0.030, M_WHITE)
+L_200 = label("ALL ≈ 200 g", (BX - 0.12, -0.14, TOP + 0.42), 0.026, M_GRN)
 key = bpy.data.objects.new("key", bpy.data.lights.new("key", "AREA")); key.data.energy = 220; key.data.size = 2.5
 key.data.color = (1.0, 0.94, 0.85); key.location = (-0.8, -2.2, 3.2); key.rotation_euler = (math.radians(40), 0, math.radians(-20)); S.collection.objects.link(key)
 fill = bpy.data.objects.new("fill", bpy.data.lights.new("fill", "AREA")); fill.data.energy = 90; fill.data.size = 2.0
 fill.data.color = (0.85, 0.9, 1.0); fill.location = (1.8, -1.8, 1.6); fill.rotation_euler = (math.radians(60), 0, math.radians(45)); S.collection.objects.link(fill)
 
-# ---------- school row (line 5) ----------
-RX = 6.0; RY = [k * 1.15 for k in range(8)]
-ROW = []
-for k, y in enumerate(RY):
-    box((RX, y, TOP0 - TT / 2), (TW, TD, TT), M_WOOD, "rtop")
-    for sx in (-1, 1):
-        for sy in (-1, 1):
-            cyl((RX + sx * (TW / 2 - 0.05), y + sy * (TD / 2 - 0.05), (TOP0 - TT) / 2), 0.022, TOP0 - TT, M_WOOD, "rleg", verts=10)
-    cyl((RX + 0.30, y, TOP0 + 0.006), 0.11, 0.012, M_PLATE, "rplate", verts=32)
-    t, b = make_toast(M_TOAST, M_BUT, f"r{k}")
-    mk = cyl((RX + 0.62, y, 0.003), 0.10, 0.004, M_RED if ROW_DOWN[k] else M_GRN, "rmark", verts=24); noshadow(mk)
-    ROW.append((t, b, mk, y))
-CNT = label("", (RX + 0.55, 1.6, 1.22), 0.17, M_RED)
-rk = bpy.data.objects.new("rkey", bpy.data.lights.new("rkey", "AREA")); rk.data.energy = 900; rk.data.size = 5
-rk.location = (RX + 1.5, 2.0, 4.5); rk.rotation_euler = (math.radians(15), 0, math.radians(20)); S.collection.objects.link(rk)
-
-# ---------- toast motion ----------
-def drop_pose(t, t0, dur, top, turns_end, x_rest=0.34, y=0.0, x0=0.0, land_dx=0.17):
-    """return (location, rot_y) of a toast that slides off the +x edge and falls to the floor"""
-    zr = top + 0.012 + 0.010
-    u = (t - t0) / dur
-    if u <= 0: return V((x0 + x_rest, y, zr)), 0.0
-    u = min(u, 1.0)
-    if u < 0.22:                                  # slide + tip over the edge
-        s = smooth(u / 0.22)
-        return V((x0 + x_rest + (XE + 0.02 - x_rest) * s, y, zr - 0.004 * s)), 0.35 * s ** 2
-    s = (u - 0.22) / 0.78
-    z = zr + (0.010 - zr) * s * s
-    x = x0 + XE + 0.02 + land_dx * s
-    th = 0.35 + (turns_end - 0.35) * s
-    return V((x, y, z)), th
-def place(o_t, o_b, loc, th, f, scale_t=(0.15, 0.14, 0.02)):
-    o_t.location = loc; o_t.rotation_euler = (0, th, 0); o_t.scale = scale_t
-    off = V((0, 0, 0.0135)); off.rotate(o_t.rotation_euler)
-    o_b.location = loc + off; o_b.rotation_euler = (0, th, 0); o_b.scale = (0.115, 0.105, 0.007)
-    for o in (o_t, o_b):
-        o.keyframe_insert("location", frame=f); o.keyframe_insert("rotation_euler", frame=f); o.keyframe_insert("scale", frame=f)
-def hide(o_t, o_b, f):
-    for o in (o_t, o_b):
-        o.scale = (0.0001,) * 3; o.keyframe_insert("scale", frame=f)
-        o.keyframe_insert("location", frame=f); o.keyframe_insert("rotation_euler", frame=f)
-def top_z(t):
-    if t < T_GROW[0] or t >= T_LOOP: return TOP0
-    return TOP0 + (TOP3 - TOP0) * smooth((t - T_GROW[0]) / (T_GROW[1] - T_GROW[0]))
-
+def n_green(t):
+    if t < DISC[0]: return 0
+    if t < t7 + 0.1 or t >= T_LOOP:
+        return min(NG, int((t - DISC[0]) / DISC[1]) + 1)
+    return max(NG_END, NG - int(max(0, t - FLUSH[0]) / FLUSH[1]))
+def n_red(t): return 0 if t < DISC[0] else min(NR, int((t - DISC[0]) / DISC[1]) + 1)
 def handler(scene, *a):
     t = scene.frame_current / FPS
-    if t3 - 0.05 <= t < t4 - 0.05:
-        RD0.data.body = f"{40 * smooth((t - t3 - 0.1) / 0.6):.0f} g"
-        RD1.data.body = f"{4 * smooth((t - T_LIFT - 0.4) / 0.5):.0f} g" if t >= T_LIFT + 0.4 else "0 g"
-    if t5 - 0.05 <= t < t6 - 0.05:
-        landed = [k for k in range(8) if t >= ROW_T0 + k * ROW_DT + ROW_DUR]
-        dn = sum(ROW_DOWN[k] for k in landed)
-        CNT.data.body = "62 % BUTTER-DOWN" if len(landed) == 8 else (f"DOWN {dn} · UP {len(landed) - dn}" if landed else "")
+    g = n_green(t)
+    flushing = t7 + 0.1 <= t < T_LOOP
+    G_CNT.data.body = (f"{g} T" if (g >= 30 or not flushing) else "< 30 T") if g else ""
+    R_CNT.data.body = f"{n_red(t)} T" if n_red(t) else ""
 bpy.app.handlers.frame_change_pre.append(handler)
 
+def kf(o, f, loc=True, rot=False, sc=False):
+    if loc: o.keyframe_insert("location", frame=f)
+    if rot: o.keyframe_insert("rotation_euler", frame=f)
+    if sc: o.keyframe_insert("scale", frame=f)
+
+STREAM_ST = [STREAM[0] + (STREAM[1] - STREAM[0]) * k / len(JB) for k in range(len(JB))]
 for f in range(0, N + 1):
     t = f / FPS
     loop = t >= T_LOOP
-    tz = top_z(t)
-    # table (top + legs follow height)
-    TOPB.location = (0, 0, tz - TT / 2); TOPB.keyframe_insert("location", frame=f)
-    for lg in LEGS:
-        h = tz - TT; lg.scale = (1, 1, h); lg.location = (lg.location.x, lg.location.y, h / 2)
-        lg.keyframe_insert("scale", frame=f); lg.keyframe_insert("location", frame=f)
-    PLATE.location = (0.30, 0, tz + 0.006); PLATE.keyframe_insert("location", frame=f)
-    # hero toast
-    splat = False; on_scale = t3 - 0.05 <= t < t4 - 0.05 and not loop
-    if loop: loc, th = drop_pose(t, 99, 1, TOP0, math.pi)
-    elif t < t2 - 0.05: loc, th = drop_pose(t, *DROP_A, TOP0, math.pi); splat = t >= sum(DROP_A)
-    elif t < t3 - 0.05: loc, th = drop_pose(t, *DROP_B, TOP0, math.pi); splat = t >= sum(DROP_B)
-    elif on_scale: loc, th = V((0.02, -0.05, TOP0 + 0.046 + 0.010)), 0.0
-    elif t < t5 - 0.05: loc, th = drop_pose(t, *DROP_C, TOP0, math.pi); splat = t >= sum(DROP_C)
-    elif t < t6 - 0.05: loc, th = None, 0
-    elif t < t7: loc, th = drop_pose(t, 99, 1, tz, 0)
-    else: loc, th = drop_pose(t, *DROP_D, TOP3, 2 * math.pi)
-    if loc is None: hide(T1, B1, f)
-    else:
-        place(T1, B1, loc, th, f)
-        if on_scale:   # butter pat lifts off the toast onto scale 2
-            k = smooth((t - T_LIFT) / 0.45); arc = math.sin(math.pi * k) * 0.08
-            B1.location = V((0.02 + 0.25 * k, -0.05, TOP0 + 0.046 + 0.0235 - 0.0165 * k + arc)); B1.keyframe_insert("location", frame=f)
-    SPLAT.scale = (0.085, 0.078, 1) if splat else (0.0001,) * 3
-    if loc is not None: SPLAT.location = (loc.x, loc.y, 0.002)
-    SPLAT.keyframe_insert("scale", frame=f); SPLAT.keyframe_insert("location", frame=f)
-    # ghosts along the slow-mo arc (line 4)
-    for j, (gt, gb) in enumerate(GH):
-        s_at = DROP_C[0] + DROP_C[1] * (0.30 + 0.17 * j)
-        if t4 - 0.05 <= t < t5 - 0.05 and t >= s_at:
-            gl, gth = drop_pose(s_at, *DROP_C, TOP0, math.pi); place(gt, gb, gl, gth, f)
-        else: hide(gt, gb, f)
-    # school row
-    for k, (rt, rb, mk, y) in enumerate(ROW):
-        t0 = ROW_T0 + k * ROW_DT
-        if t5 - 0.05 <= t < t6 - 0.05:
-            if ROW_DOWN[k]: loc_r, th_r = drop_pose(t, t0, ROW_DUR, TOP0, math.pi, y=y, x0=RX)
-            else:
-                loc_r, _ = drop_pose(t, t0, ROW_DUR, TOP0, 0.0, y=y, x0=RX)
-                u = max(0, min(1, (t - t0) / ROW_DUR)); th_r = 0.9 * math.sin(math.pi * u)
-            place(rt, rb, loc_r, th_r, f)
-            vis(mk, t >= t0 + ROW_DUR, f)
+    kitchen = t < t3 - 0.05 or T_BAL2 <= t < t6 - 0.05 or loop
+    a = beam_angle(t)
+    BEAM.location = PIV; BEAM.rotation_euler = (0, -a, 0); kf(BEAM, f, rot=True)
+    for k in range(2):
+        end, pc = pan_pos(k, a)
+        PANS[k].location = pc; kf(PANS[k], f)
+        STRS[k].location = (end + pc) / 2; STRS[k].scale = (1, 1, STR); kf(STRS[k], f, sc=True)
+    endL, pL = pan_pos(0, a); endR, pR = pan_pos(1, a)
+    # jar
+    jb0 = pL + V((0, 0, 0.006))
+    if not loop and t < t2 - 0.05:
+        u = smooth((t - JAR_DROP[0]) / JAR_DROP[1]) if t >= JAR_DROP[0] else 0
+        jz = jb0.z + 0.55 * (1 - u) ** 1.0 if u < 1 else jb0.z
+        jpos = V((jb0.x, jb0.y, jz)) if t >= JAR_DROP[0] else V((jb0.x, jb0.y, jb0.z + 0.9))
+    else: jpos = jb0
+    JAR.location = jpos + V((0, 0, JAR_H / 2)); kf(JAR, f)
+    vis(JAR, kitchen and (t >= JAR_DROP[0] or loop), f)
+    # apple
+    ab0 = pR + V((0, 0, 0.006 + 0.045 * 0.88))
+    if not loop and t < t2 - 0.05:
+        if t < APP_DROP[0]: apos = ab0 + V((0, 0, 0.9))
         else:
-            place(rt, rb, *drop_pose(t, 99, 1, TOP0, 0, y=y, x0=RX), f); vis(mk, False, f)
-    # labels
-    landA = sum(DROP_A) <= t < t2 - 0.05; landB = sum(DROP_B) <= t < t3 - 0.05
-    vis(LB_DOWN, (landA or landB) and not loop, f)
-    vis(BAR, t2 + 0.1 <= t < t3 - 0.05, f, base=(0.012, 0.012, TOP0)); vis(BAR_T, t2 + 0.1 <= t < t3 - 0.05, f)
-    for o in (RD0, RD1, TL0): vis(o, on_scale, f)
-    vis(TL1, on_scale and t >= T_LIFT + 0.3, f)
-    for (b_, p_, l_, x_) in SC:
-        for o, bs in ((b_, (0.17, 0.17, 0.04)), (p_, (0.15, 0.15, 0.006)), (l_, (0.12, 0.004, 0.032))): vis(o, on_scale, f, base=bs)
-    vis(HALF_T, sum(DROP_C) - 0.05 <= t < t5 - 0.05, f)
-    vis(CNT, t5 - 0.05 <= t < t6 - 0.05, f)
-    vis(BAR3, T_GROW[1] - 0.2 <= t < t7 + 0.5, f, base=(0.02, 0.02, TOP3)); vis(BAR3_T, T_GROW[1] - 0.2 <= t < t7 + 0.5, f)
-    vis(LB_UP, sum(DROP_D) - 0.03 <= t < T_LOOP, f)
+            u = smooth((t - APP_DROP[0]) / APP_DROP[1]); apos = ab0 + V((0, 0, 0.5 * (1 - u)))
+    else: apos = ab0
+    APPLE.location = apos; kf(APPLE, f); STEM.location = apos + V((0, 0, 0.045)); kf(STEM, f)
+    LEAF.location = apos + V((0.014, 0, 0.052)); kf(LEAF, f)
+    for o, bs in ((APPLE, (1, 1, 0.88)), (STEM, (1, 1, 1)), (LEAF, (1.4, 0.5, 0.25))):
+        vis(o, kitchen and (t >= APP_DROP[0] or t >= t2 - 0.05), f, base=bs)
+    # jar beads
+    for k, (b, rel) in enumerate(JB):
+        fin = jpos + rel
+        if t2 - 0.05 <= t < t3 - 0.05 and not loop:
+            s0 = STREAM_ST[k]
+            if t < s0: vis(b, False, f); b.location = GUT; kf(b, f); continue
+            u = min(1.0, (t - s0) / 0.45)
+            p = GUT.lerp(fin, u) + V((0, -0.06 * math.sin(math.pi * u), 0.28 * math.sin(math.pi * u)))
+            b.location = p; kf(b, f); vis(b, True, f)
+        else:
+            b.location = fin; kf(b, f); vis(b, kitchen and (t >= JAR_DROP[0] or loop), f)
+    # colon glow
+    g = 0.4 + 3.4 * smooth((t - T_GLOW) / 0.35) if t5 - 0.05 <= t < t6 - 0.05 else 0.4
+    bsdf(M_COLON).inputs["Emission Strength"].default_value = g
+    bsdf(M_COLON).inputs["Emission Strength"].keyframe_insert("default_value", frame=f)
+    vis(COLON_T, t5 - 0.05 <= t < t6 - 0.05 and t >= T_GLOW + 0.1, f)
+    # stacks
+    ng, nr = n_green(t), n_red(t)
+    for k, d in enumerate(GD):
+        z0 = 0.02 + k * PITCH
+        if k >= NG_END and t7 + 0.1 <= t < T_LOOP:
+            ft = FLUSH[0] + (NG - 1 - k) * FLUSH[1]
+            u = max(0.0, (t - ft) / 0.45)
+            d.location = (SX - 0.30 - 1.2 * u, -0.4 * u, z0 + 0.3 * math.sin(min(u, 1) * math.pi) - 0.8 * u * u)
+            d.rotation_euler = (0.8 * u, 1.5 * u, 0); kf(d, f, rot=True); vis(d, u < 1.0, f)
+        else:
+            d.location = (SX - 0.30, 0, z0); d.rotation_euler = (0, 0, 0); kf(d, f, rot=True)
+            vis(d, k < ng, f)
+    for k, d in enumerate(RDs): vis(d, k < nr, f)
+    G_CNT.location = (SX - 0.30, -0.25, 0.02 + max(ng, 1) * PITCH + 0.10); kf(G_CNT, f)
+    R_CNT.location = (SX + 0.30, -0.25, 0.02 + max(nr, 1) * PITCH + 0.10); kf(R_CNT, f)
+    G_LAB.location = G_CNT.location + V((0, 0, 0.15)); kf(G_LAB, f); R_LAB.location = R_CNT.location + V((0.02, 0, 0.15)); kf(R_LAB, f)
+    vis(G_LAB, ng > 0, f); vis(R_LAB, nr > 0, f)
+    vis(AHEAD, t >= FLUSH[0] + (NG - NG_END) * FLUSH[1] + 0.25 and t < T_LOOP, f)
+    # cells
+    cell_on = t4 - 0.05 <= t < T_BAL2
+    pc = smooth((t - T_CELL) / 0.25); pb = smooth((t - T_BUG) / 0.2)
+    vis(CELL, cell_on and pc > 0, f, base=(max(pc, 1e-4),) * 3); vis(NUC, cell_on and pc > 0, f, base=(max(pc, 1e-4),) * 3)
+    for o in [BUG] + BUGP: vis(o, cell_on and t >= T_BUG, f)
+    vis(RING, cell_on and t >= T_BUG, f, base=(max(pb, 1e-4),) * 3)
+    vis(C_LAB, cell_on and t >= T_CELL + 0.2, f); vis(B_LAB, cell_on and t >= T_BUG + 0.15, f)
+    vis(X_LAB, cell_on and t >= T_X, f)
+    # kitchen labels
+    hook_lab = (t < t2 - 0.05 and t >= sum(APP_DROP) + 0.1)   # not in the loop: they peek out behind the card
+    vis(L_BUG, hook_lab, f); vis(L_APP, hook_lab or (T_BAL2 <= t < t5 - 0.05), f)
+    vis(L_200, T_BAL2 + 0.15 <= t < t5 - 0.05, f)
 
 # ---------- camera ----------
 cam = bpy.data.objects.new("cam", bpy.data.cameras.new("cam")); S.collection.objects.link(cam); S.camera = cam
@@ -350,35 +405,29 @@ c.track_axis = "TRACK_NEGATIVE_Z"; c.up_axis = "UP_Y"
 def fixed(pa, ta, pb=None, tb=None):
     pb = pb or pa; tb = tb or ta
     return (V(pa), V(ta), V(pb), V(tb))
-HOOK = fixed((1.30, -1.50, 1.30), (0.52, 0, 0.36), (1.24, -1.42, 1.26), (0.52, 0, 0.36))
+HOOK = fixed((BX + 0.20, -1.50, 1.20), (BX, 0, 0.98), (BX + 0.18, -1.42, 1.18), (BX, 0, 0.98))
 SEG = [
-    (0.0, t2 - 0.05, HOOK, 24, 24),
-    (t2 - 0.05, t3 - 0.05, fixed((-0.10, -1.95, 1.20), (0.50, 0, 0.36), (0.0, -1.85, 1.15), (0.50, 0, 0.36)), 24, 24),
-    (t3 - 0.05, t4 - 0.05, fixed((0.30, -0.95, 1.08), (0.15, -0.05, 0.79), (0.29, -0.90, 1.06), (0.15, -0.05, 0.79)), 28, 28),
-    (t4 - 0.05, t5 - 0.05, fixed((0.55, -2.05, 0.95), (0.55, 0, 0.36), (0.55, -1.95, 0.92), (0.55, 0, 0.36)), 24, 24),
-    (t5 - 0.05, t6 - 0.05, fixed((RX + 1.55, -1.75, 1.45), (RX + 0.25, 2.2, 0.62), (RX + 1.45, -1.55, 1.40), (RX + 0.25, 2.2, 0.62)), 26, 26),
-    (t6 - 0.05, t7, fixed((1.30, -1.50, 1.30), (0.52, 0, 0.36), (2.6, -3.6, 2.7), (0.50, 0, 1.85)), 24, 24),
-    (t7, T_LOOP, None, 24, 24),
-    (T_LOOP, DUR + 0.01, HOOK, 24, 24),
+    (0.0, t2 - 0.05, HOOK, 34, 34),
+    (t2 - 0.05, t3 - 0.05, fixed((-0.08, -3.20, 1.55), (-0.28, 0, 1.20), (-0.04, -3.00, 1.50), (-0.28, 0, 1.20)), 30, 30),
+    (t3 - 0.05, t4 - 0.05, fixed((SX + 0.4, -3.9, 1.6), (SX, 0, 0.85), (SX + 0.3, -3.7, 1.55), (SX, 0, 0.85)), 30, 30),
+    (t4 - 0.05, T_BAL2, fixed((CX + 0.25, -2.6, 1.25), (CX + 0.10, 0, 0.92), (CX + 0.22, -2.4, 1.22), (CX + 0.12, 0, 0.92)), 30, 30),
+    (T_BAL2, t5 - 0.05, HOOK, 34, 34),
+    (t5 - 0.05, t6 - 0.05, fixed((BXB + 0.25, -1.55, 1.25), (BXB + 0.05, 0, 1.04), (BXB + 0.22, -1.42, 1.22), (BXB + 0.05, 0, 1.04)), 34, 34),
+    (t6 - 0.05, T_LOOP, fixed((SX + 0.3, -3.7, 1.55), (SX, 0, 0.85), (SX + 0.2, -3.5, 1.5), (SX, 0, 0.82)), 30, 30),
+    (T_LOOP, DUR + 0.01, HOOK, 34, 34),
 ]
 for f in range(0, N + 1):
     t = f / FPS
     seg = next((s for s in SEG if s[0] <= t < s[1]), SEG[-1])
     u = smooth((t - seg[0]) / (seg[1] - seg[0]))
-    if seg[2] is None:   # follow-cam on the falling toast (3 m table)
-        lz, _ = drop_pose(t, *DROP_D, TOP3, 2 * math.pi)
-        k = smooth((t - t7) / 0.30)
-        zt = max(0.22, lz.z - 0.15)
-        qf = V((0.55, 0, zt)); pf = qf + V((0.80, -1.55, 0.85))
-        p = V((2.6, -3.6, 2.7)).lerp(pf, k); q = V((0.50, 0, 1.85)).lerp(qf, k)
-    else:
-        pa, ta, pb, tb = seg[2]; p = pa.lerp(pb, u); q = ta.lerp(tb, u)
+    pa, ta, pb, tb = seg[2]; p = pa.lerp(pb, u); q = ta.lerp(tb, u)
     cam.location = p; cam.keyframe_insert("location", frame=f)
     tgt.location = q; tgt.keyframe_insert("location", frame=f)
     cam.data.lens = seg[3] + (seg[4] - seg[3]) * u; cam.data.keyframe_insert("lens", frame=f)
 
 M_PLATEL = mat("lplate", (0.02, 0.02, 0.03), 0.6)
-for o, nch in ((LB_DOWN, 11), (LB_UP, 9), (BAR_T, 5), (HALF_T, 6), (BAR3_T, 4), (TL0, 5), (TL1, 6), (CNT, 16)):
+for o, nch in ((L_BUG, 8), (L_APP, 7), (L_200, 11), (COLON_T, 5), (G_LAB, 8), (R_LAB, 10), (G_CNT, 6), (R_CNT, 4),
+               (AHEAD, 17), (C_LAB, 12), (B_LAB, 11), (X_LAB, 15)):
     o.rotation_euler = (0, 0, 0); cc = o.constraints.new("TRACK_TO"); cc.target = cam
     cc.track_axis = "TRACK_Z"; cc.up_axis = "UP_Y"
     sz = o.data.size; w = nch * sz * 0.72 + sz * 0.5
@@ -387,8 +436,9 @@ for o, nch in ((LB_DOWN, 11), (LB_UP, 9), (BAR_T, 5), (HALF_T, 6), (BAR3_T, 4), 
     ox = -w / 2 + sz * 0.25 if o.data.align_x == "RIGHT" else 0.0
     for v in pl.data.vertices: v.co.x = v.co.x * w + ox; v.co.y = v.co.y * sz * 1.35; v.co.z = -0.012
     pl.parent = o
-json.dump({"t_loop": T_LOOP, "t_card": tc, "cuts": [s[0] for s in SEG[1:]], "drop_a": DROP_A, "drop_b": DROP_B,
-           "lift": T_LIFT, "drop_c": DROP_C, "row_t0": ROW_T0, "row_dt": ROW_DT, "grow": T_GROW, "drop_d": DROP_D},
+json.dump({"t_loop": T_LOOP, "t_card": tc, "cuts": [s[0] for s in SEG[1:]], "jar": sum(JAR_DROP), "apple": sum(APP_DROP),
+           "stream": STREAM, "n_beads": len(JB), "disc": DISC, "ng": NG, "nr": NR, "cell": T_CELL, "bug": T_BUG, "x": T_X,
+           "bal2": T_BAL2, "glow": T_GLOW, "flush": FLUSH, "n_flush": NG - NG_END},
           open("/home/claude/reel/beats.json", "w"), indent=1)
 
 args = [a for a in (sys.argv[sys.argv.index("--") + 1:] if "--" in sys.argv else sys.argv[1:]) if a != "--force"]

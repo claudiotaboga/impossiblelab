@@ -10,21 +10,21 @@ def font(w, s): return ImageFont.truetype(F + f"Inter-{w}.otf", s)
 AMBER = (255, 176, 46); WHITE = (255, 255, 255); INK = (18, 12, 6)
 
 # ---- per-episode content: the only block to change for a new episode ----
-EP_NUM = 21
-TITLE = ["WHY TOAST LANDS", "BUTTER-DOWN"]
+EP_NUM = 22
+TITLE = ["ALL YOUR BACTERIA", "ON ONE SCALE"]
 FACTS = [  # (start, end, text) — times match the narration lines
-    (3.95, 5.85, "BUTTER: ≤ 10 % OF A ~40 g SLICE"),
-    (6.10, 7.75, "75 CM TABLE → ABOUT ½ TURN"),
-    (8.00, 11.40, "SCHOOL TEST: 62 % OF ~10,000 DROPS"),
+    (3.85, 6.10, "1 DISC = 1 TRILLION · 38 vs 30"),
+    (6.35, 8.75, "ALL TOGETHER ≈ 0.2 kg · 0.3 % OF YOU"),
+    (8.95, 10.15, "ALMOST ALL LIVE IN YOUR COLON"),
 ]
-CARD_SUB = "Why falling toast usually lands butter-down"
-CARD = [("Table 0.7–1.8 m", "≈ ½ turn", "Matthews 1995, Eur. J. Phys. 16:172"),
-        ("Butter on a slice", "≤ 10 % of 40 g", "Effect negligible (Stewart, Sci. Am.)"),
-        ("Table for butter-up", "≈ 3 m", "Full 360° turn · Ig Nobel Physics 1996"),
+CARD_SUB = "70 kg reference adult · Sender, Fuchs & Milo 2016"
+CARD = [("Bacteria in you", "≈ 38 trillion", "3.8 × 10¹³ · PLOS Biology 2016"),
+        ("Your own cells", "≈ 30 trillion", "3.0 × 10¹³ · 84 % are red blood cells"),
+        ("All bacteria", "≈ 0.2 kg", "Old claim 1–3 kg · medium apple 182 g"),
        ]
-DISCLAIMER = "Don't try this. Don't climb on tables or stack them."
-NEXT = "TOMORROW: ALL YOUR BACTERIA ON A SCALE"   # series teaser end card (binding for TIL-22 = V2)
-NEXT_START = 14.0
+DISCLAIMER = "Don't try this. Never take antibiotics to change it."
+NEXT = "TOMORROW: PUSH A SHIP WITH ONE FINGER"   # series teaser end card (binding for TIL-23 = V3)
+NEXT_START = 13.9
 
 # ---- follow invite (Claudio, 20 Nov 2026: "invite the viewer to subscribe to the channel") — house rule, every reel ----
 # Shown mid-reel, while most viewers are still watching (avg watch ≈ 9 s; the 13.5 s end card is seen by few),

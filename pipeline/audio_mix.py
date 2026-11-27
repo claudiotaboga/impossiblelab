@@ -151,31 +151,32 @@ def tinkles(t0, dur, k=10):  # falling shards
 def pop(g=1.0, f=None):  # popcorn pop: short bright snap + small body
     n = int(0.09 * SR); tt = np.arange(n) / SR; f = f or rng.uniform(500, 1100)
     return (hp(rng.standard_normal(n), 1800) * np.exp(-tt * 90) * 0.9 + np.sin(2 * np.pi * f * tt) * np.exp(-tt * 60) * 0.6) * g
-# ---- episode 21 SFX: does toast land butter-down? ----
-def slide(dur=0.25):  # toast sliding over a plate
+# ---- episode 22 SFX: every bacterium in your body on one scale ----
+def clinkglass(g=1.0):  # glass jar set down on a steel pan
+    return (clink(2600, 0.4) * 0.8 + thud(0.4, 90) * 0.6) * g
+def splash(dur=1.0):  # toilet flush: rushing water swirl
     n = int(dur * SR); tt = np.arange(n) / SR
-    return bp(rng.standard_normal(n), 900, 4000) * np.sin(np.linspace(0, np.pi, n)) * 0.7
-def splat(g=1.0):  # buttered toast hits the floor: soft slap + thud
-    n = int(0.25 * SR); tt = np.arange(n) / SR
-    return (lp(rng.standard_normal(n), 1800) * np.exp(-tt * 30) * 1.2 + thud(0.25, 80) * 0.7) * g
-def ding(f=1320, dur=0.5):  # bright success chime
+    x = bp(rng.standard_normal(n), 300, 3000) * (0.6 + 0.4 * np.sin(2 * np.pi * 6 * tt))
+    return x * np.sin(np.linspace(0, np.pi, n)) ** 0.8
+def ding(f=1320, dur=0.5):
     n = int(dur * SR); tt = np.arange(n) / SR
     return (np.sin(2 * np.pi * f * tt) + 0.5 * np.sin(2 * np.pi * f * 1.5 * tt)) * np.exp(-tt * 6) * 0.6
-def buzz(dur=0.25):  # low "wrong" buzz
-    n = int(dur * SR); tt = np.arange(n) / SR
-    return np.sign(np.sin(2 * np.pi * 140 * tt)) * 0.25 * np.exp(-tt * 6)
-for (t0, d) in (B["drop_a"], B["drop_b"], B["drop_c"]):
-    put(sfx, slide(), t0, 0.35); put(sfx, whoosh(d * 0.7, 400, 1600), t0 + d * 0.25, 0.12)
-    put(sfx, splat(), t0 + d, 0.6)
-put(sfx, buzz(), sum(B["drop_a"]) + 0.05, 0.25)
-counter(B["lift"] - 0.45, B["lift"] + 0.15, 8, 1800, 1800, 0.05)        # scale readout 0 -> 40 g
-put(sfx, squeak(0.2, 1900), B["lift"], 0.12); put(sfx, beep(2200, 0.08), B["lift"] + 0.9, 0.12)  # butter pat lifted
-for k in range(8):
-    tk = B["row_t0"] + k * B["row_dt"]
-    put(sfx, slide(0.15), tk, 0.18); put(sfx, splat(0.8), tk + 0.75, 0.35)
-put(sfx, creak(0.6), B["grow"][0] + 0.05, 0.3); put(sfx, whoosh(0.6, 300, 1500), B["grow"][0] + 0.1, 0.18)  # table grows
-put(sfx, slide(), B["drop_d"][0], 0.35); put(sfx, whoosh(1.0, 300, 2400), B["drop_d"][0] + 0.25, 0.2)
-put(sfx, splat(0.8), sum(B["drop_d"]), 0.5); put(sfx, ding(), sum(B["drop_d"]) + 0.02, 0.35)        # butter-up!
+put(sfx, whoosh(0.2, 2000, 600, False), B["jar"] - 0.15, 0.12); put(sfx, clinkglass(), B["jar"], 0.45)
+put(sfx, creak(0.35), B["jar"] + 0.02, 0.25)
+put(sfx, thud(0.3, 110), B["apple"], 0.55); put(sfx, creak(0.6), B["apple"] + 0.03, 0.25)
+s0, s1 = B["stream"]
+for k in range(B["n_beads"]):
+    if k % 2 == 0: put(sfx, plink(rng.uniform(1500, 2600), 0.12), s0 + (s1 - s0) * k / B["n_beads"] + 0.45, 0.05)
+d0, dd = B["disc"]
+for k in range(B["ng"]):
+    put(sfx, beep(900 + 25 * k, 0.03), d0 + k * dd, 0.05 if k < B["nr"] else 0.08)
+put(sfx, pop(1.0, 500), B["cell"], 0.4); put(sfx, pop(0.8, 1400), B["bug"], 0.35); put(sfx, ding(1760, 0.4), B["x"], 0.18)
+put(sfx, ding(1100, 0.5), B["bal2"] + 0.15, 0.2)
+put(sfx, shimmer(0.8), B["glow"], 0.3)
+f0, fd = B["flush"]
+put(sfx, splash(0.4 + fd * B["n_flush"] + 0.4), f0 - 0.1, 0.35)
+for k in range(B["n_flush"]): put(sfx, whoosh(0.25, 1800, 400, False), f0 + k * fd, 0.06)
+put(sfx, ding(990, 0.5), f0 + fd * B["n_flush"] + 0.25, 0.22)
 for t_cut in B["cuts"]:
     put(sfx, whoosh(0.35, 1800, 500, False), t_cut - 0.15, 0.10)
 put(sfx, thud(0.4, 60), CARD_START, 0.6); put(sfx, whoosh(0.3, 800, 3000), CARD_START - 0.25, 0.2)
