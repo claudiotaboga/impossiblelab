@@ -587,6 +587,12 @@ Other reels unchanged (IG frozen). Totals **32,406 views (IG 16,297 + YT 16,109)
 | TIL-18 water on the Moon | 0 h | 0 | 0 | – | – | – | – | 0 |
 Totals **34,111 views (IG 17,085 + YT 17,026)**; IG followers 6, YT subscribers 8. Medians TIL-01..16: hook hold 62.7 %, watch ratio 60 %; E5 24 h IG reach median 1,093.
 - **Findings:** 1. TIL-17 at 19.5 h: 580 accounts (0.53× E5 median at a younger age; posted 4 h 32 late), retention at the medians — the off-slot post is the likeliest drag (low–medium). 2. TIL-15 72 h final: watch 84 % still the best of 17 (medium). 3. TIL-16 YT 6 → 307 at 46 h: the anomaly was batch lag (medium).
+| 27 Nov 16:10 | TIL-14 | 168.2 h | 446* | 329* | 66.9 %* | 7.6* (51 % of 15 s) | 0 | 0 | 1,311 (9 likes) | 6* / 8 |
+| 27 Nov 16:10 | TIL-18 | 72.2 h | 166* | 125* | 56.0 %* | 8.0* (54 % of 15 s) | 0 | 0 | 404 (3 likes) | 6* / 8 |
+| 27 Nov 16:10 | TIL-19 | 48.1 h | 560* | 399* | 64.3 %* | 8.2* (54 % of 15 s) | 0 | 0 | 970 (3 likes) | 6* / 8 |
+| 27 Nov 16:10 | TIL-20 | 24.2 h | n/a | n/a | n/a | n/a | n/a | n/a | 1,095 (14 likes) | n/a / 8 |
+(* = IG values from the 26 Nov 16:03 capture; no IG capture on 27 Nov — Instagram token invalidated, OAuth 190.)
+
 - **Adjustment applied:** none — 22 Nov 13:20 instruction followed: **TIL-19 = #19 "A balloon on Mars" = E17 reel 2** (E13 opening: EARTH vs MARS balloons, Mars one pops at 1.0 s; cascade middle: air vanishes 4.2 s → balloon swells 4.5 → marshmallows 6.1 → snack bag 6.8 → glove 7.5 → ×2 → ×20 8.6–10.6 → tears 10.7 → pop 11.6 → rip vs sound bars 11.8); caption v2 + follow line; ⚠️ on caption + card. Teaser binds **TIL-20 = #20 candle in space (E17 reel 3)**. Experiment status: E13 complete (verdict 29 Nov), E16 running, **E17 reel 1 live, reel 2 in READY for 25 Nov 16:00**.
 
 ### Production run 25 Nov 2026 (13:12–16:20 EET, on schedule)
@@ -625,3 +631,21 @@ Totals **36,398 views (IG 17,834 + YT 18,564)**; IG followers 6, YT subscribers 
 - **Findings:** 1. E17 cascade middle, 2 reels at 24 h: watch ratio 54 % / 54 % vs median 60 % — no completion lift so far (medium-low; n = 2 and both are space/low-pressure premises, so topic is a confound). 2. TIL-19 hook hold 64.3 % (above median) and YT 969 at 24 h (best early YT since TIL-14), but IG reach 0.37× the E5 median (low–medium). 3. TIL-18 frozen at 125 accounts at 48 h (final low).
 - **Adjustment applied:** none — 22 Nov 13:20 + 25 Nov 16:20 instructions followed: **TIL-21 = V1 "Does toast really land butter-side down?"** (lane C, first no-planets reel): E13 reaction at t = 0 with a normal-world control (75 cm table → 3 m table as the twist), framing varied to a single escalating scene, E17 cascade middle kept (75 CM replay 2.0 s → scales 40 g vs 4 g 3.9 s → slow-mo ½ TURN 6.1–7.5 s → 8 school tables + counter 8.1–11.1 s → table grows to 3 m 11.5 s → full turn BUTTER-UP 13.7 s); caption v2 + follow line; ⚠️ on caption + card. Science: Matthews 1995 Eur. J. Phys. 16:172 (½ turn from 0.7–1.8 m; ≈ 3 m for a full turn; Ig Nobel Physics 1996); Stewart 1995 (butter ≤ 10 % of ~40 g, negligible); Matthews 2001 schools test (62 % of almost 10,000 drops). Teaser binds **TIL-22 = V2 "All your bacteria on a scale"** (lane A; Sender, Fuchs & Milo 2016, to verify in that build). Experiment status: E13 complete, E16 running, E17 3/3 published (TIL-20 today) — verdict 29 Nov.
 
+
+### Production run 27 Nov 2026 (13:12–16:30 EET, on schedule)
+- **TIL-21 NOT published** — guard sent the webhook once at 16:00:08 EET; Make exec d4aeb991… ERROR at the Instagram module (OAuth 190: session invalidated; connection 12732691). YouTube and Facebook did not run; scenario 8451092 inactive; queue holds the TIL-21 payload; lock TIL-21 set. This run (fallback) sent nothing: the lock means the slot counts as taken and a resend is forbidden; fix needs Claudio (reconnect → delete lock → reactivate). Push notification sent.
+- Snapshot: YT 27 Nov 16:10 (this run's 8451995 exec f64f8684…); IG unavailable today (8451991 exec ad19ae3a… wrote no rows) → IG = 26 Nov 16:03.
+
+| Reel | Age | IG views* | IG reach* | Hook hold* | Avg watch* | Watch ratio* | Shares / saves* | YT views |
+|---|---|---|---|---|---|---|---|---|
+| TIL-09 olive oil | 288 h | 3,285 | 2,149 | 72.1 % | 11.1 s | 74 % | 0 / 0 | 1,494 |
+| TIL-14 ice cream on Mercury (7 d) | 168 h | 446 | 329 | 66.9 % | 7.6 s | 51 % | 0 / 0 | 1,311 |
+| TIL-15 Earth stops spinning | 144 h | 1,731 | 1,212 | 64.8 % | 12.6 s | 84 % | 0 / 0 | 660 |
+| TIL-16 egg on Everest | 118 h | 1,661 | 1,157 | 62.4 % | 8.7 s | 58 % | 0 / 0 | 391 |
+| TIL-17 popcorn on Mars | 91.5 h | 800 | 590 | 62.4 % | 8.5 s | 57 % | 0 / 0 | 684 |
+| TIL-18 water on the Moon (72 h) | 72 h | 166 | 125 | 56.0 % | 8.0 s | 54 % | 0 / 0 | 404 |
+| TIL-19 balloon on Mars | 48 h | 560 | 399 | 64.3 % | 8.2 s | 54 % | 0 / 0 | 970 |
+| **TIL-20 candle in space (24 h)** | 24 h | n/a | n/a | n/a | n/a | n/a | n/a | **1,095** |
+(* IG as of 26 Nov 16:03.) Totals **≥ 37,496 views (IG 17,834 as of 26 Nov + YT 19,662)**; IG followers 6 (26 Nov), YT subscribers 8.
+- **Findings:** 1. TIL-20 YT 1,095 at 24 h — best 24 h YT since TIL-14 (medium). 2. IG publishing and IG stats both blocked by the invalidated token; the 29 Nov weekly check needs the connection restored to judge E17 / TIL-21 (high). 3. YT subscribers flat at 8 since 24 Nov (low–medium; E16 review 29 Nov).
+- **Adjustment applied:** none — 22 Nov 13:20 + 25 Nov 16:20 instructions followed: **TIL-22 = V2 "Every bacterium in your body on one scale"** (lane A after C; E13 balance hook with an apple as the everyday control; E17 cascade middle; caption v2 + follow line; ⚠️ on caption + card). Teaser binds **TIL-23 = V3 push a ship with one finger** (lane D). Buffer now TIL-21 (blocked) → TIL-22. Experiment status unchanged: E13 complete, E16 running, E17 3/3 published — verdict 29 Nov (IG data permitting).
