@@ -1,0 +1,51 @@
+[
+ {
+  "i": 1,
+  "text": "One finger can move this ship.",
+  "file": "vo/line1.wav",
+  "dur": 1.385,
+  "sr": 24000
+ },
+ {
+  "i": 2,
+  "text": "A hundred thousand tonnes, floating free.",
+  "file": "vo/line2.wav",
+  "dur": 1.977,
+  "sr": 24000
+ },
+ {
+  "i": 3,
+  "text": "Water can't grip it, so any push moves it.",
+  "file": "vo/line3.wav",
+  "dur": 2.081,
+  "sr": 24000
+ },
+ {
+  "i": 4,
+  "text": "One minute: about a fifth of a millimetre.",
+  "file": "vo/line4.wav",
+  "dur": 2.017,
+  "sr": 24000
+ },
+ {
+  "i": 5,
+  "text": "Push for an hour: over half a metre.",
+  "file": "vo/line5.wav",
+  "dur": 1.805,
+  "sr": 24000
+ },
+ {
+  "i": 6,
+  "text": "The real problem?",
+  "file": "vo/line6.wav",
+  "dur": 0.909,
+  "sr": 24000
+ },
+ {
+  "i": 7,
+  "text": "Stopping it takes another hour.",
+  "file": "vo/line7.wav",
+  "dur": 1.408,
+  "sr": 24000
+ }
+]
