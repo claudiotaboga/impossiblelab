@@ -674,3 +674,22 @@ Source: competitor benchmark of @what.if.explainer (CAMPAIGN_LOG.md, 28 Nov) vs 
 6. **Known channel issues (for Claudio, not for the runs):** the YouTube handle is @TheImpossibleLab-s (the plain @TheImpossibleLab belongs to an empty channel); TIL-06 "marathon at the speed of sound" has 13 YT views — likely a restricted/failed upload, worth checking in YouTube Studio.
 
 NEXT BUILD INSTRUCTION (from 28 Nov 2026 10:30 EET — Claudio's decision; holds until the weekly check of 6 Dec, the 29 Nov weekly check gives the E17 verdict and may change only CORE-slot variables): **TIL-23 (built today) = V3 "push a ship with one finger"** as bound by TIL-22's end card (CORE, format unchanged); its end card names **TIL-24 = X1-a** from the X block ("TOMORROW: <X1-a headline>"). **TIL-24 = EXPLORE X1** (first E19 reel), **TIL-25 = CORE V4** (lane B), **TIL-26 = EXPLORE X2**, **TIL-27 = CORE** (next V item respecting lane rotation), **TIL-28 = EXPLORE X3**, **TIL-29 / TIL-30 = CORE**. Every build applies the send test (rule 2) and the breakout check (rule 3). Primary metric E19: breakout rate and max ÷ median, CORE vs EXPLORE; secondary: shares and follows per 1,000 reach. Constants: 15 s / 1.10, disclaimer, follow invite, 16:00 slot via the guard, verified science, safe content.
+
+### Production run 28 Nov 2026 (13:12–16:20 EET, on schedule)
+- **TIL-22 published on time by the guard task** 16:00:46 EET (exec 5f0eec46… SUCCESS, 5 operations, single delivery; IG DgSa2PuNZzq, YT fqAogy09ALU; FB exec 80e2b81f… SUCCESS) — this run (fallback only) sent nothing. Snapshot = guard's post-publish capture 16:02 EET (store 250779).
+- **Growth KPIs first (Playbook v3 rule 4):** breakouts 0 of 22 (none ≥ 5× the rolling median at ~24 h, none > 10 k); max ÷ median on lifetime views IG 4.1× (TIL-09 3,285 vs 800), YT 1.6× (1,741 vs 1,091). Shares per 1,000 IG reach 0 (0 shares on all reels). Follows: IG 6 (flat), YT subscribers 8 → 9 (first gain since 24 Nov) ≈ 0.05 per 1,000 total views.
+
+| Reel | Age | IG views | IG reach | Hook hold | Avg watch | Watch ratio | Shares / saves | YT views |
+|---|---|---|---|---|---|---|---|---|
+| TIL-09 olive oil (best) | 312 h | 3,285 | 2,149 | 72.1 % | 11.1 s | 74 % | 0 / 0 | 1,499 |
+| TIL-15 Earth stops spinning (7 d) | 168 h | 1,731 | 1,212 | 64.8 % | 12.6 s | 84 % | 0 / 0 | 660 |
+| TIL-16 egg on Everest | 142 h | 1,661 | 1,157 | 62.4 % | 8.7 s | 58 % | 0 / 0 | 391 |
+| TIL-17 popcorn on Mars | 115.5 h | 800 | 590 | 62.4 % | 8.5 s | 57 % | 0 / 0 | 686 |
+| TIL-18 water on the Moon | 96 h | 166 | 125 | 56.0 % | 8.0 s | 54 % | 0 / 0 | 451 |
+| TIL-19 balloon on Mars (72 h) | 72 h | 565 | 419 | 63.7 % | 8.3 s | 55 % | 0 / 0 | 973 |
+| TIL-20 candle in space | 48 h | 1,583 | 1,083 | 70.3 % | 10.5 s | 70 % | 0 / 1 | 1,126 |
+| **TIL-21 toast butter-side down (late)** | **17 h** | **1,662** | **1,145** | **60.5 %** | **8.2 s** | **55 %** | 0 / 0 | **1,021** |
+| TIL-22 bacteria on a scale | 0 h | 0 | 0 | – | – | – | – | 0 |
+Other reels unchanged. Totals **41,881 views (IG 21,084 + YT 20,797)**; IG followers 6, YT subscribers 9. Medians TIL-01..21: hook hold 62.4 %, watch ratio 60 %, IG views 800, YT views 1,091; E5 24 h IG reach median 1,093.
+- **Findings:** 1. TIL-21 (first no-planets reel, posted 7 h late) reached 1,145 accounts in 17 h — already above the E5 24 h median and the best early read since TIL-15, with YT 1,021; retention is only median (hook 60.5 %, watch 55 %), so the topic (familiar kitchen myth), not the edit, likely carried it (low–medium, n = 1). 2. TIL-20 settles at ~1.08 k accounts despite the second-best retention ever (70 % / 70 %): high retention keeps a reel in the ~1.1 k tier but has not broken it — consistent with Playbook v3's bet on topic/format variance (medium-low). 3. Conversion is still the bottleneck: 0 shares in 22 reels, +1 YT subscriber in 4 days (medium).
+- **Adjustment applied:** none — 28 Nov 10:30 instruction followed: **TIL-23 = V3 "push a 100,000-tonne ship with one finger"** (CORE, lane D, format unchanged: proof visible at t = 0 via time-lapse + paint marks, single escalating scene, caption v2 + follow line, E16 pill + end card, ⚠️ on caption + card, 15 s / 1.10); end card names **X1-a "LIGHTNING VS YOUR CAR" = TIL-24, first EXPLORE reel (E19 starts)**. Send test logged in the brief. Experiment status: E13 complete, E16 running, E17 verdict due at the 29 Nov weekly check, **E19 starts with TIL-24 (29 Nov build)**.
